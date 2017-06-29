@@ -1,0 +1,41 @@
+<section class="register">
+  <form [formGroup]="registerForm" (ngSubmit)="submitForm(registerForm.value)">
+    <div class="form-group">
+      <input class="form-control" type="text" placeholder="Email" [formControl]="email">
+      <div class="form-msgs container" *ngIf="!email.valid && email.dirty">
+        <p *ngIf="email.hasError('required')">Email required</p>
+        <p *ngIf="!email.hasError('required') && email.hasError('invalidEmail')">
+          Invalid email
+        </p>
+      </div>
+    </div>
+    <div formGroupName="password" class="form-group">
+      <input show-hide class="form-control" type="password" placeholder="PASSWORD" formControlName="pass">
+      <div class="form-msgs container" *ngIf="!registerForm.controls['password'].controls['pass'].valid && registerForm.controls['password'].controls['pass'].dirty">
+        <p *ngIf="registerForm.controls['password'].controls['pass'].hasError('required')">
+          PASSWORD required
+        </p>
+        <p *ngIf="registerForm.controls['password'].controls['pass'].hasError('minlength') || registerForm.controls['password'].controls['pass'].hasError('maxlength')">
+          PASSWORD invalid
+        </p>
+      </div>
+    </div>
+    <div formGroupName="password" class="form-group">
+      <input class="form-control" type="password" placeholder="CONFIRM PASSWORD"
+              formControlName="confirmPass">
+      <div class="form-msgs container" *ngIf="!registerForm.controls['password'].controls['confirmPass'].valid && registerForm.controls['password'].controls['confirmPass'].dirty">
+        <p *ngIf="registerForm.controls['password'].controls['confirmPass'].hasError('required')">
+          CONFIRM PASSWORD required
+        </p>
+      </div>
+      <div class="form-msgs container">
+        <p *ngIf="registerForm.controls['password'].hasError('nomatch')">
+          PASSWORDS DONT MATCH
+        </p>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-default"  [disabled]="!registerForm.valid">SUBMIT</button>
+    </div>
+  </form>
+</section>
