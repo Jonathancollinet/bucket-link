@@ -1,0 +1,15 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Bucket-link Restful API build with express and sequelize.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@github.com/Tonychg",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.3",
+    "sequelize": "^4.2.1"
+  }
+}
