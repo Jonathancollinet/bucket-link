@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  endpointAPI: 'http://127.0.0.1:4040',
+  endpointAPI: 'http://127.0.0.1:3000',
   endpointSocket: '//127.0.0.1:4040'
 };
