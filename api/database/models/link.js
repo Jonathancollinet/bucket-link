@@ -2,24 +2,23 @@
     @author Antoine Chiny
     @github.com/TonyChG
     @email antoine.chiny@ynov.com
-    @File: user.js
+    @File: link.js
 
-    @fileOverview Define User MySQL data schema
-    Create users table
+    @fileOverview Define Link MySQL data schema
+    Create links table
 */
-
 
 module.exports = (sequelize, Datatype) => {
 
-  const User = sequelize.define('users',
+  const Link = sequelize.define('links',
   {
-    email: {
+    url: {
       type: Datatype.STRING
     },
-    password: {
+    name: {
       type: Datatype.STRING
     }
   })
-  return User
+  return Link
 
 }

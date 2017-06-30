@@ -1,8 +1,8 @@
 module.exports = {
-  port: 5432,
+  port: 3306,
   host: '127.0.0.1',
   dbname: 'bucketlist',
   username: 'root',
-  password: '',
-  dialect: 'postgres'
+  password: 'root',
+  dialect: 'mysql'
 }

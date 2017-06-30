@@ -2,18 +2,18 @@
     @author Antoine Chiny
     @github.com/TonyChG
     @email antoine.chiny@ynov.com
-    @File: user.js
+    @File: link.js
 
-    @fileOverview Users (CRUD)
+    @fileOverview Link (CRUD)
 */
 
 module.exports = (express) => {
   const router = express.Router(),
-    { User } = require('../database/')
+    { Link } = require('../database/')
 
   router.get('/', (req, res) => {
-    User.findAll().then(users => {
-      res.send(users)
+    Link.findAll().then(Links => {
+      res.send(Links)
     }).catch(err => {
       console.error(err.message)
       res.sendStatus(500)
