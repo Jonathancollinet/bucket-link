@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class BucketComponent implements OnInit, OnDestroy {
 
   public bucket: Array<any> = [];
-  private _id: number;
+  public _id: number;
   private sub: any;
 
   constructor(private route: ActivatedRoute) {

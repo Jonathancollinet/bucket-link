@@ -15,8 +15,10 @@ export class RegisterComponent {
 
   @Output() isRegistred = new EventEmitter();
 
-  public registerForm: FormGroup;
-  public email: AbstractControl;
+  public registerForm: any;
+  public email: any;
+  public password: any;
+  public confirmPassword: any;
 
   constructor(private _fb: FormBuilder, private auth: AuthService) {
 
@@ -42,7 +44,8 @@ export class RegisterComponent {
     });
 
     this.email = this.registerForm.controls['email'];
-
+    this.password = this.registerForm.controls.password.controls['pass']
+    this.confirmPassword = this.registerForm.controls.password.controls['confirmPass'];
   }
 
   submitForm(formData) {
@@ -73,7 +76,7 @@ export class RegisterComponent {
       },
       (err) => {
         this.isRegistred.emit({p: false, r: false});
-        console.info('RegisterError', err);
+        console.error('RegisterError', err);
       }
     );
   }

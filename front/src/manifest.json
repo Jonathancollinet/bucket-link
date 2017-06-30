@@ -1,0 +1,16 @@
+{
+  "short_name": "BucketLink",
+  "name": "BucketLink: 10 000 links to explore",
+  "background_color": "#FDFFFC",
+  "theme_color": "#424874",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/assets/launcher-icon.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    }
+  ],
+  "start_url": "index.html?launcher=true"
+}
