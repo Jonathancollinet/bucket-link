@@ -4,11 +4,14 @@
 <ng-sidebar-container>
 
   <ng-sidebar [(opened)]="_opened">
-    <p>Sidebar contents</p>
+    <div class="link-container">
+      <div class="link" (click)="navigateToBuckets()">Buckets</div>
+      <div class="link" (click)="disconnect()">Logout</div>
+    </div>
   </ng-sidebar>
 
   <!-- Page content -->
-  <div ng-sidebar-content>
+  <div class="container" ng-sidebar-content>
     <router-outlet></router-outlet>
   </div>
 </ng-sidebar-container>
