@@ -28,6 +28,7 @@ export class AuthService {
         this._shared.setData('isLoggedIn', true);
         observer.next(currentUser);
       }, (error) => {
+        console.log(error);
         this._shared.setData('isLoggedIn', false);
         this._shared.clearData('currentUser');
         observer.error(error);
@@ -42,8 +43,9 @@ export class AuthService {
       password: data.password
     }).flatMap((resp) => {
       localStorage.setItem('tkn', resp.headers.get('authorization'));
-      this._shared.setData('currentUser', resp.data.payload);
-      return this.authResolver(resp.data.payload);
+      console.log(resp.data);
+      this._shared.setData('currentUser', resp.data.token);
+      return this.authResolver(resp.data.token);
     });
   }
 
