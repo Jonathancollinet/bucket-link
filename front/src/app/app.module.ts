@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 
+/* DEP */
+import { DndModule } from 'ng2-dnd'; // Drag-n-Drop
+
 /* HOMEMADE */
 import { CoreModule } from './core/core.module';
 import { PageModule } from './page/page.module'; 
@@ -17,6 +20,8 @@ import { RoutingModule } from './app.routing';
   ],
   imports: [
     BrowserModule,
+
+    DndModule.forRoot(),
 
     /* HOMEMADE */
     CoreModule,
