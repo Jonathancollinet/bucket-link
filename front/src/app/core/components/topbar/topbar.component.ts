@@ -9,14 +9,14 @@ import { Router } from '@angular/router';
 
 export class TopBarComponent {
 
-    constructor(private _router: Router) {}
+    // constructor(private _router: Router) {}
 
-    public navigateToBuckets(): void {
-        this._router.navigate(['/buckets']);
-    }
+    // public navigateToBuckets(): void {
+    //     this._router.navigate(['/buckets']);
+    // }
 
-    public disconnect(): void {
-        this._router.navigate(['/home']);
-    }
+    // public disconnect(): void {
+    //     this._router.navigate(['/home']);
+    // }
     
 }
