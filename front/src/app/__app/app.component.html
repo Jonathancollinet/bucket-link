@@ -1,4 +1,6 @@
-<core-topbar></core-topbar>
+<core-topbar>
+    <div class="burger-icon" (click)="_toggleSidebar()"></div>
+</core-topbar>
 <ng-sidebar-container>
 
   <ng-sidebar [(opened)]="_opened">
@@ -7,10 +9,7 @@
 
   <!-- Page content -->
   <div ng-sidebar-content>
-    <button (click)="_toggleSidebar()">Toggle sidebar</button>
-
     <router-outlet></router-outlet>
-
   </div>
 </ng-sidebar-container>
 

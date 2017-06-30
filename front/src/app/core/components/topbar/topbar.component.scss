@@ -1,4 +1,4 @@
-@import '../../../../scss/variables';
+@import '~scss/variables';
 
 .topbar {
     height: 76px;
@@ -15,7 +15,6 @@
     
     .title-container {
         width: 40%;
-        
 
         .title {
             font-size: 32px;
@@ -38,5 +37,14 @@
         }
     }
 
+}
 
+@media (max-width: $small-screen) {
+    .link-container {
+        display: none;
+    }
+    
+    .title-container {
+        width: 100%;
+    }
 }
