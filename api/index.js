@@ -1,11 +1,22 @@
+/*
+    @author Antoine Chiny
+    @github.com/TonyChG
+    @email antoine.chiny@ynov.com
+    @File: index.js
+
+    @fileOverview Bucket-link API
+    Start server with config routes and Sequelize
+*/
 
 const 
-  port = require('./config/server').port,
-  { User } = require('./database/models'),
+  { baseUrl, port } = require('./config/server'),
   express = require('express'),
+  routes = require('./routes')(express),
+  bodyParser = require('body-parser'),
   app = express()
 
-// app.use(express.static(''))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
@@ -13,12 +24,7 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.get('/', (req, res) => {
-  User.findAll().then(users => {
-    console.log(users)
-  })
-  res.sendStatus(200)
-})
+app.use(`${baseUrl}`, routes)
 
 app.listen(port, () => {
   console.log(`Server ON: PORT=${port}`)
