@@ -1,7 +1,8 @@
 const { User } = require('../../../models')
 
 module.exports = {
-  signin: async (email, password) => {
-    
+  signin: async (bodyData) => {
+    console.log(bodyData.email, bodyData.password);
+    return 0;
   }
 }
