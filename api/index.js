@@ -11,10 +11,11 @@
 const
   { port } = require('./config/server'),
   { socketApp } = require('./sockets'),
-  app = require('./app/v1')
+  app = require('./app/v1'),
+  serverHttp = require('http').createServer(app);
 
-const server = app.listen(port, () => {
-  console.log(`Server ON port: ${port}`)
+serverHttp.listen(port, () => {
+  console.log(`ServerHTTP ON port: ${port}`)
 })
 
-socketApp(server)
+socketApp(serverHttp)
