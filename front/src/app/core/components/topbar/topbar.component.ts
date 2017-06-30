@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'core-topbar',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
 })
 export class TopBarComponent {
 
-    constructor() {}
+    constructor(private _router: Router) {}
+
+    public navigateToBuckets(): void {
+        this._router.navigate(['/buckets']);
+    }
+
+    public disconnect(): void {
+        this._router.navigate(['/home']);
+    }
     
 }

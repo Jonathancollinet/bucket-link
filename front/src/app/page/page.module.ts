@@ -1,32 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from "@angular/router";
 import { HttpModule } from '@angular/http';
 
 import { CoreModule } from '../core/core.module';
+import { RoutingModule } from '../app.routing';
 
 import {
     HomeComponent,
-    ListComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotComponent,
+    BucketsComponent,
+    BucketComponent
 } from  './index';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    ListComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotComponent,
+    BucketsComponent,
+    BucketComponent
   ],
   exports: [
     HomeComponent,
-    ListComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotComponent,
+    BucketsComponent,
+    BucketComponent
   ],
   imports: [
     BrowserModule,
 
-    CoreModule
+    CoreModule,
+    RoutingModule
   ],
   providers: []
 })

@@ -3,17 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 
 import {
   HomeComponent as HomePage,
-  RegisterComponent as RegisterPage
+  RegisterComponent as RegisterPage,
+  ForgotComponent as ForgotPage,
+  BucketsComponent as BucketsPage,
+  BucketComponent as BucketPage
 } from './page';
 
 const routes: Routes = [
   // Default
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomePage },
-  { path: 'register', component: RegisterPage }
-  // TODO move in lazy module
-  //{ path: 'profile', component: AccountPage, canActivate: [ AuthGuard ] },
-  //{ path: 'settings', component: SettingsPage, canActivate: [ AuthGuard ] },
+  { path: 'register', component: RegisterPage },
+  { path: 'forgot', component: ForgotPage },
+  { path: 'buckets', component: BucketsPage },
+  { path: 'bucket/:id', component: BucketPage }
 ];
 
 @NgModule({

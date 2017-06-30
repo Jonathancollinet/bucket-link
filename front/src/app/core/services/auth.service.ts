@@ -12,8 +12,12 @@ export class AuthService {
 
   private _generalData;
 
-  constructor(private _http: HttpService,private _shared: SharedService,
-              private _router: Router, private _socket: SocketService) { }
+  constructor(
+    private _http: HttpService,
+    private _shared: SharedService,
+    private _router: Router,
+    private _socket: SocketService
+  ) { }
 
 
   public authResolver(currentUser: any): Observable<any> {

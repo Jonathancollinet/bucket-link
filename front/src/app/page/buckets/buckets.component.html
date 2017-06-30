@@ -1,0 +1,7 @@
+<p>List of buckets here!</p>
+<pre>Debug data</pre>
+<ul class="buckets-container">
+  <li *ngFor="let bucket of buckets" class="bucket-container">
+    <a [routerLink]="['/bucket', bucket.id]">{{ bucket.name }} ({{bucket.nb_links}}) -- {{bucket.created_at}}</a>
+  </li>
+</ul>
