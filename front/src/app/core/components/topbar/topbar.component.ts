@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
     templateUrl: './topbar.component.html',
     styleUrls: ['./topbar.component.scss']
 })
+
 export class TopBarComponent {
 
     constructor(private _router: Router) {}

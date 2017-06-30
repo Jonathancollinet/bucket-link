@@ -1,4 +1,4 @@
-@import "./vars";
+@import './variables';
 
 ng-sidebar-container {
   width: 100%;
@@ -6,8 +6,9 @@ ng-sidebar-container {
 }
 
 .burger-icon {
+  display: none;
   background: transparent;
-  border: 0.15rem solid white;
+  border: 0.15rem solid ;
   border-left: 0;
   border-right: 0;
   cursor: pointer;
@@ -16,9 +17,10 @@ ng-sidebar-container {
   margin-right: 1rem;
   position: relative;
   width: 2rem;
+  right: 0;
 
   &::after {
-    background: white;
+    background: $secondary;
     content: '';
     height: 0.15rem;
     left: 0;
@@ -39,9 +41,15 @@ ng-sidebar-container {
     margin-left: 0;
 }
 
-@media (min-width: $responsive-breakpoint) {
+@media (min-width: $small-screen) {
   .ng-sidebar__content {
     width: calc(100% - #{$sidebar-width});
     margin-left: $sidebar-width!important;
   }
+}
+
+@media (max-width: $small-screen) {
+    .burger-icon {
+        display: block;
+    }
 }
