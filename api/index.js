@@ -9,12 +9,14 @@
 */
 
 const 
-  port = require('./config/server').port,
+  { baseUrl, port } = require('./config/server'),
   express = require('express'),
   routes = require('./routes')(express),
+  bodyParser = require('body-parser'),
   app = express()
 
-// app.use(express.static(''))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
@@ -22,9 +24,7 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use('/users', routes.user)
-app.use('/buckets', routes.bucket)
-app.use('/links', routes.link)
+app.use(`${baseUrl}`, routes)
 
 app.listen(port, () => {
   console.log(`Server ON: PORT=${port}`)

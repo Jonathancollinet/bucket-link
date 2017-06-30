@@ -9,11 +9,11 @@
 
 module.exports = (express) => {
   const router = express.Router(),
-    { Link } = require('../database/')
+    { Link } = require('../models')
 
   router.get('/', (req, res) => {
-    Link.findAll().then(Links => {
-      res.send(Links)
+    Link.findAll().then(links => {
+      res.send(links)
     }).catch(err => {
       console.error(err.message)
       res.sendStatus(500)

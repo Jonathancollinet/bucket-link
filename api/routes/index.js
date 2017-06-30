@@ -8,14 +8,11 @@
 */
 
 module.exports = (express) => {
-  const 
-    user = require('./user')(express),
-    bucket = require('./bucket.js')(express),
-    link = require('./link')(express)
+  const api = express.Router()
 
-  return {
-    user,
-    bucket,
-    link
-  }
+  api.use('/users', require('./user')(express))
+  api.use('/buckets', require('./bucket')(express))
+  api.use('/links', require('./link')(express))
+
+  return api
 }

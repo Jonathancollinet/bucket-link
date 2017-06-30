@@ -9,7 +9,7 @@
 
 module.exports = (express) => {
   const router = express.Router(),
-    { User } = require('../database/')
+    { User } = require('../models')
 
   router.get('/', (req, res) => {
     User.findAll().then(users => {
@@ -18,6 +18,24 @@ module.exports = (express) => {
       console.error(err.message)
       res.sendStatus(500)
     })
+  })
+
+  router.post('/', (req, res) => {
+    User.create({
+      'email': req.body.email,
+      'password': req.body.password
+    }).then(data => {
+      res.sendStatus(200)
+    }).catch(err => {
+      console.error(err.message)
+      res.sendStatus(500)
+    })
+  })
+
+  router.get('/:userId', (req, res) => {
+    if (!parseInt(req.params.userId)) {
+      return res.sendStatus(500)
+    }
   })
 
   return router
