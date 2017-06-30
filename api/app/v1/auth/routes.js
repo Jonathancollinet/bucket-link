@@ -5,7 +5,6 @@ module.exports = (express) => {
     ctrl = require('./controller')
 
   auth.post('/', async (req, res) => {
-    console.log("HIT");
     let response = await ctrl.signin(req.body);
     if (response.error) {
       res.sendStatus(401);
