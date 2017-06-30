@@ -3,13 +3,16 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { SidebarModule } from 'ng-sidebar';
+
 import {
     TopBarComponent, SpinnerComponent,
     LoginComponent, RegisterComponent,
     ForgotComponent, ResetComponent,
     emailValidator, samePasswordValidator,
     HttpService, SharedService,
-    SocketService, AuthService
+    SocketService, AuthService,
+    BucketService
 } from  './index';
 
 @NgModule({
@@ -33,13 +36,15 @@ import {
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    SidebarModule.forRoot(),
   ],
   providers: [
     HttpService,
     SharedService,
     SocketService,
-    AuthService
+    AuthService,
+    BucketService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -1,4 +1,17 @@
 <core-topbar></core-topbar>
-<!-- Router View -->
-<router-outlet></router-outlet>
+<ng-sidebar-container>
+  <p>sidebar container</p>
+  <ng-sidebar [(opened)]="_opened">
+    <p>Sidebar contents</p>
+  </ng-sidebar>
 
+  <!-- Page content -->
+  <div ng-sidebar-content>
+    <button (click)="_toggleSidebar()">Toggle sidebar</button>
+
+    <router-outlet></router-outlet>
+
+  </div>
+</ng-sidebar-container>
+
+ <!--<router-outlet></router-outlet>-->

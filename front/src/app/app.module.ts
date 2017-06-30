@@ -3,6 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 
 /* DEP */
 import { DndModule } from 'ng2-dnd'; // Drag-n-Drop
+import { SidebarModule } from 'ng-sidebar'; // Sidebar
 
 /* HOMEMADE */
 import { CoreModule } from './core/core.module';
@@ -22,6 +23,7 @@ import { RoutingModule } from './app.routing';
     BrowserModule,
 
     DndModule.forRoot(),
+    SidebarModule.forRoot(),
 
     /* HOMEMADE */
     CoreModule,

@@ -13,4 +13,5 @@ export { HttpService } from './services/http.service';
 export { SocketService } from './services/socket.service';
 export { SharedService } from './services/shared.service';
 export { AuthService } from './services/auth.service'; 
+export { BucketService } from './services/bucket.service';
 
