@@ -2,18 +2,19 @@
     @author Antoine Chiny
     @github.com/TonyChG
     @email antoine.chiny@ynov.com
-    @File: bucket.js
+    @File: user.js
 
-    @fileOverview Buckets (CRUD)
+    @fileOverview Users (CRUD)
 */
 
 module.exports = (express) => {
-  const router = express.Router(),
-    { Bucket } = require('../models')
+  const
+    router = express.Router(),
+    { User } = require('../../../models')
 
   router.get('/', (req, res) => {
-    Bucket.findAll().then(buckets => {
-      res.send(buckets)
+    User.findAll().then(users => {
+      res.send(users)
     }).catch(err => {
       console.error(err.message)
       res.sendStatus(500)
@@ -21,14 +22,21 @@ module.exports = (express) => {
   })
 
   router.post('/', (req, res) => {
-    Bucket.create({
-      'name': req.body.name
+    User.create({
+      'email': req.body.email,
+      'password': req.body.password
     }).then(data => {
       res.sendStatus(200)
     }).catch(err => {
       console.error(err.message)
       res.sendStatus(500)
     })
+  })
+
+  router.get('/:userId', (req, res) => {
+    if (!parseInt(req.params.userId)) {
+      return res.sendStatus(500)
+    }
   })
 
   return router
