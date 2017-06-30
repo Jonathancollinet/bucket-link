@@ -8,8 +8,9 @@
 */
 
 module.exports = (express) => {
-  const router = express.Router(),
-    { Link } = require('../models')
+  const
+    router = express.Router(),
+    { Link } = require('../../../models')
 
   router.get('/', (req, res) => {
     Link.findAll().then(links => {
