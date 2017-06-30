@@ -1,0 +1,42 @@
+@import '../../../../scss/variables';
+
+.topbar {
+    height: 76px;
+    background: $primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $secondary;
+    padding: 0 25px;
+
+    .title, .link {
+        cursor: pointer;
+    }
+    
+    .title-container {
+        width: 40%;
+        
+
+        .title {
+            font-size: 32px;
+        }
+
+    }
+
+    .link-container {
+        width: 60%;
+        padding: 0 15px;
+        text-align: right;
+
+        .link {
+            margin: 0 1rem;
+            transition: color 850ms ease-in-out;
+
+            &:hover {
+                color: $tercary;
+            }
+        }
+    }
+
+
+}

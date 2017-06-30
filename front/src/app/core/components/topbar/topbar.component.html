@@ -1,5 +1,9 @@
-<div>
-  <span>topbar here</span>
-  <span (click)="navigateToBuckets()"><a>Buckets</a></span>
-  <span (click)="disconnect()"><a>Logout</a></span>
+<div class="topbar">
+  <div class="title-container">
+    <span class="title" (click)="navigateToBuckets()">BucketLink</span>
+  </div>
+  <div class="link-container">
+    <a class="link" (click)="navigateToBuckets()">Buckets</a>
+    <a class="link" (click)="disconnect()">Logout</a>
+  </div>
 </div>
