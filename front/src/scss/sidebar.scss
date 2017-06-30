@@ -1,8 +1,8 @@
 @import './variables';
 
 ng-sidebar-container {
+  height: calc(100% - #{$topbar-height}) !important;
   width: 100%;
-  height: 100%;
 }
 
 .burger-icon {
@@ -13,11 +13,11 @@ ng-sidebar-container {
   border-right: 0;
   cursor: pointer;
   font-size: 0;
-  height: 1.5rem;
+  height: 1.3rem;
   margin-right: 1rem;
   position: absolute;
   width: 2rem;
-  right: 0;
+  right: 10px;
 
   &::after {
     background: $secondary;
@@ -44,6 +44,7 @@ ng-sidebar-container {
     .link {
       cursor: pointer;
       padding: 30px;
+      text-align: center;
       width: 100%;
       transition: color 150ms, opacity 250ms, background 150ms;
 
@@ -52,6 +53,13 @@ ng-sidebar-container {
           opacity: 0.7;
           background: $black;
       }
+    }
+
+    .logout {
+      font-size: 1rem !important;
+      opacity: 0.4;
+      position: absolute;
+      bottom: 0;
     }
 }
 
