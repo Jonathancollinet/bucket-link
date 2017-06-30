@@ -36,7 +36,7 @@ export class AuthService {
     return observable;
   }
 
-  public login (data: any) {
+  public login(data: any): Observable<any> {
     return this._http.post('/auth', {
       email: data.email,
       password: data.password
@@ -47,7 +47,7 @@ export class AuthService {
     });
   }
 
-  public logout(): Observable<any>{
+  public logout(): Observable<any> {
     return this._http.delete('/auth').flatMap((data) => {
       localStorage.removeItem('tkn');
       this._router.navigate(['/home']);
@@ -58,7 +58,14 @@ export class AuthService {
     });
   }
 
-  public register(data:any) { // TODO: client sanitazation and form error handling
+  public forgot(data: any): Observable<any> {
+    return this._http.post('/auth/forgot', data).flatMap((data) => {
+      //apply anything relevant to successful forgot
+      return Observable.of(data);
+    })
+  }
+
+  public register(data:any): Observable<any> { // TODO: client sanitazation and form error handling
     console.log('before post register', data);
     return this._http.post('/auth/register', data).flatMap((data) => {
       //apply anything relevant to successful register
@@ -74,7 +81,7 @@ export class AuthService {
     });
   }
 
-  public pingAuth(){
+  public pingAuth(): Observable<any> {
     return this._http.get('/auth/ping').flatMap((resp) => {
       if(!resp.data.errors){
         this._shared.setData('currentUser', resp.data.payload);
