@@ -15,7 +15,7 @@ ng-sidebar-container {
   font-size: 0;
   height: 1.5rem;
   margin-right: 1rem;
-  position: relative;
+  position: absolute;
   width: 2rem;
   right: 0;
 
@@ -34,6 +34,27 @@ ng-sidebar-container {
 .ng-sidebar {
   width: $sidebar-width;
   background-color: $sidebar-color!important;
+  box-shadow: 2px 0px 5px 0px $sidebar-shadow-color;
+  color: $secondary;
+  font-family: "Titan One", cursive;
+
+  .link-container {
+    width: 100%;
+
+    .link {
+      cursor: pointer;
+      padding: 30px;
+      width: 100%;
+      transition: color 150ms, opacity 250ms, background 150ms;
+
+      &:hover {
+          color: $tercary;
+          opacity: 0.7;
+          background: $black;
+      }
+    }
+}
+
 }
 
 .ng-sidebar__content {

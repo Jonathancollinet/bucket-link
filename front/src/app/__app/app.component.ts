@@ -1,4 +1,5 @@
 import { Component, NgZone  } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
   private _modeNum: number = 0;
   public minimalWidth = "601px";
 
-  constructor(private _zone: NgZone) {
+  constructor(private _zone: NgZone, private _router: Router) {
     this.enableResponsive();
   }
 
@@ -56,4 +57,12 @@ export class AppComponent {
     this._opened = !this._opened;
   }
   
+  public navigateToBuckets(): void {
+      this._router.navigate(['/buckets']);
+  }
+
+  public disconnect(): void {
+      this._router.navigate(['/home']);
+  }
+
 }

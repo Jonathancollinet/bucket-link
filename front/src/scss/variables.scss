@@ -24,9 +24,9 @@ $link-color: green;
 $link-hover-color: red;
 
 // Sidebar
-$sidebar-width: 190px;
-$sidebar-color: #dcF;
-$sidebar-border-color: #a00;
+$sidebar-width: 245px;
+$sidebar-color: $primary;
+$sidebar-shadow-color: $black;
 
 // Grid
 $small-screen-up: 601px !default;
