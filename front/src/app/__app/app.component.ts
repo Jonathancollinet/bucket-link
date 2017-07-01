@@ -1,6 +1,8 @@
 import { Component, NgZone  } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AuthService } from '../core/services/auth.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,7 +17,7 @@ export class AppComponent {
   private _modeNum: number = 0;
   public minimalWidth = "601px";
 
-  constructor(private _zone: NgZone, private _router: Router) {
+  constructor(private _zone: NgZone, private _router: Router, private _auth: AuthService) {
     this.enableResponsive();
   }
 
@@ -30,6 +32,11 @@ export class AppComponent {
       });
     });
   }
+
+  public isAuth(): boolean {
+    return this._auth.isLoggedIn();
+  }
+
 
    private desktopMode(): void {
     this._openSidebar();
