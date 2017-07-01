@@ -4,8 +4,8 @@ const
 module.exports = {
 
   signin: async (bodyData) => {
-    const user = await User.findOne({ where: { email: bodyData.email } })
-
+    const user = await User.findOne({ where: { email: bodyData.email }, raw: true })
+    console.log('bodyData', bodyData);
     if (!user) {
       console.log('User not found.')
       return {
@@ -21,6 +21,7 @@ module.exports = {
         return {
           error: false,
           user: { 
+            id: user.id,
             email: user.email 
           }
         }

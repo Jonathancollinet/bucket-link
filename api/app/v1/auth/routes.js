@@ -6,13 +6,16 @@ module.exports = (express) => {
     ctrl = require('./controller')
 
   auth.post('/', async (req, res) => {
-    let response = await ctrl.signin(req.body)
+    let response = await ctrl.signin(req.body);
+    console.log(response);
     if (response.error) {
       res.sendStatus(401)
     } else {
-      const profile = response.user
+      const profile = response.user;
 
-      var token = jwt.sign(profile, secretJwt)
+      console.log('profile', profile);
+
+      var token = jwt.sign(profile, secretJwt);
 
       // Set Authorization header
       res.set('authorization', `JWT ${token}`)

@@ -10,7 +10,7 @@ import { SocketService } from './socket.service';
 @Injectable()
 export class AuthService {
 
-  private _generalData;
+  private _rooms: any;
 
   constructor(
     private _http: HttpService,
@@ -23,7 +23,7 @@ export class AuthService {
   public authResolver(currentUser: any): Observable<any> {
     let observable = new Observable(observer => {
       this._socket.connect((success) => {
-        console.info('Socket connected');
+        console.info('Socket connected && authenticated');
         this.joinGeneralData();
         this._shared.setData('isLoggedIn', true);
         observer.next(currentUser);
@@ -76,8 +76,9 @@ export class AuthService {
   }
 
   public joinGeneralData() {
-    [this._generalData] = this._socket.join(['generalData']);
-    this._generalData.subscribe(data => {
+    [this._rooms] = this._socket.join(['generalData']);
+    this._rooms.generalData.subscribe((data) => {
+      console.log('data', data)
       this._shared.setData('currentUser', data);
       return Observable.of(data);
     });
