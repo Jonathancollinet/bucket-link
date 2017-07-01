@@ -30,7 +30,7 @@ Start `api`
 Database seeding
 Config here : `config/seeds.js`
 ``` bash
-  npm run reset
+  npm run seed
 ```
 Reset seeding (Delete all rows in all tables)
 ``` bash
