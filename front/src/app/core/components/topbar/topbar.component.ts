@@ -14,5 +14,9 @@ export class TopBarComponent {
     public navigateToBuckets(): void {
         this._router.navigate(['/buckets']);
     }
+
+    public navigateToHome(): void {
+        this._router.navigate(['/home']);
+    }
         
 }

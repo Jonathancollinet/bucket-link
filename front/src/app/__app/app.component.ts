@@ -19,6 +19,13 @@ export class AppComponent {
 
   constructor(private _zone: NgZone, private _router: Router, private _auth: AuthService) {
     this.enableResponsive();
+    this._auth.pingAuth().subscribe(
+      (data)=> {
+          if(this._router.url == "/home") {
+           this._router.navigate(['/buckets']);
+          }
+        }
+    );
   }
 
   private enableResponsive(): void {
@@ -37,6 +44,9 @@ export class AppComponent {
     return this._auth.isLoggedIn();
   }
 
+  public logout(): void {
+    this._auth.logout().subscribe();
+  }
 
    private desktopMode(): void {
     this._openSidebar();
