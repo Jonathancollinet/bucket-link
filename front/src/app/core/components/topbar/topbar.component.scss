@@ -15,6 +15,7 @@
         height: 100%;
         display: flex;
         align-items: center;
+        position: relative;
         cursor: pointer;
 
         &:hover {
@@ -29,7 +30,6 @@
 
             .icon {
                 transform: rotateZ(-25deg) scale(1.1);
-
                 path {
                     fill: $tercary !important;
                 }
@@ -65,6 +65,7 @@
             color: $secondary;
             display: inline-block;
             margin-left: 5px;
+            position: relative;
         }
     }
 
@@ -74,37 +75,77 @@
         width: 100%;
         display: flex;
         align-items: center;
+        position: relative;
 
         input {
-            height: 60%;
+            height: 80%;
             width: 80%;
             max-width: 500px;
-            font-size: 20px;
+            font-size: 24px;
             font-family: "Titan One", cursive;
             color: $secondary;
             background: transparent;
             border: none;
-            outline-width: 0 !important;
-            border: 1px solid $secondary;
-            border-top: none;
-            border-right: none;
+            outline-width: 0;
+            border: none;
+            border-left: 2px solid $secondary;
             padding: 0 10px;
-            transition: border-color 0.6s, color 0.6s;
+            transition: border-width 0.3s, color 0.6s;
+            border-width: 2px;
+
+            &::placeholder {
+                color: $secondary;
+                transition: color 0.6s;
+            }
 
             &:focus {
                 border-color: $tercary;
                 color: $tercary;
+                border-width: 4px;
+                &::placeholder {
+                    color: $tercary !important;
+                }
             }
         }
         
         svg {
-            margin-left: 12px;
             width: 36px;
             height: 36px;
             fill: $secondary !important;
             position: absolute;
-            left: 680px;
+            left: 500px;
+            animation: levitation 1s infinite;
+            animation-play-state: paused;
+            transition: fill 0.3s, transform 0.3s;
+            will-change: transform;
+            cursor: pointer;
+
+            &:hover {
+                fill: $tercary !important;
+                animation-play-state: running;
+            }
         }
+
+        .levitation {
+            animation-play-state: running;
+            fill: $tercary !important;
+        }
+
+    }
+}
+
+@keyframes levitation {
+    0% {
+        transform: translateY(0) rotateZ(0deg);
+    }
+    33% {
+        transform: translateY(-3px) rotateZ(3deg);
+    }
+    66% {
+        transform: translateY(-3px) rotateZ(3deg);
+    }
+    100% {
+        transform: translateY(0) rotateZ(0deg);
     }
 }
 
@@ -121,6 +162,6 @@
 
 @media (max-width: 868px) {
     .search-container svg{
-        left: 78.1% !important;
+        left: 80.6% !important;
     }
 }

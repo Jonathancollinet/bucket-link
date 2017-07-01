@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 
 export class TopBarComponent {
 
+    private focus: boolean = false;
+
     constructor(private _router: Router) {}
 
     public navigateToBuckets(): void {
