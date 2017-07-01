@@ -20,9 +20,11 @@ module.exports = {
         console.log(`${user.email} authenticate.`)
         return {
           error: false,
-          user: { 
-            id: user.id,
-            email: user.email 
+          data: {
+            user: { 
+              id: user.id,
+              email: user.email 
+            }
           }
         }
       } else {
@@ -36,5 +38,5 @@ module.exports = {
         }
       }
     }
-  }
+  } // end signin
 }

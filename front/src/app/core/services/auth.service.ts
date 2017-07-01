@@ -68,8 +68,7 @@ export class AuthService {
   }
 
   public register(data:any): Observable<any> { // TODO: client sanitazation and form error handling
-    console.log('before post register', data);
-    return this._http.post('/auth/register', data).flatMap((data) => {
+    return this._http.post('/users/', data).flatMap((data) => {
       //apply anything relevant to successful register
       return Observable.of(data);
     })

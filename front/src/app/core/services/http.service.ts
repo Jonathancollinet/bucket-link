@@ -28,9 +28,9 @@ export class HttpService {
   private handleError(error:any): Observable<any> {
     console.info('ERROR - from HTTP Service', error);
     try {
-      return Observable.throw(error.json().meta);
+      return Observable.throw(error);
     } catch (e) {
-      return Observable.throw(error.json());
+      return Observable.throw(error);
     }
   }
 

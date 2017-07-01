@@ -48,6 +48,8 @@ let defineConnectedEndpoints = (socket) => {
 
                 socket.connectedAt = new Date();
 
+                console.log(decoded);
+
                 // Disconnect listener
                 socket.on('disconnect', function () {
                   console.info('SOCKET [%s] DISCONNECTED', socket.id);
