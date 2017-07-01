@@ -1,5 +1,9 @@
 <div class="buckets-container">
-  <div *ngFor="let bucket of buckets" class="buckets">
-    <a [routerLink]="['/bucket', bucket.id]">{{ bucket.name }} ({{bucket.nb_links}}) -- {{bucket.created_at}}</a>
+  <div *ngFor="let bucket of buckets" class="bucket-container" dnd-draggable>
+    <a [routerLink]="['/bucket', bucket.id]">
+    <span class="name">{{ bucket.name }}</span>
+    <span class="timestamp">{{bucket.createdAt}}</span>
+    </a>
   </div>
+  <div *ngIf="!buckets.length">No buckets added</div>
 </div>
