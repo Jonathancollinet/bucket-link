@@ -7,7 +7,9 @@
     "start": "nodemon ./index.js",
     "migrate": "./node_modules/.bin/sequelize db:migrate",
     "migrate:reset": "./node_modules/.bin/sequelize db:migrate:undo:all",
-    "migrate:undo": "./node_modules/.bin/sequelize db:migrate:undo"
+    "migrate:undo": "./node_modules/.bin/sequelize db:migrate:undo",
+    "seed": "./node_modules/.bin/sequelize db:seed:all",
+    "seed:reset": "./node_modules/.bin/sequelize db:seed:undo:all"
   },
   "author": "@github.com/Tonychg",
   "license": "MIT",
