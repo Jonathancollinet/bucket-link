@@ -4,9 +4,13 @@
 <ng-sidebar-container>
 
   <ng-sidebar [(opened)]="_opened">
+    
     <div class="link-container">
       <div class="link" (click)="navigateToBuckets()">Buckets</div>
-      <div *ngIf="isAuth()" (click)="logout()" class="link logout" (click)="disconnect()">Logout</div>
+      <div class="link" (click)="navigateToBuckets()">Tribe</div>
+      <div class="link" (click)="navigateToBuckets()">Called</div>
+      <div class="link" (click)="navigateToBuckets()">Quest</div>
+       <div *ngIf="isAuth()" (click)="logout()" class="link logout" (click)="logout()">Logout</div>
     </div>
   </ng-sidebar>
 

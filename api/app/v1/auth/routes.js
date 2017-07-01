@@ -24,5 +24,15 @@ module.exports = (express) => {
     }
   })
 
+  auth.delete('/', async (req, res) => {
+    res.removeHeader('authorization');
+    res.json({ disconnected: true })
+  });
+
+  auth.get('/ping', async (req, res) => {
+    // tODO, must validate a token
+    res.sendStatus(400);
+  });
+
   return auth
 }
