@@ -32,5 +32,48 @@ module.exports = (express) => {
     })
   })
 
+  router.delete('/:bucketId', async (req, res) => {
+    if (!parseInt(req.params.bucketId)) {
+      return res.sendStatus(404)
+    } else {
+      const bucket = await Bucket.findById(req.params.bucketId)
+      if (!bucket) {
+        return res.sendStatus(404)
+      } else {
+        bucket.destroy()
+        return res.sendStatus(200)
+      }
+    }
+  })
+
+  router.patch('/:bucketId', async (req, res) => {
+    console.log(`Patch Bucket id: ${req.params.bucketId}.`)
+    if (!parseInt(req.param.bucketId)) {
+      return res.sendStatus(404)
+    } else {
+      const bucket = await Bucket.findById(req.params.bucketId)
+      if (!bucket) {
+        return res.sendStatus(404)
+      } else {
+        console.log(bucket)
+        if (!req.params.name || !req.params.color) {
+          return res.sendStatus(204)
+        } else {
+          // try {
+          //   Bucket.update(
+          //     {
+          //       name: req.params.name.toString(),
+          //       color: req.params.color.toString()
+          //     }
+          //   )
+          //   return res.sendStatus(200)
+          // } catch (err) {
+          //   return res.sendStatus(404)
+          // }
+        }
+      }
+    }
+  })
+
   return router
 }
