@@ -15,6 +15,7 @@ module.exports = (express) => {
 
     let profile = {
       user: {
+        id: 1,
         email: 'test@gmail.com'
       }
     }
