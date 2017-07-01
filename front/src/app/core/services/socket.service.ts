@@ -40,7 +40,7 @@ export class SocketService {
       if(!reconnectPrepared){ // do only once connection behaviour
         this._socket.emit('authenticate', {token: this._extractToken()})
           .on('authenticated', () => {
-            
+            console.log('socket said authenticated');
             this.initialize();
             successCB({error:false});
           })
@@ -91,47 +91,78 @@ export class SocketService {
     }
   }
 
-  public join(tags: Array<string>): Array<any> {
+ public join(tags: Array<string>): Array<any> {
     let fn;
     // set the update observable stream
-    this._socket.emit('room:join', tags);
+    this._socket.emit('room:join', tags['0']);
     let rooms = {};
-    tags.forEach((tag)=>{
-      if(!this._rooms[tag]) {
-        this._rooms[tag] = {
-          subject: new BehaviorSubject('no initial value').filter(d=> d !== 'no initial value'),
-          length : 1
-        };
-        this._rooms[tag].subject.forceUpdate = ()=>{
-          this._socket.emit(`room:force`, [tag]);
-        };
-        rooms[tag] = this._rooms[tag].subject;
-        this._socket.on(`${tag}:update`, (data)=>{
-          if(this._rooms[tag]) this._rooms[tag].subject.next(data)
-          else console.info('left during update', this._rooms);
-        })
-      } else {
-        this._rooms[tag].length++;
-        rooms[tag] = this._rooms[tag].subject;
+
+    tags.forEach((tag) => {
+      this._rooms[`${tag}`] = {
+        subject: new BehaviorSubject('no initial value').filter(d=> d !== 'no initial value'),
+        length : 1
+      };
+
+      this._rooms[tag].subject.forceUpdate = ()=>{
+        this._socket.emit(`room:force`, [tag]);
       }
+
+      rooms[tag] = this._rooms[tag].subject;
+      this._socket.on(`${tag}:update`, (data)=>{
+        console.log('in update', data)
+        if(this._rooms[tag]) this._rooms[tag].subject.next(data)
+        else console.info('left during update', this._rooms);
+      });
+
     });
 
-    // return the update stream and close method
-    return [rooms, ()=>{
-      tags.forEach((tag)=>{
-        this._rooms[tag].length--;
-        if(this._rooms[tag].length == 0){
-          this._socket.emit('room:leave', tag);
-          this._socket.removeAllListeners(`${tag}:update`)
-          delete this._rooms[tag];
-        }
-      });
-    }];
+    console.log('rooms', rooms);
+    return [rooms];
+    // tags.forEach((tag)=>{
+    //   if(!this._rooms[tag]) {
+
+    //     this._socket.emit(`room:force`, [tag]);
+        
+    //     this._rooms[`${tag}`] = {
+    //       subject: new BehaviorSubject('no initial value').filter(d=> d !== 'no initial value'),
+    //       length : 1
+    //     };
+
+    //     this._rooms[tag].subject.forceUpdate = ()=>{
+    //       this._socket.emit(`room:force`, [tag]);
+    //     };
+
+    //     rooms[tag] = this._rooms[tag].subject;
+    //     this._socket.on(`${tag}:update`, (data)=>{
+    //       console.log('in update', data)
+    //       if(this._rooms[tag]) this._rooms[tag].subject.next(data)
+    //       else console.info('left during update', this._rooms);
+    //     })
+        
+    //   } else {
+    //     this._rooms[tag].length++;
+    //     this._rooms[tag] = this._rooms[tag].subject;
+    //   }
+    // });
+
+    // // return the update stream and close method
+    // return [rooms, () => {
+    //   tags.forEach((tag) => {
+    //     console.log('in final return', tag);
+    //     this._rooms[tag].length--;
+    //     if(this._rooms[tag].length == 0){
+    //       this._socket.emit('room:leave', tag);
+    //       this._socket.removeAllListeners(`${tag}:update`)
+    //       delete this._rooms[tag];
+    //     }
+    //   });
+    // }];
   }
+
 
   public handleRoomUpdate(tag){
     return (data) => {
-      this._rooms[tag].forEach(function(fn){
+      this._rooms[tag].forEach(function(fn) {
         fn(data);
       });
     }

@@ -2,22 +2,22 @@ const socketApp = (server) => {
   const
     jwt = require('jsonwebtoken'),
     socketioJwt = require('socketio-jwt'),
+    streamUpdate = require('./update').streamUpdate,
+    Rooms = require('./endpoints/room').Rooms,
     secretJwt = require('../config/server').secret_jwt
+
+let defineConnectedEndpoints = (socket) => {
+  Rooms(socket);
+  socket.emit('connected');
+};
+
 
   try {
     io = require('socket.io')(server)
     if (io != null) {
       console.log('Socket server: ON')
 
-    //  io.on('connection', function (socket) {
-    //     //socket.on('event');
-    //     let jwt = socket.handshake.query.token;
-    //     console.log('jwt in connection event', jwt);
-    //   }).on('authenticated', function(socket) {
-    //   //this socket is authenticated, we are good to handle more events from it.
-    //   console.log('hello! ' + socket);
-    // });
-    io.on('connection', function(socket){
+    io.on('connection', function(socket) {
 
       //temp delete socket from namespace connected map
       delete io.sockets.connected[socket.id];
@@ -48,14 +48,17 @@ const socketApp = (server) => {
 
                 socket.connectedAt = new Date();
 
+                console.log(decoded);
+
                 // Disconnect listener
                 socket.on('disconnect', function () {
                   console.info('SOCKET [%s] DISCONNECTED', socket.id);
                 });
 
                 socket.u = decoded.user;
-                console.log('[SOCKET.IO] %s - user decoded: %s', socket.id, decoded.user.email);
+                console.log('[SOCKET.IO] CONNECTED / %s - user decoded: %s', socket.id, decoded.user.email);
                 socket.emit('authenticated');
+                defineConnectedEndpoints(socket);
               }
             })
         } catch (err) {
@@ -66,6 +69,8 @@ const socketApp = (server) => {
       }
 
       socket.on('authenticate', authenticate );
+
+      streamUpdate(io); //launch socket io stream
     });
 
     } else {
