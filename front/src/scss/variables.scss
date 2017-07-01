@@ -1,6 +1,3 @@
-
-// Global Variables
-
 // Main Colors
 $primary: #424874;
 $secondary: #77FF9B;
@@ -9,3 +6,45 @@ $black: #424B54;
 $white: #FDFFFC;
 $grey: #fafafa;
 
+// Global
+$global-h1: 26px;
+$global-h2: 24px;
+$global-h3: 22px;
+$global-h4: 20px;
+$global-h5: 18px;
+$global-h6: 16px;
+
+// Top bar
+$top-bar-height: 60px;
+$top-bar-title-size: 18px;
+$top-bar-title-color: #fff;
+
+// Links
+$link-color: green;
+$link-hover-color: red;
+
+// Sidebar
+$sidebar-width: 245px;
+$sidebar-color: $primary;
+$sidebar-shadow-color: $black;
+
+// Topbar
+$topbar-height: 76px;
+
+// Grid
+$small-screen-up: 601px !default;
+$medium-screen-up: 993px !default;
+$large-screen-up: 1201px !default;
+$small-screen: 600px !default;
+$medium-screen: 992px !default;
+$large-screen: 1200px !default;
+$medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
+$large-and-up: "only screen and (min-width : #{$medium-screen-up})" !default;
+$extra-large-and-up: "only screen and (min-width : #{$large-screen-up})" !default;
+$small-and-down: "only screen and (max-width : #{$small-screen})" !default;
+$medium-and-down: "only screen and (max-width : #{$medium-screen})" !default;
+$medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width : #{$medium-screen})" !default;
+$num-cols: 12 !default;
+$gutter-width: 1.5rem !default;
+$element-top-margin: $gutter-width/3 !default;
+$element-bottom-margin: ($gutter-width*2)/3 !default;

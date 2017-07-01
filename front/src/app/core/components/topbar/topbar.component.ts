@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
     templateUrl: './topbar.component.html',
     styleUrls: ['./topbar.component.scss']
 })
+
 export class TopBarComponent {
 
     constructor(private _router: Router) {}
@@ -13,9 +14,5 @@ export class TopBarComponent {
     public navigateToBuckets(): void {
         this._router.navigate(['/buckets']);
     }
-
-    public disconnect(): void {
-        this._router.navigate(['/home']);
-    }
-    
+        
 }

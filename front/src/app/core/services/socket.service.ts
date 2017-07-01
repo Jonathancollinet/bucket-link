@@ -15,7 +15,7 @@ export class SocketService {
     reconnection: true,
     reconnectionDelay: 500,
     reconnectionDelayMax: 3000,
-    query: { token: null }
+    query: { token: this._extractToken() }
   };
 
   constructor() { }
@@ -36,14 +36,16 @@ export class SocketService {
   public connect(successCB, errorCB){
     this._socket = io.connect(this._url, Object.assign({},this._options));
     let reconnectPrepared = false;
-    this._socket.on('connect', ()=>{
+    this._socket.on('connect', () => {
       if(!reconnectPrepared){ // do only once connection behaviour
-        this._socket.emit('authenticate', {tkn: this._extractToken()})
-          .on('authenticated', ()=>{
+        this._socket.emit('authenticate', {token: this._extractToken()})
+          .on('authenticated', () => {
+            
             this.initialize();
             successCB({error:false});
           })
-          .on('unauthorized', ()=>{
+          .on('unauthorized', (msg) => {
+            console.log("unauthorized: " + JSON.stringify(msg.data));
             this._socket.disconnect();
             errorCB({error: true});
           })

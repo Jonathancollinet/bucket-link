@@ -1,24 +1,26 @@
-@import "./vars";
+@import './variables';
 
 ng-sidebar-container {
+  height: calc(100% - #{$topbar-height}) !important;
   width: 100%;
-  height: 100%;
 }
 
 .burger-icon {
+  display: none;
   background: transparent;
-  border: 0.15rem solid white;
+  border: 0.15rem solid ;
   border-left: 0;
   border-right: 0;
   cursor: pointer;
   font-size: 0;
-  height: 1.5rem;
+  height: 1.3rem;
   margin-right: 1rem;
-  position: relative;
+  position: absolute;
   width: 2rem;
+  right: 10px;
 
   &::after {
-    background: white;
+    background: $secondary;
     content: '';
     height: 0.15rem;
     left: 0;
@@ -32,6 +34,35 @@ ng-sidebar-container {
 .ng-sidebar {
   width: $sidebar-width;
   background-color: $sidebar-color!important;
+  box-shadow: 2px 0px 5px 0px $sidebar-shadow-color;
+  color: $secondary;
+  font-family: "Titan One", cursive;
+
+  .link-container {
+    width: 100%;
+
+    .link {
+      cursor: pointer;
+      padding: 30px;
+      text-align: center;
+      width: 100%;
+      transition: color 150ms, opacity 250ms, background 150ms;
+
+      &:hover {
+          color: $tercary;
+          opacity: 0.7;
+          background: $black;
+      }
+    }
+
+    .logout {
+      font-size: 1rem !important;
+      opacity: 0.4;
+      position: absolute;
+      bottom: 0;
+    }
+}
+
 }
 
 .ng-sidebar__content {
@@ -39,9 +70,15 @@ ng-sidebar-container {
     margin-left: 0;
 }
 
-@media (min-width: $responsive-breakpoint) {
+@media (min-width: $small-screen) {
   .ng-sidebar__content {
     width: calc(100% - #{$sidebar-width});
     margin-left: $sidebar-width!important;
   }
+}
+
+@media (max-width: $small-screen) {
+    .burger-icon {
+        display: block;
+    }
 }

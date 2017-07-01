@@ -1,16 +1,18 @@
-<core-topbar></core-topbar>
+<core-topbar>
+    <div class="burger-icon" (click)="_toggleSidebar()"></div>
+</core-topbar>
 <ng-sidebar-container>
 
   <ng-sidebar [(opened)]="_opened">
-    <p>Sidebar contents</p>
+    <div class="link-container">
+      <div class="link" (click)="navigateToBuckets()">Buckets</div>
+      <div class="link logout" (click)="disconnect()">Logout</div>
+    </div>
   </ng-sidebar>
 
   <!-- Page content -->
-  <div ng-sidebar-content>
-    <button (click)="_toggleSidebar()">Toggle sidebar</button>
-
+  <div class="container" ng-sidebar-content>
     <router-outlet></router-outlet>
-
   </div>
 </ng-sidebar-container>
 
