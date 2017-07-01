@@ -2,7 +2,7 @@ module.exports = (express) => {
   const
     auth = express.Router(),
     jwt = require('jsonwebtoken'),
-    { secretJwt } = require('../../../config/server'),
+    secretJwt = require('../../../config/server').secret_jwt,
     ctrl = require('./controller')
 
   auth.post('/', async (req, res) => {
@@ -11,7 +11,7 @@ module.exports = (express) => {
     if (response.error) {
       res.sendStatus(401)
     } else {
-      const profile = response.user;
+      const profile = response.data;
 
       console.log('profile', profile);
 
