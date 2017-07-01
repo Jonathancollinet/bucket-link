@@ -17,10 +17,28 @@ export class BucketService {
     private _socket: SocketService
   ) { }
 
-  getBuckets(): void {}
+  getBuckets(): Observable<any> {
+    return this._http.get('/buckets').flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
 
-  getBucket(id: number): void {}
+  getBucket(id: number): Observable<any> {
+    return this._http.post('/buckets/:id', { id: id}).flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
 
+  createBucket(bucketData): Observable<any> {
+    return this._http.post('/buckets/', bucketData).flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
 
+  createLink(linkData): Observable<any> {
+     return this._http.post('/links/', linkData).flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
 
 }

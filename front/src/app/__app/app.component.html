@@ -12,6 +12,12 @@
       <div class="link" (click)="navigateToBuckets()">Quest</div>
        <div *ngIf="isAuth()" (click)="logout()" class="link logout" (click)="logout()">Logout</div>
     </div>
+
+    <div class="actions-container">
+      <core-add-bucket></core-add-bucket>
+      <br>
+      <core-add-link></core-add-link>
+    </div>
   </ng-sidebar>
 
   <!-- Page content -->

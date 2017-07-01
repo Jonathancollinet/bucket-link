@@ -3,12 +3,14 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import {DndModule} from 'ng2-dnd';
 import { SidebarModule } from 'ng-sidebar';
 
 import {
     TopBarComponent, SpinnerComponent,
     LoginComponent, RegisterComponent,
     ForgotComponent, ResetComponent,
+    AddLinkComponent, AddBucketComponent,
     emailValidator, samePasswordValidator,
     HttpService, SharedService,
     SocketService, AuthService,
@@ -22,7 +24,9 @@ import {
     LoginComponent,
     RegisterComponent,
     ForgotComponent,
-    ResetComponent
+    ResetComponent,
+    AddLinkComponent,
+    AddBucketComponent
   ],
   exports: [
     TopBarComponent,
@@ -30,7 +34,9 @@ import {
     LoginComponent,
     RegisterComponent,
     ForgotComponent,
-    ResetComponent
+    ResetComponent,
+    AddLinkComponent,
+    AddBucketComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +44,7 @@ import {
     ReactiveFormsModule,
     HttpModule,
     SidebarModule.forRoot(),
+    DndModule
   ],
   providers: [
     HttpService,

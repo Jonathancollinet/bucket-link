@@ -14,7 +14,7 @@ module.exports = (express) => {
 
   router.get('/', (req, res) => {
     Bucket.findAll().then(buckets => {
-      res.send(buckets)
+      res.json(buckets)
     }).catch(err => {
       console.error(err.message)
       res.sendStatus(500)

@@ -1,0 +1,10 @@
+<div class="add-bucket-action-container">
+  <form [formGroup]="createBucket" (ngSubmit)="submitForm(createBucket.value, createBucket.valid)">
+    <div class="form-group">
+      <input class="form-control" type="text" placeholder="bucket's name" formControlName="name">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-default"  [disabled]="!createBucket.valid">Create bucket</button>
+    </div>
+  </form>
+</div>
