@@ -2,29 +2,22 @@ module.exports = (express) => {
   const
     auth = express.Router(),
     jwt = require('jsonwebtoken'),
-    secretJwt = require('../../../config/server').secret_jwt,
+    { secretJwt } = require('../../../config/server'),
     ctrl = require('./controller')
 
   auth.post('/', async (req, res) => {
-    let response = await ctrl.signin(req.body);
+    let response = await ctrl.signin(req.body)
     if (response.error) {
-      res.sendStatus(401);
+      res.sendStatus(401)
     } else {
-      console.log("continue with socket auth ...");
+      const profile = response.user
 
-    let profile = {
-      user: {
-        email: 'test@gmail.com'
-      }
-    }
+      var token = jwt.sign(profile, secretJwt)
 
-    var token = jwt.sign(profile, secretJwt);
+      // Set Authorization header
+      res.set('authorization', `JWT ${token}`)
 
-     // Set Authorization header
-    res.set('authorization', `JWT ${token}`);
-
-    res.json({token: token});
-
+      res.json({ token: token })
     }
   })
 

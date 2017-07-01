@@ -4,15 +4,24 @@ const
 module.exports = {
 
   signin: async (bodyData) => {
+    const user = await User.findOne({ where: { email: bodyData.email } })
 
-    User.findOne({ where: { email: bodyData.email } }).then(user => {
+    if (!user) {
+      console.log('User not found.')
+      return {
+        error: true,
+        data: {
+          message: 'Email not found.'
+        }
+      }
+    } else {
       if (User.compareHash(user, bodyData.password)) {
         // Authenticated
         console.log(`${user.email} authenticate.`)
         return {
           error: false,
-          data: {
-            email: user.email
+          user: { 
+            email: user.email 
           }
         }
       } else {
@@ -25,15 +34,6 @@ module.exports = {
           }
         }
       }
-    }).catch(err => {
-      console.log('User not found.')
-      return {
-        error: true,
-        data: {
-          message: 'Email not found.'
-        }
-      }
-    })
+    }
   }
-
 }
