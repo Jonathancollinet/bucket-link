@@ -10,7 +10,8 @@
 module.exports = (express) => {
   const
     router = express.Router(),
-    { Bucket } = require('../../../models')
+    { Bucket } = require('../../../models'),
+    { isSet } = require('../../../commons')
 
   router.get('/', (req, res) => {
     Bucket.findAll().then(buckets => {
@@ -19,6 +20,20 @@ module.exports = (express) => {
       console.error(err.message)
       res.sendStatus(500)
     })
+  })
+
+  router.get('/:bucketId', async (req, res) => {
+    if (!parseInt(req.params.bucketId)) {
+      res.sendStatus(404)
+    } else {
+      const bucket = await Bucket.findById(req.params.bucketId)
+      if (!bucket) {
+        res.sendStatus(404)
+      } else {
+        res.json(bucket)
+      }
+    }
+    res.sendStatus(200)
   })
 
   router.post('/', (req, res) => {
@@ -34,42 +49,38 @@ module.exports = (express) => {
 
   router.delete('/:bucketId', async (req, res) => {
     if (!parseInt(req.params.bucketId)) {
-      return res.sendStatus(404)
+      res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
       if (!bucket) {
-        return res.sendStatus(404)
+        res.sendStatus(404)
       } else {
         bucket.destroy()
-        return res.sendStatus(200)
+        res.sendStatus(200)
       }
     }
   })
 
   router.patch('/:bucketId', async (req, res) => {
-    console.log(`Patch Bucket id: ${req.params.bucketId}.`)
-    if (!parseInt(req.param.bucketId)) {
-      return res.sendStatus(404)
+    if (parseInt(req.param.bucketId)) {
+      res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
       if (!bucket) {
-        return res.sendStatus(404)
+         res.sendStatus(404)
       } else {
-        console.log(bucket)
-        if (!req.params.name || !req.params.color) {
-          return res.sendStatus(204)
+        if (!isSet(req.body.name) || !isSet(req.body.color)) {
+          res.sendStatus(204)
         } else {
-          // try {
-          //   Bucket.update(
-          //     {
-          //       name: req.params.name.toString(),
-          //       color: req.params.color.toString()
-          //     }
-          //   )
-          //   return res.sendStatus(200)
-          // } catch (err) {
-          //   return res.sendStatus(404)
-          // }
+          try {
+            bucket.updateAttributes({
+              name: req.body.name,
+              color: req.body.color
+            })
+            res.sendStatus(200)
+          } catch (err) {
+            res.sendStatus(404)
+          }
         }
       }
     }
