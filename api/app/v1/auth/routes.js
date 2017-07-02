@@ -2,7 +2,7 @@ module.exports = (express) => {
   const
     auth = express.Router(),
     jwt = require('jsonwebtoken'),
-    secretJwt = require('../../../config/server').secret_jwt,
+    { secret_jwt } = require('../../../config/server'),
     ctrl = require('./controller')
 
   auth.post('/', async (req, res) => {
@@ -15,7 +15,7 @@ module.exports = (express) => {
 
       console.log('profile', profile);
 
-      var token = jwt.sign(profile, secretJwt);
+      var token = jwt.sign(profile, secret_jwt);
 
       // Set Authorization header
       res.set('authorization', `JWT ${token}`)
@@ -27,12 +27,19 @@ module.exports = (express) => {
   auth.delete('/', async (req, res) => {
     res.removeHeader('authorization');
     res.json({ disconnected: true })
-  });
+  })
 
   auth.get('/ping', async (req, res) => {
-    // tODO, must validate a token
-    res.sendStatus(400);
-  });
+    const token = req.get('authorization'),
+      cleanToken = token.split(' ')[1]
+    
+    try {
+      jwt.verify(cleanToken, secret_jwt)
+      res.sendStatus(200)
+    } catch (err) {
+      res.sendStatus(400)
+    }
+  })
 
   return auth
 }
