@@ -1,5 +1,7 @@
 const
-  { User } = require('../../../models')
+  { User } = require('../../../models'),
+  { secret_jwt } = require('../../../config/server'),
+  jwt = require('jsonwebtoken')
 
 module.exports = {
 
@@ -38,5 +40,5 @@ module.exports = {
         }
       }
     }
-  } // end signin
+  }
 }
