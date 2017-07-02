@@ -20,7 +20,12 @@ module.exports = {
       res.sendStatus(204)
     } else {
       const buckets = await Bucket.findAll({
-        where: { user_id: user.id }
+        where: { user_id: user.id },
+        include: [{
+          model: Link, as: 'links'
+        }]
+      }).catch(function(err) {
+        console.log('err', err)
       })
 
       if (!buckets) {
