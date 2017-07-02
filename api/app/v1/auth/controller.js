@@ -40,5 +40,10 @@ module.exports = {
         }
       }
     }
+  },
+
+  getUserFromToken(token) {
+    const cleanTkn = token.split(' ')[1]
+    return jwt.decode(cleanTkn).user
   }
 }

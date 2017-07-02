@@ -17,6 +17,7 @@
 module.exports = (express) => {
   const
     router = express.Router(),
+    { getUserFromToken } = require('../auth/controller'),
     { Bucket, Link } = require('../../../models'),
     { isSet } = require('../../../commons'),
     { isAuth } = require('../middlewares')
@@ -25,11 +26,22 @@ module.exports = (express) => {
   router.use(isAuth)
 
   router.get('/', async (req, res) => {
-    const buckets = await Bucket.findAll()
-    if (!buckets) {
-      res.sendStatus(404)
+    const user = getUserFromToken(req.get('authorization'))
+
+    if (user) {
+      const buckets = await Bucket.findAll({
+        where: {
+          user_id: user.id
+        }
+      })
+
+      if (!buckets) {
+        res.sendStatus(404)
+      } else {
+        res.json(buckets)
+      }
     } else {
-      res.json(buckets)
+      res.sendStatus(204)
     }
   })
 
@@ -38,6 +50,7 @@ module.exports = (express) => {
       res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
+
       if (!bucket) {
         res.sendStatus(404)
       } else {
@@ -51,6 +64,7 @@ module.exports = (express) => {
       res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
+
       if (!bucket) {
         res.sendStatus(404)
       } else {
@@ -59,6 +73,7 @@ module.exports = (express) => {
             bucket_id: req.params.bucketId
           }
         })
+
         if (!links) {
           res.sendStatus(404)
         } else {
@@ -69,17 +84,18 @@ module.exports = (express) => {
   })
 
   router.post('/', async (req, res) => {
-    if (!isSet(req.body.name) || !isSet(req.body.color)) {
+    if (!isSet(req.body.name)) {
       res.sendStatus(204)
     } else {
+      const user = getUserFromToken(req.get('authorization'))
+
       try {
         const
           newBucket = await Bucket.create({
             name: req.body.name,
-            color: req.body.color
-          }),
-          decoded = jwt.decode(req.get('authorization'))
-        console.log(decoded)
+            color: req.body.color,
+            user_id: user.id
+          })
         res.json(newBucket)
       } catch (err) {
         console.error(err)
@@ -93,6 +109,7 @@ module.exports = (express) => {
       res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
+
       if (!bucket) {
         res.sendStatus(404)
       } else {
@@ -106,9 +123,9 @@ module.exports = (express) => {
               description: req.body.description,
               bucket_id: req.params.bucketId
             })
+
             res.json(newLink)
           } catch (err) {
-            console.error(err)
             res.sendStatus(500)
           }
         }
@@ -121,6 +138,7 @@ module.exports = (express) => {
       res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
+
       if (!bucket) {
         res.sendStatus(404)
       } else {
@@ -135,6 +153,7 @@ module.exports = (express) => {
       res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
+
       if (!bucket) {
         res.sendStatus(404)
       } else {
