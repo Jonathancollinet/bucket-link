@@ -35,7 +35,6 @@ ng-sidebar-container {
   overflow: hidden !important;
   width: $sidebar-width;
   background-color: $sidebar-color !important;
-  box-shadow: 2px 0px 5px 0px $sidebar-shadow-color;
   color: $secondary;
   font-family: "Titan One", cursive;
   .link-container {
@@ -60,8 +59,7 @@ ng-sidebar-container {
       position: absolute;
       bottom: 0;
     }
-}
-
+  }
 }
 
 .ng-sidebar__content {
