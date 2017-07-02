@@ -5,32 +5,30 @@
     @File: bucket.js
 
     @fileOverview Buckets (CRUD)
+    GET     /               => All Buckets
+    GET     /bucketId       => Bucket by id
+    GET     /bucketId/links => Get links of bucket id
+    POST    /               => Create new bucket (return newly create bucket)
+    POST    /bucketId/links => Add new link to bucket (return newly create link)
+    DELETE  /bucketId       => Delete bucket by id
+    PATCH   /bucketId       => Update bucket by id
 */
+  const
+    bucketCtrl = require('./controller'),
+    { isAuth } = require('../middlewares')
 
 module.exports = (express) => {
-  const
-    router = express.Router(),
-    { Bucket } = require('../../../models')
+  const router = express.Router()
 
-  router.get('/', (req, res) => {
-    Bucket.findAll().then(buckets => {
-      res.json(buckets)
-    }).catch(err => {
-      console.error(err.message)
-      res.sendStatus(500)
-    })
-  })
+  router.use(isAuth)
 
-  router.post('/', (req, res) => {
-    Bucket.create({
-      'name': req.body.name
-    }).then(data => {
-      res.sendStatus(200)
-    }).catch(err => {
-      console.error(err.message)
-      res.sendStatus(500)
-    })
-  })
+  router.get('/', bucketCtrl.index)
+  router.get('/:bucketId', bucketCtrl.show)
+  router.get('/:bucketId/links', bucketCtrl.getLinksByBucketId)
+  router.post('/', bucketCtrl.create)
+  router.post('/:bucketId/links', bucketCtrl.createLink)
+  router.delete('/:bucketId', bucketCtrl.destroy)
+  router.patch('/:bucketId', bucketCtrl.update)
 
   return router
 }
