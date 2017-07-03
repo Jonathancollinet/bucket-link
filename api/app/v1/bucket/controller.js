@@ -9,7 +9,7 @@
 
 const
   { getUserFromToken } = require('../auth/controller'),
-  { Bucket, Link } = require('../../../models'),
+  { User, Bucket, Link } = require('../../../models'),
   { isSet } = require('../../../commons')
 
 module.exports = {
@@ -19,20 +19,10 @@ module.exports = {
     if (!user) {
       res.sendStatus(204)
     } else {
-      const buckets = await Bucket.findAll({
-        where: { user_id: user.id },
-        include: [{
-          model: Link, as: 'links'
-        }]
-      }).catch(function(err) {
-        console.log('err', err)
+      const connectedUser = await User.findById(user.id, {
+        include: Bucket
       })
-
-      if (!buckets) {
-        res.sendStatus(404)
-      } else {
-        res.json(buckets)
-      }
+      res.json(connectedUser.Buckets)
     }
   },
 

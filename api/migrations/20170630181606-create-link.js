@@ -17,7 +17,7 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
@@ -26,7 +26,7 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'cascade'
       },
-      bucket_id: {
+      bucketId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {

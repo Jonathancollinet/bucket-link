@@ -18,8 +18,8 @@ module.exports = {
       randomUserId = users[randint(0, users.length)].id
 
     return {
-      user_id: randomUserId,
-      bucket_id: randomBucketId,
+      userId: randomUserId,
+      bucketId: randomBucketId,
       title: faker.lorem.sentence(),
       url: faker.internet.url(),
       description: faker.lorem.paragraph(),
@@ -33,7 +33,7 @@ module.exports = {
       randomId = users[randint(0, users.length)].id
 
     return {
-      user_id: randomId,
+      userId: randomId,
       name: faker.lorem.word(),
       color: faker.internet.color(),
       updatedAt: faker.date.recent(),
