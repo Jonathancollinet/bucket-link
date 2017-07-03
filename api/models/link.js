@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = function (sequelize, DataTypes) {
   var Link = sequelize.define('Link', {
     title: DataTypes.STRING,
@@ -14,19 +15,16 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     }
-  }, {
-      classMethods: {
-        associate: function (models) {
-          Link.belongsTo(models.Bucket, {
-            onDelete: 'CASCADE',
-            foreignKey: 'bucket_id'
-          })
-          Link.belongsTo(models.User, {
-            onDelete: 'CASCADE',
-            foreignKey: 'user_id'
-          })
-        }
-      }
-    });
+  });
+
+  Link.associate = function (models) {
+    // Link.belongsTo(models.User, {
+    //   foreignKey: 'user_id', as: 'user'
+    // })
+    Link.belongsTo(models.Bucket, {
+      foreignKey: 'bucket_id', as: 'links',
+    })
+  };
+
   return Link;
 };

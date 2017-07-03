@@ -31,14 +31,17 @@ module.exports = function (sequelize, DataTypes) {
       compareHash(password) {
         return bcrypt.compareSync(password, this.password)
       }
-    },
-    classMethods: {
-      associate: (models) => {
-        User.hasMany(models.Bucket)
-        User.hasMany(models.Link)
-      }
     }
   })
+
+  User.associate = function (models) {
+    User.hasMany(models.Bucket, {
+      foreignKey: 'user_id', as: 'buckets',
+    })
+    User.hasMany(models.Link, {
+      foreignKey: 'id', as: 'links',
+    })
+  }
 
   User.beforeCreate((user, options) => {
     user.password = bcrypt.hashSync(user.password)

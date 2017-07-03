@@ -1,6 +1,5 @@
-'use strict';
 module.exports = function (sequelize, DataTypes) {
-  var Bucket = sequelize.define('Bucket', {
+  const Bucket = sequelize.define('Bucket', {
     name: DataTypes.STRING,
     color: DataTypes.STRING,
     user_id: {
@@ -8,18 +7,16 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       primaryKey: true
     }
-  }, {
-      classMethods: {
-        associate: function (models) {
-          Bucket.belongsTo(models.User, {
-            onDelete: 'CASCADE',
-            foreignKey: {
-              allowNull: false
-            }
-          })
-          Bucket.hasMany(model.Link)
-        }
-      }
-    });
+  });
+
+  Bucket.associate = function (models) {
+    Bucket.belongsTo(models.User, {
+      foreignKey: 'id', as: 'buckets',
+    })
+    Bucket.hasMany(models.Link, {
+      foreignKey: 'user_id', as: 'links', otherKey: 'id'
+    })
+  };
+
   return Bucket;
 };
