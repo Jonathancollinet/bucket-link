@@ -4,10 +4,9 @@ const
 
 module.exports = {
   isAuth(req, res, next) {
-    const token = req.get('authorization'),
-      cleanTkn = token.split(' ')[1]
-
     try {
+      const token = req.get('authorization'),
+      cleanTkn = token.split(' ')[1]
       jwt.verify(cleanTkn, secret_jwt)
       next()
     } catch (err) {
