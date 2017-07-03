@@ -36,11 +36,10 @@ module.exports = function (sequelize, DataTypes) {
 
   User.associate = function (models) {
     User.hasMany(models.Bucket, {
-      foreignKey: 'user_id'
+      foreignKey: 'user_id', as: 'buckets',
     })
     User.hasMany(models.Link, {
-      foreignKey: 'user_id',
-      as: 'user'
+      foreignKey: 'id', as: 'links',
     })
   }
 

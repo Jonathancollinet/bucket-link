@@ -18,15 +18,11 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Link.associate = function (models) {
+    // Link.belongsTo(models.User, {
+    //   foreignKey: 'user_id', as: 'user'
+    // })
     Link.belongsTo(models.Bucket, {
-    onDelete: 'CASCADE',
-    foreignKey: 'bucket_id',
-    as: 'bucket'
-    })
-    Link.belongsTo(models.User, {
-    onDelete: 'CASCADE',
-    foreignKey: 'user_id',
-    as: 'user'
+      foreignKey: 'bucket_id', as: 'links',
     })
   };
 

@@ -9,7 +9,7 @@
 
 const
   { getUserFromToken } = require('../auth/controller'),
-  { Bucket, Link } = require('../../../models'),
+  { Bucket, Link, User } = require('../../../models'),
   { isSet } = require('../../../commons')
 
 module.exports = {
@@ -19,11 +19,27 @@ module.exports = {
     if (!user) {
       res.sendStatus(204)
     } else {
-      const buckets = await Bucket.findAll({
-        where: { user_id: user.id },
+      console.log('All buckets for user', user.id);
+      const buckets = await User.findAll({
+        where: { id: user.id },
         include: [{
-          model: Link, as: 'links'
+          model: Bucket, as: 'buckets',
+          attributes: ['id', 'name', 'user_id'],
+          include: [{
+            model: Link, as: 'links',
+            attributes: ['id', 'title', 'bucket_id', 'user_id']
+          }]
         }]
+
+        // include: [
+        // {
+        //   model: User, as: 'user',
+        //   attributes: ['id', 'email']
+        // },
+        // {
+        //   model: Link, as: 'links',
+        //   attributes: ['id', 'title', 'bucket_id', 'user_id']
+        // }]
       }).catch(function(err) {
         console.log('err', err)
       })

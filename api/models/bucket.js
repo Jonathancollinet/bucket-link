@@ -11,13 +11,10 @@ module.exports = function (sequelize, DataTypes) {
 
   Bucket.associate = function (models) {
     Bucket.belongsTo(models.User, {
-      onDelete: 'CASCADE',
-      foreignKey: 'user_id',
-      as: 'user'
+      foreignKey: 'id', as: 'buckets',
     })
     Bucket.hasMany(models.Link, {
-      foreignKey: 'bucket_id',
-      as: 'links'
+      foreignKey: 'user_id', as: 'links', otherKey: 'id'
     })
   };
 
