@@ -44,21 +44,17 @@ module.exports = {
     if (!parseInt(req.params.bucketId)) {
       res.sendStatus(404)
     } else {
-      const bucket = await Bucket.findById(req.params.bucketId)
+      const bucket = await Bucket.findById(req.params.bucketId, {
+        include: Link
+      })
 
       if (!bucket) {
         res.sendStatus(404)
       } else {
-        const links = await Link.findAll({
-          where: {
-            bucket_id: req.params.bucketId
-          }
-        })
-
-        if (!links) {
-          res.sendStatus(404)
+        if (bucket.Links) {
+          res.json(bucket.Links)
         } else {
-          res.json(links)
+          res.sendStatus(204)
         }
       }
     }
@@ -75,11 +71,10 @@ module.exports = {
           newBucket = await Bucket.create({
             name: req.body.name,
             color: req.body.color,
-            user_id: user.id
+            user: user
           })
         res.json(newBucket)
       } catch (err) {
-        console.error(err)
         res.sendStatus(404)
       }
     }
@@ -104,10 +99,9 @@ module.exports = {
               url: req.body.url,
               title: req.body.title,
               description: req.body.description,
-              bucket_id: req.params.bucketId,
-              user_id: user.id
+              bucketId: req.params.bucketId,
+              userId: user
             })
-
             res.json(newLink)
           } catch (err) {
             res.sendStatus(500)
