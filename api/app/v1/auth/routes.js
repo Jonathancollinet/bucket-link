@@ -4,12 +4,13 @@ module.exports = (express) => {
     jwt = require('jsonwebtoken'),
     { secret_jwt } = require('../../../config/server'),
     { getUserFromToken } = require('./controller'),
+    { setResponse } = require('../../../commons'),
     ctrl = require('./controller')
 
   auth.post('/', async (req, res) => {
     let response = await ctrl.signin(req.body);
     if (response.error) {
-      res.sendStatus(401)
+      setResponse(res, 'UNAUTHORIZED')
     } else {
       const profile = response.data;
 
@@ -18,26 +19,24 @@ module.exports = (express) => {
       // Set Authorization header
       res.set('authorization', `JWT ${token}`)
 
-      res.json({ token: token })
+      setResponse(res, 'OK', { token })
     }
   })
 
   auth.delete('/', async (req, res) => {
     res.removeHeader('authorization');
-    res.json({ disconnected: true })
+    setResponse(res, 'DISCONNECTED', { disconnected: true })
   })
 
   auth.get('/ping', async (req, res) => { 
+    const token = req.get('authorization')
     try {
-      const token = req.get('authorization')
       const cleanToken = token.split(' ')[1]
       jwt.verify(cleanToken, secret_jwt, function(err, decoded) {
-        if (!err) res.json(decoded)
-        else res.sendStatus(401)
-      });
+        setResponse(res, 'AUTHENTICATED', decoded)
+      })
     } catch (err) {
-      res.json({ error: true, payload: 'User is disconnected.' })
-      res.sendStatus(400)
+      setResponse(res, 'UNAUTHORIZED')
     }
   })
 

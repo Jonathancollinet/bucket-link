@@ -1,0 +1,30 @@
+{
+  "OK": {
+    "status": 200,
+    "message": "Request success."
+  },
+  "UNAUTHORIZED": {
+    "status": 401,
+    "message": "User is not authenticated."
+  },
+  "AUTHENTICATED": {
+    "status": 200,
+    "message": "Client connected."
+  },
+  "DISCONNECTED": {
+    "status": 200,
+    "message": "Client disconnected."
+  },
+  "NOT_FOUND": {
+    "status": 404,
+    "message": "Attention Potter tu va te perdre."
+  },
+  "NO_CONTENT": {
+    "status": 204,
+    "message": "Invalid form."
+  },
+  "SERVER_ERROR": {
+    "status": 500,
+    "message": "Server error."
+  }
+}

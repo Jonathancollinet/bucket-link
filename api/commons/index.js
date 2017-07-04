@@ -1,3 +1,4 @@
+const resAttributes = require('../config/resAtributes.json')
 
 module.exports = {
   randint(min, max) {
@@ -6,5 +7,26 @@ module.exports = {
 
   isSet(value) {
     return typeof(value) !== 'undefined'
+  },
+
+  /**
+   * Set and send the response to client
+   * 
+   * @param {any} res Nodejs response object
+   * @param {any} type Type of response => config/resAttributes.json
+   * @param {any} payload Payload (data, ex : buckets array [])
+   */
+  setResponse(res, type = 'OK', payload = {}) {
+    let responseObject = {}
+    const items = Object.keys(payload)
+
+    res.statusCode = resAttributes[type].status
+    res.statusMessage = resAttributes[type].message
+
+    if (resAttributes[type].status !== 200) {
+      res.json({ err: true, payload })
+    } else {
+      res.json(payload)
+    }
   }
 }

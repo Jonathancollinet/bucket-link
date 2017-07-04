@@ -1,6 +1,7 @@
 const 
   jwt = require('jsonwebtoken'),
-  { secret_jwt } = require('../../../config/server')
+  { secret_jwt } = require('../../../config/server'),
+  { setResponse } = require('../../../commons')
 
 module.exports = {
   isAuth(req, res, next) {
@@ -10,7 +11,7 @@ module.exports = {
       jwt.verify(cleanTkn, secret_jwt)
       next()
     } catch (err) {
-      res.sendStatus(401)
+      setResponse(res, 'UNAUTHORIZED')
     }
   }
 }
