@@ -125,12 +125,11 @@ module.exports = {
   async update(req, res) {
     const user = getUserFromToken(req.get('authorization'))
 
-    if (parseInt(req.param.bucketId)) {
+    if (parseInt(req.params.bucketId)) {
       res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
-
-      if (!bucket || bucket.user_id !== user.id) {
+      if (!bucket || bucket.userId !== user.id) {
         res.sendStatus(404)
       } else {
         if (!isSet(req.body.name) || !isSet(req.body.color)) {

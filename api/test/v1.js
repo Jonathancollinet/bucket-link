@@ -6,7 +6,8 @@ const
   should = chai.should(),
   expect = chai.expect()
 
-let token = ''
+let token = '',
+  createdBucket = -1
 
 chai.use(chaiHttp)
 
@@ -88,6 +89,7 @@ describe('Post /buckets', () => {
       })
       .set('authorization', token)
       .end((err, res) => {
+        createdBucket = res.body.id
         res.body.should.be.a('object')
         done()
       })
@@ -100,8 +102,35 @@ describe('Get /buckets/:id/links', () => {
       .get('/v1/buckets/1/links')
       .set('authorization', token)
       .end((err, res) => {
-        console.log(res.body)
         res.body.should.be.a('array')
+        res.should.have.status(200)
+        done()
+      })
+  })
+})
+
+// describe('Update /buckets/:id', () => {
+//   it('Return updated bucket', (done) => {
+//     chai.request(server)
+//       .put(`/v1/buckets/${createdBucket}`)
+//       .send({
+//         'name': 'Hey Salut toto!',
+//         'color': '#821379'
+//       })
+//       .set('authorization', token)
+//       .end((err, res) => {
+//         res.should.have.status(200)
+//         done()
+//       })
+//   })
+// })
+
+describe('Delete /buckets/:id', () => {
+  it('200 on success delete', (done) => {
+    chai.request(server)
+      .delete(`/v1/buckets/${createdBucket}`)
+      .set('authorization', token)
+      .end((err, res) => {
         res.should.have.status(200)
         done()
       })
