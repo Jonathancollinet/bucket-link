@@ -1,9 +1,9 @@
-<core-topbar>
+<core-topbar [hidden]="!isAuth()">
     <div class="burger-icon" (click)="_toggleSidebar()"></div>
 </core-topbar>
 <ng-sidebar-container>
 
-  <ng-sidebar [(opened)]="_opened">
+  <ng-sidebar [hidden]="!isAuth()" [(opened)]="_opened">
     <div class="link-container">
       <div class="link" (click)="navigateToBuckets()">My Buckets</div>
       <div *ngIf="isAuth()" (click)="logout()" class="link logout" (click)="logout()">Logout</div>
