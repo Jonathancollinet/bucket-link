@@ -6,7 +6,7 @@
 
     @fileOverview Buckets (CRUD)
     GET     /               => All Buckets
-    GET     /bucketId       => Bucket by id
+    GET     /bucketId       => Bucket by id + 25 first links
     GET     /bucketId/links => Get links of bucket id
     POST    /               => Create new bucket (return newly create bucket)
     POST    /bucketId/links => Add new link to bucket (return newly create link)

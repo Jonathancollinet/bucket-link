@@ -62,6 +62,7 @@ describe('Get /buckets', () => {
       .set('authorization', token)
       .end((err, res) => {
         res.body.should.be.a('array')
+        console.log(res.body)
         res.should.have.status(200)
         done()
       })
@@ -94,6 +95,24 @@ describe('Post /buckets', () => {
       .end((err, res) => {
         createdBucket = res.body.id
         res.body.should.be.a('object')
+        done()
+      })
+  })
+})
+
+describe('Post /buckets/:id/links', () => {
+  it('Return newly crated link', (done) => {
+    chai.request(server)
+      .post('/v1/buckets/1/links')
+      .send({
+        url: 'http://google.com',
+        title: 'google.com!',
+        description: "C'est vraiment génial google!"
+      })
+      .set('authorization', token)
+      .end((err, res) => {
+        res.body.should.be.a('object')
+        res.should.have.status(200)
         done()
       })
   })

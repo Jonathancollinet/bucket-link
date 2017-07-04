@@ -87,12 +87,11 @@ module.exports = {
           const user = getUserFromToken(req.get('authorization'))
 
           try {
-            const newLink = await Link.create({
+            const newLink = await bucket.createLink({
               url: req.body.url,
               title: req.body.title,
               description: req.body.description,
-              bucketId: req.params.bucketId,
-              userId: user
+              UserId: user.id
             })
             setResponse(res, 'OK', newLink)
           } catch (err) {
