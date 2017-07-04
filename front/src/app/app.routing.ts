@@ -17,7 +17,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterPage },
   { path: 'forgot', component: ForgotPage },
   { path: 'buckets', component: BucketsPage, canActivate: [AuthGuard] },
-  { path: 'bucket/:id', component: BucketPage, canActivate: [AuthGuard] }
+  { path: 'bucket/:id', component: BucketPage, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
 
 @NgModule({
