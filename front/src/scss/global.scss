@@ -21,7 +21,11 @@ html, body {
 }
 
 // disable user-select in:
-
 .topbar, ng-sidebar-container, .btn, button {
   user-select: none !important;
+}
+
+// cursor elements
+.link, .title-container, .search-container svg, .burger-icon, button {
+  cursor: pointer !important;
 }

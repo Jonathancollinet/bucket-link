@@ -3,15 +3,17 @@
 $btn-transition-time: 0.2s;
 
 .btn {
+    display: inline-block !important;
     height: 41px;
 }
 
 button {
+    display: inline-block !important;
     line-height: 37px;
     height: 40px;
     background: $black;
     color: $grey;
-    cursor: pointer;
+    
     font-size: 16px;
 
     border: 1px solid $grey;
