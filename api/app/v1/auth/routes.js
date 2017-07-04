@@ -7,13 +7,10 @@ module.exports = (express) => {
 
   auth.post('/', async (req, res) => {
     let response = await ctrl.signin(req.body);
-    console.log(response);
     if (response.error) {
       res.sendStatus(401)
     } else {
       const profile = response.data;
-
-      console.log('profile', profile);
 
       var token = jwt.sign(profile, secret_jwt);
 
@@ -35,8 +32,10 @@ module.exports = (express) => {
     try {
       const cleanToken = token.split(' ')[1]
       jwt.verify(cleanToken, secret_jwt)
+      res.json({ error: false, message: 'User is Authenticated.' })
       res.sendStatus(200)
     } catch (err) {
+      res.json({ error: true, message: 'User is disconnected.' })
       res.sendStatus(400)
     }
   })
