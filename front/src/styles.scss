@@ -1,8 +1,11 @@
 @charset "utf-8";
 
-@import "/scss/reset";
-@import "./scss/global";
-@import "./scss/sidebar";
+@import "./scss/reset";
 @import './scss/variables';
-@import './scss/grid';
-@import './scss/fonts.scss';
+@import "./scss/global";
+@import './scss/fonts';
+
+@import "./scss/components/sidebar";
+@import './scss/components/grid';
+@import './scss/components/input';
+@import './scss/components/button';

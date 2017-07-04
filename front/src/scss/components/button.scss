@@ -1,0 +1,49 @@
+@import '~scss/variables';
+
+$btn-transition-time: 0.2s;
+
+.btn {
+    height: 41px;
+}
+
+button {
+    line-height: 37px;
+    height: 40px;
+    background: $black;
+    color: $grey;
+    cursor: pointer;
+    font-size: 16px;
+
+    border: 1px solid $grey;
+    border-bottom-width: 4px;
+    border-radius: 17px;
+
+    padding: 0 25px;
+    outline-width: 0 !important;
+
+    transition: background $btn-transition-time, color $btn-transition-time;
+
+    &:hover {
+        transform: translateY(1px) !important;
+        border-bottom-width: 3px !important;
+        height: 39px !important;
+    }
+
+    &:active {
+        transform: translateY(3px) !important;
+        border-bottom-width: 1px !important;
+        height: 37px !important;
+    }
+
+    &:disabled {
+        background: $light-grey;
+        cursor: not-allowed;
+        color: $disabled;
+        border-color: $disabled;
+        &:hover {
+            transform: none !important;
+            border-bottom-width: 4px !important;
+            height: 41px !important;
+        }
+    }
+}
