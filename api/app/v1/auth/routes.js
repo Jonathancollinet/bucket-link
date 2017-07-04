@@ -29,13 +29,15 @@ module.exports = (express) => {
     res.json({ disconnected: true })
   })
 
-  auth.get('/ping', async (req, res) => {
-    const token = req.get('authorization')
-    
+  auth.get('/ping', async (req, res) => { 
     try {
+      const token = req.get('authorization')
       const cleanToken = token.split(' ')[1]
-      jwt.verify(cleanToken, secret_jwt)
-      res.sendStatus(200)
+      console.log('clean Token', cleanToken)
+      jwt.verify(cleanToken, secret_jwt, function(err, decoded) {
+        if (!err) res.json(decoded)
+        else res.sendStatus(401)
+      });
     } catch (err) {
       res.sendStatus(400)
     }
