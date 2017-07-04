@@ -14,7 +14,7 @@ import {
     emailValidator, samePasswordValidator,
     HttpService, SharedService,
     SocketService, AuthService,
-    BucketService
+    BucketService, AuthGuard
 } from  './index';
 
 @NgModule({
@@ -51,6 +51,7 @@ import {
     SharedService,
     SocketService,
     AuthService,
+    AuthGuard,
     BucketService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

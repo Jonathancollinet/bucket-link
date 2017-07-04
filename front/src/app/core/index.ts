@@ -11,6 +11,8 @@ export { AddBucketComponent } from './components/add-bucket/add-bucket.component
 export { emailValidator } from './validators/email.validator';
 export { samePasswordValidator } from './validators/samepassword.validator';
 
+export { AuthGuard } from './guards/auth.guard';
+
 //SVC
 export { HttpService } from './services/http.service';
 export { SocketService } from './services/socket.service';

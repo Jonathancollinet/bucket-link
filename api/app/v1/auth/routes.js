@@ -27,15 +27,14 @@ module.exports = (express) => {
     res.json({ disconnected: true })
   })
 
-  auth.get('/ping', async (req, res) => {
-    const token = req.get('authorization')
-    
+  auth.get('/ping', async (req, res) => { 
     try {
-      jwt.verify(cleanToken, secret_jwt)
+      const token = req.get('authorization')
       const cleanToken = token.split(' ')[1]
-      const user = getUserFromToken(token)
-      res.json({ error: false, payload: user })
-      res.sendStatus(200)
+      jwt.verify(cleanToken, secret_jwt, function(err, decoded) {
+        if (!err) res.json(decoded)
+        else res.sendStatus(401)
+      });
     } catch (err) {
       res.json({ error: true, payload: 'User is disconnected.' })
       res.sendStatus(400)

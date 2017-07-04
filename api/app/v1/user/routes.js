@@ -22,11 +22,12 @@ module.exports = (express) => {
   })
 
   router.post('/', (req, res) => {
+    // TODO check if email exist before ?
     User.create({
       'email': req.body.email,
       'password': req.body.password
     }).then(data => {
-      res.sendStatus(200)
+      res.json({});
     }).catch(err => {
       console.error(err)
       res.sendStatus(500)
