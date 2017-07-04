@@ -8,6 +8,7 @@ import {
   BucketsComponent as BucketsPage,
   BucketComponent as BucketPage
 } from './page';
+import { AuthGuard } from './core';
 
 const routes: Routes = [
   // Default
@@ -15,8 +16,8 @@ const routes: Routes = [
   { path: 'home', component: HomePage },
   { path: 'register', component: RegisterPage },
   { path: 'forgot', component: ForgotPage },
-  { path: 'buckets', component: BucketsPage },
-  { path: 'bucket/:id', component: BucketPage }
+  { path: 'buckets', component: BucketsPage, canActivate: [AuthGuard] },
+  { path: 'bucket/:id', component: BucketPage, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

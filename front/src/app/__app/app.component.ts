@@ -19,13 +19,15 @@ export class AppComponent {
 
   constructor(private _zone: NgZone, private _router: Router, private _auth: AuthService) {
     this.enableResponsive();
-    this._auth.pingAuth().subscribe(
-      (data)=> {
-          if(this._router.url == "/home") {
-           this._router.navigate(['/buckets']);
+    if (localStorage.getItem('tkn')) {
+      this._auth.pingAuth().subscribe(
+        (data)=> {
+            if(this._router.url != "/buckets") {
+              this._router.navigate(['/buckets']);
+            }
           }
-        }
-    );
+      );
+    }
   }
 
   private enableResponsive(): void {
