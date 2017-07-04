@@ -111,15 +111,15 @@
         }
         
         svg {
+            cursor: pointer;
             width: 36px;
             height: 36px;
             fill: $secondary !important;
             position: absolute;
             left: 500px;
-            transition: fill 0.3s, transform 0.5s;
             will-change: transform;
             transform: translateY(-100px) !important;
-            cursor: pointer;
+            transition: fill 0.3s, transform 0.5s;
         }
 
         .levitation {
