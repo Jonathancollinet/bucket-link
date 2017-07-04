@@ -8,7 +8,7 @@ import * as moment from 'moment';
   styleUrls: ['./bucket.component.scss']
 })
 export class BucketComponent implements OnInit, OnDestroy {
-
+  
   public bucket: Array<any> = [];
   public _id: number;
   private sub: any;

@@ -12,7 +12,7 @@ import { BucketService } from '../../core/services/bucket.service';
 })
 export class BucketsComponent implements OnInit {
 
-  public buckets: Array<any> = [];
+  buckets: Array<Bucket> = [];
 
   constructor(private _router: Router, private _bucket: BucketService) {
     moment.locale('fr');
@@ -20,10 +20,11 @@ export class BucketsComponent implements OnInit {
 
   ngOnInit(): void {
     this._bucket.getBuckets().subscribe((response) => {
-      this.buckets = response.data;
-      this.buckets.forEach((bucket) => {
-        console.log('bucket', bucket);
+      let tmp =  response.data;
+      this.buckets = [];
+      tmp.forEach((bucket) => {
         bucket.createdAt = this.formatDate(bucket.createdAt);
+        this.buckets.push(new Bucket(bucket.id, bucket.name, bucket.color, bucket.createdAt, [new Link(1), new Link(2)]));
       });
     }, (err) => {
       console.error('getBuckets', err);
@@ -38,4 +39,20 @@ export class BucketsComponent implements OnInit {
       return moment(date).fromNow();
   }
 
+}
+
+class Bucket {
+  constructor(
+    public id: number,
+    public name: string,
+    public color: string,
+    public createdAt: string,
+    public links: Array<Link>
+  ) {}
+}
+
+class Link {
+  constructor(
+    public id: number
+  ) {}
 }

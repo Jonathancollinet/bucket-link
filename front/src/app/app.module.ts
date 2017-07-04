@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 
 /* DEP */
-import { DndModule } from 'ng2-dnd'; // Drag-n-Drop
+import { DragulaModule } from 'ng2-dragula'; // Drag-n-Drop
 import { SidebarModule } from 'ng-sidebar'; // Sidebar
 
 /* HOMEMADE */
@@ -22,7 +22,7 @@ import { RoutingModule } from './app.routing';
   imports: [
     BrowserModule,
 
-    DndModule.forRoot(),
+    DragulaModule,
     SidebarModule.forRoot(),
 
     /* HOMEMADE */
