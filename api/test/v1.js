@@ -108,7 +108,7 @@ describe('Get /buckets/:id/links', () => {
       })
   })
 })
-
+// TODO FIX UPDATE ROUTE ON BUCKETS
 // describe('Update /buckets/:id', () => {
 //   it('Return updated bucket', (done) => {
 //     chai.request(server)
