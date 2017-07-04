@@ -17,9 +17,6 @@ module.exports = {
    * @param {any} payload Payload (data, ex : buckets array [])
    */
   setResponse(res, type = 'OK', payload = {}) {
-    let responseObject = {}
-    const items = Object.keys(payload)
-
     res.statusCode = resAttributes[type].status
     res.statusMessage = resAttributes[type].message
 
