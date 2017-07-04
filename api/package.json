@@ -9,7 +9,8 @@
     "migrate:reset": "./node_modules/.bin/sequelize db:migrate:undo:all",
     "migrate:undo": "./node_modules/.bin/sequelize db:migrate:undo",
     "seed": "./node_modules/.bin/sequelize db:seed:all",
-    "seed:reset": "./node_modules/.bin/sequelize db:seed:undo:all"
+    "seed:reset": "./node_modules/.bin/sequelize db:seed:undo:all",
+    "test": "mocha --timeout 10000"
   },
   "author": "@github.com/Tonychg",
   "license": "MIT",
@@ -25,5 +26,10 @@
     "socket.io": "^2.0.3",
     "socketio-jwt": "^4.5.0",
     "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.4.2"
   }
 }

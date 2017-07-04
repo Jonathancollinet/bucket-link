@@ -19,10 +19,9 @@ module.exports = {
     if (!user) {
       res.sendStatus(204)
     } else {
-      const connectedUser = await User.findById(user.id, {
-        include: Bucket
-      })
-      res.json(connectedUser.Buckets)
+      const connectedUser = await User.findById(user.id)
+      const userBuckets = await connectedUser.getBuckets()
+      res.json(userBuckets)
     }
   },
 
@@ -31,7 +30,6 @@ module.exports = {
       res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
-
       if (!bucket) {
         res.sendStatus(404)
       } else {
@@ -44,15 +42,14 @@ module.exports = {
     if (!parseInt(req.params.bucketId)) {
       res.sendStatus(404)
     } else {
-      const bucket = await Bucket.findById(req.params.bucketId, {
-        include: Link
-      })
+      const bucket = await Bucket.findById(req.params.bucketId)
+      const links = await bucket.getLinks()
 
       if (!bucket) {
         res.sendStatus(404)
       } else {
-        if (bucket.Links) {
-          res.json(bucket.Links)
+        if (links) {
+          res.json(links)
         } else {
           res.sendStatus(204)
         }
@@ -64,16 +61,15 @@ module.exports = {
     if (!isSet(req.body.name)) {
       res.sendStatus(204)
     } else {
-      const user = getUserFromToken(req.get('authorization'))
-
+      const 
+        user = getUserFromToken(req.get('authorization')),
+        userModel = await User.findById(user.id)
       try {
-        const
-          newBucket = await Bucket.create({
-            name: req.body.name,
-            color: req.body.color,
-            user: user
-          })
-        res.json(newBucket)
+        const bucket = await userModel.createBucket({
+          name: req.body.name,
+          color: req.body.color,
+        })
+        res.json(bucket)
       } catch (err) {
         res.sendStatus(404)
       }

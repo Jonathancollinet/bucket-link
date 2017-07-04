@@ -30,10 +30,10 @@ module.exports = (express) => {
   })
 
   auth.get('/ping', async (req, res) => {
-    const token = req.get('authorization'),
-      cleanToken = token.split(' ')[1]
+    const token = req.get('authorization')
     
     try {
+      const cleanToken = token.split(' ')[1]
       jwt.verify(cleanToken, secret_jwt)
       res.sendStatus(200)
     } catch (err) {
