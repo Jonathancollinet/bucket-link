@@ -13,7 +13,6 @@ import { BucketService } from '../../core/services/bucket.service';
 export class BucketsComponent implements OnInit {
 
   buckets: Array<Bucket> = [];
-  linksToOrganize: Array<Link> = [];
 
   constructor(private _router: Router, private _bucket: BucketService) {
     moment.locale('fr');
@@ -21,7 +20,9 @@ export class BucketsComponent implements OnInit {
 
   ngOnInit(): void {
     this._bucket.getBuckets().subscribe((response) => {
-      response.data.forEach((bucket) => {
+      let tmp =  response.data;
+      this.buckets = [];
+      tmp.forEach((bucket) => {
         bucket.createdAt = this.formatDate(bucket.createdAt);
         this.buckets.push(new Bucket(bucket.id, bucket.name, bucket.color, bucket.createdAt, [new Link(1), new Link(2)]));
       });
