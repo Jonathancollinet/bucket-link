@@ -2,10 +2,14 @@
 $black: #424B54;
 $white: #FDFFFC;
 $grey: #fafafa;
+$light-grey: #D3D3D3;
 
 $primary: #0049b0;
 $secondary: $white;
 $tercary: #FFF430;
+// $tercary: #77FF9B;
+
+$disabled: #9A9A9A;
 
 // Global
 $global-h1: 26px;
@@ -27,6 +31,7 @@ $sidebar-shadow-color: $black;
 // Topbar
 $topbar-height: 76px;
 $brand-title-size: 34px;
+$topbar-border-style: dashed;
 
 // Grid
 $small-screen-up: 601px !default;

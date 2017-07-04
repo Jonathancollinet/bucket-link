@@ -1,4 +1,4 @@
-@import './variables';
+@import '~scss/variables';
 
 ng-sidebar-container {
   height: calc(100% - #{$topbar-height}) !important;
