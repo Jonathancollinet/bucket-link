@@ -3,7 +3,12 @@
 </core-topbar>
 <ng-sidebar-container>
 
-  <ng-sidebar [hidden]="!isAuth()" [(opened)]="_opened">
+  <ng-sidebar [hidden]="!isAuth()"
+    [(opened)]="_opened"
+    [closeOnClickOutside]="_closeOnClickOutside"
+    [closeOnClickBackdrop]="_closeOnClickBackdrop"
+    [showBackdrop]="_showBackdrop"
+  >
     <div class="link-container">
       <div class="link" (click)="navigateToBuckets()">My Buckets</div>
       <div *ngIf="isAuth()" (click)="logout()" class="link logout" (click)="logout()">Logout</div>
