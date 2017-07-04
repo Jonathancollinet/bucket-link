@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'test'
+
 const
   { User, Bucket, Link } = require('../models'),
   chai = require('chai'),
@@ -108,22 +110,24 @@ describe('Get /buckets/:id/links', () => {
       })
   })
 })
-// TODO FIX UPDATE ROUTE ON BUCKETS
-// describe('Update /buckets/:id', () => {
-//   it('Return updated bucket', (done) => {
-//     chai.request(server)
-//       .put(`/v1/buckets/${createdBucket}`)
-//       .send({
-//         'name': 'Hey Salut toto!',
-//         'color': '#821379'
-//       })
-//       .set('authorization', token)
-//       .end((err, res) => {
-//         res.should.have.status(200)
-//         done()
-//       })
-//   })
-// })
+
+describe('Patch /buckets/:id', () => {
+  it('Return updated bucket', (done) => {
+    chai.request(server)
+      .patch(`/v1/buckets/${createdBucket}`)
+      .send({
+        'name': 'Hey Salut toto!',
+        'color': '#821379'
+      })
+      .set('authorization', token)
+      .end((err, res) => {
+        res.body.should.be.a('object')
+        res.body.should.have.all.keys('id', 'name', 'color', 'UserId', 'createdAt', 'updatedAt')
+        res.should.have.status(200)
+        done()
+      })
+  })
+})
 
 describe('Delete /buckets/:id', () => {
   it('200 on success delete', (done) => {
@@ -132,6 +136,30 @@ describe('Delete /buckets/:id', () => {
       .set('authorization', token)
       .end((err, res) => {
         res.should.have.status(200)
+        done()
+      })
+  })
+})
+
+describe('Logout from api', () => {
+  it('Return a object with attribute disconnected: true', (done) => {
+    chai.request(server)
+      .delete('/v1/auth')
+      .set('authorization', token)
+      .end((err, res) => {
+        res.body.should.be.a('object')
+        res.body.should.have.all.keys('disconnected')
+        done()
+      })
+  })
+})
+
+describe('Get /buckets without token (test middleware isAuth)', () => {
+  it('Return 401 Unauthorized', (done) => {
+    chai.request(server)
+      .get('/v1/buckets')
+      .end((err, res) => {
+        res.should.have.status(401)
         done()
       })
   })

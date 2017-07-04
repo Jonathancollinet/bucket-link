@@ -17,7 +17,7 @@ module.exports = {
     const user = getUserFromToken(req.get('authorization'))
 
     if (!user) {
-      res.sendStatus(204)
+      res.sendStatus(401)
     } else {
       const connectedUser = await User.findById(user.id)
       const userBuckets = await connectedUser.getBuckets()
@@ -125,25 +125,23 @@ module.exports = {
   async update(req, res) {
     const user = getUserFromToken(req.get('authorization'))
 
-    if (parseInt(req.params.bucketId)) {
+    if (!parseInt(req.params.bucketId)) {
       res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
-      if (!bucket || bucket.userId !== user.id) {
+
+      if (!bucket) {
         res.sendStatus(404)
       } else {
-        if (!isSet(req.body.name) || !isSet(req.body.color)) {
-          res.sendStatus(204)
+        if (isSet(req.body.name)) {
+          const color = req.body.color ? req.body.color : bucket.color
+          bucket.update({
+            'name': req.body.name,
+            'color': color
+          })
+          res.json(bucket)
         } else {
-          try {
-            bucket.updateAttributes({
-              name: req.body.name,
-              color: req.body.color
-            })
-            res.sendStatus(200)
-          } catch (err) {
-            res.sendStatus(404)
-          }
+          res.sendStatus(204)
         }
       }
     }
