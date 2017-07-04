@@ -118,9 +118,9 @@
             position: absolute;
             left: 500px;
             will-change: transform;
-            transform: translateY(-100px) !important;
+            transform: translateY(-50px) !important;
             transition: fill 0.3s, transform 0.5s, fill-opacity 0.3s;
-            animation: high-up 0.4s;
+            animation: high-up 0.8s;
             animation-play-state: start;
             fill-opacity: 0;
         }
@@ -140,7 +140,7 @@
         transform: translateY(0) rotateZ(0);
     }
     100% {
-        transform: translateY(-100px) rotateZ(0);
+        transform: translateY(-50px) rotateZ(0);
     }
 }
 
