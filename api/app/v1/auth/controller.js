@@ -7,7 +7,6 @@ module.exports = {
 
   signin: async (bodyData) => {
     const user = await User.findOne({ where: { email: bodyData.email }, raw: true })
-    console.log('bodyData', bodyData);
     if (!user) {
       console.log('User not found.')
       return {
@@ -19,7 +18,6 @@ module.exports = {
     } else {
       if (User.compareHash(user, bodyData.password)) {
         // Authenticated
-        console.log(`${user.email} authenticate.`)
         return {
           error: false,
           data: {

@@ -3,17 +3,15 @@ module.exports = (express) => {
     auth = express.Router(),
     jwt = require('jsonwebtoken'),
     { secret_jwt } = require('../../../config/server'),
+    { getUserFromToken } = require('./controller'),
     ctrl = require('./controller')
 
   auth.post('/', async (req, res) => {
     let response = await ctrl.signin(req.body);
-    console.log(response);
     if (response.error) {
       res.sendStatus(401)
     } else {
       const profile = response.data;
-
-      console.log('profile', profile);
 
       var token = jwt.sign(profile, secret_jwt);
 
@@ -33,12 +31,12 @@ module.exports = (express) => {
     try {
       const token = req.get('authorization')
       const cleanToken = token.split(' ')[1]
-      console.log('clean Token', cleanToken)
       jwt.verify(cleanToken, secret_jwt, function(err, decoded) {
         if (!err) res.json(decoded)
         else res.sendStatus(401)
       });
     } catch (err) {
+      res.json({ error: true, payload: 'User is disconnected.' })
       res.sendStatus(400)
     }
   })
