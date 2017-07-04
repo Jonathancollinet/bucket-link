@@ -20,6 +20,8 @@
 
         &:hover {
 
+            background-blend-mode: color-burn;
+
             .line path {
                 stroke-dashoffset: 0;
             }

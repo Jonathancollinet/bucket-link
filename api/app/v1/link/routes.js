@@ -11,10 +11,10 @@ module.exports = (express) => {
   const
     router = express.Router(),
     { Link } = require('../../../models'),
-    { isSet } = require('../../../commons')
+    { isSet, setResponse } = require('../../../commons')
 
   router.get('/', (req, res) => {
-    res.sendStatus(200)
+    setResponse(res)
   })
 
   return router

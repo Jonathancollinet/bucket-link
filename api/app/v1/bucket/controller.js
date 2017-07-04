@@ -10,58 +10,54 @@
 const
   { getUserFromToken } = require('../auth/controller'),
   { User, Bucket, Link } = require('../../../models'),
-  { isSet } = require('../../../commons')
+  { isSet, setResponse } = require('../../../commons')
 
 module.exports = {
   async index(req, res) {
     const user = getUserFromToken(req.get('authorization'))
 
     if (!user) {
-      res.sendStatus(401)
+      setResponse(res, 'NOT_FOUND')
     } else {
       const connectedUser = await User.findById(user.id)
       const userBuckets = await connectedUser.getBuckets()
-      res.json(userBuckets)
+      setResponse(res, 'OK', userBuckets)
     }
   },
 
   async show(req, res) {
     if (!parseInt(req.params.bucketId)) {
-      res.sendStatus(404)
+      setResponse(res, 'NOT_FOUND')
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
       if (!bucket) {
-        res.sendStatus(404)
+        setResponse(res, 'NOT_FOUND')
       } else {
-        res.json(bucket)
+        setResponse(res, 'OK', bucket)
       }
     }
   },
 
   async getLinksByBucketId(req, res) {
     if (!parseInt(req.params.bucketId)) {
-      res.sendStatus(404)
+      setResponse(res, 'NOT_FOUND')
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
       const links = await bucket.getLinks()
 
       if (!bucket) {
-        res.sendStatus(404)
+        setResponse(res, 'NOT_FOUND')
       } else {
-        if (links) {
-          res.json(links)
-        } else {
-          res.sendStatus(204)
-        }
+        setResponse(res, 'OK', links)
       }
     }
   },
 
   async create(req, res) {
     if (!isSet(req.body.name)) {
-      res.sendStatus(204)
+      setResponse(res, 'NO_CONTENT')
     } else {
-      const 
+      const
         user = getUserFromToken(req.get('authorization')),
         userModel = await User.findById(user.id)
       try {
@@ -69,24 +65,24 @@ module.exports = {
           name: req.body.name,
           color: req.body.color,
         })
-        res.json(bucket)
+        setResponse(res, 'OK', bucket)
       } catch (err) {
-        res.sendStatus(404)
+        setResponse(res, 'NOT_FOUND')
       }
     }
   },
 
   async createLink(req, res) {
     if (!parseInt(req.params.bucketId)) {
-      res.sendStatus(404)
+      setResponse(res, 'NOT_FOUND')
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
 
       if (!bucket) {
-        res.sendStatus(404)
+        setResponse(res, 'NOT_FOUND')
       } else {
         if (!isSet(req.body.url) || !isSet(req.body.title)) {
-          res.sendStatus(204)
+          setResponse(res, 'NO_CONTENT')
         } else {
           const user = getUserFromToken(req.get('authorization'))
 
@@ -98,9 +94,9 @@ module.exports = {
               bucketId: req.params.bucketId,
               userId: user
             })
-            res.json(newLink)
+            setResponse(res, 'OK', newLink)
           } catch (err) {
-            res.sendStatus(500)
+            setResponse(res, 'SERVER_ERROR')
           }
         }
       }
@@ -109,15 +105,15 @@ module.exports = {
 
   async destroy(req, res) {
     if (!parseInt(req.params.bucketId)) {
-      res.sendStatus(404)
+      setResponse(res, 'NOT_FOUND')
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
 
       if (!bucket) {
-        res.sendStatus(404)
+        setResponse(res, 'NOT_FOUND')
       } else {
         bucket.destroy()
-        res.sendStatus(200)
+        setResponse(res, 'OK')
       }
     }
   },
@@ -126,12 +122,12 @@ module.exports = {
     const user = getUserFromToken(req.get('authorization'))
 
     if (!parseInt(req.params.bucketId)) {
-      res.sendStatus(404)
+      setResponse(res, 'NOT_FOUND')
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
 
       if (!bucket) {
-        res.sendStatus(404)
+        setResponse(res, 'NOT_FOUND')
       } else {
         if (isSet(req.body.name)) {
           const color = req.body.color ? req.body.color : bucket.color
@@ -139,9 +135,9 @@ module.exports = {
             'name': req.body.name,
             'color': color
           })
-          res.json(bucket)
+          setResponse(res, 'OK', bucket)
         } else {
-          res.sendStatus(204)
+          setResponse(res, 'NO_CONTENT')
         }
       }
     }
