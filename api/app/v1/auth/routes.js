@@ -3,6 +3,7 @@ module.exports = (express) => {
     auth = express.Router(),
     jwt = require('jsonwebtoken'),
     { secret_jwt } = require('../../../config/server'),
+    { getUserFromToken } = require('./controller'),
     ctrl = require('./controller')
 
   auth.post('/', async (req, res) => {
@@ -30,12 +31,13 @@ module.exports = (express) => {
     const token = req.get('authorization')
     
     try {
-      const cleanToken = token.split(' ')[1]
       jwt.verify(cleanToken, secret_jwt)
-      res.json({ error: false, message: 'User is Authenticated.' })
+      const cleanToken = token.split(' ')[1]
+      const user = getUserFromToken(token)
+      res.json({ error: false, payload: user })
       res.sendStatus(200)
     } catch (err) {
-      res.json({ error: true, message: 'User is disconnected.' })
+      res.json({ error: true, payload: 'User is disconnected.' })
       res.sendStatus(400)
     }
   })
