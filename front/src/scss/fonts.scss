@@ -19,8 +19,13 @@
   src: local('Old'), url(assets/fonts/Old/OldSansBlack.ttf) format('ttf');
 }
 
+@font-face {
+  font-family: 'Chau';
+  src: url(assets/fonts/Chau/ChauPhilomeneOne-Regular.ttf);
+}
+
 .topbar {
-	font-family: "Titan One", cursive, sans-serif;
+	font-family: "Chau";
 }
 
 body {

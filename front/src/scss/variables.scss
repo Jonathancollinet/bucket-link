@@ -1,10 +1,11 @@
 // Main Colors
-$primary: #424874;
-$secondary: #77FF9B;
-$tercary: #FFF430;
 $black: #424B54;
 $white: #FDFFFC;
 $grey: #fafafa;
+
+$primary: #0049b0;
+$secondary: $white;
+$tercary: #FFF430;
 
 // Global
 $global-h1: 26px;
@@ -13,11 +14,6 @@ $global-h3: 22px;
 $global-h4: 20px;
 $global-h5: 18px;
 $global-h6: 16px;
-
-// Top bar
-$top-bar-height: 60px;
-$top-bar-title-size: 18px;
-$top-bar-title-color: #fff;
 
 // Links
 $link-color: green;
@@ -30,6 +26,7 @@ $sidebar-shadow-color: $black;
 
 // Topbar
 $topbar-height: 76px;
+$brand-title-size: 34px;
 
 // Grid
 $small-screen-up: 601px !default;
