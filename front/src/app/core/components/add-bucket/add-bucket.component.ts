@@ -20,18 +20,20 @@ export class AddBucketComponent {
     private _bucket: BucketService
   ) {
     this.createBucket = this._fb.group({
+      'color': ['#ccc', Validators.required],
       'name': [null, Validators.required]
     });
   }
 
   submitForm(formData: any, valid: boolean) {
     if (valid) {
-      let tmp = { name: formData.name };
+      let tmp = { name: formData.name, color: formData.color };
 
       this._bucket.createBucket(tmp).subscribe(
         (result) => { this.hasBeenCreated.emit(true); },
         (err) => { console.error(err); }
       ); // end subscribe
+      this.createBucket.reset();
     } // end valid
   }
   

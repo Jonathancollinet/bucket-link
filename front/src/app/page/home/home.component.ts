@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() { }
 
   handleState(data:any) {
-    console.log(data);
+    if (data) this.router.navigate(['/buckets']);
   }
 
   navigateToRegister() {
@@ -22,10 +22,6 @@ export class HomeComponent implements OnInit {
 
   navigateToForgot() {
     this.router.navigate(['/forgot']);
-  }
-
-  debugNavigateToBucket() {
-    this.router.navigate(['./buckets'])
   }
 
 }

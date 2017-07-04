@@ -17,7 +17,11 @@ export class AppComponent {
   private _modeNum: number = 0;
   public minimalWidth = "601px";
 
-  constructor(private _zone: NgZone, private _router: Router, private _auth: AuthService) {
+  constructor(
+    private _zone: NgZone,
+    private _router: Router,
+    private _auth: AuthService
+  ) {
     this.enableResponsive();
     if (localStorage.getItem('tkn')) {
       this._auth.pingAuth().subscribe(
