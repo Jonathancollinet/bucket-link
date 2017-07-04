@@ -19,3 +19,9 @@ html, body {
 
     background: $grey;
 }
+
+// disable user-select in:
+
+.topbar, ng-sidebar-container, .btn, button {
+  user-select: none !important;
+}
