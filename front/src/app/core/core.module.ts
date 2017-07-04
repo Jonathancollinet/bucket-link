@@ -12,6 +12,7 @@ import {
     ForgotComponent, ResetComponent,
     AddLinkComponent, AddBucketComponent,
     emailValidator, samePasswordValidator,
+    ReversePipe,
     HttpService, SharedService,
     SocketService, AuthService,
     BucketService, AuthGuard
@@ -26,7 +27,8 @@ import {
     ForgotComponent,
     ResetComponent,
     AddLinkComponent,
-    AddBucketComponent
+    AddBucketComponent,
+    ReversePipe
   ],
   exports: [
     TopBarComponent,
@@ -36,7 +38,8 @@ import {
     ForgotComponent,
     ResetComponent,
     AddLinkComponent,
-    AddBucketComponent
+    AddBucketComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,

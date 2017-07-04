@@ -1,10 +1,16 @@
-
+<div class="wip-actions">
+  <core-add-bucket (hasBeenCreated)="handleCreation($event)"></core-add-bucket>
+  <br>
+  <core-add-link (hasBeenCreated)="handleCreation($event)"></core-add-link>
+</div>
+<br><br>
 <div class="buckets-title">
   <span class="title"></span>
 </div>
 <div class="buckets-container">
-  <div *ngFor="let bucket of buckets" class="bucket-container" dnd-draggable>
+  <div *ngFor="let bucket of buckets | reverse" class="bucket-container" dnd-draggable>
     <a [routerLink]="['/bucket', bucket.id]">
+    <span class="color-box" [ngStyle]="{'background-color': bucket.color }"></span>
     <span class="name">{{ bucket.name }}</span>
     <span class="timestamp">{{bucket.createdAt}}</span>
     </a>

@@ -2,6 +2,7 @@ process.env.NODE_ENV = 'test'
 
 const
   { User, Bucket, Link } = require('../models'),
+  resAttributes = require('../config/resAtributes.json'),
   chai = require('chai'),
   chaiHttp = require('chai-http'),
   server = require('../app/v1'),
@@ -18,7 +19,7 @@ describe('Get /auth/ping', () => {
     chai.request(server)
       .get('/v1/auth/ping')
       .end((err, res) => {
-        res.should.have.status(400)
+        res.should.have.status(401)
         done()
       })
   })

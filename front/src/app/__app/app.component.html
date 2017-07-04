@@ -3,17 +3,16 @@
 </core-topbar>
 <ng-sidebar-container>
 
-  <ng-sidebar [hidden]="!isAuth()" [(opened)]="_opened">
+  <ng-sidebar [hidden]="!isAuth()"
+    [(opened)]="_opened"
+    [closeOnClickOutside]="_closeOnClickOutside"
+    [closeOnClickBackdrop]="_closeOnClickBackdrop"
+    [showBackdrop]="_showBackdrop"
+  >
     <div class="link-container">
       <div class="link" (click)="navigateToBuckets()">Buckets *</div>
       <div class="link" (click)="navigateToBuckets()">Links *</div>
       <div *ngIf="isAuth()" (click)="logout()" class="link logout" (click)="logout()">Logout</div>
-    </div>
-
-    <div class="actions-container">
-      <core-add-bucket></core-add-bucket>
-      <br>
-      <core-add-link></core-add-link>
     </div>
   </ng-sidebar>
 

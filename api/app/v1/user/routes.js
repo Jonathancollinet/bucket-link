@@ -10,19 +10,19 @@
 module.exports = (express) => {
   const
     router = express.Router(),
-    { User } = require('../../../models')
+    { User } = require('../../../models'),
+    { setResponse } = require('../../../commons')
 
   router.get('/', (req, res) => {
     User.findAll().then(users => {
-      res.send(users)
+      setResponse(res, 'OK', users)
     }).catch(err => {
       console.error(err.message)
-      res.sendStatus(500)
+      setResponse(res, 'SERVER_ERROR')
     })
   })
 
   router.post('/', (req, res) => {
-    // TODO check if email exist before ?
     User.create({
       'email': req.body.email,
       'password': req.body.password

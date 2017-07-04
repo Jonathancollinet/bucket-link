@@ -14,10 +14,16 @@ export class AppComponent {
   private _opened: boolean = false;
   public _layout = 0;
   private _closeOnClickOutside: boolean = false;
+  private _closeOnClickBackdrop: boolean = true;
+  private _showBackdrop: boolean = true;
   private _modeNum: number = 0;
   public minimalWidth = "601px";
 
-  constructor(private _zone: NgZone, private _router: Router, private _auth: AuthService) {
+  constructor(
+    private _zone: NgZone,
+    private _router: Router,
+    private _auth: AuthService
+  ) {
     this.enableResponsive();
     if (localStorage.getItem('tkn')) {
       this._auth.pingAuth().subscribe(
@@ -54,6 +60,7 @@ export class AppComponent {
     this._openSidebar();
     this._modeNum = 1;
     this._closeOnClickOutside = false;
+    this._showBackdrop = false;
     this._layout = 0;
   }
 
@@ -61,6 +68,7 @@ export class AppComponent {
     this._closeSidebar();
     this._modeNum = 0;
     this._closeOnClickOutside = true;
+    this._showBackdrop = true;
     this._layout = 1;
   }
 
