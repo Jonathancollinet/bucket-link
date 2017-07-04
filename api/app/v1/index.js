@@ -30,4 +30,3 @@ api.use('/auth', require('./auth/routes')(express))
 app.use('/v1', api)
 
 module.exports =  app
-

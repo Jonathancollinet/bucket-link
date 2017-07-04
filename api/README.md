@@ -36,3 +36,7 @@ Reset seeding (Delete all rows in all tables)
 ``` bash
   npm run seed:reset
 ```
+Run Test
+```bash
+  npm run test
+```

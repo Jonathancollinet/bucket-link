@@ -5,24 +5,20 @@ module.exports = function (sequelize, DataTypes) {
     title: DataTypes.STRING,
     url: DataTypes.STRING,
     description: DataTypes.TEXT,
-    bucket_id: {
-      type: DataTypes.INTEGER,
-      allownull: false,
-      primaryKey: true
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    }
   });
 
   Link.associate = function (models) {
-    // Link.belongsTo(models.User, {
-    //   foreignKey: 'user_id', as: 'user'
-    // })
+    Link.belongsTo(models.User, {
+      onDelete: 'CASCADE',
+      foreignKey: {
+        allowNull: false
+      }
+    })
     Link.belongsTo(models.Bucket, {
-      foreignKey: 'bucket_id', as: 'links',
+      onDelete: 'CASCADE',
+      foreignKey: {
+        allowNull: false
+      }
     })
   };
 

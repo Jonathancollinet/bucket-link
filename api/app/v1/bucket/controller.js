@@ -9,7 +9,7 @@
 
 const
   { getUserFromToken } = require('../auth/controller'),
-  { Bucket, Link, User } = require('../../../models'),
+  { User, Bucket, Link } = require('../../../models'),
   { isSet } = require('../../../commons')
 
 module.exports = {
@@ -19,36 +19,9 @@ module.exports = {
     if (!user) {
       res.sendStatus(204)
     } else {
-      console.log('All buckets for user', user.id);
-      const buckets = await User.findAll({
-        where: { id: user.id },
-        include: [{
-          model: Bucket, as: 'buckets',
-          attributes: ['id', 'name', 'user_id'],
-          include: [{
-            model: Link, as: 'links',
-            attributes: ['id', 'title', 'bucket_id', 'user_id']
-          }]
-        }]
-
-        // include: [
-        // {
-        //   model: User, as: 'user',
-        //   attributes: ['id', 'email']
-        // },
-        // {
-        //   model: Link, as: 'links',
-        //   attributes: ['id', 'title', 'bucket_id', 'user_id']
-        // }]
-      }).catch(function(err) {
-        console.log('err', err)
-      })
-
-      if (!buckets) {
-        res.sendStatus(404)
-      } else {
-        res.json(buckets)
-      }
+      const connectedUser = await User.findById(user.id)
+      const userBuckets = await connectedUser.getBuckets()
+      res.json(userBuckets)
     }
   },
 
@@ -57,7 +30,6 @@ module.exports = {
       res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
-
       if (!bucket) {
         res.sendStatus(404)
       } else {
@@ -71,20 +43,15 @@ module.exports = {
       res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
+      const links = await bucket.getLinks()
 
       if (!bucket) {
         res.sendStatus(404)
       } else {
-        const links = await Link.findAll({
-          where: {
-            bucket_id: req.params.bucketId
-          }
-        })
-
-        if (!links) {
-          res.sendStatus(404)
-        } else {
+        if (links) {
           res.json(links)
+        } else {
+          res.sendStatus(204)
         }
       }
     }
@@ -94,18 +61,16 @@ module.exports = {
     if (!isSet(req.body.name)) {
       res.sendStatus(204)
     } else {
-      const user = getUserFromToken(req.get('authorization'))
-
+      const 
+        user = getUserFromToken(req.get('authorization')),
+        userModel = await User.findById(user.id)
       try {
-        const
-          newBucket = await Bucket.create({
-            name: req.body.name,
-            color: req.body.color,
-            user_id: user.id
-          })
-        res.json(newBucket)
+        const bucket = await userModel.createBucket({
+          name: req.body.name,
+          color: req.body.color,
+        })
+        res.json(bucket)
       } catch (err) {
-        console.error(err)
         res.sendStatus(404)
       }
     }
@@ -130,10 +95,9 @@ module.exports = {
               url: req.body.url,
               title: req.body.title,
               description: req.body.description,
-              bucket_id: req.params.bucketId,
-              user_id: user.id
+              bucketId: req.params.bucketId,
+              userId: user
             })
-
             res.json(newLink)
           } catch (err) {
             res.sendStatus(500)
@@ -159,12 +123,13 @@ module.exports = {
   },
 
   async update(req, res) {
-    if (parseInt(req.param.bucketId)) {
+    const user = getUserFromToken(req.get('authorization'))
+
+    if (parseInt(req.params.bucketId)) {
       res.sendStatus(404)
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
-
-      if (!bucket) {
+      if (!bucket || bucket.userId !== user.id) {
         res.sendStatus(404)
       } else {
         if (!isSet(req.body.name) || !isSet(req.body.color)) {

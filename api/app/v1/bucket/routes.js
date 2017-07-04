@@ -21,7 +21,6 @@ module.exports = (express) => {
   const router = express.Router()
 
   router.use(isAuth)
-
   router.get('/', bucketCtrl.index)
   router.get('/:bucketId', bucketCtrl.show)
   router.get('/:bucketId/links', bucketCtrl.getLinksByBucketId)

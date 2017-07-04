@@ -35,12 +35,8 @@ module.exports = function (sequelize, DataTypes) {
   })
 
   User.associate = function (models) {
-    User.hasMany(models.Bucket, {
-      foreignKey: 'user_id', as: 'buckets',
-    })
-    User.hasMany(models.Link, {
-      foreignKey: 'id', as: 'links',
-    })
+    User.hasMany(models.Bucket)
+    User.hasMany(models.Link)
   }
 
   User.beforeCreate((user, options) => {

@@ -14,41 +14,21 @@ if (config.use_env_variable) {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-// Code suivant non fonctionnel avec sequelize v4 je pense
-// voir http://docs.sequelizejs.com/manual/tutorial/upgrade-to-v4.html
-// fs
-//   .readdirSync(__dirname)
-//   .filter(function(file) {
-//     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-//   })
-//   .forEach(function(file) {
-//     var model = sequelize['import'](path.join(__dirname, file));
-//     db[model.name] = model;
-//   });
-// Object.keys(db).forEach(function(modelName) {
-// if (db[modelName].associate) {
-//   console.log('model', db[modelName]);
-//   db[modelName].associate(db);
-// }
-// });
-
-// Tentative en v4
 fs
   .readdirSync(__dirname)
   .filter(function(file) {
-    return (file.indexOf(".") !== 0) && (file !== "index.js");
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(function(file) {
-    var model = sequelize.import(path.join(__dirname, file));
+    var model = sequelize['import'](path.join(__dirname, file));
     db[model.name] = model;
   });
-
 Object.keys(db).forEach(function(modelName) {
-  if ("associate" in db[modelName]) {
-    db[modelName].associate(db);
-  }
+if (db[modelName].associate) {
+  console.log('model', db[modelName]);
+  db[modelName].associate(db);
+}
 });
-
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
