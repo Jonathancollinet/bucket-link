@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from "@angular/router";
 import { HttpModule } from '@angular/http';
 
+import { DragulaModule } from 'ng2-dragula'; // Drag-n-Drop
 import { SidebarModule } from 'ng-sidebar';
 
 import { CoreModule } from '../core/core.module';
@@ -35,6 +36,7 @@ import {
   imports: [
     BrowserModule,
 
+    DragulaModule,
     SidebarModule.forRoot(),
 
     CoreModule,

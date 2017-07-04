@@ -1,21 +1,35 @@
-<div class="wip-actions">
-  <core-add-bucket (hasBeenCreated)="handleCreation($event)"></core-add-bucket>
-  <br>
-  <core-add-link (hasBeenCreated)="handleCreation($event)"></core-add-link>
-</div>
-<br><br>
-<div class="buckets-title">
-  <span class="title"></span>
-</div>
-<div class="buckets-container">
-  <div *ngFor="let bucket of buckets | reverse" class="bucket-container" dnd-draggable>
-    <a [routerLink]="['/bucket', bucket.id]">
-    <span class="color-box" [ngStyle]="{'background-color': bucket.color }"></span>
-    <span class="name">{{ bucket.name }}</span>
-    <span class="timestamp">{{bucket.createdAt}}</span>
-    </a>
+<div class="container">
+  <div class="row">
+    <div class="wip-actions">
+    <core-add-bucket (hasBeenCreated)="handleCreation($event)"></core-add-bucket>
   </div>
-  <div *ngIf="!buckets.length" class="buckets-empty">
+  <br><br>
+  <div class="buckets-title">
+    <span class="title"></span>
+  </div>
+</div>
+</div>
+<div class="row" [hidden]="!buckets.length">
+   <div *ngIf="!buckets.length" class="buckets-empty">
     <span class="text">Your bucket list seems empty...</span>
   </div>
+</div>
+<div class="row">
+  
+  <div class="col s12 m9 wip">
+    <div class="buckets-container" [dragula]='"bag-one"'>
+      <div *ngFor="let bucket of buckets | reverse" class="col s6 m3 bucket-container">
+          <a [routerLink]="['/bucket', bucket.id]">
+            <span class="color-box" [ngStyle]="{'background-color': bucket.color }"></span>
+            <span class="name">{{ bucket.name }}</span>
+            <span class="timestamp">{{bucket.createdAt}}</span>
+          </a>
+          <ul class="links-container">
+            <li *ngFor="let link of bucket.links; let x = index">{{ bucket.id }} // ({{x}})</li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  
+
 </div>

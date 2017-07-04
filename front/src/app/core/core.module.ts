@@ -3,7 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import {DndModule} from 'ng2-dnd';
+import { DragulaModule } from 'ng2-dragula';
 import { SidebarModule } from 'ng-sidebar';
 
 import {
@@ -47,7 +47,7 @@ import {
     ReactiveFormsModule,
     HttpModule,
     SidebarModule.forRoot(),
-    DndModule
+    DragulaModule
   ],
   providers: [
     HttpService,
