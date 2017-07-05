@@ -47,7 +47,14 @@ module.exports = (chai, should, server) => {
         .end((err, res) => {
           res.body.should.be.a('object')
           res.should.have.status(200)
-          res.body.should.have.all.keys('id', 'name', 'color', 'UserId', 'createdAt', 'updatedAt')
+          res.body.should.have.all.keys(
+            'id',
+            'name',
+            'color',
+            'UserId',
+            'createdAt',
+            'updatedAt'
+          )
           done()
         })
     })

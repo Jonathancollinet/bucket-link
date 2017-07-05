@@ -1,10 +1,12 @@
-process.env.NODE_ENV = 'test'
+'use strict';
 
 const
   chai = require('chai'),
   chaiHttp = require('chai-http'),
   server = require('../app/v1'),
   should = chai.should()
+
+process.env.NODE_ENV = 'test'
 
 chai.use(chaiHttp)
 
