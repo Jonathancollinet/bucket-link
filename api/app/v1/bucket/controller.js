@@ -21,6 +21,14 @@ module.exports = {
     } else {
       const connectedUser = await User.findById(user.id)
       const userBuckets = await connectedUser.getBuckets()
+      userBuckets.forEach(async (bucket) => {
+        const links = await bucket.getLinks({
+          limit: 1,
+          order: [
+            ['createdAt', 'DESC']
+          ]
+        })
+      })
       setResponse(res, 'OK', userBuckets)
     }
   },

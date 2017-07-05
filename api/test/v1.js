@@ -61,8 +61,8 @@ describe('Get /buckets', () => {
       .get('/v1/buckets')
       .set('authorization', token)
       .end((err, res) => {
-        res.body.should.be.a('array')
         console.log(res.body)
+        res.body.should.be.a('array')
         res.should.have.status(200)
         done()
       })
