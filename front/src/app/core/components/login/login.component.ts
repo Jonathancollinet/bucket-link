@@ -10,6 +10,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
 
+  private focus1: boolean = false;
+  private focus2: boolean = false;
+
   @Output() hasBeenLogged = new EventEmitter();
 
   loginForm: FormGroup;

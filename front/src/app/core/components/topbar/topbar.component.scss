@@ -10,13 +10,13 @@
 
     .title-container {
 
-        padding: 0 25px;
+        padding: 0 27px;
         width: $sidebar-width;
         height: 100%;
         display: flex;
         align-items: center;
         position: relative;
-        cursor: pointer;
+
 
         &:hover {
 
@@ -73,7 +73,6 @@
     }
 
     .search-container {
-
         height: 100%;
         width: calc(100% - #{$sidebar-width});
         display: flex;
@@ -87,13 +86,14 @@
             font-size: 24px;
             font-family: "Titan One", cursive;
             color: $secondary;
-            background: transparent;
+            background: rgba(0, 0, 0, 0.1);
             border: none;
             outline-width: 0;
             border-left: 2px solid $secondary;
             padding: 0 10px;
             transition: border-width 0.3s, color 0.6s;
             border-width: 2px;
+            
 
             &::placeholder {
                 color: $secondary;
@@ -115,18 +115,31 @@
             height: 36px;
             fill: $secondary !important;
             position: absolute;
-            left: 500px;
-            transition: fill 0.3s, transform 0.5s;
+            left: 510px;
             will-change: transform;
-            transform: translateY(-100px) !important;
-            cursor: pointer;
+            transform: translateY(-50px);
+            transition: fill 0.3s, transform 0.5s, fill-opacity 0.3s;
+            animation: high-up 0.8s;
+            animation-play-state: start;
+            fill-opacity: 0;
         }
 
         .levitation {
             transform: translateY(0px) !important;
-            animation: levitation 1s 0.5s infinite forwards;
+            animation: levitation 1s 0.5s infinite forwards !important;
             fill: $tercary !important;
+            animation-play-state: start !important;
+            fill-opacity: 1 !important;
         }
+    }
+}
+
+@keyframes high-up {
+    0% {
+        transform: translateY(0) rotateZ(0);
+    }
+    100% {
+        transform: translateY(-50px) rotateZ(0);
     }
 }
 
@@ -145,7 +158,7 @@
     }
 }
 
-@media (max-width: $small-screen) {
+@media #{$small-and-down} {
     .link-container, .search-container {
         display: none !important;
     }
@@ -160,8 +173,21 @@
 
 }
 
-@media (max-width: 868px) {
+@media #{$medium-and-up} {
     .search-container svg{
         left: 80.6% !important;
     }
 }
+
+@-moz-document url-prefix() {
+    .search-container svg {
+        animation: none !important;
+        fill-opacity: 1 !important;
+        transition: fill 0.3s, transform 0.5s !important;
+        transform: translateY(-80px) !important;
+    }
+    .levitation {
+        animation: none !important;
+    }
+}
+

@@ -1,7 +1,9 @@
 <section class="register">
+  <h1>Register</h1>
   <form [formGroup]="registerForm" (ngSubmit)="submitForm(registerForm.value)">
     <div class="form-group">
-      <input class="form-control" type="text" placeholder="Email" [formControl]="email">
+      <label for="email">Email</label>
+      <input class="form-control" type="text" [formControl]="email">
       <div class="form-msgs container" *ngIf="!email.valid && email.dirty">
         <p *ngIf="email.hasError('required')">Email required</p>
         <p *ngIf="!email.hasError('required') && email.hasError('invalidEmail')">
@@ -10,7 +12,8 @@
       </div>
     </div>
     <div formGroupName="password" class="form-group">
-      <input show-hide class="form-control" type="password" placeholder="PASSWORD" formControlName="pass">
+      <label for="password">Password</label>
+      <input show-hide class="form-control" type="password" formControlName="pass">
       <div class="form-msgs container" *ngIf="!registerForm.controls['password'].controls['pass'].valid && registerForm.controls['password'].controls['pass'].dirty">
         <p *ngIf="registerForm.controls['password'].controls['pass'].hasError('required')">
           PASSWORD required
@@ -21,7 +24,8 @@
       </div>
     </div>
     <div formGroupName="password" class="form-group">
-      <input class="form-control" type="password" placeholder="CONFIRM PASSWORD"
+      <label for="password">Confirm Password</label>
+      <input class="form-control" type="password"
               formControlName="confirmPass">
       <div class="form-msgs container" *ngIf="!registerForm.controls['password'].controls['confirmPass'].valid && registerForm.controls['password'].controls['confirmPass'].dirty">
         <p *ngIf="registerForm.controls['password'].controls['confirmPass'].hasError('required')">

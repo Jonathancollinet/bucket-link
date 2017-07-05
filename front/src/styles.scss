@@ -1,13 +1,15 @@
-@charset "utf-8";
+@charset 'utf-8';
 
-@import "./scss/reset";
+// Global
+@import './scss/reset';
 @import './scss/variables';
-@import "./scss/global";
+@import './scss/global';
 @import './scss/fonts';
+@import './scss/dragula'; // Dnd
 
-@import './scss/dragula.scss'; // Dnd
-
-@import "./scss/components/sidebar";
+// Components
+@import './scss/components/auth';
+@import './scss/components/sidebar';
 @import './scss/components/grid';
 @import './scss/components/input';
 @import './scss/components/button';

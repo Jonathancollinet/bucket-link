@@ -3,18 +3,20 @@
 $btn-transition-time: 0.2s;
 
 .btn {
-    height: 41px;
+    display: inline-block !important;
+    height: 42px;
 }
 
 button {
+    display: inline-block !important;
     line-height: 37px;
     height: 40px;
     background: $black;
     color: $grey;
-    cursor: pointer;
+    
     font-size: 16px;
 
-    border: 1px solid $grey;
+    border: 1px solid $light-grey;
     border-bottom-width: 4px;
     border-radius: 17px;
 
@@ -30,9 +32,10 @@ button {
     }
 
     &:active {
-        transform: translateY(3px) !important;
+        transform: translateY(4px) !important;
         border-bottom-width: 1px !important;
         height: 37px !important;
+        line-height: 35px !important;
     }
 
     &:disabled {
@@ -43,7 +46,7 @@ button {
         &:hover {
             transform: none !important;
             border-bottom-width: 4px !important;
-            height: 41px !important;
+            height: 42px !important;
         }
     }
 }

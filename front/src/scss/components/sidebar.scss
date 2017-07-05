@@ -11,7 +11,7 @@ ng-sidebar-container {
   border: 0.15rem solid ;
   border-left: 0;
   border-right: 0;
-  cursor: pointer;
+
   font-size: 0;
   height: 1.3rem;
   margin-right: 1rem;
@@ -40,7 +40,7 @@ ng-sidebar-container {
     width: 100%;
 
     .link {
-      cursor: pointer;
+
       padding: 30px;
       text-align: center;
       width: 100%;
@@ -67,6 +67,19 @@ ng-sidebar-container {
 }
 
 @media #{$medium-and-up} {
+
+  // aside {
+  //   transform: translateX(-175px) !important;
+
+  //   .logo-link {
+  //     display: static !important;
+  //   }
+
+  //   .link {
+  //     display: none;
+  //   }
+  // }
+
   .ng-sidebar__content {
     width: calc(100% - #{$sidebar-width});
     margin-left: $sidebar-width!important;
