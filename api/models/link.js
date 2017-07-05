@@ -17,7 +17,7 @@ module.exports = function (sequelize, DataTypes) {
     Link.belongsTo(models.Bucket, {
       onDelete: 'CASCADE',
       foreignKey: {
-        allowNull: false
+        allowNull: true
       }
     })
   };

@@ -1,11 +1,12 @@
+
 module.exports = (express) => {
   const
     auth = express.Router(),
     jwt = require('jsonwebtoken'),
     { secret_jwt } = require('../../../config/server'),
-    { getUserFromToken } = require('./controller'),
+    { getUserFromToken } = require('./auth'),
     { setResponse } = require('../../../commons'),
-    ctrl = require('./controller')
+    ctrl = require('./auth')
 
   auth.post('/', async (req, res) => {
     let response = await ctrl.signin(req.body);

@@ -13,14 +13,16 @@
     DELETE  /bucketId       => Delete bucket by id
     PATCH   /bucketId       => Update bucket by id
 */
-  const
-    bucketCtrl = require('./controller'),
-    { isAuth } = require('../middlewares')
+
+const
+  bucketCtrl = require('./bucket'),
+  { isAuth } = require('../middlewares')
 
 module.exports = (express) => {
   const router = express.Router()
 
   router.use(isAuth)
+
   router.get('/', bucketCtrl.index)
   router.get('/:bucketId', bucketCtrl.show)
   router.get('/:bucketId/links', bucketCtrl.getLinksByBucketId)

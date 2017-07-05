@@ -1,5 +1,5 @@
 module.exports = {
   numberOfUser: 10,
-  numberOfBucket: 8,
-  numberOfLink: 50
+  numberOfBucket: 100,
+  numberOfLink: 1000
 }

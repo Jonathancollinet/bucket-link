@@ -6,6 +6,9 @@ const
 module.exports = {
   genRandomObjTable: (model, length, includes = null) => {
     const randomTab = []
+    if (!length) {
+      return randomTab
+    }
     for (let i = 0, len = length; i < len; i++) {
       randomTab.push(model(includes))
     }
@@ -23,8 +26,8 @@ module.exports = {
       title: faker.lorem.sentence(),
       url: faker.internet.url(),
       description: faker.lorem.paragraph(),
-      updatedAt: faker.date.recent(),
-      createdAt: faker.date.recent()
+      updatedAt: faker.date.past(2),
+      createdAt: faker.date.past(2)
     }
   },
 
@@ -36,8 +39,8 @@ module.exports = {
       userId: randomId,
       name: faker.lorem.word(),
       color: faker.internet.color(),
-      updatedAt: faker.date.recent(),
-      createdAt: faker.date.recent()
+      updatedAt: faker.date.past(2),
+      createdAt: faker.date.past(2)
     }
   },
 
@@ -45,8 +48,8 @@ module.exports = {
     return {
       email: faker.internet.email(),
       password: bcrypt.hashSync('password'),
-      updatedAt: faker.date.recent(),
-      createdAt: faker.date.recent()
+      updatedAt: faker.date.past(2),
+      createdAt: faker.date.past(2)
     }
   }
 }

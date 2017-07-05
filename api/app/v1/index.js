@@ -22,10 +22,10 @@ app.use(function (req, res, next) {
   next()
 })
 
-api.use('/users', require('./user/routes')(express))
-api.use('/buckets', require('./bucket/routes')(express))
-api.use('/links', require('./link/routes')(express))
-api.use('/auth', require('./auth/routes')(express))
+api.use('/users', require('./user')(express))
+api.use('/buckets', require('./bucket')(express))
+api.use('/links', require('./link')(express))
+api.use('/auth', require('./auth')(express))
 
 app.use('/v1', api)
 

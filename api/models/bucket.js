@@ -2,6 +2,7 @@ module.exports = function (sequelize, DataTypes) {
   const Bucket = sequelize.define('Bucket', {
     name: DataTypes.STRING,
     color: DataTypes.STRING,
+    
   });
 
   Bucket.associate = function (models) {

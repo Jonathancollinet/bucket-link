@@ -8,7 +8,7 @@
 */
 
 const
-  { getUserFromToken } = require('../auth/controller'),
+  { getUserFromToken } = require('../auth/auth'),
   { User, Bucket, Link } = require('../../../models'),
   { isSet, setResponse } = require('../../../commons')
 
@@ -20,16 +20,26 @@ module.exports = {
       setResponse(res, 'NOT_FOUND')
     } else {
       const connectedUser = await User.findById(user.id)
-      const userBuckets = await connectedUser.getBuckets()
-      userBuckets.forEach(async (bucket) => {
-        const links = await bucket.getLinks({
-          limit: 1,
-          order: [
-            ['createdAt', 'DESC']
-          ]
+      if (!connectedUser) {
+        setResponse(res, 'NOT_FOUND')
+      } else {
+        const buckets = await Bucket.findAll({
+          attributes: ['id', 'name', 'color', 'createdAt', 'updatedAt'],
+          where: {
+            userId: connectedUser.get('id')
+          },
+          include: [{
+            model: Link,
+            limit: 25,
+            order: [
+              ['createdAt', 'DESC']
+            ],
+            attributes: { exclude: ['UserId'] }
+          }]
         })
-      })
-      setResponse(res, 'OK', userBuckets)
+        const userBuckets = await connectedUser.getBuckets()
+        setResponse(res, 'OK', buckets)
+      }
     }
   },
 
