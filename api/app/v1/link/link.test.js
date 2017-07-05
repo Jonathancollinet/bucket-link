@@ -1,3 +1,5 @@
+'use strict';
+
 const
   { User, Bucket, Link } = require('../../../models'),
   resAttributes = require('../../../config/resAtributes.json')

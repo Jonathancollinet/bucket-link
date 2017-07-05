@@ -6,6 +6,7 @@
 
     @fileOverview Users (CRUD)
 */
+'use strict';
 
 module.exports = (express) => {
   const

@@ -6,12 +6,13 @@
 
     @fileOverview 
 */
+'use strict';
 
 const 
   express = require('express'),
   bodyParser = require('body-parser'),
-  app = express()
-  api = express.Router(),
+  app = express(),
+  api = express.Router()
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())

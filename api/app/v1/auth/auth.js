@@ -1,10 +1,11 @@
+'use strict';
+
 const
   { User } = require('../../../models'),
   { secret_jwt } = require('../../../config/server'),
   jwt = require('jsonwebtoken')
 
 module.exports = {
-
   signin: async (bodyData) => {
     const user = await User.findOne({ where: { email: bodyData.email }, raw: true })
     if (!user) {
@@ -28,7 +29,6 @@ module.exports = {
           }
         }
       } else {
-        // Valid email, Wrong password
         console.log(`Wrong password with ${user.email}.`)
         return {
           error: true,

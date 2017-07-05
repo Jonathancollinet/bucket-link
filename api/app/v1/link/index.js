@@ -11,6 +11,7 @@
     DELETE  /linkId   => Delete bucket by id
     PATCH   /linkId   => Update bucket by id
 */
+'use strict';
 
 const
   linkCtrl = require('./link'),

@@ -26,5 +26,13 @@
   "SERVER_ERROR": {
     "status": 500,
     "message": "Server error."
+  },
+  "INVALID_EMAIL": {
+    "status": 401,
+    "message": "Wrong user email."
+  },
+  "WRONG_PASSWORD": {
+    "status": 401,
+    "message": "Wrong password."
   }
 }

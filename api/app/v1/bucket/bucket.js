@@ -6,6 +6,7 @@
 
     @fileOverview Buckets controller
 */
+'use strict';
 
 const
   { getUserFromToken } = require('../auth/auth'),

@@ -13,6 +13,7 @@
     DELETE  /bucketId       => Delete bucket by id
     PATCH   /bucketId       => Update bucket by id
 */
+'use strict';
 
 const
   bucketCtrl = require('./bucket'),

@@ -1,8 +1,12 @@
+'use strict';
+
 const
   { User, Bucket, Link } = require('../../../models'),
   resAttributes = require('../../../config/resAtributes.json')
 
 module.exports = (chai, should, server) => {
+  let token = ''
+
   describe('Get /auth/ping', () => {
     it('Return status 400 unauthorized', (done) => {
       chai.request(server)

@@ -6,6 +6,7 @@
 
     @fileOverview Links Controller
 */
+'use strict';
 
 const
   { getUserFromToken } = require('../auth/auth'),

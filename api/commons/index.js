@@ -1,3 +1,5 @@
+'use strict';
+
 const resAttributes = require('../config/resAtributes.json')
 
 module.exports = {

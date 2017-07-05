@@ -1,3 +1,5 @@
+'use strict';
+
 const 
   jwt = require('jsonwebtoken'),
   { secret_jwt } = require('../../../config/server'),

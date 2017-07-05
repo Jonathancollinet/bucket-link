@@ -1,8 +1,31 @@
+'use strict';
+
 const
   { User, Bucket, Link } = require('../../../models'),
   resAttributes = require('../../../config/resAtributes.json')
 
 module.exports = (chai, should, server) => {
+  let token = '',
+    createdBucket = ''
+
+  describe('Post /auth', () => {
+    it('Try to login', (done) => {
+      User.findOne().then(user => {
+        chai.request(server)
+          .post('/v1/auth')
+          .send({
+            'email': user.email,
+            'password': 'password'
+          })
+          .end((err, res) => {
+            res.header.should.have.own.property('authorization')
+            token = res.header.authorization
+            done()
+          })
+      })
+    })
+  })
+
   describe('Get /buckets', () => {
     it('Return array of buckets', (done) => {
       chai.request(server)
