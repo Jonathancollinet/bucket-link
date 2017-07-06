@@ -53,12 +53,13 @@ module.exports = {
     } else {
       const
         user = getUserFromToken(req.get('authorization')),
-        userModel = await User.findById(user.id)
-
+        userModel = await User.findById(user.id),
+        description = req.body.description ? req.body.description : ''
       try {
         const link = await userModel.createLink({
           url: req.body.url,
-          title: req.body.title
+          title: req.body.title,
+          description: description
         })
         setResponse(res, 'OK', link)
       } catch (err) {
