@@ -18,7 +18,7 @@ module.exports = {
     const user = getUserFromToken(req.get('authorization'))
 
     if (!user) {
-      setResponse(res, 'NOT_FOUND')
+      setResponse(res, 'UNAUTHORIZED')
     } else {
       const connectedUser = await User.findById(user.id)
       if (!connectedUser) {
@@ -125,14 +125,15 @@ module.exports = {
     if (!parseInt(req.params.bucketId)) {
       setResponse(res, 'NOT_FOUND')
     } else {
-      const bucket = await Bucket.findById(req.params.bucketId)
-
-      if (!bucket) {
-        setResponse(res, 'NOT_FOUND')
-      } else {
-        bucket.destroy()
+      Bucket.findById(req.params.bucketId).then(bucket => {
+        if (!bucket) {
+          setResponse(res, 'NOT_FOUND')
+        } else {
+          return bucket.destroy()
+        }
+      }).then(() => {
         setResponse(res, 'OK')
-      }
+      })
     }
   },
 

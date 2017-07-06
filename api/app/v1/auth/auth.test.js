@@ -7,8 +7,8 @@ const
 module.exports = (chai, should, server) => {
   let token = ''
 
-  describe('Get /auth/ping', () => {
-    it('Return status 400 unauthorized', (done) => {
+  describe('Test Authentification', () => {
+    it('Get\t/auth/ping => Status: 401, User not Connected', (done) => {
       chai.request(server)
         .get('/v1/auth/ping')
         .end((err, res) => {
@@ -16,10 +16,7 @@ module.exports = (chai, should, server) => {
           done()
         })
     })
-  })
-
-  describe('Post /auth', () => {
-    it('Try to login', (done) => {
+    it('Post\t/auth => Authorization Header with token', (done) => {
       User.findOne().then(user => {
         chai.request(server)
           .post('/v1/auth')
@@ -34,10 +31,7 @@ module.exports = (chai, should, server) => {
           })
       })
     })
-  })
-
-  describe('Get /auth/ping', () => {
-    it('Return 200 OK', (done) => {
+    it('Get\t/auth/ping => Status: 200, User is connected', (done) => {
       chai.request(server)
         .get('/v1/auth/ping')
         .set('authorization', token)
@@ -46,10 +40,7 @@ module.exports = (chai, should, server) => {
           done()
         })
     })
-  })
-
-  describe('Delete /auth', () => {
-    it('Return 200 OK', (done) => {
+    it('Delete\t/auth => Status: 200, User disconnected', (done) => {
       chai.request(server)
         .delete('/v1/auth')
         .set('authorization', token)

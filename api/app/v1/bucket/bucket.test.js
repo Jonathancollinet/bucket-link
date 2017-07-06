@@ -2,14 +2,20 @@
 
 const
   { User, Bucket, Link } = require('../../../models'),
+  { randint } = require('../../../commons'),
   resAttributes = require('../../../config/resAtributes.json')
 
-module.exports = (chai, should, server) => {
-  let token = '',
-    createdBucket = ''
+module.exports = async (chai, should, server) => {
+  let token, createdBucket, createdLinkId, randBucketId, randUserId
 
-  describe('Post /auth', () => {
-    it('Try to login', (done) => {
+  const buckets = await Bucket.findAll({ attributes: ['id'] })
+  const users = await User.findAll({ attributes: ['id'] })
+
+  randBucketId = buckets[randint(0, buckets.length-1)].id
+  randUserId = users[randint(0, users.length-1)].id
+
+  describe('Test Buckets CRUD', () => {
+    it('Post\t/auth => Return : Authorization Header(Token)', (done) => {
       User.findOne().then(user => {
         chai.request(server)
           .post('/v1/auth')
@@ -24,10 +30,7 @@ module.exports = (chai, should, server) => {
           })
       })
     })
-  })
-
-  describe('Get /buckets', () => {
-    it('Return array of buckets', (done) => {
+    it('Get\t/buckets => Array of objects bucket.', (done) => {
       chai.request(server)
         .get('/v1/buckets')
         .set('authorization', token)
@@ -37,12 +40,9 @@ module.exports = (chai, should, server) => {
           done()
         })
     })
-  })
-
-  describe('Get /buckets/:id', () => {
-    it('Return bucket by id', (done) => {
+    it(`Get\t/buckets/${randBucketId} => Object Bucket`, (done) => {
       chai.request(server)
-        .get('/v1/buckets/1')
+        .get(`/v1/buckets/${randBucketId}`)
         .set('authorization', token)
         .end((err, res) => {
           res.body.should.be.a('object')
@@ -55,13 +55,11 @@ module.exports = (chai, should, server) => {
             'createdAt',
             'updatedAt'
           )
+          res.body.id.should.equal(randBucketId)
           done()
         })
     })
-  })
-
-  describe('Post /buckets', () => {
-    it('Return a newly created bucket', (done) => {
+    it('Post\t/buckets => Status 200, Payload = { Newly created bucket }.', (done) => {
       chai.request(server)
         .post('/v1/buckets')
         .send({
@@ -75,12 +73,9 @@ module.exports = (chai, should, server) => {
           done()
         })
     })
-  })
-
-  describe('Post /buckets/:id/links', () => {
-    it('Return newly crated link', (done) => {
+    it(`Post\t/buckets/${randBucketId}/links => Status: 200, Payload = { Newly created link }.`, (done) => {
       chai.request(server)
-        .post('/v1/buckets/1/links')
+        .post(`/v1/buckets/${randBucketId}/links`)
         .send({
           url: 'http://google.com',
           title: 'google.com!',
@@ -89,16 +84,14 @@ module.exports = (chai, should, server) => {
         .set('authorization', token)
         .end((err, res) => {
           res.body.should.be.a('object')
+          createdLinkId = res.body.id
           res.should.have.status(200)
           done()
         })
     })
-  })
-
-  describe('Get /buckets/:id/links', () => {
-    it('Return array of links', (done) => {
+    it(`Get\t/buckets/${randBucketId}/links => Status: 200, Payload = { Array of bucket's links }`, (done) => {
       chai.request(server)
-        .get('/v1/buckets/1/links')
+        .get(`/v1/buckets/${randBucketId}/links`)
         .set('authorization', token)
         .end((err, res) => {
           res.body.should.be.a('array')
@@ -106,12 +99,9 @@ module.exports = (chai, should, server) => {
           done()
         })
     })
-  })
-
-  describe('Patch /buckets/:id', () => {
-    it('Return updated bucket', (done) => {
+    it(`Patch\t/buckets/${randBucketId} => Status 200, Payload = { Updated bucket }`, (done) => {
       chai.request(server)
-        .patch(`/v1/buckets/${createdBucket}`)
+        .patch(`/v1/buckets/${randBucketId}`)
         .send({
           'name': 'Hey Salut toto!',
           'color': '#821379'
@@ -124,10 +114,7 @@ module.exports = (chai, should, server) => {
           done()
         })
     })
-  })
-
-  describe('Delete /buckets/:id', () => {
-    it('200 on success delete', (done) => {
+    it(`Delete\t/buckets/${randBucketId} => Status: 200`, (done) => {
       chai.request(server)
         .delete(`/v1/buckets/${createdBucket}`)
         .set('authorization', token)
@@ -136,10 +123,16 @@ module.exports = (chai, should, server) => {
           done()
         })
     })
-  })
-
-  describe('Logout from api', () => {
-    it('Return a object with attribute disconnected: true', (done) => {
+    it(`Delete\t/links/{Last created bucket} => Status: 200`, (done) => {
+      chai.request(server)
+        .delete(`/v1/links/${createdLinkId}`)
+        .set('authorization', token)
+        .end((err, res) => {
+          res.should.have.status(200)
+          done()
+        })
+    })
+    it('Delete\t/auth => Status 200, Payload = { disconnected: true }', (done) => {
       chai.request(server)
         .delete('/v1/auth')
         .set('authorization', token)

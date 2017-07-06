@@ -5,7 +5,7 @@
     @File: link.js
 
     @fileOverview Link (CRUD)
-    GET     /         => All Links
+    GET     /         => 50 most recents links of all buckets
     GET     /linkId   => Bucket by id
     POST    /         => Create new link without bucket (return newly create link)
     DELETE  /linkId   => Delete bucket by id
