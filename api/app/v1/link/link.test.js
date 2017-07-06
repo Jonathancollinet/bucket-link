@@ -13,7 +13,7 @@ module.exports = async (chai, should, server) => {
   randLinkId = links[randint(0, links.length-1)].id
 
   describe('Test Links CRUD', () => {
-    it('Post\t/auth => Return : Authorization Header(Token)', (done) => {
+    it('Post /auth\t=> Return : Authorization Header(Token)', (done) => {
       User.findOne().then(user => {
         chai.request(server)
           .post('/v1/auth')
@@ -28,7 +28,7 @@ module.exports = async (chai, should, server) => {
           })
       })
     })
-    it('Get\t/links => Array of most 50 most recent links (DESC)', (done) => {
+    it('Get /links\t=> Array of most 50 most recent links (DESC)', (done) => {
       chai.request(server)
         .get('/v1/links')
         .set('authorization', token)
@@ -38,7 +38,7 @@ module.exports = async (chai, should, server) => {
           done()
         })
     })
-    it(`Get\t/links/${randLinkId} => Object Link`, (done) => {
+    it(`Get /links/${randLinkId}\t=> Object Link`, (done) => {
       chai.request(server)
         .get(`/v1/links/${randLinkId}`)
         .set('authorization', token)
@@ -57,7 +57,7 @@ module.exports = async (chai, should, server) => {
           done()
         })
     })
-    it('Post\t/links => Anonymous link BucketId = 0', (done) => {
+    it('Post /links\t=> Anonymous link BucketId = 0', (done) => {
       chai.request(server)
         .post('/v1/links')
         .send({
@@ -71,7 +71,7 @@ module.exports = async (chai, should, server) => {
           done()
         })
     })
-    it(`Patch\t/links/${randLinkId} => Status 200, Payload = { Updated link }`, (done) => {
+    it(`Patch /links/${randLinkId}\t=> Status 200, Payload = { Updated link }`, (done) => {
       chai.request(server)
         .patch(`/v1/links/${randLinkId}`)
         .send({
@@ -95,7 +95,7 @@ module.exports = async (chai, should, server) => {
           done()
         })
     })
-    it(`Delete\t/links/{Last created bucket} => Status: 200`, (done) => {
+    it(`Delete /links/{Last created bucket}\t=> Status: 200`, (done) => {
       chai.request(server)
         .delete(`/v1/links/${createdLinkId}`)
         .set('authorization', token)
@@ -104,7 +104,7 @@ module.exports = async (chai, should, server) => {
           done()
         })
     })
-    it('Delete\t/auth => Status 200, Payload = { disconnected: true }', (done) => {
+    it('Delete /auth\t=> Status 200, Payload = { disconnected: true }', (done) => {
       chai.request(server)
         .delete('/v1/auth')
         .set('authorization', token)

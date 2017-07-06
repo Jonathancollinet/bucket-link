@@ -8,7 +8,7 @@ module.exports = (chai, should, server) => {
   let token = ''
 
   describe('Test Authentification', () => {
-    it('Get\t/auth/ping => Status: 401, User not Connected', (done) => {
+    it('Get /auth/ping\t=> Status: 401, User not Connected', (done) => {
       chai.request(server)
         .get('/v1/auth/ping')
         .end((err, res) => {
@@ -16,7 +16,7 @@ module.exports = (chai, should, server) => {
           done()
         })
     })
-    it('Post\t/auth => Authorization Header with token', (done) => {
+    it('Post /auth\t=> Authorization Header with token', (done) => {
       User.findOne().then(user => {
         chai.request(server)
           .post('/v1/auth')
@@ -31,7 +31,7 @@ module.exports = (chai, should, server) => {
           })
       })
     })
-    it('Get\t/auth/ping => Status: 200, User is connected', (done) => {
+    it('Get /auth/ping\t=> Status: 200, User is connected', (done) => {
       chai.request(server)
         .get('/v1/auth/ping')
         .set('authorization', token)
