@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BucketService } from '../../services/bucket.service';
@@ -15,6 +16,7 @@ export class AddLinkComponent {
   createLink: FormGroup;
 
   constructor(
+    private _router: Router,
     private _fb: FormBuilder,
     private _bucket: BucketService
   ) {
@@ -35,9 +37,14 @@ export class AddLinkComponent {
   }
 
   public handleCreation() {
-    let url = this.createLink.controls.url.value;
+    let url: string = this.createLink.controls.url.value;
     if (url.trim()) {
-      this._bucket.createLink({ title: 'A link', url: url }).subscribe((resp) => {
+      let linkData: any = {
+        title: 'A link',
+        url: url,
+        bucketId: this.determineBucketID()
+      };
+      this._bucket.createLink(linkData).subscribe((resp) => {
         console.log('resp', resp);
         this.hasBeenCreated.emit(true);
         this.createLink.reset();
@@ -49,6 +56,16 @@ export class AddLinkComponent {
     if(event.keyCode == 13) {
       this.handleCreation();
     }
+  }
+
+  public determineBucketID(): number {
+    let bucket_id: number = 0;
+    if (this._router.url === '/buckets') {
+      return bucket_id;
+    } else {
+      bucket_id = +[window.location.pathname.split('/').pop()]; // convert string to number
+    }
+    
   }
   
 }

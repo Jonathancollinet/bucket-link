@@ -6,10 +6,10 @@
   <div class="bucket-name">{{bucket?.name}}</div>
 </div>
 <div class="row empty-links">
-   <div *ngIf="!bucket?.links" class="links-empty">
+   <div *ngIf="!bucket?.Links" class="links-empty">
     <span class="text">List seems empty...</span>
   </div>
 </div>
-<ul class="links-container" *ngIf="bucket?.links?.length">
-  <core-link *ngFor="let link of bucket.links" [link]="link"></core-link>
+<ul class="links-container" *ngIf="bucket?.Links?.length">
+  <core-link *ngFor="let link of bucket.Links" [link]="link"></core-link>
 </ul>

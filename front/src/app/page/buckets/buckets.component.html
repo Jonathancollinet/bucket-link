@@ -17,8 +17,8 @@
 <div class="row">
   <div class="buckets-container col s12">
     <core-bucket *ngFor="let bucket of buckets | reverse" [bucket]="bucket">
-      <ul class="links-container" [dragula]='"bag-link"' [dragulaModel]='bucket.links'>
-        <core-link *ngFor="let link of bucket.links" [link]="link"></core-link>
+      <ul class="links-container for-bucket-{{bucket.id}}" [dragula]='"bag-link"' [dragulaModel]='bucket.links'>
+        <core-link class="link-item link-{{link.id}}" *ngFor="let link of bucket.links" [link]="link"></core-link>
       </ul>
     </core-bucket>
   </div>

@@ -59,9 +59,14 @@ export class BucketsComponent implements OnInit {
   }
   
   private onDrop(args) {
-    let [e, el] = args;
-    console.log('Should edit bucketId', e, el, args)
-    // do something
+    let [e, newBucketId] = args;
+    let linkId = +[e.className.replace(/[^\d.]/g,'')];
+    newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
+    if (parseInt(newBucketId, 10)) {
+      this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
+        console.log('patch link', resp);
+      }, (err) => {console.error('patch link')})
+    }
   }
   
 
