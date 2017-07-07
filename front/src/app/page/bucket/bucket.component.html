@@ -1,13 +1,15 @@
 <div class="wip-actions">
-
   <core-add-link (hasBeenCreated)="handleCreation($event)"></core-add-link>
 </div>
-<p>List of links here!</p>
-<a href="#" [routerLink]="['/buckets']">Buckets</a>
-<pre>Debug data</pre>
-<h2>Bucket {{_id}}</h2>
-<ul class="links-container">
-  <li *ngFor="let link of bucket" class="link-container">
-    <a [href]="link.url">{{ link.title }} ({{link.url}}) -- {{link.created_at}}</a>
-  </li>
+<div class="row bucker">
+  <div class="color-box">{{bucket?.color}}</div>
+  <div class="bucket-name">{{bucket?.name}}</div>
+</div>
+<div class="row empty-links" [hidden]="!bucket?.links">
+   <div *ngIf="!bucket?.links.length" class="links-empty">
+    <span class="text">List seems empty...</span>
+  </div>
+</div>
+<ul class="links-container" *ngIf="bucket?.links.length">
+  <core-link *ngFor="let link of bucket.links" [link]="link"></core-link>
 </ul>

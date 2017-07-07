@@ -1,0 +1,10 @@
+@import '~scss/variables';
+
+:host {
+  display: block;
+
+  .link-container {
+    color: blue;
+    border-bottom: 1px solid red;
+  }
+}

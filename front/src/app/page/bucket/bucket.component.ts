@@ -1,6 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import * as moment from 'moment';
+
+import { BucketService } from '../../core';
+import { Bucket, Link } from '../../core/models';
 
 @Component({
   selector: 'page-bucket',
@@ -9,30 +13,30 @@ import * as moment from 'moment';
 })
 export class BucketComponent implements OnInit, OnDestroy {
   
-  public bucket: Array<any> = [];
-  public _id: number;
-  private sub: any;
-  
+  public bucket: Bucket;
+  public subBucket;
+  public _id: number;  
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private _bucket: BucketService) {
     moment.locale('fr');
-    let moment1: string = moment().subtract(1, 'days').calendar(); 
-    let moment2: string = moment().startOf('hour').fromNow(); 
-
-     this.bucket = [
-      {id: 1, title: 'Hacker News', url: 'https://news.ycombinator.com', created_at: moment1 },
-      {id: 2, title: 'Stack Overflow', url: 'https://stackoverflow.com', created_at: moment2 }
-    ];
+    this._id = +[window.location.pathname.split('/').pop()]; // convert string to number
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this._id = +params['id'];
-    });
+    this.subBucket = this._bucket.getBucket(this._id).subscribe((resp) => {
+      console.log(resp);
+      this.bucket = resp.data;
+    })
+  }
+
+  handleCreation(event: any) {
+    this.ngOnInit();
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    if (this.subBucket) this.subBucket.unsubscribe();
   }
+
+
   
 }
