@@ -7,11 +7,14 @@ export { ForgotComponent } from './components/forgot/forgot.component';
 export { ResetComponent } from './components/reset/reset.component';
 export { AddLinkComponent } from './components/add-link/add-link.component';
 export { AddBucketComponent } from './components/add-bucket/add-bucket.component';
+export { BucketComponent } from './components/bucket/bucket.component';
+export { LinkComponent } from './components/link/link.component';
 
 export { emailValidator } from './validators/email.validator';
 export { samePasswordValidator } from './validators/samepassword.validator';
 
 export { ReversePipe } from './pipes/reverse.pipe';
+export { TruncatePipe } from './pipes/truncate.pipe';
 
 export { AuthGuard } from './guards/auth.guard';
 

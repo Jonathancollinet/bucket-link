@@ -1,0 +1,8 @@
+<div class="link-container">
+  <a [href]="_link.url" rel="noopener noreferrer">
+    <div class="link-title">{{_link.title}}</div>
+    <div class="link-copy-url">COPY</div>
+    <div class="link-description">{{_link.description | truncate: 20 : '.' }}</div>
+  </a>
+  <div class="link-timestamp">{{_link.createdAt}}</div>
+</div>

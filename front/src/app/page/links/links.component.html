@@ -1,0 +1,6 @@
+<div class="wip-actions">
+  <core-add-link (hasBeenCreated)="handleCreation($event)"></core-add-link>
+</div>
+<ul class="links-container">
+  <core-link *ngFor="let link of links" [link]="link"></core-link>
+</ul>

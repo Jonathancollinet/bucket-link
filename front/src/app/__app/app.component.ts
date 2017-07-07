@@ -28,9 +28,7 @@ export class AppComponent {
     if (localStorage.getItem('tkn')) {
       this._auth.pingAuth().subscribe(
         (data)=> {
-            if(this._router.url != "/buckets") {
-              this._router.navigate(['/buckets']);
-            }
+           
           }
       );
     }
@@ -86,6 +84,10 @@ export class AppComponent {
   
   public navigateToBuckets(): void {
       this._router.navigate(['/buckets']);
+  }
+
+   public navigateToLinks(): void {
+      this._router.navigate(['/links']);
   }
 
 }
