@@ -113,9 +113,9 @@
         svg {
             width: 36px;
             height: 36px;
+            position: relative;
+            left: 10px;
             fill: $secondary !important;
-            position: absolute;
-            left: 510px;
             will-change: transform;
             transform: translateY(-50px);
             transition: fill 0.3s, transform 0.5s, fill-opacity 0.3s;
@@ -171,12 +171,6 @@
         width: 112px !important;
     }
 
-}
-
-@media #{$medium-and-up} {
-    .search-container svg{
-        left: 80.6% !important;
-    }
 }
 
 @-moz-document url-prefix() {

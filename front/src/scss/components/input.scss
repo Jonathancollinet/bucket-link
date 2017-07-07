@@ -1,12 +1,46 @@
 
 @import '~scss/variables';
 
+.form-group {
+    &:after, &:before {
+        width: 50%;
+        height: 100%;
+        border: 3px solid $black;
+        content: "";
+        position: absolute;
+        z-index: 1;
+    }
+
+    &:after {
+        border-left: none;
+        right: 0;
+    }
+
+    &:before {
+        border-right: none;
+    }
+}
+
 input[type="text"] {
     user-select: none !important;
-    outline-width: 0;
+    outline-width: 0px !important;
 
     padding: 15px 25px;
     font-size: 18px;
-    width: 100%;
 }
 
+
+input {
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0.8rem;
+    outline-width: 0px !important;
+    position: relative;
+}
+
+label {
+    display: block;
+    position: relative;
+    padding: 0.8rem 0;
+}
