@@ -1,6 +1,12 @@
 
 @import '~scss/variables';
 
-input {
+input[type="text"] {
     user-select: none !important;
+    outline-width: 0;
+
+    padding: 15px 25px;
+    font-size: 18px;
+    width: 100%;
 }
+
