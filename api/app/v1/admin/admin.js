@@ -43,11 +43,10 @@ module.exports = {
       order: [['createdAt', 'DESC']],
       include: [{
         model: Link,
-        attributes: ['id', 'bucketId', 'userId'],
-        include: [{
+        attributes: ['id', 'bucketId', 'userId']
+      }, {
           model: User,
           attributes: ['id', 'email',],
-        }]
       }]
     })
     setResponse(res, 'OK', buckets)
@@ -60,11 +59,10 @@ module.exports = {
       order: [['createdAt', 'DESC']],
       include: [{
         model: Link,
-        attributes: ['id', 'bucketId', 'userId'],
-        include: [{
+        attributes: ['id', 'bucketId', 'userId', 'title', 'description', 'url'],
+      }, {
           model: User,
           attributes: ['id', 'email',],
-        }]
       }]
     })
     setResponse(res, 'OK', buckets)

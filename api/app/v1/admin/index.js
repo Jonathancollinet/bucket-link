@@ -38,7 +38,7 @@ module.exports = (express) => {
 
   router.get('/', adminCtrl.getGlobalMetrics)
   router.get('/users', adminCtrl.getUsers)
-  router.get('/user/:id', adminCtrl.getUserByID)
+  router.get('/users/:id', adminCtrl.getUserByID)
   router.get('/buckets', adminCtrl.getBuckets)
   router.get('/buckets/:id', adminCtrl.getBucketByID)
   router.get('/links', adminCtrl.getLinks)
