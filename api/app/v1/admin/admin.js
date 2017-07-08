@@ -10,7 +10,7 @@
 
 const
   { getUserFromToken } = require('../auth/auth'),
-  { User, Bucket, Link } = require('../../../models'),
+  { User, Bucket, Link, sequelize } = require('../../../models'),
   { isSet, setResponse } = require('../../../commons')
 
 module.exports = {
@@ -23,7 +23,6 @@ module.exports = {
 
   async getUsers(req, res) {
     const users = await User.findAll({
-      limit: 150,
       order: [
         ['createdAt', 'DESC']
       ]
@@ -32,26 +31,47 @@ module.exports = {
   },
 
   async getUserByID(req, res) {
-  
+    const users = await User.findOne({
+      where: { id: req.params.id }
+    })
+    setResponse(res, 'OK', users)
   },
 
   async getBuckets(req, res) {
     const buckets = await Bucket.findAll({
-      limit: 150,
-      order: [
-        ['createdAt', 'DESC']
-      ]
+      attributes: ['id', 'name', 'createdAt', 'updatedAt'],
+      order: [['createdAt', 'DESC']],
+      include: [{
+        model: Link,
+        attributes: ['id', 'bucketId', 'userId'],
+        include: [{
+          model: User,
+          attributes: ['id', 'email',],
+        }]
+      }]
     })
     setResponse(res, 'OK', buckets)
   },
 
   async getBucketByID(req, res) {
-  
+    const buckets = await Bucket.findOne({
+      attributes: ['id', 'name', 'createdAt', 'updatedAt'],
+      where: { id: req.params.id },
+      order: [['createdAt', 'DESC']],
+      include: [{
+        model: Link,
+        attributes: ['id', 'bucketId', 'userId'],
+        include: [{
+          model: User,
+          attributes: ['id', 'email',],
+        }]
+      }]
+    })
+    setResponse(res, 'OK', buckets)
   },
 
   async getLinks(req, res) {
     const links = await Link.findAll({
-      limit: 150,
       order: [
         ['createdAt', 'DESC']
       ]
