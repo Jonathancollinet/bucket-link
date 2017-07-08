@@ -39,14 +39,20 @@ export class BucketService {
 
   // POST
 
-  createBucket(bucketData): Observable<any> {
+  createBucket(bucketData: any): Observable<any> {
     return this._http.post('/buckets/', bucketData).flatMap((data) => {
       return Observable.of(data);
     });
   }
 
-  createLink(linkData): Observable<any> {
-     return this._http.post('/links/', linkData).flatMap((data) => {
+  createLink(linkData: any): Observable<any> {
+    return this._http.post('/links/', linkData).flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
+
+  patchLink(id: number, linkData: any): Observable<any> {
+    return this._http.patch(`/links/${id}`, linkData).flatMap((data) => {
       return Observable.of(data);
     });
   }

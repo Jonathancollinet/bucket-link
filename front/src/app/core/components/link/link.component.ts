@@ -17,15 +17,20 @@ export class LinkComponent {
   @Input()
   set link(link: Link) {
     if (link) {
-      link.createdAt = this.formatDate(link.createdAt);
+      if (!link.dateHasBeenFormated) {
+        link = this.formatDate(link);
+      }
       this._link = link;
     }
   }
 
   constructor(private _router: Router) {}
 
-  public formatDate(date): string {
-      return moment(date).fromNow();
+  public formatDate(link: Link): Link {
+      link.createdAt = moment(link.createdAt).fromNow();
+      link.updatedAt = moment(link.updatedAt).fromNow();
+      link.dateHasBeenFormated = true;
+      return link;
   }
   
 }

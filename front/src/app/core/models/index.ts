@@ -15,8 +15,9 @@ export class Link {
     public id: number,
     public title: string,
     public description: string,
-    public createdAt: string,
+    public createdAt: string | any,
     public updatedAt: string,
-    public BucketId: number
+    public BucketId: number,
+    public dateHasBeenFormated: boolean = false
   ) {}
 }

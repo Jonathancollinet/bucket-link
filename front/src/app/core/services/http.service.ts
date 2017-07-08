@@ -52,6 +52,15 @@ export class HttpService {
       .catch(this.handleError)
   }
 
+  public patch(url: string, data: any): Observable<any> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    headers = this.appendAuthorizationHeader(headers);
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
+    return this.http.patch(`${this._endpointURL}${url}`, data, options)
+      .map((res:Response) => { return this.extractResponseObject(res); })
+      .catch(this.handleError)
+  }
+
   public delete(url: string): Observable<any> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers = this.appendAuthorizationHeader(headers);
