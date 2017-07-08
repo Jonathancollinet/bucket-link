@@ -1,15 +1,15 @@
 <div class="wip-actions">
-  <core-add-link (hasBeenCreated)="handleCreation($event)"></core-add-link>
+  <h1>TODO TOOLS PÖUR RUSARD</h1>
 </div>
 <div class="row bucker">
   <div class="color-box">{{bucket?.color}}</div>
   <div class="bucket-name">{{bucket?.name}}</div>
 </div>
-<div class="row empty-links" [hidden]="!bucket?.links">
-   <div *ngIf="!bucket?.links.length" class="links-empty">
+<div class="row empty-links">
+   <div *ngIf="!bucket?.links" class="links-empty">
     <span class="text">List seems empty...</span>
   </div>
 </div>
-<ul class="links-container" *ngIf="bucket?.links.length">
+<ul class="links-container" *ngIf="bucket?.links?.length">
   <core-link *ngFor="let link of bucket.links" [link]="link"></core-link>
 </ul>

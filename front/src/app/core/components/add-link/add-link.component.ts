@@ -34,5 +34,21 @@ export class AddLinkComponent {
     } // end valid
   }
 
+  public handleCreation() {
+    let url = this.createLink.controls.url.value;
+    if (url.trim()) {
+      this._bucket.createLink({ title: 'A link', url: url }).subscribe((resp) => {
+        console.log('resp', resp);
+        this.hasBeenCreated.emit(true);
+        this.createLink.reset();
+      }, (err) => { console.error(err); })
+    }
+  }
+
+  public keyDownFunction(event) {
+    if(event.keyCode == 13) {
+      this.handleCreation();
+    }
+  }
   
 }

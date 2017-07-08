@@ -1,0 +1,26 @@
+@import '~scss/variables';
+
+@keyframes high-up {
+    0% {
+        transform: translateY(0) rotateZ(0);
+    }
+    100% {
+        transform: translateY(-50px) rotateZ(0);
+    }
+}
+
+@keyframes levitation {
+    0% {
+        transform: translateY(0) rotateZ(0deg);
+    }
+    33% {
+        transform: translateY(-3px) rotateZ(3deg);
+    }
+    66% {
+        transform: translateY(-3px) rotateZ(3deg);
+    }
+    100% {
+        transform: translateY(0) rotateZ(0deg);
+    }
+}
+

@@ -1,0 +1,86 @@
+@import '~scss/variables';
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+form {
+  height: 100%;
+  width: 100%;
+}
+
+.add-link-container {
+    height: 100%;
+    width: calc(100% - #{$sidebar-width});
+
+    form {
+        display: flex;
+        align-items: center;
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+
+    input {
+        height: 80%;
+        width: 80%;
+        max-width: 500px;
+        font-size: 24px;
+        font-family: "Titan One", cursive;
+        color: $secondary;
+        background: rgba(0, 0, 0, 0.1);
+        border: none;
+        outline-width: 0;
+        border-left: 2px solid $secondary;
+        padding: 0 10px;
+        transition: border-width 0.3s, color 0.6s;
+        border-width: 2px;
+        
+
+        &::placeholder {
+            color: $secondary;
+            transition: color 0.6s;
+        }
+
+        &:focus {
+            border-color: $tercary;
+            color: $tercary;
+            border-width: 4px;
+            &::placeholder {
+                color: $tercary !important;
+            }
+        }
+    }
+    
+    svg {
+        width: 36px;
+        height: 36px;
+        fill: $secondary !important;
+        will-change: transform;
+        transform: translateY(-50px);
+        transition: fill 0.3s, transform 0.5s, fill-opacity 0.3s;
+        animation: high-up 0.8s;
+        animation-play-state: start;
+        fill-opacity: 0;
+        position: relative;
+        left: 15px;
+    }
+
+    .levitation {
+        transform: translateY(0px) !important;
+        animation: levitation 1s 0.5s infinite forwards !important;
+        fill: $tercary !important;
+        animation-play-state: start !important;
+        fill-opacity: 1 !important;
+        cursor: pointer;
+    }
+}
+
+@media #{$small-and-down} {
+    .search-container {
+        display: none !important;
+    }
+}
+

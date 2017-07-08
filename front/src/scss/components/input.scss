@@ -2,6 +2,7 @@
 @import '~scss/variables';
 
 .form-group {
+
     &:after, &:before {
         width: 50%;
         height: 100%;
@@ -14,11 +15,28 @@
     &:after {
         border-left: none;
         right: 0;
+        top: 0;
     }
 
     &:before {
         border-right: none;
     }
+
+    input {
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0.8rem;
+        outline-width: 0px !important;
+        position: relative;
+    }
+
+    label {
+        display: block;
+        position: relative;
+        padding: 0.8rem 0;
+    }
+
 }
 
 input[type="text"] {
@@ -27,20 +45,4 @@ input[type="text"] {
 
     padding: 15px 25px;
     font-size: 18px;
-}
-
-
-input {
-    width: 100%;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 0.8rem;
-    outline-width: 0px !important;
-    position: relative;
-}
-
-label {
-    display: block;
-    position: relative;
-    padding: 0.8rem 0;
 }
