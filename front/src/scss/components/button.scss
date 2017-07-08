@@ -43,10 +43,11 @@ button {
         cursor: not-allowed;
         color: $disabled;
         border-color: $disabled;
+        height: 40px !important;
         &:hover {
             transform: none !important;
             border-bottom-width: 4px !important;
-            height: 42px !important;
+            height: 40px !important;
         }
     }
 }

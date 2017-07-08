@@ -9,7 +9,9 @@ $secondary: $white;
 $tercary: #FFF430;
 // $tercary: #77FF9B;
 
+// Contextual colors
 $disabled: #9A9A9A;
+$error: red;
 
 // Global
 $global-h1: 26px;
@@ -18,6 +20,10 @@ $global-h3: 22px;
 $global-h4: 20px;
 $global-h5: 18px;
 $global-h6: 16px;
+
+// Forms
+$form-margin-label: 150px;
+$placeholder-color: #aeaeae;
 
 // Links
 $link-color: green;

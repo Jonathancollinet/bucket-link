@@ -1,47 +1,38 @@
 @import '~scss/variables';
 
-:host {
-  display: block;
-  
   .bucket-container {
-      margin: 2px 0px;
-      padding: 12px;
-      background-color: #44daf3;
-      max-height: 120px;
-      overflow-x: none;
-      overflow-y: scroll;
+    padding: 12px;
+    height: 250px;
+    width: calc(100% - 15px);
+    overflow-x: none;
+    overflow-y: scroll;
+    border: 4px solid $primary;
+    border-radius: 5px;
+    margin: 15px;
 
-      .buckets {
-        height: 350px;
-        display: inline-block;
-      }
+    .buckets {
+      height: 350px;
+      display: inline-block;
+    }
 
-      .color-box {
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-      }
+    .color-box {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+    }
 
-      .buckets-empty {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-
-        .text {
-            font-size: 5vw;
-            display: inline-block;
-            max-width: 800px;
-            text-align: center;
-        }
+    .buckets-empty {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
     }
 
   }
-}
 
-@media (max-width: $small-screen) {
+@media #{$small-and-down} {
     .text {
         font-size: 24px !important;
     }

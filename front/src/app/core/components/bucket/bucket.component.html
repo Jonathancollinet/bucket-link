@@ -1,9 +1,8 @@
-<div class="bucket-container col s12 m6 l4">
+<div class="bucket-container col s12 m6 l4 xl3" [ngStyle]="{'border-color': bucket.color }">
    <a (click)="goToBucket(bucket.id)">
-     <pre>{{bucket.id}}</pre>
-      <span class="color-box" [ngStyle]="{'background-color': bucket.color }"></span>
-      <span class="name">{{ bucket.name }}</span>
-      <span class="timestamp">{{bucket.createdAt}}</span>
+    <span class="color-box" [ngStyle]="{'background-color': bucket.color }"></span>
+    <span class="name">{{ bucket.name }}</span>
+    <span class="timestamp">{{bucket.createdAt}}</span>
     </a>
     <ng-content></ng-content>
 </div>

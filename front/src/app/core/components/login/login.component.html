@@ -1,16 +1,16 @@
 <section class="login">
-  <h1>Login</h1>
+  <h1>Log In to Bucket Link</h1>
   <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value, loginForm.valid)" *ngIf="!isAuth()">
-    <div class="form-group" [*ngClass]="{'form-group-focused': focus}">
-      <label [*ngClass]="{'focused': focus}" for="email">Email</label>
-      <input (focus)="focus = true" (blur)="focus = false" type="email" placeholder="Email" formControlName="email">
+    <div class="form-group">
+      <input type="email" placeholder="john.doe@bucket.link" formControlName="email">
+      <label for="email">Email</label>
     </div>
     <div class="form-group">
+      <input type="password" placeholder="••••••••••••" formControlName="password">
       <label for="password">PASSPHRASE</label>
-      <input type="password" placeholder="Password" formControlName="password">
     </div>
     <div class="btn">
-      <button type="submit" class="btn btn-default"  [disabled]="!loginForm.valid">SUBMIT</button>
+      <button type="submit" [disabled]="!loginForm.valid">Log In</button>
     </div>
   </form>
   <div *ngIf="isAuth()">Already connected</div>

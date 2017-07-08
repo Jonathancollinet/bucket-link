@@ -1,25 +1,22 @@
 <div class="container">
   <div class="row">
     <div class="wip-actions">
-    <core-add-bucket (hasBeenCreated)="handleCreation($event)"></core-add-bucket>
+      <core-add-bucket (hasBeenCreated)="handleCreation($event)"></core-add-bucket>
+    </div>
+    <div class="buckets-title">
+      <span class="title">There are some buckets here...</span>
+    </div>
   </div>
-  <br><br>
-  <div class="buckets-title">
-    <span class="title"></span>
-  </div>
-</div>
 </div>
 <div class="row" [hidden]="!buckets.length">
-   <div *ngIf="!buckets.length" class="buckets-empty">
+  <div *ngIf="!buckets.length" class="buckets-empty">
     <span class="text">Your bucket list seems empty...</span>
   </div>
 </div>
-<div class="row">
-  <div class="buckets-container col s12">
-    <core-bucket *ngFor="let bucket of buckets | reverse" [bucket]="bucket">
-      <ul class="links-container for-bucket-{{bucket.id}}" [dragula]='"bag-link"' [dragulaModel]='bucket.links'>
-        <core-link class="link-item link-{{link.id}}" *ngFor="let link of bucket.links" [link]="link"></core-link>
-      </ul>
-    </core-bucket>
-  </div>
+<div class="buckets-container row">
+  <core-bucket *ngFor="let bucket of buckets | reverse" [bucket]="bucket">
+    <ul class="links-container for-bucket-{{bucket.id}}" [dragula]='"bag-link"' [dragulaModel]='bucket.links'>
+      <core-link class="link-item link-{{link.id}}" *ngFor="let link of bucket.links" [link]="link"></core-link>
+    </ul>
+  </core-bucket>
 </div>

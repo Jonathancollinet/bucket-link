@@ -1,0 +1,58 @@
+@import '~scss/variables';
+
+.form-group {
+    input {
+        font-size: 17px;
+        font-weight: bold;
+        padding: 0.8rem 0.3rem;
+        outline-width: 0px !important;
+        position: relative;
+        border: none;
+        border-bottom: 4px solid $light-grey;
+        color: $black;
+        display: inline-block;
+
+        &:focus, &:focus + label {
+            color: $primary !important;
+            border-color: $primary !important;
+        }
+        
+        &::-webkit-input-placeholder {
+            color: $placeholder-color;
+        }
+        &:-ms-input-placeholder {
+            color: $placeholder-color;
+        }
+        &::-moz-placeholder {
+            color: $placeholder-color;
+        }
+        &:-moz-placeholder {
+            color: $placeholder-color;
+        }
+    }
+
+    label {
+        display: inline-block;
+        position: relative;
+        padding: 0.8rem 0;
+        font-weight: bold;
+        color: 20px;
+        float: left;
+        width: 150px;
+    }
+
+    input.ng-valid {
+        color: green;
+        border-color: green;
+    }
+
+    
+    .form-msgs {
+        p {
+            padding: 1.5rem 0 1.5rem $form-margin-label;
+            color: $error;
+            font-size: 16px;
+
+        }
+    }
+}

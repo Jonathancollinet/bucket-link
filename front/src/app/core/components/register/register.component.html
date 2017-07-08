@@ -1,10 +1,10 @@
 <section class="register">
-  <h1>Register</h1>
+  <h1>Aaaaiiiiiiouuuuuuuuùùùùhh,<br>my friend.</h1>
   <form [formGroup]="registerForm" (ngSubmit)="submitForm(registerForm.value)">
     <div class="form-group">
       <label for="email">Email</label>
-      <input class="form-control" type="text" [formControl]="email">
-      <div class="form-msgs container" *ngIf="!email.valid && email.dirty">
+      <input class="form-control" placeholder="john.doe@bucket.link" type="email" [formControl]="email">
+      <div class="form-msgs" *ngIf="!email.valid && email.dirty">
         <p *ngIf="email.hasError('required')">Email required</p>
         <p *ngIf="!email.hasError('required') && email.hasError('invalidEmail')">
           Invalid email
@@ -13,11 +13,11 @@
     </div>
     <div formGroupName="password" class="form-group">
       <label for="password">Password</label>
-      <input show-hide class="form-control" type="password" formControlName="pass">
-      <div class="form-msgs container" *ngIf="!registerForm.controls['password'].controls['pass'].valid && registerForm.controls['password'].controls['pass'].dirty">
+      <input show-hide placeholder="••••••••••••" class="form-control" type="password" formControlName="pass">
+      <div class="form-msgs" *ngIf="!registerForm.controls['password'].controls['pass'].valid && registerForm.controls['password'].controls['pass'].dirty">
         <p *ngIf="registerForm.controls['password'].controls['pass'].hasError('required')">
           PASSWORD required
-        </p>
+        </p>form-msgs
         <p *ngIf="registerForm.controls['password'].controls['pass'].hasError('minlength') || registerForm.controls['password'].controls['pass'].hasError('maxlength')">
           PASSWORD invalid
         </p>
@@ -25,21 +25,20 @@
     </div>
     <div formGroupName="password" class="form-group">
       <label for="password">Confirm Password</label>
-      <input class="form-control" type="password"
-              formControlName="confirmPass">
-      <div class="form-msgs container" *ngIf="!registerForm.controls['password'].controls['confirmPass'].valid && registerForm.controls['password'].controls['confirmPass'].dirty">
+      <input class="form-control" placeholder="••••••••••••" type="password" formControlName="confirmPass">
+      <div class="form-msgs" *ngIf="!registerForm.controls['password'].controls['confirmPass'].valid && registerForm.controls['password'].controls['confirmPass'].dirty">
         <p *ngIf="registerForm.controls['password'].controls['confirmPass'].hasError('required')">
           CONFIRM PASSWORD required
         </p>
       </div>
-      <div class="form-msgs container">
+      <div class="form-msgs">
         <p *ngIf="registerForm.controls['password'].hasError('nomatch')">
           PASSWORDS DONT MATCH
         </p>
       </div>
     </div>
     <div class="btn">
-      <button type="submit" class="btn btn-default"  [disabled]="!registerForm.valid">SUBMIT</button>
+      <button type="submit" [disabled]="!registerForm.valid">Register</button>
     </div>
   </form>
 </section>
