@@ -39,8 +39,7 @@ export class LinksComponent implements OnInit {
 
   search(term: string) {
     if (!term) this.filteredLinks = this.links;
-    console.log(this.filteredLinks)
-    this.filteredLinks = this.links.filter(d => d.title.indexOf(term) >= 0);
+    this.filteredLinks = this.links.filter(d => d.title.toLowerCase().indexOf(term.toLowerCase()) >= 0);
   }
 
   public formatDate(date): string {

@@ -32,8 +32,7 @@ export class BucketComponent implements OnInit, OnDestroy {
 
   search(term: string) {
     if (!term) this.filteredLinks = this.bucket.links;
-    console.log(this.filteredLinks)
-    this.filteredLinks = this.bucket.links.filter(d => d.title.indexOf(term) >= 0);
+    this.filteredLinks = this.bucket.links.filter(d => d.title.toLowerCase().indexOf(term.toLowerCase()) >= 0);
   }
 
   handleCreation(event: any) {
