@@ -14,17 +14,19 @@
   input {
     font-size: 17px;
     font-weight: bold;
+    height: $input-height;
     padding: 0.8rem 0.3rem;
     outline-width: 0px !important;
     position: relative;
     border: none;
-    border-bottom: 4px solid $light-grey;
-    color: $black;
+    border-bottom: 4px solid $placeholder-color;
+    color: $secondary;
     display: inline-block;
+    background: rgba(0, 0, 0, 0.1);
 
     &:focus, &:focus + label {
-      color: $primary !important;
-      border-color: $primary !important;
+      color: $secondary !important;
+      border-color: $secondary !important;
     }
 
     &::-webkit-input-placeholder {

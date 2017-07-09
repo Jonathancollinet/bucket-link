@@ -3,15 +3,14 @@
 
 .topbar {
   height: $topbar-height;
-  background: $primary;
+  background: $white;
   display: flex;
   align-items: center;
-  color: $secondary;
-  box-shadow: 0px 2px 5px 0px $sidebar-shadow-color;
+  color: $primary;
 
   .title-container {
     padding: 0 27px;
-    width: $sidebar-width;
+    width: calc($sidebar-width - 2px);
     height: 100%;
     display: flex;
     align-items: center;
@@ -21,17 +20,18 @@
       background-blend-mode: color-burn;
 
       .line path {
+        stroke: $secondary !important;
         stroke-dashoffset: 0;
       }
 
       .title {
-        color: $tercary;
+        color: $secondary;
       }
 
       .icon {
         transform: rotateZ(-25deg) scale(1.1);
         path {
-            fill: $tercary !important;
+            fill: $secondary !important;
         }
       }
     }
@@ -41,7 +41,8 @@
       left: 67px;
       top: 53px;
       path {
-        transition: stroke-dashoffset 600ms ease-out;
+        stroke: $primary !important;
+        transition: all 400ms ease-out;
         stroke-dasharray: 200;
         stroke-dashoffset: 200;
       }
@@ -56,18 +57,27 @@
 
       path {
         transition: fill 0.4s;
-        fill: $secondary !important;
+        fill: $primary !important;
       }
     }
 
     .title {
       font-size: $brand-title-size;
       transition: color 0.4s;
-      color: $secondary;
+      color: $primary;
       display: inline-block;
       margin-left: 5px;
       position: relative;
     }
+  }
+
+  .rest-container {
+    width: calc(100% - #{$sidebar-width});
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid $primary;
   }
 }
 

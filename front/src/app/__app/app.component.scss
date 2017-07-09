@@ -16,8 +16,8 @@
   justify-content: center;
 
   &:hover {
-    color: $tercary;
-    border-color: $tercary;
+    color: $secondary;
+    border-color: $secondary;
     background: $disabled;
   }
 }
@@ -28,5 +28,5 @@ ng-sidebar-container {
     margin-left: 0 !important;
     }
   }
-  
+
 }

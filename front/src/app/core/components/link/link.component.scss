@@ -4,7 +4,19 @@
   display: block;
 
   .link-container {
-    color: blue;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid $secondary;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+
+    display: flex;
+    justify-content: space-between;
+
+    .link-action {
+      text-align: right;
+    }
+  }
+
+  .link-title {
+    white-space: pre-line;
   }
 }

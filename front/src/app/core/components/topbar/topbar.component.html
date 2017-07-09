@@ -20,6 +20,8 @@
       </g>
     </svg>
   </div>
-  <core-add-link (hasBeenCreated)="handleCreation()"></core-add-link>
-  <ng-content></ng-content>
+  <div class="rest-container">
+    <core-add-link (hasBeenCreated)="handleCreation()"></core-add-link>
+    <ng-content></ng-content>
+  </div>
 </div>

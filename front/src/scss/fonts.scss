@@ -15,6 +15,14 @@
   src: url(assets/fonts/Archivo/ArchivoBlack-Regular.ttf);
 }
 
+.fa {
+  color: $primary;
+  transition: color 150ms ease-in-out;
+  &:hover {
+    color: $secondary;
+  }
+}
+
 .topbar {
   font-family: "Chau";
 }
