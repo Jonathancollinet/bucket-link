@@ -57,6 +57,8 @@ ng-sidebar-container {
       opacity: 0.4;
       position: absolute;
       bottom: 0;
+      width: inherit !important;
+      text-align: center !important;
     }
   }
 }
@@ -87,6 +89,9 @@ ng-sidebar-container {
 }
 
 @media #{$medium-and-down} {
+    .topbar .topbar-logout {
+      display: none !important;
+    }
     .burger-icon {
         display: block;
     }
