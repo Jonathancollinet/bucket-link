@@ -1,6 +1,8 @@
 <div class="wip-actions">
-  <h1>TODO TOOLS PÖUR RUSARD</h1>
-  <input placeholder="search" (keyup)="search($event.target.value)" />
+  <h1>Links list</h1>
+  <div class="form-group">
+    <input placeholder="search" (keyup)="search($event.target.value)" />
+  </div>
 </div>
 <ul class="links-container">
   <core-link *ngFor="let link of filteredLinks" [link]="link"></core-link>

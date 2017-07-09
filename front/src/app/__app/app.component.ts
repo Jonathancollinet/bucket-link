@@ -18,7 +18,7 @@ export class AppComponent {
   private _closeOnClickBackdrop: boolean = true;
   private _showBackdrop: boolean = true;
   private _modeNum: number = 0;
-  public minimalWidth = "601px";
+  public minimalWidth = "993px";
 
   @ViewChild(TopBarComponent) topbar: TopBarComponent;
 
@@ -31,7 +31,7 @@ export class AppComponent {
     if (localStorage.getItem('tkn')) {
       this._auth.pingAuth().subscribe(
         (data)=> {
-           
+
           }
       );
     }
@@ -84,7 +84,7 @@ export class AppComponent {
   private _toggleSidebar() {
     this._opened = !this._opened;
   }
-  
+
   public navigateToBuckets(): void {
       this._router.navigate(['/buckets']);
   }

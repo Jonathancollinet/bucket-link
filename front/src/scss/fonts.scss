@@ -1,16 +1,8 @@
-@font-face {
-  font-family: 'Titan One';
-  src: url(assets/fonts/TitanOne/TitanOne-Regular.ttf);
-}
+@import './variables';
 
 @font-face {
   font-family: 'Roboto';
   src: url(assets/fonts/Roboto/Roboto-Regular.woff2);
-}
-
-@font-face {
-  font-family: 'Old';
-  src: url(assets/fonts/Old/OldSansBlack.ttf);
 }
 
 @font-face {
@@ -24,7 +16,7 @@
 }
 
 .topbar {
-	font-family: "Chau";
+  font-family: "Chau";
 }
 
 body {
@@ -35,6 +27,18 @@ input {
   font-family: sans-serif !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+input {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Archivo Black', sans-serif;
 }
