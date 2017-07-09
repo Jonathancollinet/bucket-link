@@ -36,19 +36,19 @@ ng-sidebar-container {
   width: $sidebar-width;
   background-color: $sidebar-color !important;
   color: $secondary;
-  .link-container {
+  .sidebar-link-container {
     width: 100%;
 
-    .link {
-
+    .sidebar-link {
       padding: 30px;
       text-align: center;
       width: 100%;
-      transition: color 200ms;
+      transition: all 200ms;
 
       &:hover {
         color: $tercary;
         border-color: $tercary;
+        background: $disabled;
       }
     }
 
@@ -66,7 +66,7 @@ ng-sidebar-container {
     margin-left: 0;
 }
 
-@media #{$medium-and-up} {
+@media #{$large-and-up} {
 
   // aside {
   //   transform: translateX(-175px) !important;
@@ -82,11 +82,11 @@ ng-sidebar-container {
 
   .ng-sidebar__content {
     width: calc(100% - #{$sidebar-width});
-    margin-left: $sidebar-width!important;
+    margin-left: $sidebar-width !important;
   }
 }
 
-@media #{$small-and-down} {
+@media #{$medium-and-down} {
     .burger-icon {
         display: block;
     }

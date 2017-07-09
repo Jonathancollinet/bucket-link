@@ -1,3 +1,5 @@
+@import './variables';
+
 @font-face {
   font-family: 'Titan One';
   src: url(assets/fonts/TitanOne/TitanOne-Regular.ttf);
@@ -24,7 +26,7 @@
 }
 
 .topbar {
-	font-family: "Chau";
+  font-family: "Chau";
 }
 
 body {
@@ -35,6 +37,27 @@ input {
   font-family: sans-serif !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Archivo Black', sans-serif;
+}
+
+.flow-text{
+  font-weight: 300;
+  $i: 0;
+  @while $i <= $intervals {
+    @media only screen and (min-width : 360 + ($i * $interval-size)) {
+      font-size: 1.2rem * (1 + (.02 * $i));
+    }
+    $i: $i + 1;
+  }
+
+  // Handle below 360px screen
+  @media only screen and (max-width: 360px) {
+    font-size: 1.2rem;
+  }
 }

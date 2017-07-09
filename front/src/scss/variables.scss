@@ -14,12 +14,35 @@ $disabled: #9A9A9A;
 $error: red;
 
 // Global
-$global-h1: 26px;
-$global-h2: 24px;
-$global-h3: 22px;
-$global-h4: 20px;
+$global-h1: 36px;
+$global-h2: 32px;
+$global-h3: 26px;
+$global-h4: 22px;
 $global-h5: 18px;
 $global-h6: 16px;
+
+// Grid
+$small-screen-up: 601px !default;
+$medium-screen-up: 993px !default;
+$large-screen-up: 1351px !default;
+$small-screen: 600px !default;
+$medium-screen: 992px !default;
+$large-screen: 1350px !default;
+$medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
+$large-and-up: "only screen and (min-width : #{$medium-screen-up})" !default;
+$extra-large-and-up: "only screen and (min-width : #{$large-screen-up})" !default;
+$small-and-down: "only screen and (max-width : #{$small-screen})" !default;
+$medium-and-down: "only screen and (max-width : #{$medium-screen})" !default;
+$medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width : #{$medium-screen})" !default;
+$num-cols: 12 !default;
+$gutter-width: 1.5rem !default;
+$element-top-margin: $gutter-width/3 !default;
+$element-bottom-margin: ($gutter-width*2)/3 !default;
+
+// Flow Text
+$range : $large-screen - $small-screen !default;
+$intervals: 20 !default;
+$interval-size: $range / $intervals !default;
 
 // Forms
 $form-margin-label: 150px;
@@ -38,21 +61,3 @@ $sidebar-shadow-color: $black;
 $topbar-height: 76px;
 $brand-title-size: 34px;
 $topbar-border-style: dashed;
-
-// Grid
-$small-screen-up: 601px !default;
-$medium-screen-up: 993px !default;
-$large-screen-up: 1201px !default;
-$small-screen: 600px !default;
-$medium-screen: 992px !default;
-$large-screen: 1200px !default;
-$medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
-$large-and-up: "only screen and (min-width : #{$medium-screen-up})" !default;
-$extra-large-and-up: "only screen and (min-width : #{$large-screen-up})" !default;
-$small-and-down: "only screen and (max-width : #{$small-screen})" !default;
-$medium-and-down: "only screen and (max-width : #{$medium-screen})" !default;
-$medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width : #{$medium-screen})" !default;
-$num-cols: 12 !default;
-$gutter-width: 1.5rem !default;
-$element-top-margin: $gutter-width/3 !default;
-$element-bottom-margin: ($gutter-width*2)/3 !default;

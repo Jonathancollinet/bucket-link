@@ -9,11 +9,11 @@
     [closeOnClickBackdrop]="_closeOnClickBackdrop"
     [showBackdrop]="_showBackdrop"
   >
-    <div class="link-container">
-      <div class="link" (click)="navigateToBuckets()">Buckets</div>
-      <div class="link" (click)="navigateToLinks()">Links</div>
-      <!--<div class="link" (click)="_toggleSidebar()"><==</div>-->
-      <div *ngIf="isAuth()" (click)="logout()" class="link logout" (click)="logout()">Logout</div>
+    <div class="sidebar-link-container">
+      <div class="sidebar-link" (click)="navigateToBuckets()">Buckets</div>
+      <div class="sidebar-link" (click)="navigateToLinks()">Links</div>
+      <!--<div class="sidebar-link" (click)="_toggleSidebar()"><==</div>-->
+      <div *ngIf="isAuth()" (click)="logout()" class="sidebar-link logout" (click)="logout()">Logout</div>
     </div>
   </ng-sidebar>
 
