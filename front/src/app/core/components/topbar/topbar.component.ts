@@ -9,7 +9,6 @@ import { AuthService } from '../../services/auth.service';
     templateUrl: './topbar.component.html',
     styleUrls: ['./topbar.component.scss']
 })
-
 export class TopBarComponent {
 
     private focus: boolean = false;
@@ -25,7 +24,7 @@ export class TopBarComponent {
     }
 
     public handleCreation(): void {
-        
+
     }
 
     public focusAddInput(): void {

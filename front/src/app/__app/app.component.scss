@@ -22,3 +22,11 @@
   }
 }
 
+ng-sidebar-container {
+  &.disconnect {
+   /deep/ .ng-sidebar__content {
+    margin-left: 0 !important;
+    }
+  }
+  
+}

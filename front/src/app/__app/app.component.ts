@@ -13,6 +13,7 @@ import { AuthService } from '../core/services/auth.service';
 export class AppComponent {
 
   private _opened: boolean = false;
+  private _disconnected: boolean;
   public _layout = 0;
   private _currentUser;
   private _closeOnClickOutside: boolean = false;
@@ -40,10 +41,18 @@ export class AppComponent {
     if (localStorage.getItem('tkn')) {
       this._auth.pingAuth().subscribe(
         (data)=> {
+            this._disconnected = false;
             this._shared.get('currentUser').subscribe(d => this._currentUser = d);
           }
       );
+    } else {
+      this._disconnected = true;
+       this._closeSidebar();
     }
+  }
+
+  public getStateStyle(): boolean {
+    return this._disconnected && !this.isAuth();
   }
 
   private enableResponsive(): void {
@@ -63,6 +72,7 @@ export class AppComponent {
   }
 
   public logout(): void {
+    this._disconnected = true;
     this._auth.logout().subscribe();
   }
 
@@ -104,6 +114,10 @@ export class AppComponent {
 
   public navigateToProfile(): void {
       this._router.navigate(['/profile']);
+  }
+
+  public setSidebarHidden(): string {
+    return (this._auth.isLoggedIn() && this._layout === 0) ? 'bucketlist-sidebar' : 'bucketlist-sidebar hidden';
   }
 
 
