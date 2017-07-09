@@ -1,8 +1,13 @@
 <div class="bucket-container col s12 m6 l4 xl3" [ngStyle]="{'border-color': bucket.color }">
-   <a (click)="goToBucket(bucket.id)">
-    <span class="color-box" [ngStyle]="{'background-color': bucket.color }"></span>
-    <span class="name">{{ bucket.name }}</span>
-    <span class="timestamp">{{bucket.createdAt}}</span>
-    </a>
-    <ng-content></ng-content>
+  <ng-content></ng-content>
+  <div class="bucket-info">
+    <div class="bucket-info-container" [ngStyle]="{'background-color': bucket.color }">
+      <div class="bucket-info-item">{{ bucket.name }}</div>
+      <div class="bucket-info-item">{{ bucket.createdAt }}</div>
+    </div>
+    <div class="bucket-info-action">
+      <div class="bucket-action"><i aria-hidden="true" class="fa fa-edit"></i></div>
+      <div class="bucket-action"><i aria-hidden="true" class="fa fa-clone"></i></div>
+    </div>
+  </div>
 </div>
