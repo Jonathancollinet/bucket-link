@@ -17,6 +17,7 @@
     justify-content: space-between;
     padding: 0 12px;
     position: relative;
+    transition: background 0.125s ease-in-out;
 
     &:after {
       content: "";
@@ -28,6 +29,10 @@
       border-left: 4px solid $primary;
       transition: transform 0.15s ease-in-out;
       transform: scaleY(0);
+    }
+
+    &:hover {
+      background: #fff;
     }
 
     &-container {
@@ -65,6 +70,10 @@
       i {
         margin: 0 2px;
         cursor: pointer;
+        color: $secondary !important;
+        &:hover {
+          color: $primary !important;
+        }
       }
     }
   }

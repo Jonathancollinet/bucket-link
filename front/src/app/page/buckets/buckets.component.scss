@@ -15,6 +15,7 @@
   width: calc(100% + 15px);
   overflow-y: scroll;
   padding-left: 10px;
+  border-left: 4px solid $secondary;
 }
 
 .buckets-empty {
