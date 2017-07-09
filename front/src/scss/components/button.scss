@@ -13,7 +13,7 @@ button {
     height: 40px;
     background: $black;
     color: $grey;
-    
+
     font-size: 16px;
 
     border: 1px solid $light-grey;
@@ -40,7 +40,7 @@ button {
 
     &:disabled {
         background: $light-grey;
-        cursor: not-allowed;
+        cursor: not-allowed !important;
         color: $disabled;
         border-color: $disabled;
         height: 40px !important;
