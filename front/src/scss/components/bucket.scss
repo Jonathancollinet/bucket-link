@@ -5,6 +5,10 @@
   width: 100%;
   position: relative;
 
+  .bucket-info:hover.bucket-info:after {
+    transform: scaleY(1);
+  }
+
   .bucket-info {
     margin: 6px 0;
     height: 56px;
@@ -12,6 +16,20 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 12px;
+    position: relative;
+
+    &:after {
+      content: "";
+      height: 100%;
+      position: absolute;
+      left: -1px;
+      top: 0;
+
+      border-left: 4px solid $primary;
+      transition: transform 0.15s ease-in-out;
+      transform: scaleY(0);
+    }
+
     &-container {
       width: calc(100% - 60px);
       height: 100%;
