@@ -1,6 +1,6 @@
-<section class="login">
+<section class="login" *ngIf="!isAuth()">
   <h1>Log In to Bucket Link</h1>
-  <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value, loginForm.valid)" *ngIf="!isAuth()">
+  <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value, loginForm.valid)">
     <div class="form-group">
       <input type="email" placeholder="john.doe@bucket.link" formControlName="email">
       <label for="email">Email</label>
@@ -13,5 +13,5 @@
       <button type="submit" [disabled]="!loginForm.valid">Log In</button>
     </div>
   </form>
-  <div *ngIf="isAuth()">Already connected</div>
 </section>
+<div *ngIf="isAuth()">Already connected</div>

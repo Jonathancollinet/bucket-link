@@ -29,7 +29,7 @@ export class LinksComponent implements OnInit {
       this.links = [];
       this.filteredLinks = [];
       tmp.forEach((link) => {
-        this.links.push(new Link(link.id, link.title, link.description, link.createdAt, link.updatedAt, link.bucketId));
+        this.links.push(new Link(link.id, link.title, link.description, link.url, link.createdAt, link.updatedAt, link.bucketId));
       });
       this.filteredLinks = this.links;
     }, (err) => {

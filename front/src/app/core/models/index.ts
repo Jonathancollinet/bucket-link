@@ -15,6 +15,7 @@ export class Link {
     public id: number,
     public title: string,
     public description: string,
+    public url: string,
     public createdAt: string | any,
     public updatedAt: string,
     public BucketId: number,
