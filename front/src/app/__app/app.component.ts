@@ -1,6 +1,7 @@
-import { Component, NgZone  } from '@angular/core';
+import { Component, NgZone, ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { TopBarComponent } from '../core';
 import { AuthService } from '../core/services/auth.service';
 
 @Component({
@@ -18,6 +19,8 @@ export class AppComponent {
   private _showBackdrop: boolean = true;
   private _modeNum: number = 0;
   public minimalWidth = "601px";
+
+  @ViewChild(TopBarComponent) topbar: TopBarComponent;
 
   constructor(
     private _zone: NgZone,
@@ -88,6 +91,18 @@ export class AppComponent {
 
    public navigateToLinks(): void {
       this._router.navigate(['/links']);
+  }
+
+
+  // Global shortcut
+  @HostListener('window:keydown', ['$event'])
+  onKeyDown(e: KeyboardEvent) {
+    // CTRL + A
+    if (e.ctrlKey && e.keyCode === 65) {
+      this.topbar.focusAddInput()
+    } else {
+      console.log(e.keyCode)
+    }
   }
 
 }

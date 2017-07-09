@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, ViewChild, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -11,6 +11,7 @@ import { BucketService } from '../../services/bucket.service';
 })
 export class AddLinkComponent {
 
+  @ViewChild('addLink') addInput;
   @Output() hasBeenCreated = new EventEmitter();
 
   createLink: FormGroup;
@@ -56,6 +57,11 @@ export class AddLinkComponent {
     if(event.keyCode == 13) {
       this.handleCreation();
     }
+  }
+
+  public focusAddLinkInputElement() {
+    this.addInput.nativeElement.focus();
+    return true;
   }
 
   public determineBucketID(): number {
