@@ -15,6 +15,8 @@ export { samePasswordValidator } from './validators/samepassword.validator';
 
 export { ReversePipe } from './pipes/reverse.pipe';
 export { TruncatePipe } from './pipes/truncate.pipe';
+export { SortPipe } from './pipes/sort.pipe';
+export { OrderByPipe } from './pipes/orderby.pipe';
 
 export { AuthGuard } from './guards/auth.guard';
 

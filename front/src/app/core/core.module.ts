@@ -13,7 +13,8 @@ import {
     AddLinkComponent, AddBucketComponent,
     BucketComponent, LinkComponent,
     emailValidator, samePasswordValidator,
-    ReversePipe,TruncatePipe,
+    ReversePipe,TruncatePipe, SortPipe,
+    OrderByPipe,
     HttpService, SharedService,
     SocketService, AuthService,
     BucketService, AuthGuard
@@ -32,7 +33,9 @@ import {
     BucketComponent,
     LinkComponent,
     ReversePipe,
-    TruncatePipe
+    TruncatePipe,
+    SortPipe,
+    OrderByPipe
   ],
   exports: [
     TopBarComponent,
@@ -46,7 +49,9 @@ import {
     BucketComponent,
     LinkComponent,
     ReversePipe,
-    TruncatePipe
+    TruncatePipe,
+    SortPipe,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

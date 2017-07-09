@@ -24,6 +24,10 @@ export class TopBarComponent {
         else this._router.navigate(['/home']);
     }
 
+    public handleCreation(): void {
+        
+    }
+
     public focusAddInput(): void {
         this.addLink.focusAddLinkInputElement();
         this.focus = true;

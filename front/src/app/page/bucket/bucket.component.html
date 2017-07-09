@@ -1,13 +1,19 @@
-<div class="wip-actions">
+<div class="wip-actions" *ngIf="bucket?.links?.length">
   <h1>TODO TOOLS PÖUR RUSARD</h1>
   <input placeholder="search" (keyup)="search($event.target.value)" />
+  <span class="sort-by-timestamp">
+    <i class="fa fa-clock-o"></i>
+  </span>
+  <span class="sort-by-name">
+    <i class="fa fa-sort-alpha-asc"></i>
+  </span>
 </div>
 <div class="row bucker">
   <div class="color-box">{{bucket?.color}}</div>
   <div class="bucket-name">{{bucket?.name}}</div>
 </div>
 <div class="row empty-links">
-   <div *ngIf="!bucket?.Links" class="links-empty">
+   <div *ngIf="!bucket?.links.length" class="links-empty">
     <span class="text">List seems empty...</span>
   </div>
 </div>

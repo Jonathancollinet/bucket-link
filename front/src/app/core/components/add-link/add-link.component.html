@@ -1,6 +1,6 @@
 <div class="add-link-container">
   <form [formGroup]="createLink" (keydown)="keyDownFunction($event)">
-    <input #addLink class="form-control" (blur)="focus = false" (focus)="focusAddLinkInputElement()" name="query" type="text" placeholder="Add link..." formControlName="url">
+    <input #addLink class="form-control" (blur)="focus = false" (focus)="focusAddLinkInputElement()" name="url" type="text" placeholder="Add link..." formControlName="url">
     <svg (click)="handleCreation()" [ngClass]="{'levitation': focus}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000"
       enable-background="new 0 0 1000 1000" xml:space="preserve">
       <g>
@@ -8,5 +8,6 @@
         />
       </g>
     </svg>
+    <input type="text" class="form-control" [value]="determineBucketID()" placeholder="Bucket ID" formControlName="bucketId">
   </form>
 </div>

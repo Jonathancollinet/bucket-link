@@ -1,4 +1,4 @@
-import { Component, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -11,6 +11,8 @@ import { BucketService } from '../../services/bucket.service';
 })
 export class AddLinkComponent {
 
+  @Input() public _bucketId: number;
+  private _bucketName: string;
   @ViewChild('addLink') addInput;
   @Output() hasBeenCreated = new EventEmitter();
 
@@ -22,13 +24,17 @@ export class AddLinkComponent {
     private _bucket: BucketService
   ) {
     this.createLink = this._fb.group({
-      'url': [null, Validators.required]
+      'url': [null, Validators.required],
+      'bucketId': [null, Validators.required]
     });
   }
 
   submitForm(formData: any, valid: boolean) {
     if (valid) {
-      let tmp = { url: formData.url };
+      let tmp = {
+        url: formData.url,
+        bucketId: formData.bucketId
+      };
 
       this._bucket.createLink(tmp).subscribe(
         (result) => { this.hasBeenCreated.emit(true); },
@@ -66,12 +72,17 @@ export class AddLinkComponent {
 
   public determineBucketID(): number {
     let bucket_id: number = 0;
-    if (this._router.url === '/buckets') {
-      return bucket_id;
-    } else {
+    if (this._router.url.indexOf('/bucket/') > -1) {
       bucket_id = +[window.location.pathname.split('/').pop()]; // convert string to number
     }
-    
+    this._bucketId = bucket_id;
+    this.normalizeBucketName();
+    return bucket_id;
+  }
+
+  public normalizeBucketName(): string {
+    if (this._bucketId === 0)  return "UNCATEGORIZED";
+    else return this._bucketId.toString();
   }
   
 }
