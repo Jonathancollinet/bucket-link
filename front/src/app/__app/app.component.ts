@@ -1,7 +1,7 @@
 import { Component, NgZone, ViewChild, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TopBarComponent } from '../core';
+import { TopBarComponent, SharedService } from '../core';
 import { AuthService } from '../core/services/auth.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class AppComponent {
 
   private _opened: boolean = false;
   public _layout = 0;
+  private _currentUser;
   private _closeOnClickOutside: boolean = false;
   private _closeOnClickBackdrop: boolean = true;
   private _showBackdrop: boolean = true;
@@ -25,13 +26,14 @@ export class AppComponent {
   constructor(
     private _zone: NgZone,
     private _router: Router,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _shared: SharedService
   ) {
     this.enableResponsive();
     if (localStorage.getItem('tkn')) {
       this._auth.pingAuth().subscribe(
         (data)=> {
-
+            this._shared.get('currentUser').subscribe(d => this._currentUser = d);
           }
       );
     }
@@ -93,16 +95,18 @@ export class AppComponent {
       this._router.navigate(['/links']);
   }
 
+  public navigateToProfile(): void {
+      this._router.navigate(['/profile']);
+  }
+
 
   // Global shortcut
   @HostListener('window:keydown', ['$event'])
   onKeyDown(e: KeyboardEvent) {
-    // CTRL + A
-    if (e.ctrlKey && e.keyCode === 65) {
-      this.topbar.focusAddInput()
-    } else {
-      console.log(e.keyCode)
-    }
+    // TO CHANGE, CTRL + A
+    // if (e.ctrlKey && e.keyCode === 65) {
+    //   this.topbar.focusAddInput()
+    // }
   }
 
 }

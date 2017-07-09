@@ -9,3 +9,5 @@ export { ForgotComponent } from './forgot/forgot.component';
 export { BucketsComponent } from './buckets/buckets.component';
 export { BucketComponent } from './bucket/bucket.component';
 export { LinksComponent } from './links/links.component';
+
+export { ProfileComponent } from './profile/profile.component';

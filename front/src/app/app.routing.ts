@@ -7,7 +7,8 @@ import {
   ForgotComponent as ForgotPage,
   BucketsComponent as BucketsPage,
   BucketComponent as BucketPage,
-  LinksComponent as LinksPage
+  LinksComponent as LinksPage,
+  ProfileComponent as ProfilePage
 } from './page';
 import { AuthGuard } from './core';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'buckets', component: BucketsPage, canActivate: [AuthGuard] },
   { path: 'bucket/:id', component: BucketPage, canActivate: [AuthGuard] },
   { path: 'links', component: LinksPage, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfilePage, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];
 
