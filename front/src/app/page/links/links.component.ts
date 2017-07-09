@@ -13,7 +13,8 @@ import { BucketService } from '../../core';
 })
 export class LinksComponent implements OnInit {
   
-  links: Array<Link> = [];
+  public links: Array<Link> = [];
+  public filteredLinks: Array<Link>;
 
   constructor(
     private _router: Router,
@@ -26,12 +27,20 @@ export class LinksComponent implements OnInit {
     this._bucket.getLinks().subscribe((response) => {
       let tmp =  response.data;
       this.links = [];
+      this.filteredLinks = [];
       tmp.forEach((link) => {
         this.links.push(new Link(link.id, link.title, link.description, link.createdAt, link.updatedAt, link.bucketId));
       });
+      this.filteredLinks = this.links;
     }, (err) => {
       console.error('getBuckets', err);
     });
+  }
+
+  search(term: string) {
+    if (!term) this.filteredLinks = this.links;
+    console.log(this.filteredLinks)
+    this.filteredLinks = this.links.filter(d => d.title.indexOf(term) >= 0);
   }
 
   public formatDate(date): string {

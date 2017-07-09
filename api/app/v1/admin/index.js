@@ -34,7 +34,8 @@ module.exports = (express) => {
   const router = express.Router()
 
   // To Do: create a new middleware isAdmin and check user 'role' (user || admin)
-  router.use(isAuth)
+  //router.use(isAuth)
+  // dashboard (front) need to implement auth before
 
   router.get('/', adminCtrl.getGlobalMetrics)
   router.get('/users', adminCtrl.getUsers)

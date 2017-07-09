@@ -1,5 +1,6 @@
 <div class="wip-actions">
   <h1>TODO TOOLS PÖUR RUSARD</h1>
+  <input placeholder="search" (keyup)="search($event.target.value)" />
 </div>
 <div class="row bucker">
   <div class="color-box">{{bucket?.color}}</div>
@@ -11,5 +12,5 @@
   </div>
 </div>
 <ul class="links-container" *ngIf="bucket?.Links?.length">
-  <core-link *ngFor="let link of bucket.Links" [link]="link"></core-link>
+  <core-link *ngFor="let link of filteredLinks" [link]="link"></core-link>
 </ul>

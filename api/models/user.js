@@ -43,6 +43,12 @@ module.exports = function (sequelize, DataTypes) {
     user.password = bcrypt.hashSync(user.password)
   })
 
+  User.beforeUpdate((user, options) => {
+    if (user.password) {
+      user.password = bcrypt.hashSync(user.password)
+    }
+  })
+
   User.compareHash = (user, reqHash) => {
     return bcrypt.compareSync(reqHash, user.password)
   }

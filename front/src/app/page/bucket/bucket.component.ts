@@ -13,9 +13,10 @@ import { Bucket, Link } from '../../core/models';
 })
 export class BucketComponent implements OnInit, OnDestroy {
   
-  public bucket: Bucket;
-  public subBucket;
   public _id: number;  
+  public bucket: Bucket;
+  public filteredLinks: Array<Link>;
+  public subBucket;
 
   constructor(private route: ActivatedRoute, private _bucket: BucketService) {
     moment.locale('fr');
@@ -24,9 +25,15 @@ export class BucketComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subBucket = this._bucket.getBucket(this._id).subscribe((resp) => {
-      console.log(resp);
       this.bucket = resp.data;
+      this.filteredLinks = this.bucket.links;
     })
+  }
+
+  search(term: string) {
+    if (!term) this.filteredLinks = this.bucket.links;
+    console.log(this.filteredLinks)
+    this.filteredLinks = this.bucket.links.filter(d => d.title.indexOf(term) >= 0);
   }
 
   handleCreation(event: any) {
