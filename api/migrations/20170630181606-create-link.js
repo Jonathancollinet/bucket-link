@@ -17,6 +17,9 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
+      image: {
+        type: Sequelize.TEXT
+      },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,

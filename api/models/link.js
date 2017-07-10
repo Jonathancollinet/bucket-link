@@ -5,6 +5,7 @@ module.exports = function (sequelize, DataTypes) {
     title: DataTypes.STRING,
     url: DataTypes.STRING,
     description: DataTypes.TEXT,
+    image: DataTypes.STRING
   });
 
   Link.associate = function (models) {

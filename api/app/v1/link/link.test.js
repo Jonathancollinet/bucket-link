@@ -50,6 +50,7 @@ module.exports = async (chai, should, server) => {
             'title',
             'url',
             'UserId',
+            'image',
             'description',
             'createdAt',
             'updatedAt'

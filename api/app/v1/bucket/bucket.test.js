@@ -50,8 +50,9 @@ module.exports = async (chai, should, server) => {
           res.body.should.have.all.keys(
             'id',
             'name',
+            'Links',
             'color',
-            'UserId',
+            'links',
             'createdAt',
             'updatedAt'
           )

@@ -61,18 +61,19 @@ module.exports = {
   },
 
   async create(req, res) {
-    if (!isSet(req.body.url) || !isSet(req.body.title)) {
+    if (!isSet(req.body.url)) {
       setResponse(res, 'NO_CONTENT')
     } else {
+      const metas = await scrapper(req.body.url)
       const
         user = getUserFromToken(req.get('authorization')),
-        userModel = await User.findById(user.id),
-        description = req.body.description ? req.body.description : ''
+        userModel = await User.findById(user.id)
       try {
         const link = await userModel.createLink({
           url: req.body.url,
-          title: req.body.title,
-          description: description
+          title: req.body.title || metas.title,
+          description: req.body.description || metas.description,
+          image: metas.image
         })
         setResponse(res, 'OK', link)
       } catch (err) {
@@ -108,10 +109,13 @@ module.exports = {
       if (!link) {
         setResponse(res, 'NOT_FOUND')
       } else {
-        if (isSet(req.body.url) && isSet(req.body.title)) {
+        if (isSet(req.body.url)) {
+          const metas = await scrapper(req.body.url)
           link.update({
-            'title': req.body.title,
-            'url': req.body.url
+            'title': req.body.title || metas.title,
+            'url': req.body.url,
+            'description': req.body.description || metas.description,
+            'image': metas.image
           })
           setResponse(res, 'OK', link)
         } else {
@@ -119,20 +123,5 @@ module.exports = {
         }
       }
     }
-  },
-
-  async scrappe(req, res) {
-    const
-      url = req.body.url,
-      output = await scrapper(url)
-
-    console.log(output.url)
-    console.log(output.title)
-    console.log(output.links)
-    console.log(output.author)
-    console.log(output.description)
-    console.log(output.keywords)
-    console.log(output.images)
-    setResponse(res, 'OK')
   }
 }
