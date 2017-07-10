@@ -47,6 +47,8 @@ module.exports = {
 
   randomUser: () => {
     return {
+      firstname: faker.name.firstName(),
+      role: 'user',
       email: faker.internet.email(),
       password: bcrypt.hashSync('password'),
       updatedAt: faker.date.past(2),

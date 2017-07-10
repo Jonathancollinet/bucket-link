@@ -25,7 +25,9 @@ module.exports = function (sequelize, DataTypes) {
       get() {
         return this.getDataValue('password')
       }
-    }
+    },
+    firstname: DataTypes.STRING,
+    role: DataTypes.STRING
   }, {
     instanceMethods: {
       compareHash(password) {
