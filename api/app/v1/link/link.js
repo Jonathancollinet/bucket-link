@@ -118,6 +118,12 @@ module.exports = {
             'image': metas.image
           })
           setResponse(res, 'OK', link)
+        } else if (isSet(req.body.bucketId)) {
+          // TODO SECU ?, check if bucketId has the good userId before update
+           link.update({
+            'BucketId': req.body.bucketId
+           })
+           setResponse(res, 'OK', link)
         } else {
           setResponse(res, 'NO_CONTENT')
         }
