@@ -45,7 +45,7 @@ export class AddLinkComponent {
 
   public handleCreation() {
     let url: string = this.createLink.controls.url.value;
-    if (url.trim()) {
+    if (url && url.trim()) {
       let linkData: any = {
         title: 'A link',
         url: url,
