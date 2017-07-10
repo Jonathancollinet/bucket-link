@@ -8,6 +8,12 @@
     width: 350px;
   }
 
+  &-nbitems {
+    display: inline-block;
+    color: blue !important;
+    margin: 0 1.2rem;
+  }
+
   &-action {
     margin: 0 1rem 0 0;
     height: 100%;
@@ -42,3 +48,18 @@
   }
 }
 
+@media #{$small-and-down} {
+  .search-container {
+    flex-direction: column !important;
+    height: inherit;
+    align-items: flex-start;
+
+    .form-group {
+      width: 100% !important;
+    }
+    &-nbitems {
+      display: none !important;
+    }
+  }
+
+}

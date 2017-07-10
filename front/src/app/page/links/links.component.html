@@ -12,9 +12,7 @@
     <div class="form-group">
       <input placeholder="search" (keyup)="search($event.target.value)" />
     </div>
-    <div class="search-container-nb-items">
-      filteredLinks
-    </div>
+    <span class="search-container-nbitems">{{filteredLinks && filteredLinks.length}} item(s)</span>
   </div>
   <div class="links-container">
     <ul class="links-list">
