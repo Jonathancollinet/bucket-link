@@ -1,15 +1,24 @@
-<div class="wip-actions">
+<div class="row nomargin">
   <h1>Links list</h1>
-  <div class="form-group">
-    <input placeholder="search" (keyup)="search($event.target.value)" />
-    <span class="sort-by-timestamp">
-      <i class="fa fa-clock-o"></i>
-    </span>
-    <span class="sort-by-name">
-      <i class="fa fa-sort-alpha-asc"></i>
-    </span>
+  <div class="search-container flex-centered">
+    <div class="search-container-action">
+      <span class="sort-by-timestamp">
+          <i class="fa fa-clock-o"></i>
+        </span>
+      <span class="sort-by-name">
+          <i class="fa fa-sort-alpha-asc"></i>
+        </span>
+    </div>
+    <div class="form-group">
+      <input placeholder="search" (keyup)="search($event.target.value)" />
+    </div>
+    <div class="search-container-nb-items">
+      filteredLinks
+    </div>
+  </div>
+  <div class="links-container">
+    <ul class="links-list">
+      <core-link *ngFor="let link of filteredLinks" [link]="link"></core-link>
+    </ul>
   </div>
 </div>
-<ul class="links-container">
-  <core-link *ngFor="let link of filteredLinks" [link]="link"></core-link>
-</ul>

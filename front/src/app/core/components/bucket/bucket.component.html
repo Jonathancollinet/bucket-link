@@ -1,6 +1,6 @@
 <div class="bucket-container col s12 m6 xl4">
   <ng-content></ng-content>
-  <div class="bucket-info" [ngStyle]="{'border': '1px solid ' + bucket.color }">
+  <div class="bucket-info" [ngStyle]="{'border': '2px solid ' + bucket.color }">
     <div class="bucket-info-container" (click)="goToBucket(bucket.id)">
       <div class="bucket-info-item">{{ bucket.name }}</div>
       <div class="bucket-info-item">{{ bucket.createdAt }}</div>

@@ -1,7 +1,7 @@
 @import '~scss/variables';
 
 .bucket-container {
-  height: 25vw;
+  height: 28vw;
   width: 100%;
   position: relative;
 
@@ -59,7 +59,7 @@
       margin-bottom: 3px;
     }
     &-item:last-child {
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: pre-line;

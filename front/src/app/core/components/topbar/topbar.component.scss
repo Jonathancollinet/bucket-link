@@ -15,9 +15,10 @@
     display: flex;
     align-items: center;
     position: relative;
+    transition: text-shadow 200ms ease-in-out;
 
     &:hover {
-      background-blend-mode: color-burn;
+      text-shadow: 0 -1px $primary, 0 1px $primary;
 
       .line path {
         stroke: $secondary !important;
@@ -87,6 +88,16 @@
   }
   .line {
     width: 112px !important;
+  }
+}
+
+@media #{$medium-and-down} {
+  .topbar {
+    border-bottom: 2px solid $primary;
+  }
+
+  .rest-container {
+    border-bottom: none !important;
   }
 }
 

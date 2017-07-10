@@ -58,11 +58,9 @@
     border-color: green;
   }
 
-  .form-msgs {
-    p {
-      padding: 1.5rem 0 1.5rem $form-margin-label;
-      color: $error;
-      font-size: 16px;
-    }
+  .form-msgs p {
+    padding: 1.5rem 0 1.5rem $form-margin-label;
+    color: $error;
+    font-size: 16px;
   }
 }

@@ -24,3 +24,20 @@
     }
 }
 
+@keyframes glitch {
+  0% {
+    text-shadow: 1px 2px $primary, 3px 2px $secondary;
+  }
+  25% {
+    text-shadow: -4px -2px $primary, -3px -2px $secondary;
+  }
+  50% {
+    text-shadow: -4px -2px $primary, -3px -2px $secondary;
+  }
+  75% {
+    text-shadow: -4px -2px $primary, -3px -2px $secondary;
+  }
+  100% {
+    text-shadow: 1px 2px $primary, 3px 2px $secondary;
+  }
+}
