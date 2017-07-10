@@ -11,7 +11,8 @@
 const
   { getUserFromToken } = require('../auth/auth'),
   { User, Bucket, Link } = require('../../../models'),
-  { isSet, setResponse } = require('../../../commons')
+  { isSet, setResponse } = require('../../../commons'),
+  scrapper = require('../../../scrapper')
 
 module.exports = {
   async index(req, res) {
@@ -112,7 +113,7 @@ module.exports = {
       if (!bucket) {
         setResponse(res, 'NOT_FOUND')
       } else {
-        if (!isSet(req.body.url) || !isSet(req.body.title)) {
+        if (!isSet(req.body.url)) {
           setResponse(res, 'NO_CONTENT')
         } else {
           const user = getUserFromToken(req.get('authorization')),
