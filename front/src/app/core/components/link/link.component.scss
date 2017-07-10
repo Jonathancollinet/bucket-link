@@ -3,18 +3,40 @@
 :host {
   display: block;
 
+  .link-container:hover.link-container:before {
+    transform: scaleY(1);
+  }
+
   .link-container {
     border-bottom: 1px solid $primary;
     padding: 10px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+    &:before {
+      content: "";
+      height: 100%;
+      position: absolute;
+      left: -1px;
+      top: 0;
+
+      border-left: 5px solid $secondary;
+      transition: transform 0.15s ease-in-out;
+      transform: scaleY(0);
+    }
+
+    &:hover {
+      background: $white !important;
+    }
+
     a {
       color: $secondary;
     }
 
-    display: flex;
-    justify-content: space-between;
-
     .link-action {
-      text-align: right;
+      display: flex;
+      align-items: center;
     }
   }
 
