@@ -91,7 +91,7 @@ ng-sidebar-container {
 }
 
 @media #{$medium-and-down} {
-    .topbar .topbar-logout {
+    .topbar .topbar-profile {
       display: none !important;
     }
     .burger-icon {
