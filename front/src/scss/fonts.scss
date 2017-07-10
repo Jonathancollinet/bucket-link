@@ -1,22 +1,8 @@
-@font-face {
-  font-family: 'Titan One';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Titan One'), local('TitanOne'), url(assets/fonts/TitanOne/TitanOne-Regular.ttf) format('woff2');
-}
+@import './variables';
 
 @font-face {
   font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Roboto'), local('Roboto'), url(assets/fonts/Roboto/Roboto-Regular.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-}
-
-@font-face {
-  font-family: 'Old';
-  font-style: normal;
-  src: local('Old'), url(assets/fonts/Old/OldSansBlack.ttf) format('ttf');
+  src: url(assets/fonts/Roboto/Roboto-Regular.woff2);
 }
 
 @font-face {
@@ -24,8 +10,21 @@
   src: url(assets/fonts/Chau/ChauPhilomeneOne-Regular.ttf);
 }
 
+@font-face {
+  font-family: 'Archivo';
+  src: url(assets/fonts/Archivo/ArchivoBlack-Regular.ttf);
+}
+
+.fa {
+  color: $primary;
+  transition: color 150ms ease-in-out;
+  &:hover {
+    color: $secondary;
+  }
+}
+
 .topbar {
-	font-family: "Chau";
+  font-family: "Chau";
 }
 
 body {
@@ -34,4 +33,20 @@ body {
 
 input {
   font-family: sans-serif !important;
+}
+
+input {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Archivo Black', sans-serif;
 }

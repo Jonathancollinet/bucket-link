@@ -1,6 +1,7 @@
-import { Component, NgZone  } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, NgZone, ViewChild, HostListener } from '@angular/core';
+import { Router, NavigationStart  } from '@angular/router';
 
+import { TopBarComponent, SharedService } from '../core';
 import { AuthService } from '../core/services/auth.service';
 
 @Component({
@@ -12,28 +13,46 @@ import { AuthService } from '../core/services/auth.service';
 export class AppComponent {
 
   private _opened: boolean = false;
+  private _disconnected: boolean;
   public _layout = 0;
+  private _currentUser;
   private _closeOnClickOutside: boolean = false;
   private _closeOnClickBackdrop: boolean = true;
   private _showBackdrop: boolean = true;
   private _modeNum: number = 0;
-  public minimalWidth = "601px";
+  public minimalWidth = "993px";
+
+  @ViewChild(TopBarComponent) topbar: TopBarComponent;
 
   constructor(
     private _zone: NgZone,
     private _router: Router,
-    private _auth: AuthService
+    private _auth: AuthService,
+    private _shared: SharedService
   ) {
     this.enableResponsive();
+
+    this._router.events.subscribe(event => {
+      if  (event instanceof NavigationStart && this._layout) {
+        this._closeSidebar();
+      }
+    })
+
     if (localStorage.getItem('tkn')) {
       this._auth.pingAuth().subscribe(
         (data)=> {
-            if(this._router.url != "/buckets") {
-              this._router.navigate(['/buckets']);
-            }
+            this._disconnected = false;
+            this._shared.get('currentUser').subscribe(d => this._currentUser = d);
           }
       );
+    } else {
+      this._disconnected = true;
+       this._closeSidebar();
     }
+  }
+
+  public getStateStyle(): boolean {
+    return this._disconnected && !this.isAuth();
   }
 
   private enableResponsive(): void {
@@ -53,6 +72,7 @@ export class AppComponent {
   }
 
   public logout(): void {
+    this._disconnected = true;
     this._auth.logout().subscribe();
   }
 
@@ -83,9 +103,31 @@ export class AppComponent {
   private _toggleSidebar() {
     this._opened = !this._opened;
   }
-  
+
   public navigateToBuckets(): void {
       this._router.navigate(['/buckets']);
+  }
+
+   public navigateToLinks(): void {
+      this._router.navigate(['/links']);
+  }
+
+  public navigateToProfile(): void {
+      this._router.navigate(['/profile']);
+  }
+
+  public setSidebarHidden(): string {
+    return (this._auth.isLoggedIn() && this._layout === 0) ? 'bucketlist-sidebar' : 'bucketlist-sidebar hidden';
+  }
+
+
+  // Global shortcut
+  @HostListener('window:keydown', ['$event'])
+  onKeyDown(e: KeyboardEvent) {
+    // TO CHANGE, CTRL + SHIFT + A
+    if (e.ctrlKey && e.shiftKey && e.keyCode === 65) {
+      this.topbar.focusAddInput()
+    }
   }
 
 }

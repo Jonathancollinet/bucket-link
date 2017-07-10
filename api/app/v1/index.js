@@ -28,6 +28,8 @@ api.use('/buckets', require('./bucket')(express))
 api.use('/links', require('./link')(express))
 api.use('/auth', require('./auth')(express))
 
+api.use('/admin', require('./admin')(express)) // For Dashboard
+
 app.use('/v1', api)
 
 module.exports =  app

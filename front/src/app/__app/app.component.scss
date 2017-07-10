@@ -6,3 +6,29 @@
     padding: 1rem 1.5rem;
 }
 
+.topbar-logout {
+  width: 300px;
+  height: 100%;
+  transition: all 200ms;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: $secondary;
+    background: $light-grey;
+    i {
+      color: $secondary;
+    }
+  }
+}
+
+ng-sidebar-container {
+  &.disconnect {
+   /deep/ .ng-sidebar__content {
+    margin-left: 0 !important;
+    }
+  }
+
+}

@@ -6,10 +6,14 @@
 @import './scss/global';
 @import './scss/fonts';
 @import './scss/dragula'; // Dnd
+@import './scss/animation';
 
 // Components
-@import './scss/components/auth';
 @import './scss/components/sidebar';
 @import './scss/components/grid';
-@import './scss/components/input';
+@import './scss/components/form';
 @import './scss/components/button';
+@import './scss/components/auth';
+@import './scss/components/a';
+@import './scss/components/bucket';
+@import './scss/components/card';

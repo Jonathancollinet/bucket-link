@@ -1,45 +1,35 @@
 // Main Colors
 $black: #424B54;
-$white: #FDFFFC;
+$white: #F5F5F5;
 $grey: #fafafa;
 $light-grey: #D3D3D3;
 
-$primary: #0049b0;
-$secondary: $white;
-$tercary: #FFF430;
+// $primary: #0049b0;
+$primary: #1A535C;
+// $secondary: $white;
+$secondary: #FF6B6B;
+// $tercary: #77FF9B;
 // $tercary: #77FF9B;
 
+// Contextual colors
 $disabled: #9A9A9A;
+$error: red;
 
 // Global
-$global-h1: 26px;
-$global-h2: 24px;
-$global-h3: 22px;
-$global-h4: 20px;
+$global-h1: 36px;
+$global-h2: 32px;
+$global-h3: 26px;
+$global-h4: 22px;
 $global-h5: 18px;
 $global-h6: 16px;
-
-// Links
-$link-color: green;
-$link-hover-color: red;
-
-// Sidebar
-$sidebar-width: 245px;
-$sidebar-color: $primary;
-$sidebar-shadow-color: $black;
-
-// Topbar
-$topbar-height: 76px;
-$brand-title-size: 34px;
-$topbar-border-style: dashed;
 
 // Grid
 $small-screen-up: 601px !default;
 $medium-screen-up: 993px !default;
-$large-screen-up: 1201px !default;
+$large-screen-up: 1551px !default;
 $small-screen: 600px !default;
 $medium-screen: 992px !default;
-$large-screen: 1200px !default;
+$large-screen: 1550px !default;
 $medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
 $large-and-up: "only screen and (min-width : #{$medium-screen-up})" !default;
 $extra-large-and-up: "only screen and (min-width : #{$large-screen-up})" !default;
@@ -50,3 +40,31 @@ $num-cols: 12 !default;
 $gutter-width: 1.5rem !default;
 $element-top-margin: $gutter-width/3 !default;
 $element-bottom-margin: ($gutter-width*2)/3 !default;
+
+// Flow Text
+$range : $large-screen - $small-screen !default;
+$intervals: 20 !default;
+$interval-size: $range / $intervals !default;
+
+// Forms
+$form-margin-label: 150px;
+$placeholder-color: rgba(163, 186, 195, 0.7);
+$input-height: 48px;
+
+// Button
+$btn-transition-time: 0.2s;
+$btn-height: $input-height;
+
+// Links
+$link-color: green;
+$link-hover-color: red;
+
+// Sidebar
+$sidebar-width: 245px;
+$sidebar-color: $white;
+$sidebar-shadow-color: $black;
+
+// Topbar
+$topbar-height: 76px;
+$brand-title-size: 34px;
+$topbar-border-style: dashed;

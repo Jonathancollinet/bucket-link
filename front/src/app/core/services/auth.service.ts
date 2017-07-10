@@ -23,12 +23,11 @@ export class AuthService {
   public authResolver(currentUser: any): Observable<any> {
     let observable = new Observable(observer => {
       this._socket.connect((success) => {
-        console.info('Socket connected && authenticated');
         this.joinGeneralData();
         this._shared.setData('isLoggedIn', true);
         observer.next(currentUser);
       }, (error) => {
-        console.log(error);
+        console.error('socket connect', error);
         this._shared.setData('isLoggedIn', false);
         this._shared.clearData('currentUser');
         observer.error(error);
@@ -43,7 +42,6 @@ export class AuthService {
       password: data.password
     }).flatMap((resp) => {
       localStorage.setItem('tkn', resp.headers.get('authorization'));
-      console.log(resp.data);
       this._shared.setData('currentUser', resp.data.token);
       return this.authResolver(resp.data.token);
     });
@@ -77,7 +75,6 @@ export class AuthService {
   public joinGeneralData() {
     [this._rooms] = this._socket.join(['generalData']);
     this._rooms.generalData.subscribe((data) => {
-      console.log('data', data)
       this._shared.setData('currentUser', data);
       return Observable.of(data);
     });

@@ -1,20 +1,24 @@
 <core-topbar [hidden]="!isAuth()">
-    <core-add-link (hasBeenCreated)="handleCreation($event)"></core-add-link>
     <div class="burger-icon" (click)="_toggleSidebar()"></div>
+    <div *ngIf="isAuth()" (click)="navigateToProfile()" class="topbar-logout sidebar-link">
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <span *ngIf="isAuth()">&nbsp;Hello {{_currentUser?.email}}!</span>
+    </div>
 </core-topbar>
-<ng-sidebar-container>
+<ng-sidebar-container [ngClass]="{'disconnect': getStateStyle()}">
 
   <ng-sidebar [hidden]="!isAuth()"
     [(opened)]="_opened"
     [closeOnClickOutside]="_closeOnClickOutside"
     [closeOnClickBackdrop]="_closeOnClickBackdrop"
+    [sidebarClass]="setSidebarHidden()"
     [showBackdrop]="_showBackdrop"
   >
-    <div class="link-container">
-      <div class="link" (click)="navigateToBuckets()">Buckets *</div>
-      <div class="link" (click)="navigateToBuckets()">Links *</div>
-      <!--<div class="link" (click)="_toggleSidebar()"><==</div>-->
-      <div *ngIf="isAuth()" (click)="logout()" class="link logout" (click)="logout()">Logout</div>
+    <div class="sidebar-link-container">
+      <div class="sidebar-link" (click)="navigateToBuckets()">Buckets</div>
+      <div class="sidebar-link" (click)="navigateToLinks()">Links</div>
+      <div *ngIf="isAuth()" (click)="logout()" class="sidebar-link logout" (click)="logout()">Logout</div>
+      <!--<div class="sidebar-link" (click)="_toggleSidebar()"><==</div>-->
     </div>
   </ng-sidebar>
 

@@ -20,7 +20,7 @@ ng-sidebar-container {
   right: 10px;
 
   &::after {
-    background: $secondary;
+    background: $primary;
     content: '';
     height: 0.15rem;
     left: 0;
@@ -35,20 +35,22 @@ ng-sidebar-container {
   overflow: hidden !important;
   width: $sidebar-width;
   background-color: $sidebar-color !important;
-  color: $secondary;
-  .link-container {
+  color: $primary;
+  border-right: 2px solid $primary;
+
+  .sidebar-link-container {
     width: 100%;
 
-    .link {
-
+    .sidebar-link {
       padding: 30px;
       text-align: center;
       width: 100%;
-      transition: color 200ms;
+      transition: all 200ms;
+      color: $primary;
 
       &:hover {
-        color: $tercary;
-        border-color: $tercary;
+        color: $secondary;
+        background: $light-grey;
       }
     }
 
@@ -57,6 +59,8 @@ ng-sidebar-container {
       opacity: 0.4;
       position: absolute;
       bottom: 0;
+      width: inherit !important;
+      text-align: center !important;
     }
   }
 }
@@ -66,7 +70,7 @@ ng-sidebar-container {
     margin-left: 0;
 }
 
-@media #{$medium-and-up} {
+@media #{$large-and-up} {
 
   // aside {
   //   transform: translateX(-175px) !important;
@@ -82,11 +86,14 @@ ng-sidebar-container {
 
   .ng-sidebar__content {
     width: calc(100% - #{$sidebar-width});
-    margin-left: $sidebar-width!important;
+    margin-left: $sidebar-width !important;
   }
 }
 
-@media #{$small-and-down} {
+@media #{$medium-and-down} {
+    .topbar .topbar-logout {
+      display: none !important;
+    }
     .burger-icon {
         display: block;
     }

@@ -20,6 +20,7 @@ module.exports = {
     if (!user) {
       setResponse(res, 'UNAUTHORIZED')
     } else {
+      console.log('user', req.state);
       const connectedUser = await User.findById(user.id)
       if (!connectedUser) {
         setResponse(res, 'NOT_FOUND')
@@ -48,11 +49,28 @@ module.exports = {
     if (!parseInt(req.params.bucketId)) {
       setResponse(res, 'NOT_FOUND')
     } else {
-      const bucket = await Bucket.findById(req.params.bucketId)
+      const bucket = await Bucket.findOne({
+        attributes: ['id', 'name', 'color', 'createdAt', 'updatedAt'],
+        where: { id: req.params.bucketId },
+        include: [{
+            model: Link,
+            limit: 50,
+            order: [
+              ['createdAt', 'DESC']
+            ],
+            separate: true,
+            attributes: { exclude: ['UserId'] }
+          }]
+      })
+      const links = await bucket.getLinks() // EDIT: Add links to bucket
+      
+      // EDIT: Copy data to payload (data == immutables)
+      let payload = JSON.parse(JSON.stringify(bucket));
+      payload.links = links
       if (!bucket) {
         setResponse(res, 'NOT_FOUND')
       } else {
-        setResponse(res, 'OK', bucket)
+        setResponse(res, 'OK', payload)
       }
     }
   },

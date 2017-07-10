@@ -1,35 +1,20 @@
-<div class="container">
-  <div class="row">
-    <div class="wip-actions">
+<div class="row nomargin">
+  <h1>My Buckets</h1>
+  <div class="wip-actions">
     <core-add-bucket (hasBeenCreated)="handleCreation($event)"></core-add-bucket>
   </div>
-  <br><br>
-  <div class="buckets-title">
-    <span class="title"></span>
-  </div>
-</div>
 </div>
 <div class="row" [hidden]="!buckets.length">
-   <div *ngIf="!buckets.length" class="buckets-empty">
+  <div *ngIf="!buckets.length" class="buckets-empty">
     <span class="text">Your bucket list seems empty...</span>
   </div>
 </div>
-<div class="row">
-  
-  <div class="col s12 m9 wip">
-    <div class="buckets-container" [dragula]='"bag-one"'>
-      <div *ngFor="let bucket of buckets | reverse" class="col s6 m3 bucket-container">
-          <a [routerLink]="['/bucket', bucket.id]">
-            <span class="color-box" [ngStyle]="{'background-color': bucket.color }"></span>
-            <span class="name">{{ bucket.name }}</span>
-            <span class="timestamp">{{bucket.createdAt}}</span>
-          </a>
-          <ul class="links-container">
-            <li *ngFor="let link of bucket.links; let x = index">{{ bucket.id }} // ({{x}})</li>
-          </ul>
-      </div>
+<div class="buckets-container row">
+  <core-bucket *ngFor="let bucket of buckets | reverse" [bucket]="bucket">
+    <div class="links-wrapper">
+      <ul [ngStyle]="{'border-left': '5px solid ' + bucket.color}" class="links-container for-bucket-{{bucket.id}}" [dragula]='"bag-link"' [dragulaModel]='bucket.links'>
+        <core-link class="link-item link-{{link.id}}" *ngFor="let link of bucket.links" [link]="link"></core-link>
+      </ul>
     </div>
-  </div>
-  
-
+  </core-bucket>
 </div>

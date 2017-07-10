@@ -15,7 +15,9 @@ import {
     RegisterComponent,
     ForgotComponent,
     BucketsComponent,
-    BucketComponent
+    BucketComponent,
+    LinksComponent,
+    ProfileComponent
 } from  './index';
 
 @NgModule({
@@ -24,14 +26,18 @@ import {
     RegisterComponent,
     ForgotComponent,
     BucketsComponent,
-    BucketComponent
+    BucketComponent,
+    LinksComponent,
+    ProfileComponent
   ],
   exports: [
     HomeComponent,
     RegisterComponent,
     ForgotComponent,
     BucketsComponent,
-    BucketComponent
+    BucketComponent,
+    LinksComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

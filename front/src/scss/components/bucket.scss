@@ -1,0 +1,86 @@
+@import '~scss/variables';
+
+.bucket-container {
+  height: 25vw;
+  width: 100%;
+  position: relative;
+
+  .bucket-info:hover.bucket-info:after {
+    transform: scaleY(1);
+  }
+
+  .bucket-info {
+    margin: 6px 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    position: relative;
+    transition: background 0.125s ease-in-out;
+
+    &:after {
+      content: "";
+      height: 100%;
+      position: absolute;
+      left: -1px;
+      top: 0;
+
+      border-left: 5px solid $secondary;
+      transition: transform 0.15s ease-in-out;
+      transform: scaleY(0);
+    }
+
+    &:hover {
+      background: #fff;
+
+      .bucket-info-item:first-child {
+        color: $secondary;
+      }
+    }
+
+    &-container {
+      width: calc(100% - 60px);
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+    &-item::first-letter {
+      transition: color 0.125s ease-in-out;
+      text-transform: capitalize;
+    }
+    &-item:first-child {
+      font-weight: bold;
+      font-size: 1.3rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: pre-line;
+      margin-bottom: 3px;
+    }
+    &-item:last-child {
+      font-size: 0.7rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: pre-line;
+    }
+    &-action {
+      width: 60px;
+      color: $black;
+      font-size: 1.5rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i {
+        margin: 0 2px;
+        cursor: pointer;
+        color: $primary !important;
+        &:hover {
+          color: $secondary !important;
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,13 @@
+<div class="bucket-container col s12 m6 xl4">
+  <ng-content></ng-content>
+  <div class="bucket-info" [ngStyle]="{'border': '1px solid ' + bucket.color }">
+    <div class="bucket-info-container" (click)="goToBucket(bucket.id)">
+      <div class="bucket-info-item">{{ bucket.name }}</div>
+      <div class="bucket-info-item">{{ bucket.createdAt }}</div>
+    </div>
+    <div class="bucket-info-action">
+      <div class="bucket-action"><i aria-hidden="true" class="fa fa-edit"></i></div>
+      <div class="bucket-action"><i aria-hidden="true" class="fa fa-share-alt"></i></div>
+    </div>
+  </div>
+</div>

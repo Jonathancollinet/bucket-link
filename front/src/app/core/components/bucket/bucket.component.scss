@@ -1,0 +1,11 @@
+@import '~scss/variables';
+
+.bucket-container {
+  margin-bottom: 20px;
+}
+
+@media #{$medium-and-down} {
+  .bucket-container {
+    height: 30vh;
+  }
+}

@@ -17,26 +17,42 @@ export class BucketService {
     private _socket: SocketService
   ) { }
 
+  // GET
+
   getBuckets(): Observable<any> {
     return this._http.get('/buckets').flatMap((data) => {
       return Observable.of(data);
     });
   }
 
-  getBucket(id: number): Observable<any> {
-    return this._http.post('/buckets/:id', { id: id}).flatMap((data) => {
+  getLinks(): Observable<any> {
+    return this._http.get('/links').flatMap((data) => {
       return Observable.of(data);
     });
   }
 
-  createBucket(bucketData): Observable<any> {
+  getBucket(id: number): Observable<any> {
+    return this._http.get(`/buckets/${id}`).flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
+
+  // POST
+
+  createBucket(bucketData: any): Observable<any> {
     return this._http.post('/buckets/', bucketData).flatMap((data) => {
       return Observable.of(data);
     });
   }
 
-  createLink(linkData): Observable<any> {
-     return this._http.post('/links/', linkData).flatMap((data) => {
+  createLink(linkData: any): Observable<any> {
+    return this._http.post('/links/', linkData).flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
+
+  patchLink(id: number, linkData: any): Observable<any> {
+    return this._http.patch(`/links/${id}`, linkData).flatMap((data) => {
       return Observable.of(data);
     });
   }

@@ -1,0 +1,12 @@
+<div class="link-container">
+  <div class="link-info">
+    <a [href]="_link.url" rel="noopener noreferrer" target="_blank">
+      <div class="link-title">{{_link.title}}</div>
+    </a>
+    <div class="link-description">{{_link.description | truncate: 20 : '.' }}</div>
+    <div class="link-timestamp">{{_link.createdAt}}</div>
+  </div>
+  <div class="link-action">
+    <div class="link-copy-url"><i class="fa fa-clone"></i></div>
+  </div>
+</div>

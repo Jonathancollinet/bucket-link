@@ -1,19 +1,17 @@
 @import '~scss/variables';
 
-$btn-transition-time: 0.2s;
-
 .btn {
     display: inline-block !important;
-    height: 42px;
+    height: $btn-height;
 }
 
 button {
     display: inline-block !important;
     line-height: 37px;
-    height: 40px;
-    background: $black;
-    color: $grey;
-    
+    height: calc(#{$btn-height} - 2px);
+    background: $primary;
+    color: $secondary;
+
     font-size: 16px;
 
     border: 1px solid $light-grey;
@@ -28,25 +26,25 @@ button {
     &:hover {
         transform: translateY(1px) !important;
         border-bottom-width: 3px !important;
-        height: 39px !important;
+        height: calc(#{$btn-height} - 3px) !important;
     }
 
     &:active {
         transform: translateY(4px) !important;
         border-bottom-width: 1px !important;
-        height: 37px !important;
-        line-height: 35px !important;
+        height: calc(#{$btn-height} - 5px) !important;
+        line-height: calc(#{$btn-height} - 7px) !important;
     }
 
     &:disabled {
         background: $light-grey;
-        cursor: not-allowed;
+        cursor: not-allowed !important;
         color: $disabled;
         border-color: $disabled;
+        height: calc(#{$btn-height} - 2px) !important;
         &:hover {
             transform: none !important;
             border-bottom-width: 4px !important;
-            height: 42px !important;
         }
     }
 }

@@ -1,10 +1,13 @@
-<div class="add-link-action-container">
-  <form [formGroup]="createLink" (ngSubmit)="submitForm(createLink.value, createLink.valid)">
-    <div class="form-group">
-      <input class="form-control" type="text" placeholder="bucket's url" formControlName="url">
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-default"  [disabled]="!createLink.valid">Create link</button>
-    </div>
+<div class="add-link-container">
+  <form [formGroup]="createLink" (keydown)="keyDownFunction($event)">
+    <input #addLink class="form-control" (blur)="focus = false" (focus)="focusAddLinkInputElement()" name="url" type="text" placeholder="Add link..." formControlName="url">
+    <input type="text" class="form-control" [value]="determineBucketID()" placeholder="Bucket ID" formControlName="bucketId">
+    <svg (click)="handleCreation()" [ngClass]="{'levitation': focus}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000"
+      enable-background="new 0 0 1000 1000" xml:space="preserve">
+      <g>
+        <path d="M920,430H570V80c0-38.7-31.3-70-70-70c-38.6,0-70,31.3-70,70v350H80c-38.6,0-70,31.3-70,70c0,38.7,31.4,70,70,70h350v350c0,38.6,31.4,70,70,70c38.7,0,70-31.4,70-70V570h350c38.7,0,70-31.3,70-70C990,461.3,958.7,430,920,430z"
+        />
+      </g>
+    </svg>
   </form>
 </div>
