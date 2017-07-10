@@ -6,7 +6,7 @@ export class Bucket {
     public color: string,
     public createdAt: string,
     public updatedAt: string,
-    public links: Array<Link>
+    public Links: Array<Link>
   ) {}
 }
 
