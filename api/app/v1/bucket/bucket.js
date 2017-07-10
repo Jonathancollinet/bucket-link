@@ -5,11 +5,11 @@
     @File: controller.js
 
     @fileOverview Buckets controller
-*/
+    */
 'use strict';
 
 const
-  { getUserFromToken } = require('../auth/auth'),
+{ getUserFromToken } = require('../auth/auth'),
   { User, Bucket, Link } = require('../../../models'),
   { isSet, setResponse } = require('../../../commons')
 
@@ -53,17 +53,17 @@ module.exports = {
         attributes: ['id', 'name', 'color', 'createdAt', 'updatedAt'],
         where: { id: req.params.bucketId },
         include: [{
-            model: Link,
-            limit: 50,
-            order: [
-              ['createdAt', 'DESC']
-            ],
-            separate: true,
-            attributes: { exclude: ['UserId'] }
-          }]
+          model: Link,
+          limit: 50,
+          order: [
+            ['createdAt', 'DESC']
+          ],
+          separate: true,
+          attributes: { exclude: ['UserId'] }
+        }]
       })
       const links = await bucket.getLinks() // EDIT: Add links to bucket
-      
+
       // EDIT: Copy data to payload (data == immutables)
       let payload = JSON.parse(JSON.stringify(bucket));
       payload.links = links
@@ -95,7 +95,7 @@ module.exports = {
       setResponse(res, 'NO_CONTENT')
     } else {
       const
-        user = getUserFromToken(req.get('authorization')),
+      user = getUserFromToken(req.get('authorization')),
         userModel = await User.findById(user.id)
       try {
         const bucket = await userModel.createBucket({
