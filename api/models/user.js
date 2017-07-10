@@ -5,7 +5,7 @@ const hasSecurePassword = (user, options, callback) => {
   // if (user.password !== user.password_confirmation) {
 
   // }
-  bcrypt.hash(user.get('password'), 10, (err, hash,) => {
+  bcrypt.hash(user.get('password'), 10, (err, hash) => {
     if (err) callback(err)
     user.set('password', hash)
     return callback(null, options)

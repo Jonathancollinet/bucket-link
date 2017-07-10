@@ -11,7 +11,8 @@
 const
   { getUserFromToken } = require('../auth/auth'),
   { User, Bucket, Link } = require('../../../models'),
-  { isSet, setResponse } = require('../../../commons')
+  { isSet, setResponse } = require('../../../commons'),
+  scrapper = require('../../../scrapper')
 
 module.exports = {
   async index(req, res) {
@@ -106,5 +107,20 @@ module.exports = {
         }
       }
     }
+  },
+
+  async scrappe(req, res) {
+    const
+      url = req.body.url,
+      output = await scrapper(url)
+
+    console.log(output.url)
+    console.log(output.title)
+    console.log(output.links)
+    console.log(output.author)
+    console.log(output.description)
+    console.log(output.keywords)
+    console.log(output.images)
+    setResponse(res, 'OK')
   }
 }

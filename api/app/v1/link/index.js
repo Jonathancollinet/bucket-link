@@ -27,6 +27,7 @@ module.exports = (express) => {
   router.post('/', linkCtrl.create)
   router.delete('/:linkId', linkCtrl.destroy)
   router.patch('/:linkId', linkCtrl.update)
+  router.post('/scrapper', linkCtrl.scrappe)
 
   return router
 }
