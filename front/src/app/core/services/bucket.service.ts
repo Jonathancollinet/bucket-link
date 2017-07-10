@@ -51,6 +51,12 @@ export class BucketService {
     });
   }
 
+  createLinkInBucket(id: number, linkData: any): Observable<any> {
+    return this._http.post(`/buckets/${id}/links`, linkData).flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
+
   patchLink(id: number, linkData: any): Observable<any> {
     return this._http.patch(`/links/${id}`, linkData).flatMap((data) => {
       return Observable.of(data);

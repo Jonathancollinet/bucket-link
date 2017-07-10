@@ -48,16 +48,26 @@ export class AddLinkComponent {
   public handleCreation() {
     let url: string = this.createLink.controls.url.value;
     if (url && url.trim()) {
+      let bucketID = this.determineBucketID();
       let linkData: any = {
-        title: 'A link',
         url: url,
-        bucketId: this.determineBucketID()
+        bucketId: bucketID
       };
-      this._bucket.createLink(linkData).subscribe((resp) => {
+      if (bucketID !== null) {
+        this._bucket.createLinkInBucket(bucketID, linkData).subscribe((resp) => {
         console.log('resp', resp);
         this.hasBeenCreated.emit(true);
         this.createLink.reset();
+        this.createLink.controls.bucketId.updateValueAndValidity(this.determineBucketID());
       }, (err) => { console.error(err); })
+      } else {
+        this._bucket.createLink(linkData).subscribe((resp) => {
+        console.log('resp', resp);
+        this.hasBeenCreated.emit(true);
+        this.createLink.reset();
+        }, (err) => { console.error(err); })
+      }
+      
     }
   }
 
@@ -72,10 +82,12 @@ export class AddLinkComponent {
     return true;
   }
 
-  public determineBucketID(): number {
-    let bucket_id: number = 0;
+  public determineBucketID(): number | null {
+    let bucket_id = null;
     if (this._router.url.indexOf('/bucket/') > -1) {
       bucket_id = +[window.location.pathname.split('/').pop()]; // convert string to number
+    } else {
+      bucket_id = null;
     }
     this._bucketId = bucket_id;
     this.normalizeBucketName();
@@ -83,7 +95,7 @@ export class AddLinkComponent {
   }
 
   public normalizeBucketName(): string {
-    if (this._bucketId === 0)  return "UNCATEGORIZED";
+    if (this._bucketId === null)  return "UNCATEGORIZED";
     else return this._bucketId.toString();
   }
 

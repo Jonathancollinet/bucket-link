@@ -52,7 +52,6 @@ module.exports = async (chai, should, server) => {
             'name',
             'Links',
             'color',
-            'links',
             'createdAt',
             'updatedAt'
           )
