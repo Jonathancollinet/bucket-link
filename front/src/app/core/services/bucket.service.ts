@@ -25,6 +25,12 @@ export class BucketService {
     });
   }
 
+  getUncategorizedLinks(): Observable<any> {
+    return this._http.get('/links/recent/uncategorized').flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
+
   getLinks(): Observable<any> {
     return this._http.get('/links').flatMap((data) => {
       return Observable.of(data);

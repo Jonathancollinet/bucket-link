@@ -1,5 +1,6 @@
-<div class="row nomargin" *ngIf="bucket?.links?.length">
-  <h1>A Bucket</h1>
+<div class="row nomargin">
+  <h1>{{bucket?.name}}</h1>
+  <div class="color-box">{{bucket?.color}}</div>
   <div class="search-container flex-centered">
     <div class="search-container-action">
       <span class="sort-by-timestamp">
@@ -14,12 +15,8 @@
     </div>
     <span class="search-container-nbitems">{{filteredLinks?.length}} item(s)</span>
   </div>
-  <div class="bucker">
-    <div class="color-box">{{bucket?.color}}</div>
-    <div class="bucket-name">{{bucket?.name}}</div>
-  </div>
   <div class="empty-links">
-    <div *ngIf="!bucket?.links.length" class="links-empty">
+    <div *ngIf="!bucket?.Links.length" class="links-empty">
       <span class="text">List seems empty...</span>
     </div>
   </div>

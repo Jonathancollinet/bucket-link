@@ -65,6 +65,7 @@ export class AddLinkComponent {
         console.log('resp', resp);
         this.hasBeenCreated.emit(true);
         this.createLink.reset();
+        this.createLink.controls.bucketId.updateValueAndValidity(this.determineBucketID());
         }, (err) => { console.error(err); })
       }
       
