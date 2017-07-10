@@ -17,7 +17,7 @@ async function updateGeneralData(idArr){
     return new Promise(function(resolve){
       User.findAll(generateQuery({
         raw: true,
-        attributes: ['id', 'email', 'createdAt'],
+        attributes: ['id', 'email', 'firstname', 'createdAt'],
         where: { id: { $in: idArr } }
       }, User)).then(function(data){
         data = data.map(function(user){

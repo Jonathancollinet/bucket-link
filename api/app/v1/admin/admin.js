@@ -46,7 +46,7 @@ module.exports = {
         attributes: ['id', 'bucketId', 'userId']
       }, {
           model: User,
-          attributes: ['id', 'email',],
+          attributes: ['id', 'email', 'firstname'],
       }]
     })
     setResponse(res, 'OK', buckets)
@@ -62,7 +62,7 @@ module.exports = {
         attributes: ['id', 'bucketId', 'userId', 'title', 'description', 'url'],
       }, {
           model: User,
-          attributes: ['id', 'email',],
+          attributes: ['id', 'email', 'firstname'],
       }]
     })
     setResponse(res, 'OK', buckets)
@@ -82,6 +82,7 @@ module.exports = {
   async createUser(req, res) {
     const user = await User.create({
       email: req.body.email,
+      firstname: req.body.firstname,
       password: req.body.password
     })
     setResponse(res, 'OK', user)
@@ -119,6 +120,7 @@ module.exports = {
     } else {
       user = await user.update({
         email: req.body.email,
+        firstname: req.body.firstname,
         password: req.body.password
       })
       setResponse(res, 'OK', user)

@@ -26,6 +26,7 @@ module.exports = (express) => {
   router.post('/', (req, res) => {
     User.create({
       'email': req.body.email,
+      'firstname': req.body.firstname,
       'password': req.body.password
     }).then(data => {
       res.json({});
