@@ -48,6 +48,18 @@ module.exports = {
     }
   },
 
+  async uncategorized(req, res) {
+    const links = await Link.findAll({
+      where: {
+        BucketId: null
+      },
+      order: [
+        ['createdAt', 'DESC']
+      ]
+    })
+    setResponse(res, 'OK', links)
+  },
+
   async create(req, res) {
     if (!isSet(req.body.url) || !isSet(req.body.title)) {
       setResponse(res, 'NO_CONTENT')
