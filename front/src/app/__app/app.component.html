@@ -1,6 +1,6 @@
 <core-topbar [hidden]="!isAuth()">
     <div class="burger-icon" (click)="_toggleSidebar()"></div>
-    <div *ngIf="isAuth()" (click)="navigateToProfile()" class="topbar-logout sidebar-link">
+    <div *ngIf="isAuth()" (click)="navigateToProfile()" class="topbar-profile sidebar-link">
       <i class="fa fa-user" aria-hidden="true"></i>
       <span *ngIf="isAuth()">&nbsp;Hello {{_currentUser?.email}}!</span>
     </div>

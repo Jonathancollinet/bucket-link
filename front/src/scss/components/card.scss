@@ -1,0 +1,8 @@
+@import '~scss/variables';
+
+.card {
+  border: 2px solid $primary;
+  border-radius: 8px;
+  position: relative;
+  padding: 1rem;
+}

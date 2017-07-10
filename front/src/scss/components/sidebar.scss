@@ -20,7 +20,7 @@ ng-sidebar-container {
   right: 10px;
 
   &::after {
-    background: $secondary;
+    background: $primary;
     content: '';
     height: 0.15rem;
     left: 0;
@@ -35,7 +35,9 @@ ng-sidebar-container {
   overflow: hidden !important;
   width: $sidebar-width;
   background-color: $sidebar-color !important;
-  color: $secondary;
+  color: $primary;
+  border-right: 2px solid $primary;
+
   .sidebar-link-container {
     width: 100%;
 
@@ -44,11 +46,11 @@ ng-sidebar-container {
       text-align: center;
       width: 100%;
       transition: all 200ms;
+      color: $primary;
 
       &:hover {
-        color: $tercary;
-        border-color: $tercary;
-        background: $disabled;
+        color: $secondary;
+        background: $light-grey;
       }
     }
 
@@ -89,7 +91,7 @@ ng-sidebar-container {
 }
 
 @media #{$medium-and-down} {
-    .topbar .topbar-logout {
+    .topbar .topbar-profile {
       display: none !important;
     }
     .burger-icon {

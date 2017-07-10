@@ -1,0 +1,15 @@
+@import '~scss/variables';
+
+:host {
+  display: block;
+
+  .links-list {
+
+  }
+}
+
+@media #{$small-and-down} {
+  .search-container input {
+    width: 100% !important;
+  }
+}

@@ -1,51 +1,7 @@
 @import '~scss/variables';
 
 .bucket-container {
-  height: 25vw;
-  width: calc(100% - 15px);
-  border: 4px solid $primary;
-  border-radius: 5px;
-  position: relative;
-  color: $white;
-
-  .bucket-info {
-    margin: 6px 0;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    &-container {
-      padding: 0 12px;
-      width: calc(100% - 60px);
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-    }
-    &-action {
-      width: 60px;
-      color: $black;
-      font-size: 1.5rem;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      i {
-        margin: 0 2px;
-        cursor: pointer;
-
-        &:hover {
-          color: purple;
-        }
-      }
-    }
-  }
-}
-
-@media #{$small-and-down} {
-    .text {
-        font-size: 24px !important;
-    }
+  margin-bottom: 20px;
 }
 
 @media #{$medium-and-down} {

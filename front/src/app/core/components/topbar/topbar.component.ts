@@ -11,8 +11,6 @@ import { AuthService } from '../../services/auth.service';
 })
 export class TopBarComponent {
 
-    private focus: boolean = false;
-
     // forwardRef can help with circular dependency when Nested View Child
     @ViewChild(forwardRef(() => AddLinkComponent)) private addLink: AddLinkComponent;
 
@@ -29,7 +27,6 @@ export class TopBarComponent {
 
     public focusAddInput(): void {
         this.addLink.focusAddLinkInputElement();
-        this.focus = true;
     }
-        
+
 }

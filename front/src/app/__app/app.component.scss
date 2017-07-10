@@ -6,7 +6,7 @@
     padding: 1rem 1.5rem;
 }
 
-.topbar-logout {
+.topbar-profile {
   width: 300px;
   height: 100%;
   transition: all 200ms;
@@ -14,11 +14,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  white-space: pre;
+  justify-content: center;
+  padding: 0 1.5rem;
 
   &:hover {
-    color: $tercary;
-    border-color: $tercary;
-    background: $disabled;
+    color: $secondary;
+    background: $light-grey;
+    i {
+      color: $secondary;
+    }
   }
 }
 
@@ -28,5 +33,5 @@ ng-sidebar-container {
     margin-left: 0 !important;
     }
   }
-  
+
 }

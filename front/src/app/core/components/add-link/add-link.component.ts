@@ -11,6 +11,8 @@ import { BucketService } from '../../services/bucket.service';
 })
 export class AddLinkComponent {
 
+  private _focus: boolean = false;
+
   @Input() public _bucketId: number;
   private _bucketName: string;
   @ViewChild('addLink') addInput;
@@ -84,5 +86,5 @@ export class AddLinkComponent {
     if (this._bucketId === 0)  return "UNCATEGORIZED";
     else return this._bucketId.toString();
   }
-  
+
 }

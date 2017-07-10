@@ -14,13 +14,15 @@
   input {
     font-size: 17px;
     font-weight: bold;
+    height: $input-height;
     padding: 0.8rem 0.3rem;
     outline-width: 0px !important;
     position: relative;
     border: none;
-    border-bottom: 4px solid $light-grey;
-    color: $black;
+    border-bottom: 4px solid $placeholder-color;
+    color: $primary;
     display: inline-block;
+    background: rgba(0, 0, 0, 0.1);
 
     &:focus, &:focus + label {
       color: $primary !important;
@@ -56,11 +58,9 @@
     border-color: green;
   }
 
-  .form-msgs {
-    p {
-      padding: 1.5rem 0 1.5rem $form-margin-label;
-      color: $error;
-      font-size: 16px;
-    }
+  .form-msgs p {
+    padding: 1.5rem 0 1.5rem $form-margin-label;
+    color: $error;
+    font-size: 16px;
   }
 }

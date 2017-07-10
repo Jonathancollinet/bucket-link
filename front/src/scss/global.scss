@@ -18,7 +18,7 @@ html, body {
   left: 0;
 
   background: $white;
-  color: $black;
+  color: $primary;
 }
 
 h1, h2, h3, h4 {
@@ -38,11 +38,31 @@ h3 {
 }
 
 // disable user-select in:
-.topbar, ng-sidebar-container, .btn, button {
+.topbar, .btn, button {
   user-select: none !important;
 }
 
 // cursor elements
-.sidebar-link, .title-container, .search-container svg, .burger-icon, button {
+input[type="color"],
+.bucket-info-container,
+.fa,
+.sidebar-link,
+.title-container,
+.search-container svg,
+.burger-icon,
+button {
   cursor: pointer !important;
+}
+
+.padded {
+  padding: 0 0.75rem !important;
+}
+
+.nomargin {
+  margin: 0 !important;
+}
+
+.flex-centered {
+  display: flex;
+  align-items: center;
 }

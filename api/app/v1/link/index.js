@@ -24,6 +24,7 @@ module.exports = (express) => {
 
   router.get('/', linkCtrl.index)
   router.get('/:linkId', linkCtrl.show)
+  router.get('/recent/uncategorized', linkCtrl.uncategorized)
   router.post('/', linkCtrl.create)
   router.delete('/:linkId', linkCtrl.destroy)
   router.patch('/:linkId', linkCtrl.update)
