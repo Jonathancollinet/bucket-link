@@ -16,6 +16,7 @@ export class RegisterComponent {
   @Output() isRegistred = new EventEmitter();
 
   public registerForm: any;
+  public firstname: any;
   public email: any;
   public password: any;
   public confirmPassword: any;
@@ -28,6 +29,7 @@ export class RegisterComponent {
     const PASS_LENGTH_MAX = 32;
 
     this.registerForm = this._fb.group({
+      firstname: [null, Validators.required],
       email: [null, Validators.compose([
         Validators.required, emailValidator
       ])],
@@ -43,6 +45,7 @@ export class RegisterComponent {
       }, { validator: samePasswordValidator })
     });
 
+    this.firstname = this.registerForm.controls['firstname'];
     this.email = this.registerForm.controls['email'];
     this.password = this.registerForm.controls.password.controls['pass']
     this.confirmPassword = this.registerForm.controls.password.controls['confirmPass'];
@@ -51,6 +54,7 @@ export class RegisterComponent {
   submitForm(formData) {
     this.isRegistred.emit({p: true, r: false});
     let user = {
+      firstname: formData.firstname,
       email: formData.email,
       password: formData.password.pass,
       confirmPassword: formData.password.confirmPass
