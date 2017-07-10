@@ -9,8 +9,8 @@ button {
     display: inline-block !important;
     line-height: 37px;
     height: calc(#{$btn-height} - 2px);
-    background: $secondary;
-    color: $primary;
+    background: $primary;
+    color: $secondary;
 
     font-size: 16px;
 

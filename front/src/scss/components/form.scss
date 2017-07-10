@@ -20,13 +20,13 @@
     position: relative;
     border: none;
     border-bottom: 4px solid $placeholder-color;
-    color: $secondary;
+    color: $primary;
     display: inline-block;
     background: rgba(0, 0, 0, 0.1);
 
     &:focus, &:focus + label {
-      color: $secondary !important;
-      border-color: $secondary !important;
+      color: $primary !important;
+      border-color: $primary !important;
     }
 
     &::-webkit-input-placeholder {

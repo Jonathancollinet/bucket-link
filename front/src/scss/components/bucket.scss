@@ -26,13 +26,17 @@
       left: -1px;
       top: 0;
 
-      border-left: 4px solid $primary;
+      border-left: 5px solid $secondary;
       transition: transform 0.15s ease-in-out;
       transform: scaleY(0);
     }
 
     &:hover {
       background: #fff;
+
+      .bucket-info-item:first-child {
+        color: $secondary;
+      }
     }
 
     &-container {
@@ -43,6 +47,7 @@
       flex-direction: column;
     }
     &-item::first-letter {
+      transition: color 0.125s ease-in-out;
       text-transform: capitalize;
     }
     &-item:first-child {
@@ -70,9 +75,9 @@
       i {
         margin: 0 2px;
         cursor: pointer;
-        color: $secondary !important;
+        color: $primary !important;
         &:hover {
-          color: $primary !important;
+          color: $secondary !important;
         }
       }
     }

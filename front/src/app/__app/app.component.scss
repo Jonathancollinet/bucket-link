@@ -17,8 +17,10 @@
 
   &:hover {
     color: $secondary;
-    border-color: $secondary;
-    background: $disabled;
+    background: $light-grey;
+    i {
+      color: $secondary;
+    }
   }
 }
 

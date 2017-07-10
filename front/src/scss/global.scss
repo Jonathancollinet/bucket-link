@@ -18,7 +18,7 @@ html, body {
   left: 0;
 
   background: $white;
-  color: $secondary;
+  color: $primary;
 }
 
 h1, h2, h3, h4 {
@@ -53,4 +53,9 @@ h3 {
 
 .nomargin {
   margin: 0 !important;
+}
+
+.flex-centered {
+  display: flex;
+  align-items: center;
 }

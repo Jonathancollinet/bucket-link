@@ -1,6 +1,13 @@
 @import '~scss/variables';
 
 .add-bucket-action-container {
+
+  svg {
+    fill: $primary;
+    width: 45px;
+    height: 45px;
+  }
+
   .form-group {
     display: flex;
     margin: 1.5rem 0;

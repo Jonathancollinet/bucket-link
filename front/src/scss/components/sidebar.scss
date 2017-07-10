@@ -46,11 +46,11 @@ ng-sidebar-container {
       text-align: center;
       width: 100%;
       transition: all 200ms;
+      color: $primary;
 
       &:hover {
         color: $secondary;
-        border-color: $secondary;
-        background: $disabled;
+        background: $light-grey;
       }
     }
 
