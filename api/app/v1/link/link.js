@@ -11,7 +11,8 @@
 const
   { getUserFromToken } = require('../auth/auth'),
   { User, Bucket, Link } = require('../../../models'),
-  { isSet, setResponse } = require('../../../commons')
+  { isSet, setResponse } = require('../../../commons'),
+  scrapper = require('../../../scrapper')
 
 module.exports = {
   async index(req, res) {
@@ -47,18 +48,32 @@ module.exports = {
     }
   },
 
+  async uncategorized(req, res) {
+    const links = await Link.findAll({
+      where: {
+        BucketId: null
+      },
+      order: [
+        ['createdAt', 'DESC']
+      ]
+    })
+    setResponse(res, 'OK', links)
+  },
+
   async create(req, res) {
-    if (!isSet(req.body.url) || !isSet(req.body.title)) {
+    if (!isSet(req.body.url)) {
       setResponse(res, 'NO_CONTENT')
     } else {
+      const metas = await scrapper(req.body.url)
       const
         user = getUserFromToken(req.get('authorization')),
         userModel = await User.findById(user.id)
-
       try {
         const link = await userModel.createLink({
           url: req.body.url,
-          title: req.body.title
+          title: req.body.title || metas.title,
+          description: req.body.description || metas.description,
+          image: metas.image
         })
         setResponse(res, 'OK', link)
       } catch (err) {
@@ -94,10 +109,13 @@ module.exports = {
       if (!link) {
         setResponse(res, 'NOT_FOUND')
       } else {
-        if (isSet(req.body.url) && isSet(req.body.title)) {
+        if (isSet(req.body.url)) {
+          const metas = await scrapper(req.body.url)
           link.update({
-            'title': req.body.title,
-            'url': req.body.url
+            'title': req.body.title || metas.title,
+            'url': req.body.url,
+            'description': req.body.description || metas.description,
+            'image': metas.image
           })
           setResponse(res, 'OK', link)
         } else {

@@ -25,6 +25,7 @@ module.exports = {
       bucketId: randomBucketId,
       title: faker.lorem.sentence(),
       url: faker.internet.url(),
+      image: faker.image.imageUrl(),
       description: faker.lorem.paragraph(),
       updatedAt: faker.date.past(2),
       createdAt: faker.date.past(2)
@@ -46,6 +47,8 @@ module.exports = {
 
   randomUser: () => {
     return {
+      firstname: faker.name.firstName(),
+      role: 'user',
       email: faker.internet.email(),
       password: bcrypt.hashSync('password'),
       updatedAt: faker.date.past(2),
