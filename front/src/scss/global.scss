@@ -43,7 +43,14 @@ h3 {
 }
 
 // cursor elements
-.bucket-info-container, .fa, .sidebar-link, .title-container, .search-container svg, .burger-icon, button {
+input[type="color"],
+.bucket-info-container,
+.fa,
+.sidebar-link,
+.title-container,
+.search-container svg,
+.burger-icon,
+button {
   cursor: pointer !important;
 }
 
