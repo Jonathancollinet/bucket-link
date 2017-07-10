@@ -64,16 +64,19 @@ module.exports = {
     if (!isSet(req.body.url)) {
       setResponse(res, 'NO_CONTENT')
     } else {
-      const metas = await scrapper(req.body.url)
+      const metas = await scrapper(req.body.url).catch(err => {
+        console.error(err.message)
+        return {}
+      })
       const
         user = getUserFromToken(req.get('authorization')),
         userModel = await User.findById(user.id)
       try {
         const link = await userModel.createLink({
           url: req.body.url,
-          title: req.body.title || metas.title,
-          description: req.body.description || metas.description,
-          image: metas.image
+          title: req.body.title || metas.title || '',
+          description: req.body.description || metas.description || '',
+          image: metas.image || ''
         })
         setResponse(res, 'OK', link)
       } catch (err) {

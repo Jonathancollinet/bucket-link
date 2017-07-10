@@ -9,7 +9,7 @@
 'use strict';
 
 const
-{ getUserFromToken } = require('../auth/auth'),
+  { getUserFromToken } = require('../auth/auth'),
   { User, Bucket, Link } = require('../../../models'),
   { isSet, setResponse } = require('../../../commons')
 
@@ -20,7 +20,6 @@ module.exports = {
     if (!user) {
       setResponse(res, 'UNAUTHORIZED')
     } else {
-      console.log('user', req.state);
       const connectedUser = await User.findById(user.id)
       if (!connectedUser) {
         setResponse(res, 'NOT_FOUND')
@@ -62,15 +61,10 @@ module.exports = {
           attributes: { exclude: ['UserId'] }
         }]
       })
-      const links = await bucket.getLinks() // EDIT: Add links to bucket
-
-      // EDIT: Copy data to payload (data == immutables)
-      let payload = JSON.parse(JSON.stringify(bucket));
-      payload.links = links
       if (!bucket) {
         setResponse(res, 'NOT_FOUND')
       } else {
-        setResponse(res, 'OK', payload)
+        setResponse(res, 'OK', bucket)
       }
     }
   },
@@ -121,14 +115,18 @@ module.exports = {
         if (!isSet(req.body.url) || !isSet(req.body.title)) {
           setResponse(res, 'NO_CONTENT')
         } else {
-          const user = getUserFromToken(req.get('authorization'))
-
+          const user = getUserFromToken(req.get('authorization')),
+            metas = await scrapper(req.body.url).catch(err => {
+              console.error(err.message)
+              return {}
+            })
           try {
             const newLink = await bucket.createLink({
               url: req.body.url,
-              title: req.body.title,
-              description: req.body.description,
-              UserId: user.id
+              title: req.body.title || metas.title || '',
+              description: req.body.description || metas.description || '',
+              UserId: user.id,
+              image: metas.image || ''
             })
             setResponse(res, 'OK', newLink)
           } catch (err) {
