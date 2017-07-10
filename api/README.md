@@ -59,7 +59,7 @@ Reset seeding (Delete all rows in all tables)
   | ------ | ------------- |:-------------:| -----:|
   |GET| /links      | 50 most recent links of connected user | 401 (User not connected) |
   |GET| /links/:id      | Get link by id      | 404 (id not found) |
-  |GET| /recent/uncategorized      | Get all uncategorized links (order created DESC)      | |
+  |GET| /links/recent/uncategorized      | Get all uncategorized links (order created DESC)      | |
   |POST|/links|Create uncategorized link(associate connected user) | 204 (url or title null)|
   |DELETE|/links/:id|Delete link by id|404 (id not found)|
   |PATCH|/links/:id|Edit link by id|404 (id not found) 204(url or titlenull)|
