@@ -53,3 +53,12 @@ Reset seeding (Delete all rows in all tables)
   |POST|/buckets/:id/links|Create a link associate to bucket(id), return json|404(id not found), 500(server error can't create link)
   |DELETE|/buckets/:id|Delete bucket by id (with assciated links)|404 (id not found)|
   |PATCH|/buckets/:id|Edit bucket by id|404 (id not found) 204(name null)|
+
+### Links
+  | Method | Routes        | Success           | Error  |
+  | ------ | ------------- |:-------------:| -----:|
+  |GET| /links      | 50 most recent links of connected user | 401 (User not connected) |
+  |GET| /links/:id      | Get link by id      | 404 (id not found) |
+  |POST|/links|Create uncategorized link(associate connected user) | 204 (url or title null)|
+  |DELETE|/links/:id|Delete link by id|404 (id not found)|
+  |PATCH|/links/:id|Edit link by id|404 (id not found) 204(url or titlenull)|
