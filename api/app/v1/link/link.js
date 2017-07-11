@@ -65,8 +65,7 @@ module.exports = {
       setResponse(res, 'NO_CONTENT')
     } else {
       const metas = await scrapper(req.body.url).catch(err => {
-        console.error(err.message)
-        return {}
+        setResponse(res, 'INVALID_URL', {})
       })
       const
         user = getUserFromToken(req.get('authorization')),
@@ -88,7 +87,7 @@ module.exports = {
   async destroy(req, res) {
     const _id = parseInt(req.params.linkId)
     if (!_id) {
-      setResponse(res ,'NO_CONTENT')
+      setResponse(res, 'NO_CONTENT')
     } else {
       Link.findById(_id).then(link => {
         if (!link) {
@@ -113,7 +112,9 @@ module.exports = {
         setResponse(res, 'NOT_FOUND')
       } else {
         if (isSet(req.body.url)) {
-          const metas = await scrapper(req.body.url)
+          const metas = await scrapper(req.body.url).catch(err => {
+            setResponse(res, 'INVALID_URL', {})
+          })
           link.update({
             'title': req.body.title || metas.title,
             'url': req.body.url,
@@ -123,10 +124,10 @@ module.exports = {
           setResponse(res, 'OK', link)
         } else if (isSet(req.body.bucketId)) {
           // TODO SECU ?, check if bucketId has the good userId before update
-           link.update({
+          link.update({
             'BucketId': req.body.bucketId
-           })
-           setResponse(res, 'OK', link)
+          })
+          setResponse(res, 'OK', link)
         } else {
           setResponse(res, 'NO_CONTENT')
         }

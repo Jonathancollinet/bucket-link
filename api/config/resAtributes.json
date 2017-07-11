@@ -34,5 +34,9 @@
   "WRONG_PASSWORD": {
     "status": 401,
     "message": "Wrong password."
+  },
+  "INVALID_URL": {
+    "status": 400,
+    "message": "Invalid url"
   }
 }
