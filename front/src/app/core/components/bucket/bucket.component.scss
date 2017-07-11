@@ -1,7 +1,8 @@
 @import '~scss/variables';
 
 .bucket-container {
-  height: 20vw;
+  height: 30vw;
+  min-height: 303px;
   width: 100%;
   position: relative;
   margin-bottom: 20px;
@@ -97,21 +98,21 @@
     }
     &:hover {
       background: inherit;
-      color: inherit !important;
+      color: inherit;
       .bucket-info-item.title {
         color: inherit;
       }
       &-container, &-item.title, &-item.date, i {
         cursor: default !important;
         &:hover {
-          color: inherit !important;
+          color: inherit;
         }
       }
     }
     &-container, &-item.title, &-item.date, i {
       cursor: default !important;
       &:hover {
-        color: inherit !important;
+        color: inherit;
       }
     }
   }

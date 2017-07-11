@@ -21,7 +21,7 @@
     border-bottom: 4px solid $placeholder-color;
     color: $primary;
     display: inline-block;
-    background: rgba(0, 0, 0, 0.1);
+    background: $grey;
 
     &:focus, &:focus + label {
       color: $primary !important;
