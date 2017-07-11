@@ -12,8 +12,7 @@ export class BucketComponent {
 
   @Input() bucket: Bucket;
 
-  constructor(private _router: Router) {
-
+  constructor(private _router: Router) {;
   }
 
   goToBucket(id: number) {
