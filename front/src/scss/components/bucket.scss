@@ -34,7 +34,7 @@
     &:hover {
       background: #fff;
 
-      .bucket-info-item:first-child {
+      .bucket-info-item.title {
         color: $secondary;
       }
     }
@@ -50,7 +50,7 @@
       transition: color 0.125s ease-in-out;
       text-transform: capitalize;
     }
-    &-item:first-child {
+    &-item.title {
       font-weight: bold;
       font-size: 1.3rem;
       text-overflow: ellipsis;
@@ -58,7 +58,7 @@
       white-space: pre-line;
       margin-bottom: 3px;
     }
-    &-item:last-child {
+    &-item.date {
       font-size: 0.8rem;
       text-overflow: ellipsis;
       overflow: hidden;

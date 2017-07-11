@@ -16,7 +16,9 @@ export class BucketComponent {
   }
 
   goToBucket(id: number) {
-    this._router.navigate(["bucket", id]);
+    if (id) {
+      this._router.navigate(["bucket", id]);
+    }
   }
 
 

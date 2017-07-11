@@ -2,6 +2,36 @@
 
 .bucket-container {
   margin-bottom: 20px;
+  &.uncategorized {
+    background: $light-grey;
+    .bucket-info {
+      &:after {
+        display: none;
+      }
+      .bucket-info-item.title {
+        color: $disabled !important;
+      }
+      &:hover {
+        background: inherit;
+        color: inherit !important;
+        .bucket-info-item.title {
+          color: inherit;
+        }
+        &-container, &-item.title, &-item.date, i {
+          cursor: default !important;
+          &:hover {
+            color: inherit !important;
+          }
+        }
+      }
+      &-container, &-item.title, &-item.date, i {
+        cursor: default !important;
+        &:hover {
+          color: inherit !important;
+        }
+      }
+    }
+  }
 }
 
 @media #{$medium-and-down} {
