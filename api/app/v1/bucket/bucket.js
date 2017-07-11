@@ -12,7 +12,8 @@ const
   { getUserFromToken } = require('../auth/auth'),
   { User, Bucket, Link } = require('../../../models'),
   { isSet, setResponse } = require('../../../commons'),
-  scrapper = require('../../../scrapper')
+  scrapper = require('../../../scrapper'),
+  http = require('http')
 
 module.exports = {
   async index(req, res) {
@@ -118,8 +119,7 @@ module.exports = {
         } else {
           const user = getUserFromToken(req.get('authorization')),
             metas = await scrapper(req.body.url).catch(err => {
-              console.error(err.message)
-              return {}
+              setResponse(res, 'INVALID_URL', {})
             })
           try {
             const newLink = await bucket.createLink({
