@@ -12,7 +12,7 @@
 <div class="buckets-container row">
   <core-bucket [bucket]="uncategorizedBucket">
     <div class="links-wrapper links-uncategorized">
-      <ul [ngStyle]="{'border-left': '5px solid ' + uncategorizedBucket?.color}" class="links-container for-bucket-{{uncategorizedBucket?.id}}"
+      <ul class="links-container for-bucket-{{uncategorizedBucket?.id}}"
         [dragula]='"bag-link"' [dragulaModel]='uncategorizedBucket?.Links'>
         <core-link class="link-item link-{{link.id}} link-uncategorized" *ngFor="let link of uncategorizedBucket?.Links" [link]="link"></core-link>
       </ul>

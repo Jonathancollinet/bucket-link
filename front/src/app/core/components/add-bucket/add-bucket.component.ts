@@ -14,6 +14,7 @@ export class AddBucketComponent {
   @Output() hasBeenCreated = new EventEmitter();
 
   createBucket: FormGroup;
+  private _clicked: boolean = false;
 
   constructor(
     private _fb: FormBuilder,
@@ -36,5 +37,5 @@ export class AddBucketComponent {
       this.createBucket.reset();
     } // end valid
   }
-  
+
 }
