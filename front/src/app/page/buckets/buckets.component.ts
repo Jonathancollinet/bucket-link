@@ -35,6 +35,7 @@ export class BucketsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._bucket.setBucketName(null);
     this._bucket.getBuckets().subscribe((response) => {
       let tmp =  response.data;
       this.buckets = [];

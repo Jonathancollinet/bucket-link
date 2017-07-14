@@ -10,12 +10,24 @@ import { SocketService } from './socket.service';
 @Injectable()
 export class BucketService {
 
+  private _bucketName: string | null;
+
   constructor(
     private _http: HttpService,
     private _shared: SharedService,
     private _router: Router,
     private _socket: SocketService
   ) { }
+
+  // LOCAL
+
+  setBucketName(name: string): void {
+    this._bucketName = name;
+  }
+
+  getBucketName(): string {
+    return this._bucketName;
+  }
 
   // GET
 

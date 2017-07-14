@@ -28,6 +28,7 @@ export class BucketComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subBucket = this._bucket.getBucket(this._id).subscribe((resp) => {
       this.bucket = resp.data;
+      this._bucket.setBucketName(this.bucket.name);
       this.filteredLinks = this.bucket.Links;
     })
   }

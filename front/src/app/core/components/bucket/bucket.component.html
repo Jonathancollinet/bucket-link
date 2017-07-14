@@ -1,5 +1,5 @@
 <div class="bucket-container col s12 m6 xl4" [ngClass]="{'uncategorized': !bucket?.id}">
-  <div class="bucket-info">
+  <div class="bucket-info" *ngIf="bucket">
     <div class="bucket-info-container" (click)="goToBucket(bucket.id)">
       <div class="bucket-info-item title">{{ bucket?.name }}</div>
       <div class="bucket-info-item date" *ngIf="bucket?.id">{{ bucket?.createdAt }}</div>

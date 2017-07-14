@@ -96,8 +96,8 @@ export class AddLinkComponent {
   }
 
   public normalizeBucketName(): string {
-    if (this._bucketId === null)  return "UNCATEGORIZED";
-    else return this._bucketId.toString();
+    if (this._bucketId === null || this._bucket.getBucketName() === null)  return "UNCATEGORIZED";
+    else return this._bucket.getBucketName();
   }
 
 }
