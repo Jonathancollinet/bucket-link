@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { DragulaModule } from 'ng2-dragula';
 import { SidebarModule } from 'ng-sidebar';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import {
     TopBarComponent, SpinnerComponent,
@@ -58,6 +59,7 @@ import {
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    ClipboardModule,
     SidebarModule.forRoot(),
     DragulaModule
   ],

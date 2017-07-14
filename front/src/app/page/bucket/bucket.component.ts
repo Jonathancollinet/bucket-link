@@ -17,6 +17,8 @@ export class BucketComponent implements OnInit, OnDestroy {
   public bucket: Bucket;
   public filteredLinks: Array<Link>;
   public subBucket;
+  public filterField: string = '_createdAt';
+  public filterFieldDir: number = -1;
 
   constructor(private route: ActivatedRoute, private _bucket: BucketService) {
     moment.locale('fr');
@@ -26,17 +28,27 @@ export class BucketComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subBucket = this._bucket.getBucket(this._id).subscribe((resp) => {
       this.bucket = resp.data;
+      this._bucket.setBucketName(this.bucket.name);
       this.filteredLinks = this.bucket.Links;
     })
   }
 
-  search(term: string) {
+  public search(term: string) {
     if (!term) this.filteredLinks = this.bucket.Links;
     this.filteredLinks = this.bucket.Links.filter(d => d.title.toLowerCase().indexOf(term.toLowerCase()) >= 0);
   }
 
-  handleCreation(event: any) {
+  public handleCreation(event: any) {
     this.ngOnInit();
+  }
+
+  public changeFilterField(filterName: string): void {
+    this.filterField = filterName;
+    this.reverseFilterDir();
+  }
+
+  public reverseFilterDir(): void {
+    this.filterFieldDir = this.filterFieldDir === 1 ? -1 : 1;
   }
 
   ngOnDestroy() {

@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { BucketService } from '../../services/bucket.service';
 import { Bucket, Link } from '../../models';
 
 @Component({
@@ -12,13 +13,12 @@ export class BucketComponent {
 
   @Input() bucket: Bucket;
 
-  constructor(private _router: Router) {;
+  constructor(private _router: Router, private _bucket: BucketService) {
   }
 
   goToBucket(id: number) {
-    if (id) {
-      this._router.navigate(["bucket", id]);
-    }
+    this._bucket.setBucketName(this.bucket.name);
+    this._router.navigate(["bucket", id]);
   }
 
 

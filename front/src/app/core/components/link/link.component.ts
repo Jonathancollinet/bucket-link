@@ -27,8 +27,13 @@ export class LinkComponent {
   constructor(private _router: Router) {}
 
   public formatDate(link: Link): Link {
+      if (link.setCreated && link.setUpdated) {
+        link.setCreated(link.createdAt);
+        link.setUpdated(link.updatedAt);
+      }
       link.createdAt = moment(link.createdAt).fromNow();
       link.updatedAt = moment(link.updatedAt).fromNow();
+     
       link.dateHasBeenFormated = true;
       return link;
   }

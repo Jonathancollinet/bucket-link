@@ -15,6 +15,8 @@ export class LinksComponent implements OnInit {
   
   public links: Array<Link> = [];
   public filteredLinks: Array<Link>;
+  public filterField: string = '_createdAt';
+  public filterFieldDir: number = -1;
 
   constructor(
     private _router: Router,
@@ -37,7 +39,16 @@ export class LinksComponent implements OnInit {
     });
   }
 
-  search(term: string) {
+  public changeFilterField(filterName: string): void {
+    this.filterField = filterName;
+    this.reverseFilterDir();
+  }
+
+  public reverseFilterDir(): void {
+    this.filterFieldDir = this.filterFieldDir === 1 ? -1 : 1;
+  }
+
+  public search(term: string) {
     if (!term) this.filteredLinks = this.links;
     this.filteredLinks = this.links.filter(d => d.title.toLowerCase().indexOf(term.toLowerCase()) >= 0);
   }
