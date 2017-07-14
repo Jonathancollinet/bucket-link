@@ -3,10 +3,10 @@
   <div class="color-box">{{bucket?.color}}</div>
   <div class="search-container flex-centered">
     <div class="search-container-action">
-      <span class="sort-by-timestamp">
+      <span class="sort-by-timestamp" (click)="changeFilterField('_createdAt')">
           <i class="fa fa-clock-o"></i>
         </span>
-      <span class="sort-by-name">
+      <span class="sort-by-name" (click)="changeFilterField('title')">
           <i class="fa fa-sort-alpha-asc"></i>
         </span>
     </div>
@@ -21,6 +21,6 @@
     </div>
   </div>
   <ul class="links-container" *ngIf="bucket?.Links?.length">
-    <core-link *ngFor="let link of filteredLinks" [link]="link"></core-link>
+    <core-link *ngFor="let link of (filteredLinks | orderBy: {property: filterField, direction: filterFieldDir})" [link]="link"></core-link>
   </ul>
 </div>

@@ -7,6 +7,8 @@
     <div class="link-timestamp">{{_link.createdAt}}</div>
   </div>
   <div class="link-action">
-    <div class="link-copy-url"><i class="fa fa-clone"></i></div>
+    <div class="link-copy-url" ngxClipboard [cbContent]="_link.url">
+      <i class="fa fa-clone"></i>
+    </div>
   </div>
 </div>
