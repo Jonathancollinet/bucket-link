@@ -81,4 +81,12 @@ export class BucketService {
     });
   }
 
+  // DELETE
+
+  deleteBucket(id: number): Observable<any> {
+    return this._http.delete(`/buckets/${id}`).flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
+
 }
