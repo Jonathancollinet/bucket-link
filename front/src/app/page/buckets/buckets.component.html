@@ -20,7 +20,7 @@
   </core-bucket>
   <core-bucket *ngFor="let bucket of buckets | reverse" [bucket]="bucket" (hasBeenDeleted)="handleDeleted($event)" class="col s12 m6 l4 xl3">
     <div class="links-wrapper">
-      <ul [ngStyle]="{'border-left': '5px solid ' + bucket.color}" class="links-container for-bucket-{{bucket.id}}" [dragula]='"bag-link"'
+      <ul class="links-container for-bucket-{{bucket.id}}" [dragula]='"bag-link"'
         [dragulaModel]='bucket.links'>
         <core-link class="link-item link-{{link.id}}" *ngFor="let link of bucket.Links" [link]="link"></core-link>
       </ul>

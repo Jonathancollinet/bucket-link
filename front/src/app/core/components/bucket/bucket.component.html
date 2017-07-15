@@ -1,6 +1,6 @@
 <!-- VIEW mode  -->
-<div class="bucket-container" [ngClass]="{'uncategorized': !bucket?.id}" *ngIf="_mode === 0">
-  <div class="bucket-info" *ngIf="bucket">
+<div class="bucket-container view" [ngClass]="{'uncategorized': !bucket?.id}" *ngIf="_mode === 0">
+  <div class="bucket-info" *ngIf="bucket" [ngStyle]="{'background-color': bucket.color}">
     <div class="bucket-info-container" [ngClass]="{'selected': _selected}" (click)="_selected = !_selected">
       <div class="bucket-info-item title">{{ bucket?.name }}</div>
       <div class="bucket-info-item date" *ngIf="bucket?.id">{{ bucket?.createdAt }}</div>
@@ -13,7 +13,7 @@
   <ng-content></ng-content>
 </div>
 <!-- EDIT mode  -->
-<div class="bucket-container" [ngClass]="{'uncategorized': !bucket?.id}" *ngIf="_mode === 1 && bucket.id > 0">
+<div class="bucket-container edit" [ngClass]="{'uncategorized': !bucket?.id}" *ngIf="_mode === 1 && bucket.id > 0">
   <div class="bucket-info" *ngIf="bucket">
     <div class="bucket-info-container">
       <p>EDIT mode</p>

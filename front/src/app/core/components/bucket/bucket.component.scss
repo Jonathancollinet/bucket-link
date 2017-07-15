@@ -5,12 +5,13 @@
 }
 
 .bucket-container {
-  height: 30vw;
+  height: 25vw;
   min-height: 250px;
-  max-height: 375px;
+  max-height: 355px;
   position: relative;
   margin-bottom: 20px;
   background-color: lightgrey;
+  border-radius: 10px;
 
   .bucket-info {
     margin: 6px 0;
@@ -19,6 +20,7 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
+    color: white;
     transition: background 0.125s ease-in-out;
 
     &-container {
@@ -28,7 +30,6 @@
       display: flex;
       justify-content: center;
       flex-direction: column;
-      border-left: 5px solid $black;
 
       &.selected {
         color: $accent;
@@ -63,6 +64,7 @@
           transform: scaleY(1);
         }
       }
+
     }
     &-item::first-letter {
       transition: color 0.125s ease-in-out;
@@ -80,7 +82,7 @@
     }
     &-item.date {
       font-size: 0.8rem;
-      color: $secondary-text;
+      color: $grey;
     }
     &-action {
       height: 100%;
@@ -99,29 +101,37 @@
         i {
           margin: 0 2px;
           cursor: pointer;
-          color: $primary !important;
-          &:hover {
-            color: $accent !important;
-          }
+          color: $white;
+          // &:hover {
+          //   color: $accent !important;
+          // }
         }
       }
+    }
+  }
+
+    // commponent in edit mode
+  &.edit {
+    & .bucket-info, & .bucket-info .bucket-action i { 
+      color: $primary-text;
     }
   }
 }
 
 // UNCATEGORIZED BUCKET
 .bucket-container.uncategorized {
-  background: $light-grey;
   .bucket-info {
-    border-left: 5px solid $disabled;
+    text-align: center;
+    background-color: $disabled!important;
+    color: white;
     .bucket-info-item.title {
-      color: $disabled !important;
+      color: white;
     }
     &:hover {
       background: inherit;
       color: inherit;
       .bucket-info-item.title {
-        color: inherit;
+         color: white;
       }
       &-container, &-item.title, &-item.date, i {
         cursor: default !important;
@@ -131,6 +141,7 @@
       }
     }
     &-container {
+      width: 100%;
       border: none;
       &:hover {
         color: inherit !important;
