@@ -84,8 +84,8 @@ ng-sidebar-container {
   // }
 
   .ng-sidebar__content {
-    width: calc(100% - #{$sidebar-width});
-    margin-left: $sidebar-width !important;
+    // width: calc(100% - #{$sidebar-width});
+    // margin-left: $sidebar-width !important;
   }
 }
 

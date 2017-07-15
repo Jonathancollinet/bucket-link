@@ -1,5 +1,5 @@
 <!-- VIEW mode  -->
-<div class="bucket-container col s12 m6 l4" [ngClass]="{'uncategorized': !bucket?.id}" *ngIf="_mode === 0">
+<div class="bucket-container" [ngClass]="{'uncategorized': !bucket?.id}" *ngIf="_mode === 0">
   <div class="bucket-info" *ngIf="bucket">
     <div class="bucket-info-container" [ngClass]="{'selected': _selected}" (click)="_selected = !_selected">
       <div class="bucket-info-item title">{{ bucket?.name }}</div>
@@ -13,12 +13,11 @@
   <ng-content></ng-content>
 </div>
 <!-- EDIT mode  -->
-<div class="bucket-container col s12 m6 xl4" [ngClass]="{'uncategorized': !bucket?.id}" *ngIf="_mode === 1 && bucket.id > 0">
+<div class="bucket-container" [ngClass]="{'uncategorized': !bucket?.id}" *ngIf="_mode === 1 && bucket.id > 0">
   <div class="bucket-info" *ngIf="bucket">
     <div class="bucket-info-container">
       <p>EDIT mode</p>
-      <!-- <div class="bucket-info-item title">{{ bucket?.name }}</div>
-      <div class="bucket-info-item date" *ngIf="bucket?.id">{{ bucket?.createdAt }}</div> -->
+      <!-- <div class="bucket-info-item title">{{ bucket?.name }}</div> -->
     </div>
     <div class="bucket-info-action" *ngIf="bucket?.id">
       <div class="bucket-action"><i aria-hidden="true" class="fa fa-edit" (click)="toggleMode()"></i></div>

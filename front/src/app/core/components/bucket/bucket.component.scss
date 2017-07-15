@@ -1,11 +1,16 @@
 @import '~scss/variables';
 
+:host {
+  display: block;
+}
+
 .bucket-container {
   height: 30vw;
-  min-height: 300px;
-  max-height: 500px;
+  min-height: 250px;
+  max-height: 375px;
   position: relative;
   margin-bottom: 20px;
+  background-color: lightgrey;
 
   .bucket-info {
     margin: 6px 0;
@@ -146,7 +151,7 @@
 
 @media #{$extra-large-and-up} {
   .bucket-container {
-    width: 20% !important;
+    // width: 20% !important;
   }
 }
 

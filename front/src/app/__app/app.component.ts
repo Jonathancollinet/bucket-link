@@ -77,7 +77,7 @@ export class AppComponent {
   }
 
    private desktopMode(): void {
-    this._openSidebar();
+    this._closeSidebar();
     this._modeNum = 1;
     this._closeOnClickOutside = false;
     this._showBackdrop = false;
