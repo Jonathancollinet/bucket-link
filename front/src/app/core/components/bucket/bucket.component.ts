@@ -15,6 +15,7 @@ export class BucketComponent {
   @Output() hasBeenDeleted = new EventEmitter();
 
   private _mode: number = 0;
+  private _selected: boolean = false;
 
   constructor(private _router: Router, private _bucket: BucketService) {
   }
