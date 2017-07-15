@@ -5,13 +5,12 @@
   background-color: white;
   border-radius: 5px;
   margin: 0 4px;
-  
+
   &:not(:last-child) {
     margin-bottom: 4px;
   }
 
   .link-container {
-    border-bottom: 1px solid $primary;
     padding: 10px;
     position: relative;
     display: flex;

@@ -1,22 +1,32 @@
 <core-topbar [hidden]="!isAuth()">
-    <div class="burger-icon" (click)="_toggleSidebar()"></div>
-    <div class="topbar-link" (click)="navigateToBuckets()">Buckets</div>
-    <div class="topbar-link" (click)="navigateToLinks()">Links</div>
-    <div *ngIf="isAuth()" (click)="navigateToProfile()" class="topbar-link">
-      <i class="fa fa-user" aria-hidden="true"></i>
-      <span *ngIf="isAuth()">&nbsp;Hello {{_currentUser?.firstname}}!</span>
-    </div>
-    <div *ngIf="isAuth()" (click)="logout()" class="topbar-link logout" (click)="logout()"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M10 2v2h12v16h-12v2h14v-20h-14zm0 7.408l2.963 2.592-2.963 2.592v-1.592h-8v-2h8v-1.592zm-2-4.408v4h-8v6h8v4l8-7-8-7z"/></svg></div>
+  <div class="burger-icon" (click)="_toggleSidebar()"></div>
+  <div title="Buckets" class="topbar-link" (click)="navigateToBuckets()">
+    <svg width="48" height="48" viewBox="0 0 48 48">
+      <path d="m 6,4 4.03,36.47 C 10.26,42.46 11.95,44 14,44 l 20,0 c 2.05,0 3.74,-1.54 3.97,-3.53 L 42,4 Z m 30.65,12 -25.3,0 -0.88,-8 27.07,0 z"
+      />
+    </svg>
+  </div>
+  <div title="Links" class="topbar-link" (click)="navigateToLinks()">
+    <svg width="48" height="48" viewBox="0 0 48 48">
+      <path d="M7.8 24c0-3.42 2.78-6.2 6.2-6.2h8V14h-8C8.48 14 4 18.48 4 24s4.48 10 10 10h8v-3.8h-8c-3.42 0-6.2-2.78-6.2-6.2zm8.2 2h16v-4H16v4zm18-12h-8v3.8h8c3.42 0 6.2 2.78 6.2 6.2s-2.78 6.2-6.2 6.2h-8V34h8c5.52 0 10-4.48 10-10s-4.48-10-10-10z"
+      />
+    </svg>
+  </div>
+  <div *ngIf="isAuth()" (click)="navigateToProfile()" class="topbar-link">
+    <i class="fa fa-user" aria-hidden="true"></i>
+    <span *ngIf="isAuth()">&nbsp;{{_currentUser?.firstname}}</span>
+  </div>
+  <div *ngIf="isAuth()" (click)="logout()" class="topbar-link logout" (click)="logout()">
+    <svg width="24" height="24" viewBox="0 0 24 24">
+      <path d="M10 2v2h12v16h-12v2h14v-20h-14zm0 7.408l2.963 2.592-2.963 2.592v-1.592h-8v-2h8v-1.592zm-2-4.408v4h-8v6h8v4l8-7-8-7z"
+      />
+    </svg>
+  </div>
 </core-topbar>
 <ng-sidebar-container [ngClass]="{'disconnect': getStateStyle()}">
 
-  <ng-sidebar [hidden]="!isAuth()"
-    [(opened)]="_opened"
-    [closeOnClickOutside]="_closeOnClickOutside"
-    [closeOnClickBackdrop]="_closeOnClickBackdrop"
-    [sidebarClass]="setSidebarHidden()"
-    [showBackdrop]="_showBackdrop"
-  >
+  <ng-sidebar [hidden]="!isAuth()" [(opened)]="_opened" [closeOnClickOutside]="_closeOnClickOutside" [closeOnClickBackdrop]="_closeOnClickBackdrop"
+    [sidebarClass]="setSidebarHidden()" [showBackdrop]="_showBackdrop">
     <div class="sidebar-link-container">
       <div class="sidebar-link" (click)="navigateToBuckets()">Buckets</div>
       <div class="sidebar-link" (click)="navigateToLinks()">Links</div>

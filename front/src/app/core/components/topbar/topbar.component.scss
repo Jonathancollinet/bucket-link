@@ -63,7 +63,9 @@
       top: 53px;
       path {
         stroke: $accent !important;
-        transition: all 400ms ease-out;
+        transition: stroke 400ms ease-out,
+                    stroke-dashoffset 400ms ease-out,
+        ;
         stroke-dasharray: 200;
         stroke-dashoffset: 200;
       }
