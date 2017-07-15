@@ -1,25 +1,8 @@
 <div class="add-bucket-action-container">
   <form [formGroup]="createBucket" (ngSubmit)="submitForm(createBucket.value, createBucket.valid)">
     <div class="form-group flex-centered">
-      <div class="colorbox" (click)="_clicked = !_clicked">
-        <div class="colorbox-container" [ngClass]="{'scale': _clicked}">
-          <div class="colorbox-row">
-            <div class="colorbox-item red" title="red"></div>
-            <div class="colorbox-item pink" title="pink"></div>
-            <div class="colorbox-item purple" title="purple"></div>
-            <div class="colorbox-item blue" title="blue"></div>
-            <div class="colorbox-item cyan" title="cyan"></div>
-          </div>
-          <div class="colorbox-row">
-            <div class="colorbox-item green" title="green"></div>
-            <div class="colorbox-item yellow" title="yellow"></div>
-            <div class="colorbox-item orange" title="orange"></div>
-            <div class="colorbox-item brown" title="brown"></div>
-            <div class="colorbox-item grey" title="grey"></div>
-          </div>
-        </div>
-      </div>
-      <input class="form-control" type="color" formControlName="color" value="#000">
+      <core-color-box (colorClicked)="handleColorChosen($event)" [defaultColor]="color"></core-color-box>
+      <!-- <input class="form-control" type="color" formControlName="color" value="#000"> -->
       <input class="form-control" type="text" placeholder="bucket's name" formControlName="name">
       <div class="btn">
         <button type="submit" [disabled]="!createBucket.valid">Create bucket</button>

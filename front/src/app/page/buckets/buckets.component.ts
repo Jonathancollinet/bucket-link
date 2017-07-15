@@ -49,7 +49,11 @@ export class BucketsComponent implements OnInit {
     }, (err) => { console.error('getBuckets', err); });
   }
 
-  handleCreation(): void {
+  public handleCreation(): void {
+    this.ngOnInit();
+  }
+
+  public handleDeleted(): void {
     this.ngOnInit();
   }
 
