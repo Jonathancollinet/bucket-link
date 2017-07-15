@@ -45,11 +45,10 @@ ng-sidebar-container {
       padding: 30px;
       text-align: center;
       width: 100%;
-      transition: all 200ms;
+      transition: color 200ms;
 
       &:hover {
         color: $accent;
-        background: $primary;
       }
     }
 

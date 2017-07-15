@@ -7,11 +7,10 @@
   padding-top: 3.5vw;
 }
 
-.topbar-profile {
-  width: 300px;
+.topbar-link {
   height: 100%;
   transition: all 200ms;
-
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,12 +18,23 @@
   justify-content: center;
   padding: 0 1.5rem;
 
+  i {
+    color: $white;
+  }
   &:hover {
     color: $accent;
     background: $primary;
     i {
       color: $accent;
     }
+    svg {
+      fill: $accent;
+    }
+  }
+
+  svg {
+    fill: $white;
+    transition: fill 0.2s;
   }
 }
 
@@ -35,4 +45,10 @@ ng-sidebar-container {
     }
   }
 
+}
+
+@media #{$medium-and-down} {
+  .topbar-link {
+    display: none !important;
+  }
 }
