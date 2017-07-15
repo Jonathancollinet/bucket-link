@@ -5,6 +5,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { DragulaModule } from 'ng2-dragula'; // Drag-n-Drop
 import { SidebarModule } from 'ng-sidebar'; // Sidebar
 import { ClipboardModule } from 'ngx-clipboard';
+import {ToastyModule} from 'ng2-toasty';
 
 
 /* HOMEMADE */
@@ -27,6 +28,7 @@ import { RoutingModule } from './app.routing';
     DragulaModule,
     SidebarModule.forRoot(),
     ClipboardModule,
+    ToastyModule,
 
     /* HOMEMADE */
     CoreModule,

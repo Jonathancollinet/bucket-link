@@ -75,6 +75,14 @@ export class BucketService {
     });
   }
 
+  // PATCH
+
+  patchBucket(id: number, bucketData: any): Observable<any> {
+     return this._http.patch(`/buckets/${id}`, bucketData).flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
+
   patchLink(id: number, linkData: any): Observable<any> {
     return this._http.patch(`/links/${id}`, linkData).flatMap((data) => {
       return Observable.of(data);

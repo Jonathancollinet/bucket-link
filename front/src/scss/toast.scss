@@ -1,0 +1,145 @@
+/*!
+ * Copyright (C) 2016 Sergey Akopkokhyants
+ * This project is licensed under the terms of the MIT license.
+ * https://github.com/akserg/ng2-toasty
+ *
+ * Include DEFAULT theme
+ */
+#toasty {
+  position: fixed;
+  z-index: 999999;
+  /* Positioning */
+}
+#toasty .close-button:focus {
+  outline: 0;
+}
+#toasty.toasty-position-top-left {
+  top: 12px;
+  left: 12px;
+}
+#toasty.toasty-position-top-right {
+  top: 12px;
+  right: 12px;
+}
+#toasty.toasty-position-bottom-right {
+  bottom: 12px;
+  right: 12px;
+}
+#toasty.toasty-position-bottom-left {
+  bottom: 12px;
+  left: 12px;
+}
+#toasty.toasty-position-top-center {
+  top: 12px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+}
+#toasty.toasty-position-bottom-center {
+  bottom: 12px;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+}
+#toasty.toasty-position-center-center {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%);
+          transform: translate(-50%, 0%);
+}
+#toasty .toast {
+  cursor: pointer;
+  margin: 0 0 6px;
+  padding: 0;
+  width: 285px;
+  height: 65px;
+  display: table;
+  background-size: 24px 24px;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  opacity: 0.9;
+  position: relative;
+}
+#toasty .toast .close-button {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  position: absolute;
+  right: 10px;
+  top: 3px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+#toasty .toast .close-button:hover,
+#toasty .toast .close-button:focus {
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+#toasty .toast .toast-text {
+  padding: 5px 20px 5px 60px;
+  display: table-cell;
+  vertical-align: middle;
+}
+#toasty .toast .toast-text .toast-title {
+  font-weight: bold;
+}
+#toasty .toast .toast-text a:hover,
+#toasty .toast .toast-text label:hover {
+  text-decoration: none;
+}
+
+/*************
+ DEFAULT THEME
+ *************/
+
+#toasty .toast.toasty-theme-default {
+  font-family: Tahoma, Geneva, sans-serif !important;
+  font-size: 12px;
+  border-radius: 0px;
+}
+#toasty .toast.toasty-theme-default .close-button:after {
+  content: 'x';
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 100;
+}
+#toasty .toast.toasty-theme-default .toast-text {
+  color: #ffffff;
+}
+#toasty .toast.toasty-theme-default .toast-text .toast-title {
+  font-size: 13px;
+}
+#toasty .toast.toasty-theme-default .toast-text .toast-msg {
+  /**/
+}
+#toasty .toast.toasty-theme-default .toast-text a,
+#toasty .toast.toasty-theme-default .toast-text label {
+  color: #ffffff;
+}
+#toasty .toast.toasty-theme-default .toast-text a:hover,
+#toasty .toast.toasty-theme-default .toast-text label:hover {
+  color: #f2f2f2;
+}
+#toasty .toast.toasty-theme-default.toasty-type-default {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEEzQTA1RTUzMjJBMTFFNUI4QjZEQkFEN0Q5RUExNzAiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEEzQTA1RTYzMjJBMTFFNUI4QjZEQkFEN0Q5RUExNzAiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0QTNBMDVFMzMyMkExMUU1QjhCNkRCQUQ3RDlFQTE3MCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0QTNBMDVFNDMyMkExMUU1QjhCNkRCQUQ3RDlFQTE3MCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pr4ktvwAAADlSURBVHja7NrRDYIwEIDh1jAAozhKN/BWcgJ0A0dgBEbRCbCNkphaTAsPXpv/kkugELgv5eCh2HmeTQtxMI0EEG3RxQPW2mXT+Tz57JXUevd59XkLO1+9HQY+8x1DOKQ0h2TdCYhTjFjSxXWnekQqaAnJafa+AkjP6xcIECBAgAABAgQIECBAgAABAgQIECC7Y2oB8vB5qR0SEJKakW7Dxc7mtejyj8dpXL13Yn0knLy2LiFapiZnoWfUjtgDEW3NsgUiGru+FCJaX18lELWIEohqRC7kWMOXMa7b8ncQECA/4ynAAPBVcVo7OMcUAAAAAElFTkSuQmCC") !important;
+  background-color: #efefef;
+}
+#toasty .toast.toasty-theme-default.toasty-type-default .close-button:after {
+  color: #000000 !important;
+}
+#toasty .toast.toasty-theme-default.toasty-type-default .toast-text {
+  color: #4b4b4b;
+}
+#toasty .toast.toasty-theme-default.toasty-type-default .toast-text a,
+#toasty .toast.toasty-theme-default.toasty-type-default .toast-text label {
+  color: #4b4b4b;
+}
+#toasty .toast.toasty-theme-default.toasty-type-default .toast-text a:hover,
+#toasty .toast.toasty-theme-default.toasty-type-default .toast-text label:hover {
+  color: #585858;
+}

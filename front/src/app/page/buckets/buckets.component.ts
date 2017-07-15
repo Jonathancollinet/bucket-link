@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import { DragulaService } from 'ng2-dragula';
 
 import { Bucket, Link } from '../../core/models';
-import { BucketService } from '../../core';
+import { BucketService, ToastService } from '../../core';
 import { lightenColor, hexToRGB } from '../../core/const';
 
 @Component({
@@ -22,7 +22,8 @@ export class BucketsComponent implements OnInit {
   constructor(
     private _router: Router,
     private _bucket: BucketService,
-    private _dragula: DragulaService
+    private _dragula: DragulaService,
+    private _toast: ToastService
     ) {
     moment.locale('fr');
     this._dragula.drag.subscribe((value) => {
@@ -50,7 +51,8 @@ export class BucketsComponent implements OnInit {
     }, (err) => { console.error('getBuckets', err); });
   }
 
-  public handleCreation(): void {
+  public handleCreation($event): void {
+    this._toast.displaySuccessToast(`bucket ${$event.name} has been added!`);
     this.ngOnInit();
   }
 

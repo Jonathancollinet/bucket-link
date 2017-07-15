@@ -27,4 +27,5 @@ export { SocketService } from './services/socket.service';
 export { SharedService } from './services/shared.service';
 export { AuthService } from './services/auth.service'; 
 export { BucketService } from './services/bucket.service';
+export { ToastService } from './services/toast.service';
 

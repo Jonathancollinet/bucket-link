@@ -40,7 +40,9 @@ export class AddBucketComponent {
       let tmp = { name: formData.name, color: this.color };
 
       this._bucket.createBucket(tmp).subscribe(
-        (result) => { this.hasBeenCreated.emit(true); },
+        (result) => {
+          this.hasBeenCreated.emit(tmp);
+        },
         (err) => { console.error(err); }
       ); // end subscribe
       this.createBucket.reset();

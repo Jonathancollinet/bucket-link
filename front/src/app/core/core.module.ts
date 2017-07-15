@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { DragulaModule } from 'ng2-dragula';
 import { SidebarModule } from 'ng-sidebar';
 import { ClipboardModule } from 'ngx-clipboard';
+import {ToastyModule} from 'ng2-toasty';
 
 import {
     TopBarComponent, SpinnerComponent,
@@ -19,7 +20,8 @@ import {
     OrderByPipe,
     HttpService, SharedService,
     SocketService, AuthService,
-    BucketService, AuthGuard
+    BucketService, ToastService,
+    AuthGuard
 } from  './index';
 
 @NgModule({
@@ -64,7 +66,8 @@ import {
     HttpModule,
     ClipboardModule,
     SidebarModule.forRoot(),
-    DragulaModule
+    DragulaModule,
+    ToastyModule
   ],
   providers: [
     HttpService,
@@ -72,7 +75,8 @@ import {
     SocketService,
     AuthService,
     AuthGuard,
-    BucketService
+    BucketService,
+    ToastService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
