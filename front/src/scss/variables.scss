@@ -6,8 +6,6 @@ $light-grey: #D3D3D3;
 
 
 $primary:        #3F51B5;
-$primary-color-light:  #C5CAE9;
-$primary-color-text:   #FFFFFF;
 $accent:         #e81e62;
 $primary-text:   #212121;
 $secondary-text: #757575;
@@ -83,7 +81,7 @@ $link-hover-color: red;
 
 // Sidebar
 $sidebar-width: 245px;
-$sidebar-color: $white;
+$sidebar-color: $primary;
 $sidebar-shadow-color: $black;
 
 // Topbar
