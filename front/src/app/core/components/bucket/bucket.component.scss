@@ -2,14 +2,10 @@
 
 .bucket-container {
   height: 30vw;
-  min-height: 303px;
-  width: 100%;
+  min-height: 300px;
+  max-height: 500px;
   position: relative;
   margin-bottom: 20px;
-
-  .bucket-info:hover.bucket-info:after {
-    transform: scaleY(1);
-  }
 
   .bucket-info {
     margin: 6px 0;
@@ -17,57 +13,72 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 12px;
     position: relative;
     transition: background 0.125s ease-in-out;
-    border-left: 5px solid $black;
-
-    &:after {
-      content: "";
-      height: 100%;
-      position: absolute;
-      left: -5px;
-      top: 0;
-
-      border-left: 5px solid $secondary;
-      transition: transform 0.15s ease-in-out;
-      transform: scaleY(0);
-    }
-
-    &:hover {
-      background: #fff;
-
-      .bucket-info-item.title {
-        color: $secondary;
-      }
-    }
 
     &-container {
+      padding: 0 12px;
       width: calc(100% - 60px);
       height: 100%;
       display: flex;
       justify-content: center;
       flex-direction: column;
+      border-left: 5px solid $black;
+
+      &.selected {
+        color: $accent;
+        background: $primary;
+        &:after {
+          transform: scaleY(1);
+        }
+        &:hover {
+          background: $primary !important;
+        }
+      }
+
+      &:after {
+        content: "";
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-left: 5px solid $accent;
+        transition: transform 0.15s ease-in-out;
+        transform: scaleY(0);
+      }
+
+      &:hover {
+        background: #fff;
+
+        .bucket-info-item.title {
+          color: $accent;
+        }
+
+        &:after {
+          transform: scaleY(1);
+        }
+      }
     }
     &-item::first-letter {
       transition: color 0.125s ease-in-out;
       text-transform: capitalize;
     }
-    &-item.title {
-      font-weight: bold;
-      font-size: 1.3rem;
+    &-item.title, &-item.date {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: pre-line;
+    }
+    &-item.title {
+      font-weight: bold;
+      font-size: 1.3rem;
       margin-bottom: 3px;
     }
     &-item.date {
       font-size: 0.8rem;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: pre-line;
+      color: $secondary-text;
     }
     &-action {
+      height: 100%;
       width: 60px;
       color: $black;
       font-size: 1.5rem;
@@ -75,12 +86,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      i {
-        margin: 0 2px;
-        cursor: pointer;
-        color: $primary !important;
-        &:hover {
-          color: $secondary !important;
+
+      .bucket-action {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        i {
+          margin: 0 2px;
+          cursor: pointer;
+          color: $primary !important;
+          &:hover {
+            color: $accent !important;
+          }
         }
       }
     }
@@ -92,9 +109,6 @@
   background: $light-grey;
   .bucket-info {
     border-left: 5px solid $disabled;
-    &:after {
-      display: none;
-    }
     .bucket-info-item.title {
       color: $disabled !important;
     }
@@ -111,12 +125,28 @@
         }
       }
     }
+    &-container {
+      border: none;
+      &:hover {
+        color: inherit !important;
+        background: inherit !important;
+      }
+      &:after {
+        display: none !important;
+      }
+    }
     &-container, &-item.title, &-item.date, i {
       cursor: default !important;
       &:hover {
         color: inherit;
       }
     }
+  }
+}
+
+@media #{$extra-large-and-up} {
+  .bucket-container {
+    width: 20% !important;
   }
 }
 

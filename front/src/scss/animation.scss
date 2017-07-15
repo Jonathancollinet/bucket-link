@@ -26,18 +26,18 @@
 
 @keyframes glitch {
   0% {
-    text-shadow: 1px 2px $primary, 3px 2px $secondary;
+    text-shadow: 1px 2px $primary, 3px 2px $accent;
   }
   25% {
-    text-shadow: -4px -2px $primary, -3px -2px $secondary;
+    text-shadow: -4px -2px $primary, -3px -2px $accent;
   }
   50% {
-    text-shadow: -4px -2px $primary, -3px -2px $secondary;
+    text-shadow: -4px -2px $primary, -3px -2px $accent;
   }
   75% {
-    text-shadow: -4px -2px $primary, -3px -2px $secondary;
+    text-shadow: -4px -2px $primary, -3px -2px $accent;
   }
   100% {
-    text-shadow: 1px 2px $primary, 3px 2px $secondary;
+    text-shadow: 1px 2px $primary, 3px 2px $accent;
   }
 }

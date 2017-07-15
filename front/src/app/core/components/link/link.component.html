@@ -4,7 +4,7 @@
       <div class="link-title">{{_link.title}}</div>
     </a>
     <div class="link-description">{{_link.description | truncate: 20 : '.' }}</div>
-    <div class="link-timestamp">{{_link.createdAt}}</div>
+    <div class="link-date">{{_link.createdAt}}</div>
   </div>
   <div class="link-action">
     <div class="link-copy-url" ngxClipboard [cbContent]="_link.url">

@@ -67,7 +67,7 @@
     box-sizing: border-box;
     padding: 0 $gutter-width / 2;
     min-height: 1px;
-    transition: width .2s ease-in-out, height .2s ease-in-out;
+    transition: width .125s ease-in-out, height .125s ease-in-out;
 
     &[class*="push-"],
     &[class*="pull-"] {

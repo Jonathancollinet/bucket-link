@@ -4,11 +4,18 @@ $white: #F5F5F5;
 $grey: #dcdcdc;
 $light-grey: #D3D3D3;
 
+
+$primary:        #3F51B5;
+$accent:         #e81e62;
+$primary-text:   #212121;
+$secondary-text: #757575;
+$divider-color:        #BDBDBD;
+
 // $primary: #0049b0;
 // $primary: #1A535C;
-$primary: #007b7b;
-// $secondary: $white;
-$secondary: #0094C6;
+// $primary: #3F3047;
+// $accent: $white;
+// $accent: #0094C6;
 // $tercary: #77FF9B;
 // $tercary: #77FF9B;
 
@@ -42,7 +49,7 @@ $medium-screen-up: 993px !default;
 $large-screen-up: 1551px !default;
 $small-screen: 600px !default;
 $medium-screen: 992px !default;
-$large-screen: 1550px !default;
+$large-screen: 1250px !default;
 $medium-and-up: "only screen and (min-width : #{$small-screen-up})" !default;
 $large-and-up: "only screen and (min-width : #{$medium-screen-up})" !default;
 $extra-large-and-up: "only screen and (min-width : #{$large-screen-up})" !default;
@@ -74,10 +81,10 @@ $link-hover-color: red;
 
 // Sidebar
 $sidebar-width: 245px;
-$sidebar-color: $white;
+$sidebar-color: $primary;
 $sidebar-shadow-color: $black;
 
 // Topbar
-$topbar-height: 76px;
+$topbar-height: 65px;
 $brand-title-size: 34px;
 $topbar-border-style: dashed;
