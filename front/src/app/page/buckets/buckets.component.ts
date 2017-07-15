@@ -6,6 +6,7 @@ import { DragulaService } from 'ng2-dragula';
 
 import { Bucket, Link } from '../../core/models';
 import { BucketService } from '../../core';
+import { lightenColor, hexToRGB } from '../../core/const';
 
 @Component({
   selector: 'page-buckets',
@@ -55,6 +56,13 @@ export class BucketsComponent implements OnInit {
 
   public handleDeleted(): void {
     this.ngOnInit();
+  }
+
+  public getGradient(color): string {
+    return hexToRGB(lightenColor(color, .5), .3);
+  }
+  public getBaseColor(color): string {
+    return hexToRGB(color, .1);
   }
 
   public formatDate(date): string {

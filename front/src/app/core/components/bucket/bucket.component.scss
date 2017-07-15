@@ -14,7 +14,7 @@
   border-radius: 10px;
 
   .bucket-info {
-    margin: 6px 0;
+    margin: 6px 0 0;
     height: 56px;
     display: flex;
     align-items: center;
@@ -53,17 +53,17 @@
         transform: scaleY(0);
       }
 
-      &:hover {
-        background: #fff;
+      // &:hover {
+      //   background: #fff;
 
-        .bucket-info-item.title {
-          color: $accent;
-        }
+      //   .bucket-info-item.title {
+      //     color: $accent;
+      //   }
 
-        &:after {
-          transform: scaleY(1);
-        }
-      }
+      //   &:after {
+      //     transform: scaleY(1);
+      //   }
+      // }
 
     }
     &-item::first-letter {
@@ -82,7 +82,7 @@
     }
     &-item.date {
       font-size: 0.8rem;
-      color: $grey;
+      color: white;
     }
     &-action {
       height: 100%;

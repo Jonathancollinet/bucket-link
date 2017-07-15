@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { BucketService } from '../../services/bucket.service';
 import { Bucket, Link } from '../../models';
+import { lightenColor } from '../../const';
 
 @Component({
   selector: 'core-bucket',
@@ -16,8 +17,12 @@ export class BucketComponent {
 
   private _mode: number = 0;
   private _selected: boolean = false;
+  private _color: string;
 
-  constructor(private _router: Router, private _bucket: BucketService) {
+  constructor(
+    private _router: Router,
+    private _bucket: BucketService
+  ) {
   }
 
   public goToBucket(id: number) {
@@ -28,6 +33,10 @@ export class BucketComponent {
   public toggleMode(): void {
     // VIEW // EDIT
     this._mode = this._mode === 0 ? 1 : 0;
+  }
+
+  public changeHoverStyle($event): void {
+    this._color = $event.type == 'mouseover' ? lightenColor(this.bucket.color, 0.1) : this.bucket.color;
   }
 
   public deleteBucket(id: number): void {

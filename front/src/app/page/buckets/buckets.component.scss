@@ -6,7 +6,7 @@
 }
 
 .links-wrapper {
-  height: calc(100% - (56px + (6px * 2)));
+  height: calc(100% - (56px));
   overflow: hidden;
 }
 
@@ -15,6 +15,9 @@
   width: calc(100% + 15px);
   overflow-y: scroll;
   padding-left: 0px;
+  core-link {
+    margin: 8px;
+  }
 }
 
 .buckets-empty {
