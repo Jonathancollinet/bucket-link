@@ -16,11 +16,15 @@
 <div class="bucket-container edit" [ngClass]="{'uncategorized': !bucket?.id}" *ngIf="_mode === 1 && bucket.id > 0">
   <div class="bucket-info" *ngIf="bucket">
     <div class="bucket-info-container">
-      <p>EDIT mode</p>
-      <!-- <div class="bucket-info-item title">{{ bucket?.name }}</div> -->
+      <form [formGroup]="editBucketForm" (ngSubmit)="editBucket(editBucketForm.value, editBucketForm.valid)" #form="ngForm">
+      <div class="form-group flex-centered">
+        <core-color-box (colorClicked)="handleColorChosen(bucket, $event)" [defaultColor]="bucket.color"></core-color-box>
+        <input class="form-control" type="text" placeholder="bucket's name" [value]="bucket.name" formControlName="name">
+      </div>
+      </form>
     </div>
     <div class="bucket-info-action" *ngIf="bucket?.id">
-      <div class="bucket-action"><i aria-hidden="true" class="fa fa-edit" (click)="toggleMode()"></i></div>
+       <div class="bucket-action"><i aria-hidden="true" class="fa fa-check" (click)="editBucket(editBucketForm.value, editBucketForm.valid)"></i></div> 
       <div class="bucket-action"><i aria-hidden="true" class="fa fa-trash-o" (click)="deleteBucket(bucket.id)"></i></div>
     </div>
   </div>

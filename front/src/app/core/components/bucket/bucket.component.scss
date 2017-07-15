@@ -115,6 +115,10 @@
     & .bucket-info, & .bucket-info .bucket-action i { 
       color: $primary-text;
     }
+    input[type="text"] {
+      max-width: 180px;
+      display: block;
+    }
   }
 }
 

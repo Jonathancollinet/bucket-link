@@ -2,7 +2,6 @@
   <form [formGroup]="createBucket" (ngSubmit)="submitForm(createBucket.value, createBucket.valid)">
     <div class="form-group flex-centered">
       <core-color-box (colorClicked)="handleColorChosen($event)" [defaultColor]="color"></core-color-box>
-      <!-- <input class="form-control" type="color" formControlName="color" value="#000"> -->
       <input class="form-control" type="text" placeholder="bucket's name" formControlName="name">
       <div class="btn">
         <button type="submit" [disabled]="!createBucket.valid">Create bucket</button>

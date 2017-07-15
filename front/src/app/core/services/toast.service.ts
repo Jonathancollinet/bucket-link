@@ -15,10 +15,7 @@ export class ToastService {
       title: "Success",
       msg: "empty message",
       showClose: true,
-      timeout: 3500,
-      onAdd: (toast:ToastData) => {
-        console.log('Toast ' + toast.id + ' has been added!');
-      },
+      timeout: 3500
     };
     this.toastErrorOpt = {
       title: "Error",
