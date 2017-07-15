@@ -22,11 +22,11 @@
       width: 20px;
       height: 20px;
       position: absolute;
-      top: 50%;
-      left: 0;
+      top: 28px;
+      left: 30px;
       border-radius: 50%;
       transform: scale(0);
-      transition: all 0.5s ease-in;
+      transition: all 0.5s ease;
       will-change: transform;
       background: $primary;
     }
@@ -35,7 +35,7 @@
       text-shadow: 0 -1px $primary, 0 1px $primary;
 
       &:before {
-        transform: scale(50);
+        transform: scale(22);
       }
 
       .line path {
