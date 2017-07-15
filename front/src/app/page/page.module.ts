@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { DragulaModule } from 'ng2-dragula'; // Drag-n-Drop
 import { SidebarModule } from 'ng-sidebar';
+import { ToastyModule } from 'ng2-toasty';
 
 import { CoreModule } from '../core/core.module';
 import { RoutingModule } from '../app.routing';
@@ -44,6 +45,7 @@ import {
 
     DragulaModule,
     SidebarModule.forRoot(),
+    ToastyModule,
 
     CoreModule,
     RoutingModule
