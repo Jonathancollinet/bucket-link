@@ -29,18 +29,18 @@
       font-size: 28px;
       border: 1px solid $primary;
       border-radius: calc(#{$input-height} / 4);
-
       display: flex;
       align-items: center;
       justify-content: center;
-
-      transition: border-color 0.125ms ease-in-out;
+      transition: border-color 0.125ms ease-in-out,
+                  background 0.125ms ease-in-out;
 
       &:hover {
-        border-color: $secondary;
+        border-color: $accent;
+        background: $primary;
 
         .fa {
-          color: $secondary;
+          color: $accent;
         }
       }
     }

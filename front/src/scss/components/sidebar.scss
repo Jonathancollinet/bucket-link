@@ -35,7 +35,6 @@ ng-sidebar-container {
   overflow: hidden !important;
   width: $sidebar-width;
   background-color: $sidebar-color !important;
-  color: $primary;
   border-right: 2px solid $primary;
 
   .sidebar-link-container {
@@ -46,11 +45,10 @@ ng-sidebar-container {
       text-align: center;
       width: 100%;
       transition: all 200ms;
-      color: $primary;
 
       &:hover {
-        color: $secondary;
-        background: $light-grey;
+        color: $accent;
+        background: $primary;
       }
     }
 

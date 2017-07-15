@@ -19,10 +19,10 @@
   padding: 0 1.5rem;
 
   &:hover {
-    color: $secondary;
-    background: $light-grey;
+    color: $accent;
+    background: $primary;
     i {
-      color: $secondary;
+      color: $accent;
     }
   }
 }

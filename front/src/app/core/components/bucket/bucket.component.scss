@@ -2,7 +2,8 @@
 
 .bucket-container {
   height: 30vw;
-  min-height: 303px;
+  min-height: 300px;
+  max-height: 500px;
   width: 100%;
   position: relative;
   margin-bottom: 20px;
@@ -28,8 +29,7 @@
       position: absolute;
       left: -5px;
       top: 0;
-
-      border-left: 5px solid $secondary;
+      border-left: 5px solid $accent;
       transition: transform 0.15s ease-in-out;
       transform: scaleY(0);
     }
@@ -38,7 +38,7 @@
       background: #fff;
 
       .bucket-info-item.title {
-        color: $secondary;
+        color: $accent;
       }
     }
 
@@ -53,19 +53,19 @@
       transition: color 0.125s ease-in-out;
       text-transform: capitalize;
     }
-    &-item.title {
-      font-weight: bold;
-      font-size: 1.3rem;
+    &-item.title, &-item.date {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: pre-line;
+    }
+    &-item.title {
+      font-weight: bold;
+      font-size: 1.3rem;
       margin-bottom: 3px;
     }
     &-item.date {
       font-size: 0.8rem;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: pre-line;
+      color: $secondary-text;
     }
     &-action {
       width: 60px;
@@ -80,7 +80,7 @@
         cursor: pointer;
         color: $primary !important;
         &:hover {
-          color: $secondary !important;
+          color: $accent !important;
         }
       }
     }
