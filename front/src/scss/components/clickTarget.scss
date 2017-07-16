@@ -1,0 +1,39 @@
+@import '~scss/variables';
+
+.click-target {
+
+  position: relative;
+
+  &:hover {
+    &:before {
+      border-color: $accent !important;
+    }
+    &:after {
+      background: $accent;
+    }
+  }
+
+  &:before, &:after {
+    content: "";
+    transition: border-color 0.2s ease,
+                background 0.2s ease;
+  }
+
+  &:before {
+    width: 24px;
+    height: 24px;
+    border: 3px solid $white;
+    border-radius: 24px;
+    display: block;
+  }
+
+  &:after {
+    width: 7px;
+    height: 7px;
+    border-radius: 7px;
+    background: $white;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
