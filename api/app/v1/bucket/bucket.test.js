@@ -3,6 +3,7 @@
 const
   { User, Bucket, Link } = require('../../../models'),
   { randint } = require('../../../commons'),
+  { bucketColors } = require('../../../config/config.json'),
   resAttributes = require('../../../config/resAtributes.json')
 
 module.exports = async (chai, should, server) => {
@@ -64,7 +65,7 @@ module.exports = async (chai, should, server) => {
         .post('/v1/buckets')
         .send({
           'name': 'Un super bucket!',
-          'color': '#323232'
+          'color': bucketColors[randint(0, bucketColors.length)]
         })
         .set('authorization', token)
         .end((err, res) => {
@@ -104,7 +105,7 @@ module.exports = async (chai, should, server) => {
         .patch(`/v1/buckets/${randBucketId}`)
         .send({
           'name': 'Hey Salut toto!',
-          'color': '#821379'
+          'color': bucketColors[randint(0, bucketColors.length)]
         })
         .set('authorization', token)
         .end((err, res) => {
