@@ -1,4 +1,7 @@
 <div class="link-container">
+  <div class="link-image" *ngIf="_link.image">
+    <img src="{{_link.image}}">
+  </div>
   <div class="link-info">
     <a [href]="_link.url" rel="noopener noreferrer" target="_blank">
       <div class="link-title">{{_link.title}}</div>

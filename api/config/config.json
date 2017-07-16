@@ -17,8 +17,20 @@
     "username": "root",
     "password": "root",
     "database": "bucketlink",
-    "host":"127.0.0.1",
-    "dialect":"mysql",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
     "logging": false
-  }
+  },
+  "bucketColors": [
+    "#f44336",
+    "#e91e63",
+    "#9c27b0",
+    "#2196f3",
+    "#00bcd4",
+    "#4caf50",
+    "#ffeb3b",
+    "#ff9800",
+    "#795548",
+    "#9A9A9A"
+  ]
 }

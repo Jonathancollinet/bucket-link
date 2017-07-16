@@ -37,6 +37,10 @@
   },
   "INVALID_URL": {
     "status": 400,
-    "message": "Invalid url"
+    "message": "Invalid url."
+  },
+  "INVALID_COLOR": {
+    "status": 401,
+    "message": "Invalid bucket color."
   }
 }

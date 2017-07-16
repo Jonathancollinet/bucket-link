@@ -11,7 +11,7 @@
 const
   { getUserFromToken } = require('../auth/auth'),
   { User, Bucket, Link } = require('../../../models'),
-  { isSet, setResponse } = require('../../../commons'),
+  { isSet, setResponse, isValidColor } = require('../../../commons'),
   scrapper = require('../../../scrapper'),
   http = require('http')
 
@@ -90,9 +90,12 @@ module.exports = {
     if (!isSet(req.body.name)) {
       setResponse(res, 'NO_CONTENT')
     } else {
-      const
-      user = getUserFromToken(req.get('authorization')),
+      const user = getUserFromToken(req.get('authorization')),
         userModel = await User.findById(user.id)
+
+      if (!isValidColor(req.body.color)) {
+        return setResponse(res, 'INVALID_COLOR', {})
+      }
       try {
         const bucket = await userModel.createBucket({
           name: req.body.name,
@@ -162,6 +165,9 @@ module.exports = {
     } else {
       const bucket = await Bucket.findById(req.params.bucketId)
 
+      if (!isValidColor(req.body.color)) {
+        return setResponse(res, 'INVALID_COLOR', {})
+      }
       if (!bucket) {
         setResponse(res, 'NOT_FOUND')
       } else {

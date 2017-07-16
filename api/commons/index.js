@@ -1,6 +1,8 @@
 'use strict';
 
-const resAttributes = require('../config/resAtributes.json')
+const 
+  resAttributes = require('../config/resAtributes.json'),
+  { bucketColors } = require('../config/config.json')
 
 module.exports = {
   randint(min, max) {
@@ -27,5 +29,15 @@ module.exports = {
     } else {
       res.json(payload)
     }
+  },
+
+  isValidColor(color) {
+    for (let i = 0, len = bucketColors.length; i < len; i++) {
+      const availableColor = bucketColors[i]
+      if (availableColor === color) {
+        return true
+      }
+    }
+    return false
   }
 }
