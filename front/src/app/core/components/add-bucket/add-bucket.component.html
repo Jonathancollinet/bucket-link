@@ -1,11 +1,17 @@
 <div class="add-bucket-action-container">
-  <form [formGroup]="createBucket" (ngSubmit)="submitForm(createBucket.value, createBucket.valid)">
+  <div class="add-bucket-close" (click)="_open_create = !_open_create">
+    <div [ngClass]="_open_create ? 'close' : 'plus'"></div>
+  </div>
+  <form [formGroup]="createBucket"
+        (ngSubmit)="submitForm(createBucket.value, createBucket.valid)"
+        [ngClass]="{'open-form': _open_create}">
     <div class="form-group flex-centered">
       <core-color-box (colorClicked)="handleColorChosen($event)" [defaultColor]="color"></core-color-box>
-      <input class="form-control" type="text" placeholder="bucket's name" formControlName="name">
+      <input class="form-control" type="text" placeholder="e.g., Music, Tech..." formControlName="name">
       <div class="btn">
-        <button type="submit" [disabled]="!createBucket.valid">Create bucket</button>
+        <button type="submit" [disabled]="!createBucket.valid">Create</button>
       </div>
     </div>
   </form>
+  <ng-content></ng-content>
 </div>
