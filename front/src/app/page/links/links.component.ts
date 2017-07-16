@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as moment from 'moment';
@@ -20,6 +20,7 @@ export class LinksComponent implements OnInit {
 
   constructor(
     private _router: Router,
+    private _zone: NgZone,
     private _bucket: BucketService,
   ) {
      moment.locale('fr');

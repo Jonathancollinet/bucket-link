@@ -31,7 +31,7 @@ export class BucketComponent {
 
   public goToBucket(id: number) {
     this._bucket.setBucketName(this.bucket.name);
-    this._router.navigate(["bucket", id]);
+    if (id > 0) this._router.navigate(["bucket", id]);
   }
 
   public validateChanges(): void {
@@ -58,7 +58,6 @@ export class BucketComponent {
     if (valid) {
       if (formData.name.trim()) {
         let tmp = { name: formData.name, color: this._tmpColor || this.bucket.color };
-        console.log('will change');
         this._bucket.patchBucket(this.bucket.id, tmp).subscribe((resp) => {
           this.bucketEvent.emit(true);
           this.editBucketForm.controls.name.updateValueAndValidity(formData.name);

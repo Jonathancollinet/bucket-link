@@ -2,7 +2,9 @@ import { Component, NgZone, ViewChild, HostListener } from '@angular/core';
 import { Router, NavigationStart  } from '@angular/router';
 
 import { TopBarComponent, SharedService } from '../core';
+import { Bucket } from '../core/models';
 import { AuthService } from '../core/services/auth.service';
+import { BucketService } from '../core/services/bucket.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +13,8 @@ import { AuthService } from '../core/services/auth.service';
 })
 
 export class AppComponent {
+
+  public buckets: Array<Bucket> = [];
 
   private _opened: boolean = false;
   private _disconnected: boolean;
@@ -28,7 +32,8 @@ export class AppComponent {
     private _zone: NgZone,
     private _router: Router,
     private _auth: AuthService,
-    private _shared: SharedService
+    private _shared: SharedService,
+    private _bucket: BucketService,
   ) {
     this.enableResponsive();
 
@@ -43,8 +48,15 @@ export class AppComponent {
         (data)=> {
             this._disconnected = false;
             this._shared.get('currentUser').subscribe(d => this._currentUser = d);
-          }
-      );
+            this._bucket.getBuckets().subscribe((response) => {
+              let tmp =  response.data;
+              this.buckets = [];
+              tmp.forEach((bucket) => {
+                this.buckets.push(new Bucket(bucket.id, bucket.name, bucket.color, bucket.createdAt, bucket.updatedAt, bucket.Links));
+              });
+            }, (err) => { console.error('getBuckets', err); });
+                  }
+          );
     } else {
       this._disconnected = true;
        this._closeSidebar();
@@ -77,7 +89,7 @@ export class AppComponent {
   }
 
    private desktopMode(): void {
-    this._closeSidebar();
+    this._openSidebar();
     this._modeNum = 1;
     this._closeOnClickOutside = false;
     this._showBackdrop = false;
@@ -102,6 +114,10 @@ export class AppComponent {
 
   private _toggleSidebar() {
     this._opened = !this._opened;
+  }
+
+  public navigateToBucket(id: number): void {
+    this._router.navigate(['/bucket', id]);
   }
 
   public navigateToBuckets(): void {

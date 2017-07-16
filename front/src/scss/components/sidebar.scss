@@ -38,6 +38,27 @@ ng-sidebar-container {
   border-right: 2px solid $primary;
   color: $white;
 
+  .bucket-row {
+    line-height: 64px;
+    height: 64px;
+    min-width: 120px;
+    max-width: 180px;
+    padding: 4px;
+    margin: auto;
+    cursor: pointer;
+    .colorbox {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+    }
+    .name {
+      text-transform: uppercase;
+      display: inline-block;
+      vertical-align: super;
+      padding-left: 4px;
+    }
+  }
+
   .sidebar-link-container {
     width: 100%;
 
