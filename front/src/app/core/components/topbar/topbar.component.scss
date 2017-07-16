@@ -100,7 +100,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid $primary;
   }
 }
 
@@ -119,7 +118,7 @@
     height: $topbar-height !important;
   }
   .rest-container {
-    margin-left: $sidebar-width !important;
+    margin-left: $sidebar-width - 2px !important;
   }
 }
 

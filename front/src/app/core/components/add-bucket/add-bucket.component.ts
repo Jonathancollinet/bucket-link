@@ -17,6 +17,7 @@ export class AddBucketComponent {
   public color: string;
   public bucketColors: Array<any> = BUCKET_COLORS;
   public bucketColorsLength: number = this.bucketColors.length;
+  private _open_create: boolean = false;
 
   constructor(
     private _fb: FormBuilder,

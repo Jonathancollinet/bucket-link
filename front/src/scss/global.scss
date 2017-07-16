@@ -6,6 +6,11 @@
   padding: 0;
 }
 
+*::selection {
+  background: $primary;
+  color: $white;
+}
+
 html, body {
   height: 100%;
   width: 100%;
