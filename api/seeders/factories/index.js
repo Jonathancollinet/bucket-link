@@ -1,5 +1,6 @@
 const
   { randint } = require('../../commons'),
+  { bucketColors } = require('../../config/config.json'),
   bcrypt = require('bcrypt-nodejs'),
   faker = require('faker')
 
@@ -16,7 +17,7 @@ module.exports = {
   },
 
   randomLink: ({ buckets, users }) => {
-    const 
+    const
       randomBucketId = buckets[randint(0, buckets.length)].id,
       randomUserId = users[randint(0, users.length)].id
 
@@ -33,13 +34,14 @@ module.exports = {
   },
 
   randomBucket: ({ users }) => {
-    const 
-      randomId = users[randint(0, users.length)].id
+    const
+      randomId = users[randint(0, users.length)].id,
+      numberOfColors = bucketColors.length
 
     return {
       userId: randomId,
       name: faker.lorem.word(),
-      color: faker.internet.color(),
+      color: bucketColors[randint(0, numberOfColors)],
       updatedAt: faker.date.past(2),
       createdAt: faker.date.past(2)
     }
