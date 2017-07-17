@@ -9,7 +9,7 @@
 
   .title-container {
     padding: 0 27px;
-    width: calc($sidebar-width - 2px);
+    width: $sidebar-width;
     height: 100%;
     display: flex;
     align-items: center;
@@ -117,7 +117,7 @@
     height: $topbar-height !important;
   }
   .rest-container {
-    margin-left: $sidebar-width - 2px !important;
+    margin-left: $sidebar-width !important;
   }
 }
 
