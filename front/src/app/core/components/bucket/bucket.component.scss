@@ -167,6 +167,7 @@
 // UNCATEGORIZED BUCKET
 .bucket-container.uncategorized {
   .bucket-info {
+    user-select: none !important;
     text-align: center;
     background-color: $disabled!important;
     color: white;
