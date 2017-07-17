@@ -1,10 +1,10 @@
 @import '~scss/variables';
 
 .container {
-  margin: 0 auto;
-  max-width: 1280px;
-  width: 90%;
-  padding-top: 3.5vw;
+  width: 100%;
+  padding-top: 3vw;
+  padding-left: calc(#{$sidebar-width} + 3vw);
+  padding-right: 3vw;
 }
 
 .topbar-link {
@@ -50,6 +50,10 @@ ng-sidebar-container {
 }
 
 @media #{$medium-and-down} {
+  .container {
+    padding-left: 3vw !important;
+  }
+
   .topbar-link {
     display: none !important;
   }

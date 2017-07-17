@@ -1,6 +1,5 @@
 @import '~scss/variables';
 
-
 .topbar {
   height: $topbar-height;
   background: $primary;
@@ -122,16 +121,16 @@
   }
 }
 
-@media (min-width: $topbar-container-lock) {
-  .topbar {
-    padding-right: 35px;
-  }
-  .rest-container {
-    margin: 0 auto !important;
-    max-width: 1280px;
-    padding: 0 -7px !important;
-  }
-}
+// @media (min-width: $topbar-container-lock) {
+//   .topbar {
+//     padding-right: 35px;
+//   }
+//   .rest-container {
+//     margin: 0 auto !important;
+//     max-width: 1280px;
+//     padding: 0 -7px !important;
+//   }
+// }
 
 @media #{$medium-and-down} {
   .topbar {
