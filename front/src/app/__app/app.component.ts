@@ -2,7 +2,7 @@ import { Component, NgZone, ViewChild, HostListener } from '@angular/core';
 import { Router, NavigationStart  } from '@angular/router';
 
 import { TopBarComponent, SharedService } from '../core';
-import { Bucket } from '../core/models';
+import { Bucket, Link } from '../core/models';
 import { AuthService } from '../core/services/auth.service';
 import { BucketService } from '../core/services/bucket.service';
 
@@ -15,6 +15,8 @@ import { BucketService } from '../core/services/bucket.service';
 export class AppComponent {
 
   public buckets: Array<Bucket> = [];
+  public uncategorizedBucket: Bucket;
+  public uncategorizedLinks: Array<Link>;
 
   private _opened: boolean = false;
   private _disconnected: boolean;
@@ -33,7 +35,7 @@ export class AppComponent {
     private _router: Router,
     private _auth: AuthService,
     private _shared: SharedService,
-    private _bucket: BucketService,
+    private _bucket: BucketService
   ) {
     this.enableResponsive();
 
@@ -55,11 +57,27 @@ export class AppComponent {
                 this.buckets.push(new Bucket(bucket.id, bucket.name, bucket.color, bucket.createdAt, bucket.updatedAt, bucket.Links));
               });
             }, (err) => { console.error('getBuckets', err); });
+            this._bucket.getUncategorizedLinks().subscribe((response) => {
+              this.uncategorizedBucket = new Bucket(0, "UNCATEGORIZED", "#37105f", new Date().toString(), new Date().toString(), response.data);
+            }, (err) => { console.error('getBuckets', err); });
                   }
           );
     } else {
       this._disconnected = true;
        this._closeSidebar();
+    }
+  }
+
+  private onDrop(args) {
+    let [e, newBucketId] = args;
+    let linkId = +[e.className.replace(/[^\d.]/g,'')];
+    newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
+    if (parseInt(newBucketId, 10)) {
+      this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
+      }, (err) => {console.error('patch link')})
+    } else if (newBucketId === 0) {
+      this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
+      }, (err) => {console.error('patch link')})
     }
   }
 
@@ -117,7 +135,10 @@ export class AppComponent {
   }
 
   public navigateToBucket(id: number): void {
-    this._router.navigate(['/bucket', id]);
+    this._zone.run(() => {
+      this._router.navigate(['/bucket', id]);
+      // this._router.navigateByUrl(`/bucket/${id}`);
+    });
   }
 
   public navigateToBuckets(): void {

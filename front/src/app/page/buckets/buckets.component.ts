@@ -16,8 +16,6 @@ import { lightenColor, hexToRGB } from '../../core/const';
 export class BucketsComponent implements OnInit {
 
   buckets: Array<Bucket> = [];
-  uncategorizedBucket: Bucket;
-  uncategorizedLinks: Array<Link>;
 
   constructor(
     private _router: Router,
@@ -45,9 +43,6 @@ export class BucketsComponent implements OnInit {
         bucket.createdAt = this.formatDate(bucket.createdAt);
         this.buckets.push(new Bucket(bucket.id, bucket.name, bucket.color, bucket.createdAt, bucket.updatedAt, bucket.Links));
       });
-    }, (err) => { console.error('getBuckets', err); });
-    this._bucket.getUncategorizedLinks().subscribe((response) => {
-      this.uncategorizedBucket = new Bucket(0, "UNCATEGORIZED", "#37105f", new Date().toString(), new Date().toString(), response.data);
     }, (err) => { console.error('getBuckets', err); });
   }
 

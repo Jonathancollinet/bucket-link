@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 
 /* DEP */
 import { DragulaModule } from 'ng2-dragula'; // Drag-n-Drop
@@ -40,4 +41,8 @@ import { RoutingModule } from './app.routing';
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(router: Router) {
+  }
+}
