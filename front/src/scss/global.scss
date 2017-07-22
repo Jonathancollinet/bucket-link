@@ -24,6 +24,8 @@ html, body {
 
   background: $white;
   color: $primary-text;
+
+  font-size: $font-size;
 }
 
 h1, h2, h3, h4 {
@@ -40,6 +42,24 @@ h2 {
 
 h3 {
   font-size: $global-h3;
+}
+
+$mobile-fontsize-mult: 0.8;
+
+@media #{$small-and-down} {
+
+  h1 {
+    font-size: $global-h1 * $mobile-fontsize-mult;
+  }
+
+  h2 {
+    font-size: $global-h2 * $mobile-fontsize-mult;
+  }
+
+  h3 {
+    font-size: $global-h3 * $mobile-fontsize-mult;
+  }
+
 }
 
 // disable user-select in:
@@ -92,4 +112,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.inline-block {
+  display: inline-block;
 }

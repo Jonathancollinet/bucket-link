@@ -22,7 +22,7 @@
       width: 20px;
       height: 20px;
       position: absolute;
-      top: 28px;
+      top: 38px;
       left: 32px;
       border-radius: 4px;
       transform: scale(0);
@@ -77,8 +77,6 @@
       }
     }
 
-    
-
     .icon {
       width: 35px;
       height: 35px;
@@ -116,10 +114,11 @@
   .title {
     font-size: 26px !important;
     &:before {
-      top: 23px;
-      left: 29px;
+      top: 20px;
+      left: 20px !important;
     }
   }
+
   .line {
     width: 112px !important;
   }

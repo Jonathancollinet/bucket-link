@@ -6,45 +6,87 @@
 }
 
 button {
-    display: inline-block !important;
-    line-height: 37px;
-    height: calc(#{$btn-height} - 2px);
-    background: $primary;
-    color: $white;
-
-    font-size: 16px;
-
-    border: 1px solid $light-grey;
-    border-bottom-width: 4px;
-    border-radius: 17px;
-
-    padding: 0 25px;
-    outline-width: 0 !important;
-
-    transition: background $btn-transition-time, color $btn-transition-time;
-
+  min-width: 210px;
+  padding: 0.95rem 1.5rem;
+  border: none;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  overflow:hidden;
+  transition: .3s;
+  background: $primary;
+  color: $white;
+  user-select: none;
+  font-size: 16px;
+  outline-width: 0 !important;
+  &:after {
+    position: absolute;
+    transition: .3s;
+    content: '';
+    width: 0;
+    bottom: 0;
+    height: 4px;
+    background: $accent;
+    right: 0;
+    left: auto;
+  }
+  &:hover {
+    &:after {
+      width: 100%;
+      left: 0;
+    }
+  }
+  &:disabled {
+    background: $light-grey;
+    cursor: not-allowed !important;
+    color: $disabled;
+    border-color: $disabled;
     &:hover {
-        transform: translateY(1px) !important;
-        border-bottom-width: 3px !important;
-        height: calc(#{$btn-height} - 3px) !important;
+      transform: none !important;
+      &:after {
+        content: none !important;
+      }
     }
-
-    &:active {
-        transform: translateY(4px) !important;
-        border-bottom-width: 1px !important;
-        height: calc(#{$btn-height} - 5px) !important;
-        line-height: calc(#{$btn-height} - 7px) !important;
-    }
-
-    &:disabled {
-        background: $light-grey;
-        cursor: not-allowed !important;
-        color: $disabled;
-        border-color: $disabled;
-        height: calc(#{$btn-height} - 2px) !important;
-        &:hover {
-            transform: none !important;
-            border-bottom-width: 4px !important;
-        }
-    }
+  }
 }
+
+// button {
+//     line-height: 37px;
+//     height: calc(#{$btn-height} - 2px);
+//     background: $primary;
+//     color: $white;
+
+
+//     border: 1px solid $light-grey;
+//     border-bottom-width: 4px;
+//     border-radius: 17px;
+
+//     padding: 0 25px;
+
+//     transition: background $btn-transition-time, color $btn-transition-time;
+
+//     &:hover {
+//         transform: translateY(1px) !important;
+//         border-bottom-width: 3px !important;
+//         height: calc(#{$btn-height} - 3px) !important;
+//     }
+
+//     &:active {
+//         transform: translateY(4px) !important;
+//         border-bottom-width: 1px !important;
+//         height: calc(#{$btn-height} - 5px) !important;
+//         line-height: calc(#{$btn-height} - 7px) !important;
+//     }
+
+//     &:disabled {
+//         background: $light-grey;
+//         cursor: not-allowed !important;
+//         color: $disabled;
+//         border-color: $disabled;
+//         height: calc(#{$btn-height} - 2px) !important;
+//         &:hover {
+//             transform: none !important;
+//             border-bottom-width: 4px !important;
+//         }
+//     }
+// }
