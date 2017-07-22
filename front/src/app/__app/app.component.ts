@@ -21,6 +21,7 @@ export class AppComponent {
   private _opened: boolean = false;
   private _disconnected: boolean;
   public _layout = 0;
+  public classAuthState: string = 'AuthOFF';
   private _currentUser;
   private _closeOnClickOutside: boolean = false;
   private _closeOnClickBackdrop: boolean = true;
@@ -49,6 +50,7 @@ export class AppComponent {
       this._auth.pingAuth().subscribe(
         (data)=> {
             this._disconnected = false;
+            this.setAuthStateCSSClass('AuthON');
             this._shared.get('currentUser').subscribe(d => this._currentUser = d);
             this._bucket.getBuckets().subscribe((response) => {
               let tmp =  response.data;
@@ -64,6 +66,7 @@ export class AppComponent {
           );
     } else {
       this._disconnected = true;
+      this.setAuthStateCSSClass('AuthOFF');
        this._closeSidebar();
     }
   }
@@ -97,12 +100,22 @@ export class AppComponent {
     });
   }
 
+  public setAuthStateCSSClass(state): void {
+    document.body.className = state;
+    this.classAuthState = state;
+  }
+
+  public getAuthStateCSSClass(): string {
+    return this.classAuthState;
+  }
+
   public isAuth(): boolean {
     return this._auth.isLoggedIn();
   }
 
   public logout(): void {
     this._disconnected = true;
+    this.setAuthStateCSSClass('AuthOFF');
     this._auth.logout().subscribe();
   }
 
@@ -135,10 +148,9 @@ export class AppComponent {
   }
 
   public navigateToBucket(id: number): void {
-    this._zone.run(() => {
-      this._router.navigate(['/bucket', id]);
-      // this._router.navigateByUrl(`/bucket/${id}`);
-    });
+    var currentUrl = `/bucket/${id}`;
+    var refreshUrl = currentUrl.indexOf(`/bucket${id}`) > -1 ? `/bucket${id}` : `/buckets`;
+    this._router.navigateByUrl(refreshUrl).then(() => this._router.navigateByUrl(currentUrl));
   }
 
   public navigateToBuckets(): void {

@@ -28,7 +28,7 @@ export class BucketComponent implements OnInit, OnDestroy {
   ) {
     moment.locale('fr');
     this._id = +[window.location.pathname.split('/').pop()]; // convert string to number
-    console.log('hey')
+    console.log('bucket ID: %s', this._id);
   }
 
   ngOnInit() {

@@ -56,14 +56,14 @@ export class AddLinkComponent {
       if (bucketID !== null) {
         this._bucket.createLinkInBucket(bucketID, linkData).subscribe((resp) => {
         console.log('resp', resp);
-        this.hasBeenCreated.emit(true);
+        this.hasBeenCreated.emit(bucketID);
         this.createLink.reset();
         this.createLink.controls.bucketId.updateValueAndValidity(this.determineBucketID());
       }, (err) => { console.error(err); })
       } else {
         this._bucket.createLink(linkData).subscribe((resp) => {
         console.log('resp', resp);
-        this.hasBeenCreated.emit(true);
+        this.hasBeenCreated.emit(0);
         this.createLink.reset();
         this.createLink.controls.bucketId.updateValueAndValidity(this.determineBucketID());
         }, (err) => { console.error(err); })

@@ -37,7 +37,7 @@
 
       <div *ngFor="let bucket of buckets" class="bucket-row col s12" (click)="navigateToBucket(bucket.id)">
         <span class="colorbox" [ngStyle]="{'background-color': bucket.color}"></span>
-        <span class="name">{{bucket.name}}</span>
+        <span class="name">{{bucket.name}} ({{bucket?.Links.length}})</span>
       </div>
 
       <div *ngIf="isAuth()" (click)="logout()" class="sidebar-link logout" (click)="logout()">Logout</div>
@@ -48,7 +48,7 @@
   <div class="container" ng-sidebar-content>
 
     <!-- RIBBON  -->
-    <div class="ribbon-sidebar-container">
+    <div class="ribbon-sidebar-container" *ngIf="_disconnected">
       <div class="ribbon-container">
          <div class="links-wrapper links-uncategorized">
             <ul class="links-container for-bucket-{{uncategorizedBucket?.id}}"

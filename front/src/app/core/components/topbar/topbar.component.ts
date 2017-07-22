@@ -21,8 +21,12 @@ export class TopBarComponent {
         else this._router.navigate(['/home']);
     }
 
-    public handleCreation(): void {
-
+    public handleCreation($event: any): void {
+        console.log('event 0 ', event);
+        var currentUrl = $event === 0 ? '/buckets' : $event;
+        console.log('event 1 ', event);
+        // var refreshUrl = currentUrl.indexOf(myUrl) > -1 ? myUrl : currentUrl;
+        // this._router.navigateByUrl(refreshUrl).then(() => this._router.navigateByUrl(currentUrl));
     }
 
     public focusAddInput(): void {

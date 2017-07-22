@@ -20,7 +20,6 @@ export class LinkComponent {
       if (!link.dateHasBeenFormated) {
         link = this.formatDate(link);
       }
-      console.log('link', link)
       this._link = link;
     }
   }

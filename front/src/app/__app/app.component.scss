@@ -17,8 +17,10 @@
   right: 0;
   top: 0;
   bottom: 0;
-  width: 150px;
-  background-color: darkgray;
+  .ribbon-container {
+    width: 150px;
+    background-color: darkgray;
+  }
 }
 
 .links-container {

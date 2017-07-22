@@ -31,7 +31,7 @@ export class BucketComponent {
 
   public goToBucket(id: number) {
     this._bucket.setBucketName(this.bucket.name);
-    if (id > 0) this._router.navigate(["bucket", id]);
+    if (id > 0) this._router.navigate(["/bucket", id]);
   }
 
   public validateChanges(): void {
