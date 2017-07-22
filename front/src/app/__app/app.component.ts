@@ -49,10 +49,10 @@ export class AppComponent {
     if (localStorage.getItem('tkn')) {
       this._auth.pingAuth().subscribe(
         (data)=> {
-            this._disconnected = false;
             this.setAuthStateCSSClass('AuthON');
             this._shared.get('currentUser').subscribe(d => this._currentUser = d);
             this._bucket.getBuckets().subscribe((response) => {
+              this._disconnected = false;
               let tmp =  response.data;
               this.buckets = [];
               tmp.forEach((bucket) => {

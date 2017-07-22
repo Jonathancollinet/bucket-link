@@ -48,7 +48,7 @@
   <div class="container" ng-sidebar-content>
 
     <!-- RIBBON  -->
-    <div class="ribbon-sidebar-container" *ngIf="_disconnected">
+    <div class="ribbon-sidebar-container" *ngIf="!_disconnected">
       <div class="ribbon-container">
          <div class="links-wrapper links-uncategorized">
             <ul class="links-container for-bucket-{{uncategorizedBucket?.id}}"

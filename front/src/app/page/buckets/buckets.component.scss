@@ -2,6 +2,7 @@
 
 .buckets-container {
   height: 100%;
+  margin-bottom: $ribon-sidebar-height;
 }
 
 .links-wrapper {
@@ -27,3 +28,10 @@
   justify-content: center;
   flex-direction: column;
 }
+
+@media #{$extra-large-and-up} {
+  .buckets-container {
+    margin-bottom: inherit !important;
+  }
+}
+

@@ -9,31 +9,31 @@ $primary:        #3F51B5;
 $accent:         #e81e62;
 $primary-text:   #212121;
 $secondary-text: #757575;
-$divider-color:        #BDBDBD;
+$divider-color:  #BDBDBD;
 
-// $primary: #0049b0;
-// $primary: #1A535C;
-// $primary: #3F3047;
-// $accent: $white;
-// $accent: #0094C6;
-// $tercary: #77FF9B;
-// $tercary: #77FF9B;
+// $primary:  #0049b0;
+// $primary:  #1A535C;
+// $primary:  #3F3047;
+// $accent:   $white;
+// $accent:   #0094C6;
+// $tercary:  #77FF9B;
+// $tercary:  #77FF9B;
 
 // Contextual colors
 $disabled: #9A9A9A;
 $error: red;
 
 // color input
-$color-box-red: #f44336;
-$color-box-pink: #e91e63;
-$color-box-purple: #9c27b0;
-$color-box-blue: #2196f3;
-$color-box-cyan: #00bcd4;
-$color-box-green: #4caf50;
-$color-box-yellow: #f1c40f;
-$color-box-orange: #ff9800;
-$color-box-brown: #795548;
-$color-box-grey: $disabled;
+$color-box-red:     #f44336;
+$color-box-pink:    #e91e63;
+$color-box-purple:  #9c27b0;
+$color-box-blue:    #2196f3;
+$color-box-cyan:    #00bcd4;
+$color-box-green:   #4caf50;
+$color-box-yellow:  #f1c40f;
+$color-box-orange:  #ff9800;
+$color-box-brown:   #795548;
+$color-box-grey:      $disabled;
 
 // Global
 $global-h1: 36px;
@@ -76,8 +76,7 @@ $btn-transition-time: 0.2s;
 $btn-height: $input-height;
 
 // Links
-$link-color: green;
-$link-hover-color: red;
+$link-color: #338fff;
 
 // Sidebar
 $sidebar-width: 245px;
@@ -86,6 +85,14 @@ $sidebar-shadow-color: $black;
 
 // Topbar
 $topbar-height: 65px;
-$brand-title-size: 34px;
+$brand-title-size: 30px;
 $topbar-border-style: dashed;
 $topbar-container-lock: 1795px;
+
+// scroll bar
+$scrollbar-default-width: 15px;
+
+// Ribon sidebar
+$ribon-sidebar-width: 250px;
+$ribon-sidebar-height: 200px;
+
