@@ -13,17 +13,19 @@
 }
 
 .ribbon-sidebar-container {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 150px;
+  position: fixed;
   background-color: darkgray;
+  z-index: 30;
+  bottom: 0;
+  height: $ribon-sidebar-height;
+  width: calc(100% - #{$sidebar-width} - 6vw - #{$scrollbar-default-width});
+  right: calc(3vw + #{$scrollbar-default-width});
+  left: calc(#{$sidebar-width} + 3vw);
 }
 
 .links-container {
   height: 100%;
-  width: calc(100% + 15px);
+  width: calc(100% + #{$scrollbar-default-width});
   overflow-y: scroll;
   padding-left: 0px;
   core-link {
@@ -73,9 +75,29 @@ ng-sidebar-container {
 
 }
 
+@media #{$extra-large-and-up} {
+  .container {
+    width: calc(100% - #{$ribon-sidebar-width});
+  }
+
+  .ribbon-sidebar-container {
+    right: $scrollbar-default-width;
+    top: $topbar-height;
+    bottom: 0;
+    left: inherit;
+    width: $ribon-sidebar-width;
+    height: calc(100% - #{$topbar-height});
+  }
+}
+
 @media #{$medium-and-down} {
   .container {
     padding-left: 3vw !important;
+  }
+
+  .ribbon-sidebar-container {
+    left: 3vw;
+    width: calc(100% - 6vw - #{$scrollbar-default-width});
   }
 
   .topbar-link {
