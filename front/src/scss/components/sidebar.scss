@@ -8,10 +8,9 @@ ng-sidebar-container {
 .burger-icon {
   display: none;
   background: transparent;
-  border: 0.15rem solid ;
+  border: 3px solid;
   border-left: 0;
   border-right: 0;
-
   font-size: 0;
   height: 1.3rem;
   margin-right: 1rem;
@@ -22,7 +21,7 @@ ng-sidebar-container {
   &::after {
     background: $white;
     content: '';
-    height: 0.15rem;
+    height: 3px;
     left: 0;
     margin-top: -0.075rem;
     position: absolute;
