@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 import * as moment from 'moment';
@@ -20,9 +21,14 @@ export class BucketComponent implements OnInit, OnDestroy {
   public filterField: string = '_createdAt';
   public filterFieldDir: number = -1;
 
-  constructor(private route: ActivatedRoute, private _bucket: BucketService) {
+  constructor(
+    private route: ActivatedRoute,
+    private _bucket: BucketService,
+    private _router: Router
+  ) {
     moment.locale('fr');
     this._id = +[window.location.pathname.split('/').pop()]; // convert string to number
+    console.log('hey')
   }
 
   ngOnInit() {

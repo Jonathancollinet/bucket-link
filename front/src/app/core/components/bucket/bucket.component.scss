@@ -207,6 +207,13 @@
   }
 }
 
+@media (min-width: 2000px) { :host { width: 20% !important; } }
+@media (min-width: 2300px) { :host { width: 16.66% !important; } }
+@media (min-width: 2600px) { :host { width: 14.28% !important; } }
+@media (min-width: 2900px) { :host { width: 12.5% !important; } }
+@media (min-width: 3200px) { :host { width: 11.11% !important; } }
+@media (min-width: 3600px) { :host { width: 10% !important; } }
+
 @media #{$medium-and-down} {
   .bucket-container {
     height: 30vh;

@@ -1,3 +1,4 @@
+<!-- TOP-BAR  -->
 <core-topbar [hidden]="!isAuth()">
   <div class="burger-icon" (click)="_toggleSidebar()"></div>
   <div title="Buckets" class="topbar-link" (click)="navigateToBuckets()">
@@ -23,8 +24,11 @@
     </svg>
   </div>
 </core-topbar>
+
+
 <ng-sidebar-container [ngClass]="{'disconnect': getStateStyle()}">
 
+  <!-- SIDEBAR  -->
   <ng-sidebar [hidden]="!isAuth()" [(opened)]="_opened" [closeOnClickOutside]="_closeOnClickOutside" [closeOnClickBackdrop]="_closeOnClickBackdrop"
     [sidebarClass]="setSidebarHidden()" [showBackdrop]="_showBackdrop">
     <div class="sidebar-link-container">
@@ -40,9 +44,23 @@
     </div>
   </ng-sidebar>
 
-  <!-- Page content -->
+  <!-- PAGE -->
   <div class="container" ng-sidebar-content>
+
+    <!-- RIBBON  -->
+    <div class="ribbon-sidebar-container">
+      <div class="ribbon-container">
+         <div class="links-wrapper links-uncategorized">
+            <ul class="links-container for-bucket-{{uncategorizedBucket?.id}}"
+              [dragula]='"bag-link"' [dragulaModel]='uncategorizedBucket?.Links'>
+              <core-link class="link-item link-{{link.id}} link-uncategorized" *ngFor="let link of uncategorizedBucket?.Links" [link]="link"></core-link>
+            </ul>
+          </div>
+      </div>
+    </div>
+
     <router-outlet></router-outlet>
     <ng2-toasty [position]="'bottom-right'"></ng2-toasty>
   </div>
+
 </ng-sidebar-container>

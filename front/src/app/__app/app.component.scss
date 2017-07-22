@@ -7,6 +7,30 @@
   padding-right: 3vw;
 }
 
+.links-wrapper {
+  height: calc(100% - (56px));
+  overflow: hidden;
+}
+
+.ribbon-sidebar-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  background-color: darkgray;
+}
+
+.links-container {
+  height: 100%;
+  width: calc(100% + 15px);
+  overflow-y: scroll;
+  padding-left: 0px;
+  core-link {
+    margin: 8px;
+  }
+}
+
 .topbar-link {
   height: 100%;
   transition: all 200ms;
