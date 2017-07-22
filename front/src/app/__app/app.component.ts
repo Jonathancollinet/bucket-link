@@ -5,6 +5,7 @@ import { TopBarComponent, SharedService } from '../core';
 import { Bucket, Link } from '../core/models';
 import { AuthService } from '../core/services/auth.service';
 import { BucketService } from '../core/services/bucket.service';
+import { BUCKET_COLORS } from '../core/const';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ export class AppComponent {
   private _opened: boolean = false;
   private _disconnected: boolean;
   public _layout = 0;
+  public selectedBucket: Bucket;
   public classAuthState: string = 'AuthOFF';
   private _currentUser;
   private _closeOnClickOutside: boolean = false;
@@ -41,6 +43,13 @@ export class AppComponent {
     this.enableResponsive();
 
     this._router.events.subscribe(event => {
+      if  (event instanceof NavigationStart) {
+        if (event.url.indexOf('/bucket/') > -1) {
+          this.selectedBucket = this.buckets[event.url.split('/').pop()]
+        } else {
+          this.selectedBucket = null;
+        }
+      }
       if  (event instanceof NavigationStart && this._layout) {
         this._closeSidebar();
       }
@@ -68,6 +77,18 @@ export class AppComponent {
       this._disconnected = true;
       this.setAuthStateCSSClass('AuthOFF');
        this._closeSidebar();
+    }
+  }
+
+  private getSelectedBucketcolor() {
+    return this._shared.getData('selectedBucketColor');
+  }
+
+  private getBucketByID(id: number): Bucket {
+      for (var i=0; i < this.buckets.length; i++) {
+        if (this.buckets[i].id === id) {
+            return this.buckets[i];
+        }
     }
   }
 
@@ -148,12 +169,14 @@ export class AppComponent {
   }
 
   public navigateToBucket(id: number): void {
+    this._shared.setData('selectedBucketColor', this.getBucketByID(id).color);
     var currentUrl = `/bucket/${id}`;
     var refreshUrl = currentUrl.indexOf(`/bucket${id}`) > -1 ? `/bucket${id}` : `/buckets`;
     this._router.navigateByUrl(refreshUrl).then(() => this._router.navigateByUrl(currentUrl));
   }
 
   public navigateToBuckets(): void {
+    this._shared.setData('selectedBucketColor', BUCKET_COLORS[0].code);
       this._router.navigate(['/buckets']);
   }
 

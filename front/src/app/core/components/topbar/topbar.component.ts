@@ -1,4 +1,4 @@
-import { Component, forwardRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, forwardRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AddLinkComponent } from '../../';
@@ -10,6 +10,8 @@ import { AuthService } from '../../services/auth.service';
     styleUrls: ['./topbar.component.scss']
 })
 export class TopBarComponent {
+
+    @Input() selectedBucketColor: any;
 
     // forwardRef can help with circular dependency when Nested View Child
     @ViewChild(forwardRef(() => AddLinkComponent)) private addLink: AddLinkComponent;
@@ -31,6 +33,10 @@ export class TopBarComponent {
 
     public focusAddInput(): void {
         this.addLink.focusAddLinkInputElement();
+    }
+
+    public getColor() {
+        return this.selectedBucketColor;
     }
 
 }

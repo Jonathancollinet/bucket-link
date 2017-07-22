@@ -31,6 +31,27 @@
       background: $accent;
     }
 
+    .line {
+      position: absolute;
+      left: 67px;
+      top: 53px;
+      width: 132px;
+      path {
+        stroke: $accent;
+        transition: stroke 400ms ease-out,
+                    stroke-dashoffset 400ms ease-out;
+        stroke-dasharray: 200;
+        stroke-dashoffset: 200;
+      }
+    }
+
+    .icon {
+        transform: rotateZ(-25deg) scale(1.1);
+        path {
+            fill: white;
+        }
+      }
+
     &:hover {
       text-shadow: 0 -1px $primary, 0 1px $primary;
 
@@ -40,7 +61,7 @@
       }
 
       .line path {
-        stroke: $primary !important;
+        stroke: $primary;
         stroke-dashoffset: 0;
       }
 
@@ -51,24 +72,12 @@
       .icon {
         transform: rotateZ(-25deg) scale(1.1);
         path {
-            fill: $primary !important;
+            fill: $primary;
         }
       }
     }
 
-    .line {
-      position: absolute;
-      left: 67px;
-      top: 53px;
-      width: 132px;
-      path {
-        stroke: $accent !important;
-        transition: stroke 400ms ease-out,
-                    stroke-dashoffset 400ms ease-out;
-        stroke-dasharray: 200;
-        stroke-dashoffset: 200;
-      }
-    }
+    
 
     .icon {
       width: 35px;
@@ -79,16 +88,16 @@
 
       path {
         transition: fill 0.4s;
-        fill: $accent !important;
+        fill: white;
       }
     }
 
     .title {
       font-size: $brand-title-size;
       transition: color 0.4s;
-      color: $accent;
+      color: white;
       display: inline-block;
-      margin-left: 5px;
+      margin-left: 8px;
       position: relative;
     }
   }
@@ -100,6 +109,7 @@
     justify-content: space-between;
     align-items: center;
   }
+
 }
 
 @media #{$small-and-down} {

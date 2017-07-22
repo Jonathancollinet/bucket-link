@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BucketService } from '../../services/bucket.service';
+import { BUCKET_COLORS } from '../../const';
 
 @Component({
   selector: 'core-add-link',
@@ -14,6 +15,7 @@ export class AddLinkComponent {
   private _focus: boolean = false;
 
   @Input() public _bucketId: number;
+  @Input() public bucketColor: string;
   private _bucketName: string;
   @ViewChild('addLink') addInput;
   @Output() hasBeenCreated = new EventEmitter();
@@ -80,7 +82,15 @@ export class AddLinkComponent {
 
   public focusAddLinkInputElement() {
     this.addInput.nativeElement.focus();
+    console.log('color',  this.getBucketBorderColor());
     return true;
+  }
+
+  public getBucketBorderColor(): string {
+    if (this._bucketId || this.bucketColor) {
+      console.log('getBucketBorderColor', this._bucketId, this.bucketColor);
+      return this._bucketId ? this.bucketColor : BUCKET_COLORS[0].code;
+    }
   }
 
   public determineBucketID(): number | null {
