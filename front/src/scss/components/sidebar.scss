@@ -46,6 +46,7 @@ ng-sidebar-container {
     &:hover {
       font-weight: bold;
       .colorbox:after {
+        background: transparent;
         transform: scaleX(14) scaleY(4);
       }
     }
@@ -60,7 +61,8 @@ ng-sidebar-container {
         position: absolute;
         z-index: -1;
         content: "";
-        transition: 0.15s ease;
+        transition: transform 0.3s ease,
+                    background 0.2s ease;
         background: inherit;
         transform: scaleX(1) scaleY(1);
       }
