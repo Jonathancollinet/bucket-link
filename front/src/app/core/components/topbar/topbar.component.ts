@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { AddLinkComponent } from '../../';
 import { AuthService } from '../../services/auth.service';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
     selector: 'core-topbar',
@@ -11,12 +12,12 @@ import { AuthService } from '../../services/auth.service';
 })
 export class TopBarComponent {
 
-    @Input() selectedBucketColor: any;
+    public selectedBucketColor: any;
 
     // forwardRef can help with circular dependency when Nested View Child
     @ViewChild(forwardRef(() => AddLinkComponent)) private addLink: AddLinkComponent;
 
-    constructor(private _router: Router, private _auth: AuthService) {}
+    constructor(private _router: Router, private _auth: AuthService, private _shared: SharedService) {}
 
     public navigateToHome(): void {
         if (this._auth.isLoggedIn()) this._router.navigate(['/buckets']);
@@ -32,11 +33,8 @@ export class TopBarComponent {
     }
 
     public focusAddInput(): void {
+        this.addLink.getBucketBorderColor();
         this.addLink.focusAddLinkInputElement();
-    }
-
-    public getColor() {
-        return this.selectedBucketColor;
     }
 
 }

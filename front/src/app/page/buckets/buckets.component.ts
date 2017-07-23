@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { DragulaService } from 'ng2-dragula';
 
+import { BUCKET_COLORS } from '../../core/const';
 import { Bucket, Link } from '../../core/models';
-import { BucketService, ToastService } from '../../core';
+import { BucketService, ToastService, SharedService } from '../../core';
 import { lightenColor, hexToRGB } from '../../core/const';
 
 @Component({
@@ -21,7 +22,8 @@ export class BucketsComponent implements OnInit {
     private _router: Router,
     private _bucket: BucketService,
     private _dragula: DragulaService,
-    private _toast: ToastService
+    private _toast: ToastService,
+    private _shared: SharedService
     ) {
     moment.locale('fr');
     this._dragula.drag.subscribe((value) => {
@@ -39,6 +41,7 @@ export class BucketsComponent implements OnInit {
     this._bucket.setBucketName(null);
     this._bucket.getBuckets().subscribe((response) => {
       let tmp =  response.data;
+      this._shared.setData('selectedBucketColor', BUCKET_COLORS[0].code);
       this.buckets = [];
       tmp.forEach((bucket) => {
         bucket.createdAt = this.formatDate(bucket.createdAt);

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BucketService } from '../../services/bucket.service';
+import { SharedService } from '../../services/shared.service';
 import { BUCKET_COLORS } from '../../const';
 
 @Component({
@@ -15,7 +16,7 @@ export class AddLinkComponent {
   private _focus: boolean = false;
 
   @Input() public _bucketId: number;
-  @Input() public bucketColor: string;
+  public selectedBucketColor: any;
   private _bucketName: string;
   @ViewChild('addLink') addInput;
   @Output() hasBeenCreated = new EventEmitter();
@@ -25,7 +26,8 @@ export class AddLinkComponent {
   constructor(
     private _router: Router,
     private _fb: FormBuilder,
-    private _bucket: BucketService
+    private _bucket: BucketService,
+    private _shared: SharedService
   ) {
     this.createLink = this._fb.group({
       'url': [null, Validators.required],
@@ -82,15 +84,11 @@ export class AddLinkComponent {
 
   public focusAddLinkInputElement() {
     this.addInput.nativeElement.focus();
-    console.log('color',  this.getBucketBorderColor());
     return true;
   }
 
-  public getBucketBorderColor(): string {
-    if (this._bucketId || this.bucketColor) {
-      console.log('getBucketBorderColor', this._bucketId, this.bucketColor);
-      return this._bucketId ? this.bucketColor : BUCKET_COLORS[0].code;
-    }
+  public getBucketBorderColor() {
+    return this._shared.getData('selectedBucketColor');
   }
 
   public determineBucketID(): number | null {

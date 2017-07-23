@@ -80,10 +80,6 @@ export class AppComponent {
     }
   }
 
-  private getSelectedBucketcolor() {
-    return this._shared.getData('selectedBucketColor');
-  }
-
   private getBucketByID(id: number): Bucket {
       for (var i=0; i < this.buckets.length; i++) {
         if (this.buckets[i].id === id) {
@@ -177,7 +173,7 @@ export class AppComponent {
 
   public navigateToBuckets(): void {
     this._shared.setData('selectedBucketColor', BUCKET_COLORS[0].code);
-      this._router.navigate(['/buckets']);
+    this._router.navigate(['/buckets']);
   }
 
    public navigateToLinks(): void {

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import * as moment from 'moment';
 
-import { BucketService } from '../../core';
+import { BucketService, SharedService } from '../../core';
 import { Bucket, Link } from '../../core/models';
 
 @Component({
@@ -24,7 +24,8 @@ export class BucketComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private _bucket: BucketService,
-    private _router: Router
+    private _router: Router,
+    private _shared: SharedService
   ) {
     moment.locale('fr');
     this._id = +[window.location.pathname.split('/').pop()]; // convert string to number
@@ -34,6 +35,7 @@ export class BucketComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subBucket = this._bucket.getBucket(this._id).subscribe((resp) => {
       this.bucket = resp.data;
+      this._shared.setData('selectedBucketColor', this.bucket.color);
       this._bucket.setBucketName(this.bucket.name);
       this.filteredLinks = this.bucket.Links;
     })
