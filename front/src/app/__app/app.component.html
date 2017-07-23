@@ -32,15 +32,15 @@
   <ng-sidebar [hidden]="!isAuth()" [(opened)]="_opened" [closeOnClickOutside]="_closeOnClickOutside" [closeOnClickBackdrop]="_closeOnClickBackdrop"
     [sidebarClass]="setSidebarHidden()" [showBackdrop]="_showBackdrop">
     <div class="sidebar-link-container">
-      <div class="sidebar-link" *ngIf="_layout === 1" (click)="navigateToBuckets()">Buckets</div>
-      <div class="sidebar-link" *ngIf="_layout === 1" (click)="navigateToLinks()">Links</div>
-
-      <div *ngFor="let bucket of buckets" class="bucket-row col s12" (click)="navigateToBucket(bucket.id)">
-        <span class="colorbox" [ngStyle]="{'background-color': bucket.color}"></span>
-        <span class="name">{{bucket.name}} ({{bucket?.Links.length}})</span>
+      <div class="sidebar-link-wrapper">
+        <div class="sidebar-link" *ngIf="_layout === 1" (click)="navigateToBuckets()">Buckets</div>
+        <div class="sidebar-link" *ngIf="_layout === 1" (click)="navigateToLinks()">Links</div>
+        <div *ngFor="let bucket of buckets" class="bucket-row col s12" (click)="navigateToBucket(bucket.id)">
+          <span class="colorbox" [ngStyle]="{'background-color': bucket.color}"></span>
+          <span class="name">{{bucket.name}} ({{bucket?.Links.length}})</span>
+        </div>
+        <div *ngIf="isAuth()" (click)="logout()" class="sidebar-link logout" (click)="logout()">Logout</div>
       </div>
-
-      <div *ngIf="isAuth()" (click)="logout()" class="sidebar-link logout" (click)="logout()">Logout</div>
     </div>
   </ng-sidebar>
 
