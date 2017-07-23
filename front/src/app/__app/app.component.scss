@@ -20,10 +20,11 @@
   width: calc(100% - #{$sidebar-width} - 6vw - #{$scrollbar-default-width});
   right: calc(3vw + #{$scrollbar-default-width});
   left: calc(#{$sidebar-width} + 3vw);
+  background: $white;
   .ribbon-container {
     width: 100%;
     height: 100%;
-    background-color: darkgray;
+    border-bottom: none;
   }
 }
 
@@ -91,6 +92,9 @@
     left: inherit;
     width: $ribon-sidebar-width;
     height: calc(100% - #{$topbar-height});
+    .ribon-container {
+      border-left: 4px solid $disabled;
+    }
   }
 }
 

@@ -46,11 +46,11 @@
     }
 
     .icon {
-        transform: rotateZ(-25deg) scale(1.1);
-        path {
-            fill: white;
-        }
+      transform: rotateZ(-25deg) scale(1.1);
+      path {
+        fill: white;
       }
+    }
 
     &:hover {
       text-shadow: 0 -1px $primary, 0 1px $primary;
@@ -72,7 +72,7 @@
       .icon {
         transform: rotateZ(-25deg) scale(1.1);
         path {
-            fill: $primary;
+          fill: $primary;
         }
       }
     }
@@ -147,17 +147,6 @@
   }
 }
 
-// @media (min-width: $topbar-container-lock) {
-//   .topbar {
-//     padding-right: 35px;
-//   }
-//   .rest-container {
-//     margin: 0 auto !important;
-//     max-width: 1280px;
-//     padding: 0 -7px !important;
-//   }
-// }
-
 @media #{$medium-and-down} {
   .topbar {
     border-bottom: 2px solid $primary;
@@ -169,14 +158,14 @@
 }
 
 @-moz-document url-prefix() {
-    .search-container svg {
-      animation: none !important;
-      fill-opacity: 1 !important;
-      transition: fill 0.3s, transform 0.5s !important;
-      transform: translateY(-80px) !important;
-    }
-    .levitation {
-      animation: none !important;
-    }
+  .search-container svg {
+    animation: none !important;
+    fill-opacity: 1 !important;
+    transition: fill 0.3s, transform 0.5s !important;
+    transform: translateY(-80px) !important;
+  }
+  .levitation {
+    animation: none !important;
+  }
 }
 

@@ -38,17 +38,35 @@ ng-sidebar-container {
   color: $white;
 
   .bucket-row {
-    line-height: 64px;
-    height: 64px;
-    min-width: 120px;
-    max-width: 180px;
-    padding: 4px;
-    margin: auto;
+    width: 100%;
+    padding: 1.5rem;
     cursor: pointer;
+    overflow: hidden;
+    line-height: 0;
+    &:hover {
+      font-weight: bold;
+      .colorbox:after {
+        transform: scale(45);
+      }
+    }
     .colorbox {
       width: 24px;
       height: 24px;
       display: inline-block;
+      position: relative;
+      &:after {
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        z-index: -1;
+        top: 7px;
+        left: 7px;
+        content: "";
+        border-radius: 2px;
+        transition: 0.25s ease;
+        background: inherit;
+        transform: scale(0);
+      }
     }
     .name {
       text-transform: uppercase;
@@ -60,6 +78,8 @@ ng-sidebar-container {
 
   .sidebar-link-container {
     width: 100%;
+    height: 90%;
+    overflow-y: scroll;
 
     .sidebar-link {
       padding: 30px;
