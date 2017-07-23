@@ -22,10 +22,12 @@ html, body {
   top: 0;
   left: 0;
 
-  background: $white;
   color: $primary-text;
-
   font-size: $font-size;
+}
+
+html {
+  background: $white;
 }
 
 h1, h2, h3, h4 {
