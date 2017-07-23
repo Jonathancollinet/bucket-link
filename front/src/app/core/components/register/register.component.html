@@ -9,6 +9,7 @@
       </g>
     </svg>
     <h1>Aaaaiiioouuuùùhh :)<br>my friend.</h1>
+    <p>You will receive an email with your activation link.</p>
     <form [formGroup]="registerForm" (ngSubmit)="submitForm(registerForm.value)">
       <div class="form-group">
         <label for="email">Firstname</label>
@@ -53,7 +54,6 @@
           </p>
         </div>
       </div>
-      <p>You will receive an email with your activation link.</p>
       <div class="btn">
         <button type="submit" [disabled]="!registerForm.valid">Register</button>
       </div>
