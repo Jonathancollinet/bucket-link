@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -9,7 +10,10 @@ import { lightenColor } from '../../const';
 @Component({
   selector: 'core-bucket',
   templateUrl: './bucket.component.html',
-  styleUrls: ['./bucket.component.scss']
+  styleUrls: ['./bucket.component.scss'],
+  animations: [
+   
+  ]
 })
 export class BucketComponent {
 
@@ -56,8 +60,8 @@ export class BucketComponent {
 
   public editBucket(formData, valid: boolean): void {
     if (valid) {
-      if (formData.name.trim()) {
-        let tmp = { name: formData.name, color: this._tmpColor || this.bucket.color };
+      if (formData.name.trim() || this._tmpColor) {
+        let tmp = { name: (formData.name || this.bucket.name), color: this._tmpColor || this.bucket.color };
         this._bucket.patchBucket(this.bucket.id, tmp).subscribe((resp) => {
           this.bucketEvent.emit(true);
           this.editBucketForm.controls.name.updateValueAndValidity(formData.name);

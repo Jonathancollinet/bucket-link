@@ -106,9 +106,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+     /deep/ .trash-for-links {
+      width: 100px;
+      text-align: center;
+      i {
+        font-size: 48px;
+        color: white;
+      }
+    }
   }
 
 }
+
 
 @media #{$small-and-down} {
   .title {

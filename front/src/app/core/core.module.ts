@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -67,7 +68,8 @@ import {
     ClipboardModule,
     SidebarModule.forRoot(),
     DragulaModule,
-    ToastyModule
+    ToastyModule,
+    BrowserAnimationsModule
   ],
   providers: [
     HttpService,

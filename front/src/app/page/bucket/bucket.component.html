@@ -23,7 +23,7 @@
       <span class="text">List seems empty...</span>
     </div>
   </div>
-  <ul class="links-container" *ngIf="bucket?.Links?.length">
+  <ul class="links-container for-bucket-{{bucket.id}}" *ngIf="bucket?.Links?.length" [dragula]='"bag-link"' [dragulaModel]='filteredLinks'>
     <core-link *ngFor="let link of (filteredLinks | orderBy: {property: filterField, direction: filterFieldDir})" [link]="link"></core-link>
   </ul>
 </div>

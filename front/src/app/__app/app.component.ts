@@ -54,12 +54,23 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     })
     // Subscriber
-    this._shared.get('hasBennLogged').subscribe((state) => {
+    this._shared.get('hasBeenLogged').subscribe((state) => {
       this.setAuthStateCSSClass('AuthON');
+      this._disconnected = false;
       this.enableResponsive();
       this.getBuckets();
       this.getUncategorizedLinks();
-    })
+    });
+    // Subscriber
+    this._shared.get('shouldBeReloaded').subscribe((state) => {
+      console.log('shouldBeReloaded', state)
+      this.getBuckets();
+      // this.getUncategorizedLinks();
+    });
+  }
+
+  reloadCurrentPage() {
+
   }
 
   ngOnInit() {
@@ -70,6 +81,7 @@ export class AppComponent implements OnInit, OnDestroy {
         (data)=> {
             this.setAuthStateCSSClass('AuthON');
             this._shared.get('currentUser').subscribe(d => this._currentUser = d);
+            this._disconnected = false;
             // Subscriber
             this.getBuckets();
             // Subscriber
@@ -83,9 +95,12 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
+  public getContainerSize(): string {
+    return this.isAuth() ? 'calc(100% - 250px)' : '100%';
+  }
+
   private getBuckets() {
     this._bucket.getBuckets().subscribe((response) => {
-      this._disconnected = false;
       let tmp =  response.data;
       this.buckets = [];
       tmp.forEach((bucket) => {
@@ -101,10 +116,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private getBucketByID(id: number): Bucket {
-      for (var i=0; i < this.buckets.length; i++) {
-        if (this.buckets[i].id === id) {
-            return this.buckets[i];
-        }
+    for (var i=0; i < this.buckets.length; i++) {
+      if (this.buckets[i].id === id) {
+          return this.buckets[i];
+      }
     }
   }
 
@@ -115,12 +130,17 @@ export class AppComponent implements OnInit, OnDestroy {
     if (parseInt(newBucketId, 10)) {
       this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
       }, (err) => {console.error('patch link', err)})
+      this._shared.setData('shouldBeReloaded', true);
     } else if (newBucketId === 0) {
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
       }, (err) => {console.error('patch link', err)})
+      this._shared.setData('shouldBeReloaded', true);
     }
   }
 
+  public getCountUncategorized(): number {
+    return this.uncategorizedBucket ? this.uncategorizedBucket.Links.length : 0;
+  }
   public getStateStyle(): boolean {
     return this._disconnected && !this.isAuth();
   }

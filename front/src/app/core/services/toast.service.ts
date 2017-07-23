@@ -15,7 +15,7 @@ export class ToastService {
       title: "Success",
       msg: "empty message",
       showClose: true,
-      timeout: 3500
+      timeout: 2500
     };
     this.toastErrorOpt = {
       title: "Error",

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BucketService } from '../../services/bucket.service';
 import { SharedService } from '../../services/shared.service';
+import { ToastService } from '../../services/toast.service';
 import { BUCKET_COLORS } from '../../const';
 
 @Component({
@@ -27,7 +28,8 @@ export class AddLinkComponent {
     private _router: Router,
     private _fb: FormBuilder,
     private _bucket: BucketService,
-    private _shared: SharedService
+    private _shared: SharedService,
+    private _toast: ToastService
   ) {
     this.createLink = this._fb.group({
       'url': [null, Validators.required],
@@ -44,7 +46,11 @@ export class AddLinkComponent {
 
       this._bucket.createLink(tmp).subscribe(
         (result) => { this.hasBeenCreated.emit(true); },
-        (err) => { console.error(err); }
+        (err) => { 
+          this._toast.displayErrorToast(err.statusText);
+          this.createLink.reset();
+          this.createLink.controls.bucketId.updateValueAndValidity(this.determineBucketID());
+        }
       ); // end subscribe
     } // end valid
   }
@@ -63,14 +69,16 @@ export class AddLinkComponent {
         this.hasBeenCreated.emit(bucketID);
         this.createLink.reset();
         this.createLink.controls.bucketId.updateValueAndValidity(this.determineBucketID());
-      }, (err) => { console.error(err); })
+      }, (err) => {
+        this._toast.displayErrorToast(err.statusText);
+      })
       } else {
         this._bucket.createLink(linkData).subscribe((resp) => {
         console.log('resp', resp);
-        this.hasBeenCreated.emit(0);
+        this.hasBeenCreated.emit(resp);
         this.createLink.reset();
         this.createLink.controls.bucketId.updateValueAndValidity(this.determineBucketID());
-        }, (err) => { console.error(err); })
+        }, (err) => { this._toast.displayErrorToast(err.statusText); })
       }
       
     }
@@ -91,7 +99,7 @@ export class AddLinkComponent {
     return this._shared.getData('selectedBucketColor');
   }
 
-  public determineBucketID(): number | null {
+  public determineBucketID(): any {
     let bucket_id = null;
     if (this._router.url.indexOf('/bucket/') > -1) {
       bucket_id = +[window.location.pathname.split('/').pop()]; // convert string to number

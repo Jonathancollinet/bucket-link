@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BucketService } from '../../services/bucket.service';
+import { ToastService } from '../../services/toast.service';
 import { BUCKET_COLORS } from '../../const';
 
 @Component({
@@ -21,7 +22,8 @@ export class AddBucketComponent {
 
   constructor(
     private _fb: FormBuilder,
-    private _bucket: BucketService
+    private _bucket: BucketService,
+    private _toast: ToastService
   ) {
     // Randomize default bucker color
     this.color = this.bucketColors[Math.floor(Math.random() * (0 + this.bucketColorsLength - 0)) + 0].code;
@@ -44,7 +46,7 @@ export class AddBucketComponent {
         (result) => {
           this.hasBeenCreated.emit(tmp);
         },
-        (err) => { console.error(err); }
+        (err) => { this._toast.displayErrorToast(err.statusText) }
       ); // end subscribe
       this.createBucket.reset();
     } // end valid

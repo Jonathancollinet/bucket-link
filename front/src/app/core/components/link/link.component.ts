@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 
 import { Link } from '../../models';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'core-link',
@@ -24,7 +25,7 @@ export class LinkComponent {
     }
   }
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, private _toast: ToastService) {}
 
   public formatDate(link: Link): Link {
       if (link.setCreated && link.setUpdated) {
@@ -37,5 +38,8 @@ export class LinkComponent {
       link.dateHasBeenFormated = true;
       return link;
   }
-  
+
+  public displayConfirmCopy() {
+     this._toast.displaySuccessToast('Link is in your clipboard!')
+  }
 }

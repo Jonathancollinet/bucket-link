@@ -25,11 +25,16 @@ export class TopBarComponent {
     }
 
     public handleCreation($event: any): void {
-        console.log('event 0 ', event);
-        var currentUrl = $event === 0 ? '/buckets' : $event;
-        console.log('event 1 ', event);
-        // var refreshUrl = currentUrl.indexOf(myUrl) > -1 ? myUrl : currentUrl;
-        // this._router.navigateByUrl(refreshUrl).then(() => this._router.navigateByUrl(currentUrl));
+      if (parseInt($event, 10)) {
+          // Navigate to /buckets
+          var currentUrl = `/buckets`;
+          var refreshUrl = currentUrl.indexOf(`/buckets`) > -1 ? `/buckets` : `/buckets?t=true`;
+          this._router.navigateByUrl(refreshUrl).then(() => this._router.navigateByUrl(currentUrl));
+      } else {
+        if ($event.data.UserId > 0) {
+          this._shared.setData('shouldBeReloaded', $event);
+        }
+      } 
     }
 
     public focusAddInput(): void {

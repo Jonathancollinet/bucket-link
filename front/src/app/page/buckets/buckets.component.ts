@@ -27,22 +27,19 @@ export class BucketsComponent implements OnInit, OnDestroy {
     private _shared: SharedService
     ) {
     moment.locale('fr');
-    this._dragula.drag.subscribe((value) => {
-      console.log(`drag: ${value[0]}`);
-      this.onDrag(value.slice(1));
-    });
     this._dragula.drop.subscribe((value) => {
-      console.log(`drop: ${value[0]}`);
+      console.log('dragula drop, val:', value)
       this.onDrop(value.slice(1));
     });
   }
 
   ngOnInit(): void {
     this._bucket.setBucketName(null);
+    // Subscriber
     this._subBuckets = this._bucket.getBuckets().subscribe((response) => {
       let tmp =  response.data;
       this._shared.setData('selectedBucketColor', BUCKET_COLORS[0].code);
-      this._shared.setData('hasBennLogged', true);
+      this._shared.setData('hasBeenLogged', true);
       this.buckets = [];
       tmp.forEach((bucket) => {
         bucket.createdAt = this.formatDate(bucket.createdAt);
@@ -76,24 +73,20 @@ export class BucketsComponent implements OnInit, OnDestroy {
   public formatDate(date): string {
       return moment(date).fromNow();
   }
-
-  private onDrag(args) {
-    let [e, el] = args;
-    // do something
-  }
   
   private onDrop(args) {
+    debugger
     let [e, newBucketId] = args;
     let linkId = +[e.className.replace(/[^\d.]/g,'')];
     newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
     if (parseInt(newBucketId, 10)) {
       this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
-        console.log('patch link', resp.data);
-      }, (err) => {console.error('patch link')})
+        this._shared.setData('shouldBeReloaded', resp.data);
+      }, (err) => {console.error('patch link', err)})
     } else if (newBucketId === 0) {
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
-        console.log('patch link', resp.data);
-      }, (err) => {console.error('patch link')})
+        this._shared.setData('shouldBeReloaded', resp.data);
+      }, (err) => {console.error('patch link', err)})
     }
   }
 }

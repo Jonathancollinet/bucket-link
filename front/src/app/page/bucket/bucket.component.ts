@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
+import { DragulaService } from 'ng2-dragula';
 import * as moment from 'moment';
 
 import { BucketService, SharedService } from '../../core';
@@ -25,11 +26,14 @@ export class BucketComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private _bucket: BucketService,
     private _router: Router,
-    private _shared: SharedService
+    private _shared: SharedService,
+    private _dragula: DragulaService,
   ) {
     moment.locale('fr');
     this._id = +[window.location.pathname.split('/').pop()]; // convert string to number
-    console.log('bucket ID: %s', this._id);
+    this._dragula.drop.subscribe((value) => {
+      this.onDrop(value.slice(1));
+    });
   }
 
   ngOnInit() {
@@ -57,6 +61,20 @@ export class BucketComponent implements OnInit, OnDestroy {
 
   public reverseFilterDir(): void {
     this.filterFieldDir = this.filterFieldDir === 1 ? -1 : 1;
+  }
+
+  private onDrop(args) {
+    let [e, newBucketId, unused, linkDOMItem] = args;
+    let linkId = +[e.className.replace(/[^\d.]/g,'')];
+    newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
+    if (parseInt(newBucketId, 10)) {
+      this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
+      }, (err) => {console.error('patch link', err)})
+    } else if (newBucketId === 0) {
+      linkId = +[linkDOMItem.className.replace(/[^\d.]/g,'')];
+      this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
+      }, (err) => {console.error('patch link', err)})
+    }
   }
 
   ngOnDestroy() {
