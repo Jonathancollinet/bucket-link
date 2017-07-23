@@ -1,6 +1,7 @@
-<core-forgot (forgotRequested)="handleState($event)"></core-forgot>
-<section class="alt-nav">
-  <div class="btn">
-    <button (click)="navigateToLogin()">LOGIN</button>
-  </div>
-</section>
+<core-forgot (forgotRequested)="handleState($event)">
+  <section class="alt-nav">
+    <div class="btn">
+      <a (click)="navigateToLogin()">LOGIN</a>
+    </div>
+  </section>
+</core-forgot>

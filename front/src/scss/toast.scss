@@ -4,7 +4,10 @@
  * https://github.com/akserg/ng2-toasty
  *
  * Include DEFAULT theme
- */
+*/
+
+@import '~scss/variables';
+
 #toasty {
   position: fixed;
   z-index: 999999;

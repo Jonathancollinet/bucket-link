@@ -1,11 +1,6 @@
-<div class="login-box">
-  <core-login (hasBeenLogged)="handleState($event)"></core-login>
+<core-login (hasBeenLogged)="handleState($event)">
   <section class="alt-nav" >
-    <div class="btn">
-      <button (click)="navigateToRegister()">REGISTER</button>
-    </div>
-    <div class="btn">
-      <button (click)="navigateToForgot()">Forgot ?</button>
-    </div>
+    <div><a (click)="navigateToRegister()">Create an account</a></div>
+    <div><a (click)="navigateToForgot()">Forgot ?</a></div>
   </section>
-</div>
+</core-login>

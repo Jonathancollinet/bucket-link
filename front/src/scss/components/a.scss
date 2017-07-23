@@ -1,7 +1,10 @@
 @import '~scss/variables';
 
-a {
-    font-size: 38px;
-    font-family: sans-serif;
-    text-decoration: underline !important;
+a {
+  color: $link-color;
+  text-decoration: underline;
+  cursor: pointer;
+  &:hover {
+    color: darken($link-color, 15%);
+  }
 }

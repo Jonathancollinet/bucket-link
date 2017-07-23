@@ -19,26 +19,29 @@
     position: relative;
     border: none;
     border-bottom: 4px solid $placeholder-color;
-    color: $primary;
+    color: $primary !important;
     display: inline-block;
-    background: $grey;
+    background: $white;
 
     &:focus, &:focus + label {
-      color: $primary !important;
-      border-color: $primary !important;
+      border-color: $accent !important;
     }
 
     &::-webkit-input-placeholder {
       color: $placeholder-color;
+      user-select: none !important;
     }
     &:-ms-input-placeholder {
       color: $placeholder-color;
+      user-select: none !important;
     }
     &::-moz-placeholder {
       color: $placeholder-color;
+      user-select: none !important;
     }
     &:-moz-placeholder {
       color: $placeholder-color;
+      user-select: none !important;
     }
   }
 

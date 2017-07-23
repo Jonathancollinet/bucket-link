@@ -1,3 +1,6 @@
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <div class="row nomargin" [ngStyle]= {}>
   <h1>{{bucket?.name}}</h1>
   <div class="color-box">{{bucket?.color}}</div>
@@ -20,7 +23,7 @@
       <span class="text">List seems empty...</span>
     </div>
   </div>
-  <ul class="links-container" *ngIf="bucket?.Links?.length">
+  <ul class="links-container for-bucket-{{bucket.id}}" *ngIf="bucket?.Links?.length" [dragula]='"bag-link"' [dragulaModel]='filteredLinks'>
     <core-link *ngFor="let link of (filteredLinks | orderBy: {property: filterField, direction: filterFieldDir})" [link]="link"></core-link>
   </ul>
 </div>

@@ -1,11 +1,43 @@
 @import '~scss/variables';
 
 .container {
-  margin: 0 auto;
-  max-width: 1280px;
-  width: 90%;
-  padding-top: 3.5vw;
+  width: 100%;
+  padding-top: 3vw;
+  padding-left: calc(#{$sidebar-width} + 3vw);
+  padding-right: 3vw;
 }
+
+.links-wrapper {
+  height: calc(100% - (56px));
+  overflow: hidden;
+}
+
+.ribbon-sidebar-container {
+  position: fixed;
+  z-index: 30;
+  bottom: 0;
+  height: $ribon-sidebar-height;
+  width: calc(100% - #{$sidebar-width} - 6vw - #{$scrollbar-default-width});
+  right: calc(3vw + #{$scrollbar-default-width});
+  left: calc(#{$sidebar-width} + 3vw);
+  background: $white;
+  .ribbon-container {
+    width: 100%;
+    height: 100%;
+    border-bottom: none;
+  }
+}
+
+.links-container {
+  height: 100%;
+  width: calc(100% + #{$scrollbar-default-width});
+  overflow-y: scroll;
+  padding-left: 0px;
+  core-link {
+    margin: 8px;
+  }
+}
+
 
 .topbar-link {
   height: 100%;
@@ -15,8 +47,17 @@
   align-items: center;
   justify-content: center;
   white-space: pre;
-  justify-content: center;
   padding: 0 1.5rem;
+
+  &.user-item {
+    span {
+      text-indent: 2px;
+      text-transform: uppercase;
+    }
+    i {
+      font-size: 26px;
+    }
+  }
 
   i {
     color: $white;
@@ -40,16 +81,30 @@
   }
 }
 
-ng-sidebar-container {
-  &.disconnect {
-   /deep/ .ng-sidebar__content {
-    margin-left: 0 !important;
-    }
+@media #{$extra-large-and-up} {
+  .container {
+    width: calc(100% - #{$ribon-sidebar-width});
   }
 
+  .ribbon-sidebar-container {
+    right: $scrollbar-default-width;
+    top: $topbar-height;
+    bottom: 0;
+    left: inherit;
+    width: $ribon-sidebar-width;
+    height: calc(100% - #{$topbar-height});
+    .ribon-container {
+      border-left: 4px solid $disabled;
+    }
+  }
 }
 
 @media #{$medium-and-down} {
+  .ribbon-sidebar-container {
+    left: 3vw;
+    width: calc(100% - 6vw - #{$scrollbar-default-width});
+  }
+
   .topbar-link {
     display: none !important;
   }

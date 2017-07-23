@@ -6,6 +6,7 @@
   border-radius: 5px;
   margin: 0 4px;
 
+
   &:not(:last-child) {
     margin-bottom: 4px;
   }
@@ -16,6 +17,15 @@
     display: flex;
     justify-content: space-between;
     transition: background 0.05s 0.05s ease-in-out;
+
+    .link-image {
+      width: 80px;
+      img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      }
+    }
 
     .link-action {
       display: flex;

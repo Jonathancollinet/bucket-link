@@ -7,7 +7,6 @@
 .bucket-container {
   height: 25vw;
   min-height: 250px;
-  max-height: 355px;
   position: relative;
   margin-bottom: 20px;
   background-color: lightgrey;
@@ -54,9 +53,6 @@
         &:after {
           transform: scaleY(1);
         }
-        // &:hover {
-        //   background: $primary !important;
-        // }
       }
 
       &:after {
@@ -69,18 +65,6 @@
         transition: transform 0.15s ease-in-out;
         transform: scaleY(0);
       }
-
-      // &:hover {
-      //   background: #fff;
-
-      //   .bucket-info-item.title {
-      //     color: $accent;
-      //   }
-
-      //   &:after {
-      //     transform: scaleY(1);
-      //   }
-      // }
 
     }
 
@@ -110,7 +94,7 @@
     }
     &-action {
       height: 100%;
-      width: 60px;
+      width: 96px;
       color: $black;
       font-size: 1.5rem;
       height: 100%;
@@ -119,16 +103,32 @@
       justify-content: center;
 
       .bucket-action {
+        cursor: pointer;
+        width: 48px;
         height: 100%;
         display: flex;
         align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        svg {
+          fill: $white;
+          transition: fill 0.125s ease;
+        }
+        &:hover {
+          svg {
+            fill: $accent;
+          }
+          .click-target:before {
+            border-color: $accent !important;
+          }
+          .click-target:after {
+            background: $accent;
+          }
+        }
         i {
           margin: 0 2px;
           cursor: pointer;
           color: $white;
-          // &:hover {
-          //   color: $accent !important;
-          // }
         }
       }
     }
@@ -149,6 +149,7 @@
 // UNCATEGORIZED BUCKET
 .bucket-container.uncategorized {
   .bucket-info {
+    user-select: none !important;
     text-align: center;
     background-color: $disabled!important;
     color: white;
@@ -187,6 +188,13 @@
     }
   }
 }
+
+@media (min-width: 2000px) { :host { width: 20% !important; } }
+@media (min-width: 2300px) { :host { width: 16.66% !important; } }
+@media (min-width: 2600px) { :host { width: 14.28% !important; } }
+@media (min-width: 2900px) { :host { width: 12.5% !important; } }
+@media (min-width: 3200px) { :host { width: 11.11% !important; } }
+@media (min-width: 3600px) { :host { width: 10% !important; } }
 
 @media #{$medium-and-down} {
   .bucket-container {

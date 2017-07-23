@@ -12,15 +12,6 @@
   </div>
 </div>
 <div class="buckets-container row">
-  <!-- Uncategorized -->
-  <core-bucket [bucket]="uncategorizedBucket" class="col s12 m6 l4 xl3">
-    <div class="links-wrapper links-uncategorized">
-      <ul class="links-container for-bucket-{{uncategorizedBucket?.id}}"
-        [dragula]='"bag-link"' [dragulaModel]='uncategorizedBucket?.Links'>
-        <core-link class="link-item link-{{link.id}} link-uncategorized" *ngFor="let link of uncategorizedBucket?.Links" [link]="link"></core-link>
-      </ul>
-    </div>
-  </core-bucket>
   <!-- Classic -->
   <core-bucket *ngFor="let bucket of buckets | reverse" [bucket]="bucket" (bucketEvent)="handleDeleted($event)" class="col s12 m6 l4 xl3">
     <div class="links-wrapper" [ngStyle]="{'background':'linear-gradient(0deg, '+getBaseColor(bucket?.color)+', '+getGradient(bucket?.color)+')'}">

@@ -1,4 +1,5 @@
 export const BUCKET_COLORS = [
+{ name: 'grey', code: '#9A9A9A'},
   { name: 'red', code: '#f44336'},
   { name: 'pink', code: '#e91e63'},
   { name: 'purple', code: '#9c27b0'},
@@ -6,10 +7,9 @@ export const BUCKET_COLORS = [
   { name: 'cyan', code: '#00bcd4'},
 
   { name: 'green', code: '#4caf50'},
-  { name: 'yellow', code: '#ffeb3b'},
+  { name: 'yellow', code: '#f1c40f'},
   { name: 'orange', code: '#ff9800'},
-  { name: 'brown', code: '#795548'},
-  { name: 'grey', code: '#9A9A9A'}
+  { name: 'brown', code: '#795548'}
 ]
 
 export function lightenColor(hex: string, lum: number) {

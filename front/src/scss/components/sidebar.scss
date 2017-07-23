@@ -8,10 +8,9 @@ ng-sidebar-container {
 .burger-icon {
   display: none;
   background: transparent;
-  border: 0.15rem solid ;
+  border: 3px solid;
   border-left: 0;
   border-right: 0;
-
   font-size: 0;
   height: 1.3rem;
   margin-right: 1rem;
@@ -22,7 +21,7 @@ ng-sidebar-container {
   &::after {
     background: $white;
     content: '';
-    height: 0.15rem;
+    height: 3px;
     left: 0;
     margin-top: -0.075rem;
     position: absolute;
@@ -38,8 +37,55 @@ ng-sidebar-container {
   border-right: 2px solid $primary;
   color: $white;
 
-  .sidebar-link-container {
+  .bucket-row {
     width: 100%;
+    padding: 1.5rem;
+    cursor: pointer;
+    overflow: hidden;
+    line-height: 0;
+    &:hover {
+      font-weight: bold;
+      .colorbox:after {
+        background: transparent;
+        transform: scaleX(14) scaleY(4);
+      }
+    }
+    .colorbox {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      position: relative;
+      &:after {
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        z-index: -1;
+        content: "";
+        transition: transform 0.3s ease,
+                    background 0.2s ease;
+        background: inherit;
+        transform: scaleX(1) scaleY(1);
+      }
+    }
+    .name {
+      text-transform: uppercase;
+      display: inline-block;
+      vertical-align: super;
+      padding-left: 4px;
+    }
+  }
+
+  .sidebar-link-container {
+    width: calc(100% + 17px);
+    height: 100%;
+    overflow: hidden;
+
+    .sidebar-link-wrapper {
+      width: 100%;
+      height: 90%;
+      overflow-y: scroll;
+      padding-right: 17px;
+    }
 
     .sidebar-link {
       padding: 30px;

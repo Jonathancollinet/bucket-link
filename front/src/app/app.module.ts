@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 
 /* DEP */
 import { DragulaModule } from 'ng2-dragula'; // Drag-n-Drop
@@ -34,10 +36,15 @@ import { RoutingModule } from './app.routing';
     CoreModule,
     PageModule,
 
-    RoutingModule
+    RoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(router: Router) {
+  }
+}

@@ -1,13 +1,21 @@
 <!-- VIEW mode  -->
 <div class="bucket-container view" [ngClass]="{'uncategorized': !bucket?.id}" *ngIf="_mode === 0">
-  <div class="bucket-info" *ngIf="bucket" [ngStyle]="{'background-color': _color || bucket.color}" (mouseover)="changeHoverStyle($event)" (mouseout)="changeHoverStyle($event)">
-    <div class="bucket-info-container" [ngClass]="{'selected': _selected}" (click)="_selected = !_selected">
+  <div class="bucket-info" *ngIf="bucket" [ngStyle]="{'background-color': _color || bucket.color}" (mouseover)="changeHoverStyle($event)"
+    (mouseout)="changeHoverStyle($event)">
+    <div class="bucket-info-container" [ngClass]="{'selected': _selected}" (click)="goToBucket(bucket.id)">
       <div class="bucket-info-item title">{{ bucket?.name }}</div>
       <div class="bucket-info-item date" *ngIf="bucket?.id">{{ bucket?.createdAt }}</div>
     </div>
     <div class="bucket-info-action" *ngIf="bucket?.id">
-      <div class="bucket-action"><i aria-hidden="true" class="fa fa-edit" (click)="toggleMode()"></i></div>
-      <div class="bucket-action"><i aria-hidden="true" class="fa fa-arrow-right" (click)="goToBucket(bucket.id)"></i></div>
+      <div class="bucket-action" (click)="toggleMode()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M18.311 2.828l2.862 2.861-15.033 15.032-3.583.722.723-3.584 15.031-15.031zm0-2.828l-16.873 16.872-1.438 7.127 7.127-1.437 16.874-16.873-5.69-5.689z"
+          />
+        </svg>
+      </div>
+      <div class="bucket-action" (click)="_selected = !_selected">
+        <div class="click-target"></div>
+      </div>
     </div>
   </div>
   <ng-content></ng-content>
@@ -17,16 +25,15 @@
   <div class="bucket-info" *ngIf="bucket">
     <div class="bucket-info-container">
       <form [formGroup]="editBucketForm" (ngSubmit)="editBucket(editBucketForm.value, editBucketForm.valid)" #form="ngForm">
-      <div class="form-group flex-centered">
-        <core-color-box (colorClicked)="handleColorChosen(bucket, $event)" [defaultColor]="bucket.color"></core-color-box>
-        <input class="form-control" type="text" placeholder="bucket's name" [value]="bucket.name" formControlName="name">
-      </div>
+        <div class="form-group flex-centered">
+          <core-color-box (colorClicked)="handleColorChosen(bucket, $event)" [defaultColor]="bucket.color"></core-color-box>
+          <input class="form-control" type="text" placeholder="bucket's name" [value]="bucket.name" formControlName="name">
+        </div>
       </form>
     </div>
     <div class="bucket-info-action" *ngIf="bucket?.id">
-       <div class="bucket-action"><i aria-hidden="true" class="fa fa-check" (click)="editBucket(editBucketForm.value, editBucketForm.valid)"></i></div> 
-      <div class="bucket-action"><i aria-hidden="true" class="fa fa-trash-o" (click)="deleteBucket(bucket.id)"></i></div>
+      <div class="bucket-action" (click)="editBucket(editBucketForm.value, editBucketForm.valid)"><i aria-hidden="true" class="fa fa-check"></i></div>
+      <div class="bucket-action" (click)="deleteBucket(bucket.id)"><i aria-hidden="true" class="fa fa-trash-o"></i></div>
     </div>
   </div>
 </div>
-

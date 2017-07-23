@@ -1,6 +1,7 @@
-<core-register (isRegistred)="handleState($event)"></core-register>
-<section class="alt-nav">
-  <div class="btn">
-    <button (click)="navigateToLogin()">LOGIN</button>
-  </div>
-</section>
+<core-register (isRegistred)="handleState($event)">
+  <section class="alt-nav">
+    <div class="btn">
+      <a (click)="navigateToLogin()">LOGIN</a>
+    </div>
+  </section>
+</core-register>
