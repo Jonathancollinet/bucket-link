@@ -45,10 +45,10 @@
   </ng-sidebar>
 
   <!-- PAGE -->
-  <div class="container" ng-sidebar-content>
+  <div class="container" [ngStyle]="{'width': geContainerSize()}"  ng-sidebar-content>
 
     <!-- RIBBON  -->
-    <div class="ribbon-sidebar-container" *ngIf="!_disconnected">
+    <div class="ribbon-sidebar-container" *ngIf="isAuth()">
       <div class="ribbon-container">
         <div class="links-wrapper links-uncategorized">
           <ul class="links-container for-bucket-{{uncategorizedBucket?.id}}" [dragula]='"bag-link"' [dragulaModel]='uncategorizedBucket?.Links'>

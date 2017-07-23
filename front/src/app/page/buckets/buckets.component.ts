@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as moment from 'moment';
@@ -14,9 +14,10 @@ import { lightenColor, hexToRGB } from '../../core/const';
   templateUrl: './buckets.component.html',
   styleUrls: ['./buckets.component.scss']
 })
-export class BucketsComponent implements OnInit {
+export class BucketsComponent implements OnInit, OnDestroy {
 
   buckets: Array<Bucket> = [];
+  private _subBuckets: any;
 
   constructor(
     private _router: Router,
@@ -37,17 +38,23 @@ export class BucketsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this._bucket.setBucketName(null);
-    this._bucket.getBuckets().subscribe((response) => {
+    this._subBuckets = this._bucket.getBuckets().subscribe((response) => {
       let tmp =  response.data;
       this._shared.setData('selectedBucketColor', BUCKET_COLORS[0].code);
+      this._shared.setData('hasBennLogged', true);
       this.buckets = [];
       tmp.forEach((bucket) => {
         bucket.createdAt = this.formatDate(bucket.createdAt);
         this.buckets.push(new Bucket(bucket.id, bucket.name, bucket.color, bucket.createdAt, bucket.updatedAt, bucket.Links));
       });
     }, (err) => { console.error('getBuckets', err); });
+  }
+
+  ngOnDestroy(): void {
+    if (this._subBuckets) {
+      this._subBuckets.unsubscribe();
+    }
   }
 
   public handleCreation($event): void {
@@ -81,11 +88,11 @@ export class BucketsComponent implements OnInit {
     newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
     if (parseInt(newBucketId, 10)) {
       this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
-        console.log('patch link', resp);
+        console.log('patch link', resp.data);
       }, (err) => {console.error('patch link')})
     } else if (newBucketId === 0) {
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
-        console.log('patch link', resp);
+        console.log('patch link', resp.data);
       }, (err) => {console.error('patch link')})
     }
   }

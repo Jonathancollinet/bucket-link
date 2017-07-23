@@ -1,4 +1,4 @@
-import { Component, NgZone, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone, ViewChild, HostListener } from '@angular/core';
 import { Router, NavigationStart  } from '@angular/router';
 
 import { TopBarComponent, SharedService } from '../core';
@@ -13,7 +13,7 @@ import { BUCKET_COLORS } from '../core/const';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
 
   public buckets: Array<Bucket> = [];
   public uncategorizedBucket: Bucket;
@@ -40,9 +40,8 @@ export class AppComponent {
     private _shared: SharedService,
     private _bucket: BucketService
   ) {
-    this.enableResponsive();
-
-    this._router.events.subscribe(event => {
+    // Subscriber
+     this._router.events.subscribe(event => {
       if  (event instanceof NavigationStart) {
         if (event.url.indexOf('/bucket/') > -1) {
           this.selectedBucket = this.buckets[event.url.split('/').pop()]
@@ -54,30 +53,51 @@ export class AppComponent {
         this._closeSidebar();
       }
     })
+    // Subscriber
+    this._shared.get('hasBennLogged').subscribe((state) => {
+      this.setAuthStateCSSClass('AuthON');
+      this.enableResponsive();
+      this.getBuckets();
+      this.getUncategorizedLinks();
+    })
+  }
 
+  ngOnInit() {
+    this.enableResponsive();
     if (localStorage.getItem('tkn')) {
+      // Subscriber
       this._auth.pingAuth().subscribe(
         (data)=> {
             this.setAuthStateCSSClass('AuthON');
             this._shared.get('currentUser').subscribe(d => this._currentUser = d);
-            this._bucket.getBuckets().subscribe((response) => {
-              this._disconnected = false;
-              let tmp =  response.data;
-              this.buckets = [];
-              tmp.forEach((bucket) => {
-                this.buckets.push(new Bucket(bucket.id, bucket.name, bucket.color, bucket.createdAt, bucket.updatedAt, bucket.Links));
-              });
-            }, (err) => { console.error('getBuckets', err); });
-            this._bucket.getUncategorizedLinks().subscribe((response) => {
-              this.uncategorizedBucket = new Bucket(0, "UNCATEGORIZED", "#37105f", new Date().toString(), new Date().toString(), response.data);
-            }, (err) => { console.error('getBuckets', err); });
-                  }
-          );
+            // Subscriber
+            this.getBuckets();
+            // Subscriber
+            this.getUncategorizedLinks();
+        }
+      );
     } else {
       this._disconnected = true;
       this.setAuthStateCSSClass('AuthOFF');
        this._closeSidebar();
     }
+  }
+
+  private getBuckets() {
+    this._bucket.getBuckets().subscribe((response) => {
+      this._disconnected = false;
+      let tmp =  response.data;
+      this.buckets = [];
+      tmp.forEach((bucket) => {
+        this.buckets.push(new Bucket(bucket.id, bucket.name, bucket.color, bucket.createdAt, bucket.updatedAt, bucket.Links));
+      });
+    }, (err) => { console.error('getBuckets', err); });
+  }
+
+  private getUncategorizedLinks() {
+    this._bucket.getUncategorizedLinks().subscribe((response) => {
+      this.uncategorizedBucket = new Bucket(0, "UNCATEGORIZED", "#37105f", new Date().toString(), new Date().toString(), response.data);
+    }, (err) => { console.error('getBuckets', err); });
   }
 
   private getBucketByID(id: number): Bucket {
@@ -94,10 +114,10 @@ export class AppComponent {
     newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
     if (parseInt(newBucketId, 10)) {
       this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
-      }, (err) => {console.error('patch link')})
+      }, (err) => {console.error('patch link', err)})
     } else if (newBucketId === 0) {
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
-      }, (err) => {console.error('patch link')})
+      }, (err) => {console.error('patch link', err)})
     }
   }
 
@@ -152,6 +172,10 @@ export class AppComponent {
     this._layout = 1;
   }
 
+  private geContainerSize(): string {
+    return this.isAuth() ? 'calc(100% - 250px)' : "100%";
+  }
+
   private _closeSidebar(): void {
     this._opened = false;
   }
@@ -196,6 +220,10 @@ export class AppComponent {
     if (e.ctrlKey && e.shiftKey && e.keyCode === 65) {
       this.topbar.focusAddInput()
     }
+  }
+
+  ngOnDestroy(): void {
+
   }
 
 }
