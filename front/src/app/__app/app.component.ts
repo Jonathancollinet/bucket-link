@@ -48,10 +48,11 @@ export class AppComponent implements OnInit, OnDestroy {
     private _shared: SharedService,
     private _bucket: BucketService
   ) {
-    // Subscriber
+     // Subscribers
      this._subRouter = this._router.events.subscribe(event => {
       if  (event instanceof NavigationStart) {
         if (event.url.indexOf('/bucket/') > -1) {
+          console.log(this.buckets[event.url.split('/').pop()])
           this.selectedBucket = this.buckets[event.url.split('/').pop()]
         } else {
           this.selectedBucket = null;
@@ -60,8 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
       if  (event instanceof NavigationStart && this._layout) {
         this._closeSidebar();
       }
-    })
-    // Subscriber
+    });
     this._subLogged = this._shared.get('hasBeenLogged').subscribe((state) => {
       this.setAuthStateCSSClass('AuthON');
       this._disconnected = false;
@@ -75,11 +75,19 @@ export class AppComponent implements OnInit, OnDestroy {
       } else {
         this.getUncategorizedLinks();
       }
+    });
+    this._shared.get('selectedBucket').subscribe((state: number) => {
+      console.log('in sub', state);
+      // this.selectedBucket = state;
+      if (state) {
+        this._bucket.setBucketIDForPost(state);
+        this._bucket.setBucketName(this.getBucketByID(state).name);
+        this._shared.setData('selectedBucketColor', this.getBucketByID(state).color);
+      } else {
+        this._bucket.setBucketIDForPost(null);
+        this._shared.setData('selectedBucketColor',  BUCKET_COLORS[0].code)
+      }
     })
-  }
-  
-  reloadCurrentPage() {
-
   }
 
   ngOnInit() {
@@ -248,6 +256,20 @@ export class AppComponent implements OnInit, OnDestroy {
     // TO CHANGE, CTRL + SHIFT + A
     if (e.ctrlKey && e.shiftKey && e.keyCode === 65) {
       this.topbar.focusAddInput()
+    }
+  }
+
+  @HostListener('click', ['$event']) 
+  onClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(e.target.className, "##", e.target.className.indexOf('form-control ng-pristine ng-invalid'));
+    if (e.target.className != 'click-target' && e.target.className != 'bucket-action' && e.target.className.indexOf('form-control ng-pristine ng-invalid') != 0) {
+      console.log('IN!!');
+      this._bucket.setBucketName(null);
+      this._shared.setData('selectedBucket', null);
+      this._shared.setData('selectedBucketColor',  BUCKET_COLORS[0].code);
+      this._bucket.setBucketIDForPost(null);
     }
   }
 

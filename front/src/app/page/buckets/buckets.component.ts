@@ -94,6 +94,7 @@ export class BucketsComponent implements OnInit, OnDestroy {
       }, (err) => {console.error('patch link', err)})
     }
   }
+
 }
 
 

@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { BucketService } from '../../services/bucket.service';
+import { SharedService } from '../../services/shared.service';
 import { Bucket, Link } from '../../models';
 import { lightenColor } from '../../const';
 
@@ -29,6 +30,7 @@ export class BucketComponent {
   constructor(
     private _router: Router,
     private _bucket: BucketService,
+    private _shared: SharedService,
     private _fb: FormBuilder
   ) {
   }
@@ -85,5 +87,13 @@ export class BucketComponent {
       console.error('delete bucket', err);
     })
   }
+
+  public setSelectedBucket(id: number) {
+    this._shared.setData('selectedBucket', id);
+    this._shared.setData('selectedBucketColor', this.bucket.color);
+    this._bucket.setBucketIDForPost(this.bucket.id);
+    this._selected = !this._selected;
+  }
+
 }
 

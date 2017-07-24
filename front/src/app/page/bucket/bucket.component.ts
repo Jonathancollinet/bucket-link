@@ -7,6 +7,7 @@ import * as moment from 'moment';
 
 import { BucketService, SharedService } from '../../core';
 import { Bucket, Link } from '../../core/models';
+import { lightenColor, hexToRGB } from '../../core/const';
 
 @Component({
   selector: 'page-bucket',
@@ -65,6 +66,13 @@ export class BucketComponent implements OnInit, OnDestroy {
 
   public reverseFilterDir(): void {
     this.filterFieldDir = this.filterFieldDir === 1 ? -1 : 1;
+  }
+
+  public getGradient(color): string {
+    if (color) return hexToRGB(lightenColor(color, .5), .3);
+  }
+  public getBaseColor(color): string {
+    if (color) return hexToRGB(color, .1);
   }
 
   private onDrop(args) {

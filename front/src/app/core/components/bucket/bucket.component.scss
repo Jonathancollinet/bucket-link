@@ -45,14 +45,14 @@
       }
 
       &.selected {
-        color: $accent;
-        &:before {
-          transform: scale(45);
-        }
+        // color: $accent;
+        // &:before {
+        //   transform: scale(45);
+        // }
 
-        &:after {
-          transform: scaleY(1);
-        }
+        // &:after {
+        //   transform: scaleY(1);
+        // }
       }
 
       &:after {

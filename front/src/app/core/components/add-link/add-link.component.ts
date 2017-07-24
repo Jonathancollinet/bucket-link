@@ -102,6 +102,8 @@ export class AddLinkComponent {
     let bucket_id = null;
     if (this._router.url.indexOf('/bucket/') > -1) {
       bucket_id = +[window.location.pathname.split('/').pop()]; // convert string to number
+    } else if (this._bucket.getBucketIDForPost() != null) {
+      bucket_id = this._bucket.getBucketIDForPost();
     } else {
       bucket_id = null;
     }
