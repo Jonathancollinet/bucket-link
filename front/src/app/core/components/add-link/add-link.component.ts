@@ -74,8 +74,7 @@ export class AddLinkComponent {
       })
       } else {
         this._bucket.createLink(linkData).subscribe((resp) => {
-        console.log('resp', resp);
-        this.hasBeenCreated.emit(resp);
+        this.hasBeenCreated.emit(null);
         this.createLink.reset();
         this.createLink.controls.bucketId.updateValueAndValidity(this.determineBucketID());
         }, (err) => { this._toast.displayErrorToast(err.statusText); })
