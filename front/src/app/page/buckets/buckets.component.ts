@@ -31,7 +31,6 @@ export class BucketsComponent implements OnInit, OnDestroy {
     ) {
     moment.locale('fr');
     this._subDragula = this._dragula.drop.subscribe((value) => {
-      console.log('dragula drop, val:', value)
       this.onDrop(value.slice(1));
     });
     this._subBucketsPageReload = this._shared.get('BucketsPageShouldBeReloaded').subscribe((state) => {
@@ -84,10 +83,18 @@ export class BucketsComponent implements OnInit, OnDestroy {
     let [e, newBucketId] = args;
     let linkId = +[e.className.replace(/[^\d.]/g,'')];
     newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
+    if (isNaN(newBucketId)) { newBucketId = -1; }
     if (parseInt(newBucketId, 10)) {
-      this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
-        this._shared.setData('BucketsShouldBeReloaded', resp.data.BucketId);
-      }, (err) => {console.error('patch link', err)})
+      console.log('inDrop app -- bucketId', newBucketId, 'linkId', linkId)
+      if (newBucketId < 0) {
+       this._bucket.deleteLink(linkId).subscribe((resp) => {
+          this._shared.setData('BucketsShouldBeReloaded', resp.data.BucketId);
+        }, (err) => {console.error('delete link', err)});
+      } else {
+        this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
+          this._shared.setData('BucketsShouldBeReloaded', resp.data.BucketId);
+        }, (err) => {console.error('patch link', err)});
+      }
     } else if (newBucketId === 0) {
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
         this._shared.setData('BucketsShouldBeReloaded', null);

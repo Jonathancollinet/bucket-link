@@ -33,7 +33,12 @@
           <span class="colorbox" [ngStyle]="{'background-color': bucket.color}"></span>
           <span class="name">{{bucket.name}} ({{bucket?.Links.length}})</span>
         </div>
-        <div *ngIf="isAuth()" (click)="logout()" class="sidebar-link logout" (click)="logout()">Logout</div>
+        <div *ngIf="isAuth()" class="sidebar-link trash-for-links">
+          <i class=" fa fa-trash-o"></i>
+        </div>
+        <div class="container-for-trash" [dragula]='"bag-link"' [dragulaOptions]="{ removeOnSpill: true }">
+          
+        </div>
       </div>
     </div>
   </ng-sidebar>

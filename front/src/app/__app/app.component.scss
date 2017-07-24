@@ -12,6 +12,26 @@
   overflow: hidden;
 }
 
+.trash-for-links {
+  position: absolute;
+  bottom: 35px;
+  i {
+    color: white;
+    font-size: 56px;
+  }
+}
+.container-for-trash /deep/ core-link {
+   -webkit-animation: fadeinout 4s linear forwards;
+    animation: fadeinout 4s linear forwards;
+}
+.container-for-trash {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 150px;
+}
+
+
 .ribbon-sidebar-container {
   position: fixed;
   z-index: 30;
@@ -108,4 +128,16 @@
   .topbar-link {
     display: none !important;
   }
+}
+
+
+
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
 }

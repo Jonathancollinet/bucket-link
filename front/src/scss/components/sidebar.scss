@@ -5,6 +5,10 @@ ng-sidebar-container {
   width: 100%;
 }
 
+.ng-sidebar {
+      z-index: 9999!important;
+}
+
 .burger-icon {
   display: none;
   background: transparent;

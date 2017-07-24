@@ -106,4 +106,10 @@ export class BucketService {
     });
   }
 
+  deleteLink(id: number): Observable<any> {
+     return this._http.delete(`/links/${id}`).flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
+
 }
