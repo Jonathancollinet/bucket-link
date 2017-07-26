@@ -14,9 +14,17 @@
     height: 100%;
     width: 100% !important;
   }
+
+  .wrapper {
+    background: $primary !important;
+    border: none !important;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .login, .forgot, .register {
+
   height: 100%;
   display: flex;
   justify-content: center;
