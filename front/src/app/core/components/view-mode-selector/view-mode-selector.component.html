@@ -1,8 +1,13 @@
 <div class="view-mode-selector-container">
   <div class="view-mode full" (click)="setSelectedViewMode(0)" [ngClass]="_selectedViewMode === 'full' ? 'active' : ''">
-    full
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M12 0l-11 6v12.131l11 5.869 11-5.869v-12.066l-11-6.065zm7.91 6.646l-7.905 4.218-7.872-4.294 7.862-4.289 7.915 4.365zm-16.91 1.584l8 4.363v8.607l-8-4.268v-8.702zm10 12.97v-8.6l8-4.269v8.6l-8 4.269z"
+      />
+    </svg>
   </div>
   <div class="view-mode list" (click)="setSelectedViewMode(1)" [ngClass]="_selectedViewMode === 'list' ? 'active' : ''">
-    list
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+      <path d="M19 11h-14v-2h14v2zm0 2h-14v2h14v-2zm0 4h-14v2h14v-2zm3-11v16h-20v-16h20zm2-6h-24v24h24v-24z" />
+    </svg>
   </div>
 </div>

@@ -6,6 +6,7 @@
 
   position: relative;
   z-index: 999999;
+  margin-bottom: 22px;
 }
 
 .add-bucket-action-container {
@@ -13,7 +14,6 @@
   display: flex;
   align-items: center;
   height: 34px;
-  margin-bottom: 22px;
 
   .placeholder {
     transition: opacity 0.1s 0.4s ease, width 0.1s 0.14s linear;
