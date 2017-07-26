@@ -6,8 +6,8 @@
     </core-add-bucket>
   </div>
 </div>
-<div class="row" [hidden]="!buckets.length">
-  <div *ngIf="!buckets.length" class="buckets-empty">
+<div class="row" *ngIf="!buckets.length">
+  <div class="buckets-empty">
     <span class="text">Your bucket list seems empty...</span>
   </div>
 </div>

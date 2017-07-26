@@ -38,13 +38,8 @@ $color-box-orange:  #ff9800;
 $color-box-brown:   #795548;
 $color-box-grey:      $disabled;
 
-// Global
-$global-h1: 36px;
-$global-h2: 32px;
-$global-h3: 26px;
-$global-h4: 22px;
-$global-h5: 18px;
-$global-h6: 16px;
+// Layout
+$marge: 2.5vw;
 
 // Grid
 $small-screen-up: 601px !default;
@@ -65,6 +60,14 @@ $num-cols: 12 !default;
 $gutter-width: 1.5rem !default;
 $element-top-margin: $gutter-width/3 !default;
 $element-bottom-margin: ($gutter-width*2)/3 !default;
+
+// Title
+$global-h1: 36px;
+$global-h2: 32px;
+$global-h3: 26px;
+$global-h4: 22px;
+$global-h5: 18px;
+$global-h6: 16px;
 
 // Font properties
 $font-size: inherit;
