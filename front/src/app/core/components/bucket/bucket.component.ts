@@ -28,6 +28,7 @@ export class BucketComponent {
   private _color: string;
   private editBucketForm: any
   private _tmpColor: string;
+  private _collapsed: boolean = false;
 
   constructor(
     private _router: Router,

@@ -4,10 +4,41 @@
   display: block;
 }
 
-// Full mode
+/deep/ core-bucket.list .bucket-container {
+  height: 50px;
+}
+
+/deep/ core-bucket.list .bucket-container.collapsed {
+  height: auto;
+}
+
+.click-collapse {
+  width: 24px;
+  height: 24px;
+  background: $white;
+  transition: background 0.125s ease, clip-path 0.2s ease;
+  clip-path: polygon(0 0, 38% 0, 100% 49%, 38% 100%, 0 100%, 63% 50%);
+}
+
+.click-collapse.collapsed {
+  clip-path: polygon(100% 0, 100% 38%, 50% 100%, 0 38%, 0 0, 50% 63%) !important;
+
+}
+
+/deep/ core-bucket.list {
+  width: 100% !important;
+}
+
 /deep/ core-bucket.full .bucket-container {
   height: 25vw;
   min-height: 250px;
+  .for-list {
+    display: none !important;
+  }
+}
+
+/deep/ core-bucket.full .bucket-container,
+/deep/ core-bucket.list .bucket-container {
   position: relative;
   margin-bottom: 20px;
   background-color: lightgrey;
@@ -32,41 +63,6 @@
       position: relative;
       justify-content: center;
       flex-direction: column;
-
-      &:before {
-        content: "";
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        left: -10px;
-        transition: transform 0.3s ease;
-        will-change: transform;
-        transform: scale(0);
-        background: $primary;
-      }
-
-      &.selected {
-        // color: $accent;
-        // &:before {
-        //   transform: scale(45);
-        // }
-
-        // &:after {
-        //   transform: scaleY(1);
-        // }
-      }
-
-      &:after {
-        content: "";
-        height: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-        border-left: 5px solid $accent;
-        transition: transform 0.15s ease-in-out;
-        transform: scaleY(0);
-      }
-
     }
 
     &-item {
@@ -116,6 +112,9 @@
           transition: fill 0.125s ease;
         }
         &:hover {
+          div {
+            background: $accent;
+          }
           svg {
             fill: $accent;
           }
