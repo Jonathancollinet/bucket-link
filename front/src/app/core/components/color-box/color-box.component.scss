@@ -16,17 +16,15 @@
   }
 
   &-container {
-    margin-right: 2rem;
     height: 48px;
-    border: 3px solid $primary;
-    width: 150px;
+    width: 166px;
     position: relative;
     background: $grey;
     z-index: 3;
     transition: transform 0.2s;
     transform-origin: 15px 15px;
     transition-timing-function: ease-in-out;
-    padding: 3px;
+    padding: 6px;
 
     &:hover {
       border-color: $primary;

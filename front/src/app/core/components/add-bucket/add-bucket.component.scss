@@ -3,6 +3,9 @@
 :host {
   display: inline-block;
   margin-right: 15px;
+
+  position: relative;
+  z-index: 999999;
 }
 
 .add-bucket-action-container {
@@ -14,11 +17,13 @@
 
   .placeholder {
     transition: opacity 0.1s 0.4s ease, width 0.1s 0.14s linear;
-    width: 250px;
+    width: 170px;
     font-size: 28px;
     color: $black;
     position: relative;
     cursor: pointer;
+    white-space: pre;
+    word-wrap: break-word;
   }
 
   .placeholder.hide{
@@ -64,16 +69,36 @@
 
 
   form {
+    padding: 2rem 0;
+    color: $white;
+    background: $primary;
+    margin-top: 205px;
     width: 0px;
     overflow: hidden;
     transition: width 0.3s ease;
     * { margin: 0; }
+
+    .form-group {
+      margin-bottom: 1rem;
+      label {
+        white-space: pre;
+        word-wrap: break-word;
+      }
+    }
+
+    .btn {
+      button {
+        width: 214px;
+      }
+      margin-left: 150px;
+    }
   }
 }
 
 .open-form {
   transition: width 0.3s 0.2s ease !important;
   width: 90% !important;
+  padding: 2rem !important;
 }
 
 @media #{$medium-and-down} {

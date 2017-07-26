@@ -1,14 +1,14 @@
-<div class="row nomargin">
+<div class="buckets-empty" *ngIf="!buckets.length">
+  <span class="text">Hello, i am BucketLink<br> <b>I'm really happy to see you.</b><br><br>Begin to add one bucket,<br>click on "Add Bucket...".</span>
+</div>
+<div class="row nomargin add-bucket-container">
    <!-- <h1>My Buckets</h1> -->
   <div class="wip-actions">
     <core-add-bucket (hasBeenCreated)="handleCreation($event)">
       <!-- <span class="nb-buckets">{{buckets?.length}} item(s)</span> -->
     </core-add-bucket>
-    <core-view-mode-selector [selectedViewMode]="defaultViewMode" (viewModeUpdate)="handleBucketsViewMode($event)"></core-view-mode-selector>
+    <core-view-mode-selector *ngIf="buckets.length" [selectedViewMode]="defaultViewMode" (viewModeUpdate)="handleBucketsViewMode($event)"></core-view-mode-selector>
   </div>
-</div>
-<div class="buckets-empty" *ngIf="!buckets.length">
-  <span class="text">Hey, this is your buckets area ! <br><br>You can create some buckets and add some links to it :)</span>
 </div>
 <div class="buckets-container row" [ngClass]="viewModeChoosed ? viewModeChoosed : defaultViewMode">
   <core-bucket *ngFor="let bucket of buckets | reverse" [bucket]="bucket" (bucketEvent)="handleDeleted($event)" class="col s12 m6 l4 xl3"  [ngClass]="viewModeChoosed ? viewModeChoosed : defaultViewMode">
