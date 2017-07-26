@@ -2,7 +2,7 @@
   <div class="add-bucket-close" (click)="_open_create = !_open_create">
     <div [ngClass]="_open_create ? 'close' : 'plus'"></div>
   </div>
-  <div [ngClass]="{'hide': _open_create}" class="placeholder">Add bucket...</div>
+  <div [ngClass]="{'hide': _open_create}" class="placeholder" (click)="_open_create = !_open_create">Add bucket...</div>
   <form [formGroup]="createBucket"
         (ngSubmit)="submitForm(createBucket.value, createBucket.valid)"
         [ngClass]="{'open-form': _open_create}">
