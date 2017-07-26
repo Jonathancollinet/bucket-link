@@ -27,6 +27,10 @@
     "status": 500,
     "message": "Server error."
   },
+  "USER_ALRDY_EXIST": {
+    "status": 401,
+    "message": "Email is already use by a user."
+  },
   "INVALID_EMAIL": {
     "status": 401,
     "message": "Wrong user email."

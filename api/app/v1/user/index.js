@@ -15,7 +15,7 @@ module.exports = (express) => {
   const router = express.Router()
 
   // router.get('/:userId',)
-  router.get('/', userCtrl.index)
+  router.get('/profile', userCtrl.index)
   router.get('/:userId', userCtrl.show)
   router.post('/', userCtrl.create)
   router.delete('/:userId', userCtrl.destroy)

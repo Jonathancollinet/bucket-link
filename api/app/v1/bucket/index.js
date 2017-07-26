@@ -33,4 +33,4 @@ module.exports = (express) => {
   router.patch('/:bucketId', bucketCtrl.update)
 
   return router
-}
+  }
