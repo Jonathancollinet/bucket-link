@@ -10,6 +10,7 @@ import { SocketService } from './socket.service';
 @Injectable()
 export class BucketService {
 
+  private _bucketID: number | null = null;
   private _bucketName: string | null;
 
   constructor(
@@ -21,8 +22,16 @@ export class BucketService {
 
   // LOCAL
 
+  setBucketIDForPost(id: number): void {
+    this._bucketID= id;
+  }
+
   setBucketName(name: string): void {
     this._bucketName = name;
+  }
+
+  getBucketIDForPost(): number {
+    return this._bucketID;
   }
 
   getBucketName(): string {
@@ -93,6 +102,12 @@ export class BucketService {
 
   deleteBucket(id: number): Observable<any> {
     return this._http.delete(`/buckets/${id}`).flatMap((data) => {
+      return Observable.of(data);
+    });
+  }
+
+  deleteLink(id: number): Observable<any> {
+     return this._http.delete(`/links/${id}`).flatMap((data) => {
       return Observable.of(data);
     });
   }

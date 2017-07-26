@@ -19,9 +19,9 @@
     position: relative;
     border: none;
     border-bottom: 4px solid $placeholder-color;
-    color: $primary !important;
     display: inline-block;
-    background: $white;
+    background: $primary-light;
+    color: $white !important;
 
     &:focus, &:focus + label {
       border-color: $accent !important;

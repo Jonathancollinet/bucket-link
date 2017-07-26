@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, NgZone, ViewChild, HostListener } from '@angular/core';
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { Router, NavigationStart  } from '@angular/router';
 
 import { TopBarComponent, SharedService } from '../core';
@@ -18,32 +19,42 @@ export class AppComponent implements OnInit, OnDestroy {
   public buckets: Array<Bucket> = [];
   public uncategorizedBucket: Bucket;
   public uncategorizedLinks: Array<Link>;
+  public _layout = 0; // For Sidebar
+  public minimalWidth = "993px";  // For Sidebar
+  public selectedBucket: Bucket;
+  public classAuthState: string = 'AuthOFF'; // FOR general CSS
 
   private _opened: boolean = false;
-  private _disconnected: boolean;
-  public _layout = 0;
-  public selectedBucket: Bucket;
-  public classAuthState: string = 'AuthOFF';
+  private _disconnected: boolean; 
   private _currentUser;
   private _closeOnClickOutside: boolean = false;
   private _closeOnClickBackdrop: boolean = true;
   private _showBackdrop: boolean = true;
   private _modeNum: number = 0;
-  public minimalWidth = "993px";
+  // Subscribs
+  private _subRouter;
+  private _subAuth;
+  private _subBuckets;
+  private _subULinks;
+  private _subBucketsReload;
+  private _subLogged;
+  
 
   @ViewChild(TopBarComponent) topbar: TopBarComponent;
 
   constructor(
     private _zone: NgZone,
+    private _dragula: DragulaService,
     private _router: Router,
     private _auth: AuthService,
     private _shared: SharedService,
     private _bucket: BucketService
   ) {
-    // Subscriber
-     this._router.events.subscribe(event => {
+     // Subscribers
+     this._subRouter = this._router.events.subscribe(event => {
       if  (event instanceof NavigationStart) {
         if (event.url.indexOf('/bucket/') > -1) {
+          console.log(this.buckets[event.url.split('/').pop()])
           this.selectedBucket = this.buckets[event.url.split('/').pop()]
         } else {
           this.selectedBucket = null;
@@ -52,32 +63,43 @@ export class AppComponent implements OnInit, OnDestroy {
       if  (event instanceof NavigationStart && this._layout) {
         this._closeSidebar();
       }
-    })
-    // Subscriber
-    this._shared.get('hasBeenLogged').subscribe((state) => {
+    });
+    this._subLogged = this._shared.get('hasBeenLogged').subscribe((state) => {
       this.setAuthStateCSSClass('AuthON');
       this._disconnected = false;
       this.enableResponsive();
       this.getBuckets();
       this.getUncategorizedLinks();
     });
-    // Subscriber
-    this._shared.get('shouldBeReloaded').subscribe((state) => {
-      console.log('shouldBeReloaded', state)
-      this.getBuckets();
-      // this.getUncategorizedLinks();
+    this._subBucketsReload = this._shared.get('BucketsShouldBeReloaded').subscribe((state) => {
+      if (parseInt(state, 10)) {
+        this.getBuckets();
+      } else {
+        this.getUncategorizedLinks();
+      }
     });
-  }
-
-  reloadCurrentPage() {
-
+    this._shared.get('selectedBucket').subscribe((state: number) => {
+      console.log('in sub', state);
+      // this.selectedBucket = state;
+      if (state) {
+        this._bucket.setBucketIDForPost(state);
+        this._bucket.setBucketName(this.getBucketByID(state).name);
+        this._shared.setData('selectedBucketColor', this.getBucketByID(state).color);
+      } else {
+        this._bucket.setBucketIDForPost(null);
+        this._shared.setData('selectedBucketColor',  BUCKET_COLORS[0].code)
+      }
+    })
+    this._dragula.setOptions('bag-trash', {
+      removeOnSpill: true
+    });
   }
 
   ngOnInit() {
     this.enableResponsive();
     if (localStorage.getItem('tkn')) {
       // Subscriber
-      this._auth.pingAuth().subscribe(
+      this._subAuth = this._auth.pingAuth().subscribe(
         (data)=> {
             this.setAuthStateCSSClass('AuthON');
             this._shared.get('currentUser').subscribe(d => this._currentUser = d);
@@ -91,7 +113,7 @@ export class AppComponent implements OnInit, OnDestroy {
     } else {
       this._disconnected = true;
       this.setAuthStateCSSClass('AuthOFF');
-       this._closeSidebar();
+      this._closeSidebar();
     }
   }
 
@@ -100,7 +122,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private getBuckets() {
-    this._bucket.getBuckets().subscribe((response) => {
+    this._subBuckets = this._bucket.getBuckets().subscribe((response) => {
       let tmp =  response.data;
       this.buckets = [];
       tmp.forEach((bucket) => {
@@ -110,7 +132,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private getUncategorizedLinks() {
-    this._bucket.getUncategorizedLinks().subscribe((response) => {
+    this._subULinks = this._bucket.getUncategorizedLinks().subscribe((response) => {
       this.uncategorizedBucket = new Bucket(0, "UNCATEGORIZED", "#37105f", new Date().toString(), new Date().toString(), response.data);
     }, (err) => { console.error('getBuckets', err); });
   }
@@ -127,14 +149,16 @@ export class AppComponent implements OnInit, OnDestroy {
     let [e, newBucketId] = args;
     let linkId = +[e.className.replace(/[^\d.]/g,'')];
     newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
+    if (newBucketId === NaN) { newBucketId = -1; }
     if (parseInt(newBucketId, 10)) {
+      console.log('inDrop app -- bucketId', newBucketId, 'linkId', linkId)
       this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
+        this._shared.setData('BucketsShouldBeReloaded', newBucketId);
       }, (err) => {console.error('patch link', err)})
-      this._shared.setData('shouldBeReloaded', true);
     } else if (newBucketId === 0) {
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
+         this._shared.setData('BucketsShouldBeReloaded', null);
       }, (err) => {console.error('patch link', err)})
-      this._shared.setData('shouldBeReloaded', true);
     }
   }
 
@@ -242,8 +266,26 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  @HostListener('click', ['$event']) 
+  onClick(e) {
+   if (this._auth.isLoggedIn()) {
+    if (e.target.className != 'click-target' && e.target.className != 'bucket-action' && e.target.className.indexOf('form-control ng-pristine ng-invalid') != 0) {
+      // Need reformat via bucketService
+      this._bucket.setBucketName(null);
+      this._shared.setData('selectedBucket', null);
+      this._shared.setData('selectedBucketColor',  BUCKET_COLORS[0].code);
+      this._bucket.setBucketIDForPost(null);
+    }
+   }
+  }
 
+  ngOnDestroy(): void {
+    if (this._subRouter) this._subRouter.unsubscribe();
+    if (this._subAuth) this._subAuth.unsubscribe();
+    if (this._subBuckets) this._subBuckets.unsubscribe();
+    if (this._subULinks) this._subULinks.unsubscribe();
+    if (this._subLogged) this._subLogged.unsubscribe();
+    if (this._subBucketsReload) this._subBucketsReload.unsubscribe();
   }
 
 }

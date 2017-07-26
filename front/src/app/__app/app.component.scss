@@ -2,9 +2,9 @@
 
 .container {
   width: 100%;
-  padding-top: 3vw;
-  padding-left: calc(#{$sidebar-width} + 3vw);
-  padding-right: 3vw;
+  padding-top: $marge;
+  padding-left: calc(#{$sidebar-width} + #{$marge});
+  padding-right: $marge;
 }
 
 .links-wrapper {
@@ -12,14 +12,37 @@
   overflow: hidden;
 }
 
+.trash-for-links {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  i {
+    color: $error;
+    font-size: 56px;
+  }
+}
+.container-for-trash /deep/ core-link {
+   -webkit-animation: fadeinout 4s linear forwards;
+    animation: fadeinout 4s linear forwards;
+}
+.container-for-trash {
+  position: absolute;
+  bottom: 30px;
+  width: 50%;
+  left: 50%;
+  min-height: 56px;
+  transform: translateX(-50%);
+}
+
+
 .ribbon-sidebar-container {
   position: fixed;
   z-index: 30;
   bottom: 0;
   height: $ribon-sidebar-height;
-  width: calc(100% - #{$sidebar-width} - 6vw - #{$scrollbar-default-width});
-  right: calc(3vw + #{$scrollbar-default-width});
-  left: calc(#{$sidebar-width} + 3vw);
+  width: calc(100% - #{$sidebar-width} - (#{$marge} * 2) - #{$scrollbar-default-width});
+  right: calc($marge + #{$scrollbar-default-width});
+  left: calc(#{$sidebar-width} + #{$marge});
   background: $white;
   .ribbon-container {
     width: 100%;
@@ -101,11 +124,23 @@
 
 @media #{$medium-and-down} {
   .ribbon-sidebar-container {
-    left: 3vw;
-    width: calc(100% - 6vw - #{$scrollbar-default-width});
+    left: $marge;
+    width: calc(100% - (#{$marge} * 2) - #{$scrollbar-default-width});
   }
 
   .topbar-link {
     display: none !important;
   }
+}
+
+
+
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
 }

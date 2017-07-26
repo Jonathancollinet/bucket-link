@@ -7,6 +7,7 @@ import * as moment from 'moment';
 
 import { BucketService, SharedService } from '../../core';
 import { Bucket, Link } from '../../core/models';
+import { lightenColor, hexToRGB } from '../../core/const';
 
 @Component({
   selector: 'page-bucket',
@@ -14,13 +15,14 @@ import { Bucket, Link } from '../../core/models';
   styleUrls: ['./bucket.component.scss']
 })
 export class BucketComponent implements OnInit, OnDestroy {
-  
-  public _id: number;  
+
+  public _id: number;
   public bucket: Bucket;
   public filteredLinks: Array<Link>;
   public subBucket;
   public filterField: string = '_createdAt';
   public filterFieldDir: number = -1;
+  private _subBucketPageReload;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +35,9 @@ export class BucketComponent implements OnInit, OnDestroy {
     this._id = +[window.location.pathname.split('/').pop()]; // convert string to number
     this._dragula.drop.subscribe((value) => {
       this.onDrop(value.slice(1));
+    });
+    this._subBucketPageReload = this._shared.get('BucketPageShouldBeReloaded').subscribe((state) => {
+      this.ngOnInit();
     });
   }
 
@@ -63,6 +68,13 @@ export class BucketComponent implements OnInit, OnDestroy {
     this.filterFieldDir = this.filterFieldDir === 1 ? -1 : 1;
   }
 
+  public getGradient(color): string {
+    if (color) return hexToRGB(lightenColor(color, .5), .3);
+  }
+  public getBaseColor(color): string {
+    if (color) return hexToRGB(color, .1);
+  }
+
   private onDrop(args) {
     let [e, newBucketId, unused, linkDOMItem] = args;
     let linkId = +[e.className.replace(/[^\d.]/g,'')];
@@ -79,8 +91,9 @@ export class BucketComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.subBucket) this.subBucket.unsubscribe();
+    if (this._subBucketPageReload) this._subBucketPageReload.unsubscribe();
   }
 
 
-  
+
 }

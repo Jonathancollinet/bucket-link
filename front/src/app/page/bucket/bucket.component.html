@@ -1,9 +1,7 @@
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<div class="row nomargin" [ngStyle]= {}>
-  <h1>{{bucket?.name}}</h1>
-  <div class="color-box">{{bucket?.color}}</div>
+<div class="row nomargin">
+  <div class="header" [ngStyle]="{'background': 'linear-gradient(0deg, '+getBaseColor(bucket?.color)+', '+getGradient(bucket?.color)+')'}">
+     <h1>{{bucket?.name}}</h1>
+  </div>
   <div class="search-container flex-centered" *ngIf="bucket?.Links?.length">
     <div class="search-container-action">
       <span class="sort-by-timestamp" (click)="changeFilterField('_createdAt')">

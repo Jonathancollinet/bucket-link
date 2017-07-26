@@ -1,13 +1,13 @@
 <div class="row nomargin">
-  <!-- <h1>My Buckets</h1> -->
+   <!-- <h1>My Buckets</h1> -->
   <div class="wip-actions">
     <core-add-bucket (hasBeenCreated)="handleCreation($event)">
       <!-- <span class="nb-buckets">{{buckets?.length}} item(s)</span> -->
     </core-add-bucket>
   </div>
 </div>
-<div class="row" [hidden]="!buckets.length">
-  <div *ngIf="!buckets.length" class="buckets-empty">
+<div class="row" *ngIf="!buckets.length">
+  <div class="buckets-empty">
     <span class="text">Your bucket list seems empty...</span>
   </div>
 </div>

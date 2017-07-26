@@ -1,7 +1,8 @@
-<div class="colorbox" (click)="_clicked = !_clicked" [ngStyle]="{'background-color': defaultColor}">
+<div class="colorbox">
   <div class="colorbox-container" [ngClass]="{'scale': _clicked}">
     <div class="colorbox-row">
       <div class="colorbox-item {{color.name}}" *ngFor="let color of bucketColors" [title]="color.name" (click)="setColor(color)"></div>
     </div>
   </div>
+  <div class="colorbox-face" (click)="_clicked = !_clicked" [ngStyle]="{'background-color': defaultColor}"></div>
 </div>

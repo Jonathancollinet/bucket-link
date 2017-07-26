@@ -25,15 +25,21 @@ export class TopBarComponent {
     }
 
     public handleCreation($event: any): void {
+        console.log('topbar receive: ', $event);
       if (parseInt($event, 10)) {
-          // Navigate to /buckets
-          var currentUrl = `/buckets`;
-          var refreshUrl = currentUrl.indexOf(`/buckets`) > -1 ? `/buckets` : `/buckets?t=true`;
-          this._router.navigateByUrl(refreshUrl).then(() => this._router.navigateByUrl(currentUrl));
+          if (this._router.url.indexOf('/bucket/') > -1) {
+             this._shared.setData('BucketPageShouldBeReloaded', $event);
+          } else {
+            this._shared.setData('BucketsPageShouldBeReloaded', $event);
+          }
+          this._shared.setData('BucketsShouldBeReloaded', $event);
       } else {
-        if ($event.data.UserId > 0) {
-          this._shared.setData('shouldBeReloaded', $event);
-        }
+         // Navigate to /buckets
+         console.log('navigate to buckets ...')
+        var currentUrl = `/buckets`;
+        var refreshUrl = currentUrl.indexOf(`/buckets`) > -1 ? `/buckets` : `/buckets?t=true`;
+        this._router.navigateByUrl(refreshUrl).then(() => this._router.navigateByUrl(currentUrl));
+        this._shared.setData('BucketsShouldBeReloaded', null);
       } 
     }
 

@@ -2,7 +2,7 @@
 <div class="bucket-container view" [ngClass]="{'uncategorized': !bucket?.id}" *ngIf="_mode === 0">
   <div class="bucket-info" *ngIf="bucket" [ngStyle]="{'background-color': _color || bucket.color}" (mouseover)="changeHoverStyle($event)"
     (mouseout)="changeHoverStyle($event)">
-    <div class="bucket-info-container" [ngClass]="{'selected': _selected}" (click)="goToBucket(bucket.id)">
+    <div class="bucket-info-container" (click)="goToBucket(bucket.id)">
       <div class="bucket-info-item title">{{ bucket?.name }}</div>
       <div class="bucket-info-item date" *ngIf="bucket?.id">{{ bucket?.createdAt }}</div>
     </div>
@@ -13,7 +13,7 @@
           />
         </svg>
       </div>
-      <div class="bucket-action" (click)="_selected = !_selected">
+      <div class="bucket-action" (click)="setSelectedBucket(bucket.id)">
         <div class="click-target"></div>
       </div>
     </div>

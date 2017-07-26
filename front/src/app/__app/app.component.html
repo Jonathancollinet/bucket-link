@@ -19,9 +19,7 @@
   </div>
 </core-topbar>
 
-
 <ng-sidebar-container [ngClass]="{'disconnect': getStateStyle()}">
-
   <!-- SIDEBAR  -->
   <ng-sidebar [hidden]="!isAuth()" [(opened)]="_opened" [closeOnClickOutside]="_closeOnClickOutside" [closeOnClickBackdrop]="_closeOnClickBackdrop"
     [sidebarClass]="setSidebarHidden()" [showBackdrop]="_showBackdrop">
@@ -30,17 +28,19 @@
         <div class="sidebar-link" *ngIf="_layout === 1" (click)="navigateToBuckets()">Buckets</div>
         <div class="sidebar-link" *ngIf="_layout === 1" (click)="navigateToLinks()">Links</div>
         <div *ngFor="let bucket of buckets | reverse" class="bucket-row col s12" (click)="navigateToBucket(bucket.id)">
-          <span class="colorbox" [ngStyle]="{'background-color': bucket.color}"></span>
+           <span class="colorbox" [ngStyle]="{'background-color': bucket.color}"></span>
           <span class="name">{{bucket.name}} ({{bucket?.Links.length}})</span>
         </div>
-        <div *ngIf="isAuth()" (click)="logout()" class="sidebar-link logout" (click)="logout()">Logout</div>
+        <div *ngIf="isAuth()" class="sidebar-link trash-for-links">
+          <i class=" fa fa-trash-o"></i>
+        </div>
+        <div class="container-for-trash" [dragula]='"bag-link"' [dragulaOptions]="{ removeOnSpill: true }"></div>
       </div>
     </div>
   </ng-sidebar>
 
   <!-- PAGE -->
   <div class="container" [ngClass]="{'width': getContainerSize() }" ng-sidebar-content>
-
     <!-- RIBBON  -->
     <div class="ribbon-sidebar-container" *ngIf="isAuth()">
       <div class="ribbon-container">
@@ -51,7 +51,6 @@
         </div>
       </div>
     </div>
-
     <router-outlet></router-outlet>
     <ng2-toasty [position]="'bottom-right'"></ng2-toasty>
   </div>

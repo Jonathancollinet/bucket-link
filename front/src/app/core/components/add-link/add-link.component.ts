@@ -74,8 +74,7 @@ export class AddLinkComponent {
       })
       } else {
         this._bucket.createLink(linkData).subscribe((resp) => {
-        console.log('resp', resp);
-        this.hasBeenCreated.emit(resp);
+        this.hasBeenCreated.emit(null);
         this.createLink.reset();
         this.createLink.controls.bucketId.updateValueAndValidity(this.determineBucketID());
         }, (err) => { this._toast.displayErrorToast(err.statusText); })
@@ -103,6 +102,8 @@ export class AddLinkComponent {
     let bucket_id = null;
     if (this._router.url.indexOf('/bucket/') > -1) {
       bucket_id = +[window.location.pathname.split('/').pop()]; // convert string to number
+    } else if (this._bucket.getBucketIDForPost() != null) {
+      bucket_id = this._bucket.getBucketIDForPost();
     } else {
       bucket_id = null;
     }

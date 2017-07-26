@@ -6,7 +6,7 @@ import { DragulaService } from 'ng2-dragula';
 
 import { BUCKET_COLORS } from '../../core/const';
 import { Bucket, Link } from '../../core/models';
-import { BucketService, ToastService, SharedService } from '../../core';
+import { AuthService, BucketService, ToastService, SharedService } from '../../core';
 import { lightenColor, hexToRGB } from '../../core/const';
 
 @Component({
@@ -17,19 +17,24 @@ import { lightenColor, hexToRGB } from '../../core/const';
 export class BucketsComponent implements OnInit, OnDestroy {
 
   buckets: Array<Bucket> = [];
-  private _subBuckets: any;
+  private _subBuckets;
+  private _subDragula;
+  private _subBucketsPageReload;
 
   constructor(
     private _router: Router,
     private _bucket: BucketService,
     private _dragula: DragulaService,
     private _toast: ToastService,
-    private _shared: SharedService
+    private _shared: SharedService,
+    private _auth: AuthService
     ) {
     moment.locale('fr');
-    this._dragula.drop.subscribe((value) => {
-      console.log('dragula drop, val:', value)
+    this._subDragula = this._dragula.drop.subscribe((value) => {
       this.onDrop(value.slice(1));
+    });
+    this._subBucketsPageReload = this._shared.get('BucketsPageShouldBeReloaded').subscribe((state) => {
+      this.ngOnInit();
     });
   }
 
@@ -39,7 +44,7 @@ export class BucketsComponent implements OnInit, OnDestroy {
     this._subBuckets = this._bucket.getBuckets().subscribe((response) => {
       let tmp =  response.data;
       this._shared.setData('selectedBucketColor', BUCKET_COLORS[0].code);
-      this._shared.setData('hasBeenLogged', true);
+      if (this._auth.isLoggedIn()) this._shared.setData('hasBeenLogged', true);
       this.buckets = [];
       tmp.forEach((bucket) => {
         bucket.createdAt = this.formatDate(bucket.createdAt);
@@ -49,9 +54,9 @@ export class BucketsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this._subBuckets) {
-      this._subBuckets.unsubscribe();
-    }
+    if (this._subBuckets) this._subBuckets.unsubscribe();
+    if (this._subBucketsPageReload) this._subBucketsPageReload.unsubscribe();
+    if (this._subDragula) this._subDragula.unsubscribe();
   }
 
   public handleCreation($event): void {
@@ -75,20 +80,28 @@ export class BucketsComponent implements OnInit, OnDestroy {
   }
   
   private onDrop(args) {
-    debugger
     let [e, newBucketId] = args;
     let linkId = +[e.className.replace(/[^\d.]/g,'')];
     newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
+    if (isNaN(newBucketId)) { newBucketId = -1; }
     if (parseInt(newBucketId, 10)) {
-      this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
-        this._shared.setData('shouldBeReloaded', resp.data);
-      }, (err) => {console.error('patch link', err)})
+      console.log('inDrop app -- bucketId', newBucketId, 'linkId', linkId)
+      if (newBucketId < 0) {
+       this._bucket.deleteLink(linkId).subscribe((resp) => {
+          this._shared.setData('BucketsShouldBeReloaded', resp.data.BucketId);
+        }, (err) => {console.error('delete link', err)});
+      } else {
+        this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
+          this._shared.setData('BucketsShouldBeReloaded', resp.data.BucketId);
+        }, (err) => {console.error('patch link', err)});
+      }
     } else if (newBucketId === 0) {
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
-        this._shared.setData('shouldBeReloaded', resp.data);
+        this._shared.setData('BucketsShouldBeReloaded', null);
       }, (err) => {console.error('patch link', err)})
     }
   }
+
 }
 
 
