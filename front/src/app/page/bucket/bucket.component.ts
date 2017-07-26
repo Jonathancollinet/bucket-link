@@ -15,8 +15,8 @@ import { lightenColor, hexToRGB } from '../../core/const';
   styleUrls: ['./bucket.component.scss']
 })
 export class BucketComponent implements OnInit, OnDestroy {
-  
-  public _id: number;  
+
+  public _id: number;
   public bucket: Bucket;
   public filteredLinks: Array<Link>;
   public subBucket;
@@ -95,5 +95,5 @@ export class BucketComponent implements OnInit, OnDestroy {
   }
 
 
-  
+
 }

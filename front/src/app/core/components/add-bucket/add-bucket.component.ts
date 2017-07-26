@@ -49,6 +49,7 @@ export class AddBucketComponent {
         (err) => { this._toast.displayErrorToast(err.statusText) }
       ); // end subscribe
       this.createBucket.reset();
+      this._open_create = false;
     } // end valid
   }
 
