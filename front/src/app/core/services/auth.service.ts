@@ -58,6 +58,13 @@ export class AuthService {
     });
   }
 
+  public editPassword(data: any): Observable<any> {
+    return this._http.post('/auth/editPassword', data).flatMap((data) => {
+      //apply anything relevant to successful forgot
+      return Observable.of(data);
+    })
+  }
+
   public forgot(data: any): Observable<any> {
     return this._http.post('/auth/forgot', data).flatMap((data) => {
       //apply anything relevant to successful forgot

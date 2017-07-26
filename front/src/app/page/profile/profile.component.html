@@ -1,2 +1,22 @@
-<p> page de profil</p>
-{{_currentUser | json}}
+<div class="block-info">
+  My email: {{_currentUser.email}}
+  <br>
+  Register since: {{_currentUser.createdAt | date }}
+</div>
+
+<br><br>
+<hr>
+<br><br>
+<div class="block-actions edit-password">
+  <label>Edit my password</label>
+  <core-edit-password (passwordUpdate)="handlePasswordUpdate($event)"></core-edit-password>
+</div>
+
+<hr>
+<br><br>
+<div class="block-actions delete-account">
+  <label>Danger Zone</label>
+
+  <!-- ToDo confirm system -->
+  <button (click)="deleteMyAccount()">Delete my account</button>
+</div>
