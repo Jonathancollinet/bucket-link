@@ -16,7 +16,7 @@
   <core-bucket *ngFor="let bucket of buckets | reverse" [bucket]="bucket" (bucketEvent)="handleDeleted($event)" class="col s12 m6 l4 xl3"  [ngClass]="viewModeChoosed ? viewModeChoosed : defaultViewMode">
     <div class="links-wrapper" [ngStyle]="{'background':'linear-gradient(0deg, '+getBaseColor(bucket?.color)+', '+getGradient(bucket?.color)+')'}">
       <ul class="links-container for-bucket-{{bucket.id}}" [dragula]='"bag-link"'
-        [dragulaModel]='bucket.links'>
+        [dragulaModel]='bucket.Links'>
         <core-link class="link-item link-{{link.id}}" *ngFor="let link of bucket.Links" [link]="link"></core-link>
       </ul>
     </div>
