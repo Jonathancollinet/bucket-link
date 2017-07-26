@@ -147,10 +147,6 @@
   }
 }
 
-/deep/ core-bucket.collapsed .bucket-container {
-  
-}
-
 /deep/ core-bucket.list .bucket-container {
 
 }
@@ -200,7 +196,6 @@
 
 // TODO: apply one of the following before each media declaration
 //  /deep/ core-bucket.full
-//  /deep/ core-bucket.collapsed
 //  /deep/ core-bucket.list
 
 @media (min-width: 2000px) { :host { width: 20% !important; } }

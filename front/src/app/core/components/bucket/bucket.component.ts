@@ -13,7 +13,7 @@ import { lightenColor } from '../../const';
   templateUrl: './bucket.component.html',
   styleUrls: ['./bucket.component.scss'],
   animations: [
-   
+
   ]
 })
 export class BucketComponent {
@@ -21,7 +21,7 @@ export class BucketComponent {
   @Input() bucket: Bucket;
   @Output() bucketEvent = new EventEmitter();
 
-  public viewMode = ['full', 'collapsed', 'list'];
+  public viewMode = ['full', 'list'];
   public selectedViewMode = 'full';
   private _mode: number = 0;
   private _selected: boolean = false;

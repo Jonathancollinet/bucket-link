@@ -7,7 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ViewModeSelectorComponent {
 
-  public viewMode = ['full', 'collapsed', 'list'];
+  public viewMode = ['full', 'list'];
   private _selectedViewMode: string;
 
   @Output() viewModeUpdate = new EventEmitter();
