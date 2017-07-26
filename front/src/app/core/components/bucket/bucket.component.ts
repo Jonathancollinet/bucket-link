@@ -21,6 +21,8 @@ export class BucketComponent {
   @Input() bucket: Bucket;
   @Output() bucketEvent = new EventEmitter();
 
+  public viewMode = ['full', 'collapsed', 'list'];
+  public selectedViewMode = 'full';
   private _mode: number = 0;
   private _selected: boolean = false;
   private _color: string;

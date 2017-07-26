@@ -4,7 +4,8 @@
   display: block;
 }
 
-.bucket-container {
+// Full mode
+/deep/ core-bucket.full .bucket-container {
   height: 25vw;
   min-height: 250px;
   position: relative;
@@ -146,8 +147,16 @@
   }
 }
 
-// UNCATEGORIZED BUCKET
-.bucket-container.uncategorized {
+/deep/ core-bucket.collapsed .bucket-container {
+  
+}
+
+/deep/ core-bucket.list .bucket-container {
+
+}
+
+// FULL - UNCATEGORIZED BUCKET
+/deep/ core-bucket.full .bucket-container.uncategorized {
   .bucket-info {
     user-select: none !important;
     text-align: center;
@@ -188,6 +197,11 @@
     }
   }
 }
+
+// TODO: apply one of the following before each media declaration
+//  /deep/ core-bucket.full
+//  /deep/ core-bucket.collapsed
+//  /deep/ core-bucket.list
 
 @media (min-width: 2000px) { :host { width: 20% !important; } }
 @media (min-width: 2300px) { :host { width: 16.66% !important; } }

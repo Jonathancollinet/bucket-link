@@ -16,7 +16,9 @@ import { lightenColor, hexToRGB } from '../../core/const';
 })
 export class BucketsComponent implements OnInit, OnDestroy {
 
-  buckets: Array<Bucket> = [];
+  public buckets: Array<Bucket> = [];
+  public defaultViewMode: string = 'full';
+  public viewModeChoosed: string = '';
   private _subBuckets;
   private _subDragula;
   private _subBucketsPageReload;
@@ -62,6 +64,10 @@ export class BucketsComponent implements OnInit, OnDestroy {
   public handleCreation($event): void {
     this._toast.displaySuccessToast(`bucket ${$event.name} has been added!`);
     this.ngOnInit();
+  }
+
+  public handleBucketsViewMode($event: string) {
+    this.viewModeChoosed = $event;
   }
 
   public handleDeleted(): void {

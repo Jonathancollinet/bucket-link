@@ -1,0 +1,35 @@
+@import '~scss/variables';
+
+:host {
+  display: inline-block;
+  width: 130px;
+
+  .view-mode-selector-container {
+    padding: 4px;
+    background: $primary;
+    color: white;
+
+    .view-mode {
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        color: $accent;
+      }
+
+      &.full  {
+
+      }
+
+      &.collapsed {
+
+      }
+
+      &.list {
+
+      }
+
+
+    }
+  }
+}
