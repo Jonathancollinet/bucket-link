@@ -112,6 +112,12 @@
   }
 }
 
+@media #{$small-and-down} {
+  .ribbon-sidebar-container {
+    display: none;
+  }
+}
+
 @media #{$extra-large-and-up} {
   .container {
     width: calc(100% - #{$ribon-sidebar-width});

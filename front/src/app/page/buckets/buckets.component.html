@@ -7,10 +7,8 @@
     <core-view-mode-selector [selectedViewMode]="defaultViewMode" (viewModeUpdate)="handleBucketsViewMode($event)"></core-view-mode-selector>
   </div>
 </div>
-<div class="row" *ngIf="!buckets.length">
-  <div class="buckets-empty">
-    <span class="text">Your bucket list seems empty...</span>
-  </div>
+<div class="buckets-empty" *ngIf="!buckets.length">
+  <span class="text">Hey, this is your buckets area ! <br><br>You can create some buckets and add some links to it :)</span>
 </div>
 <div class="buckets-container row" [ngClass]="viewModeChoosed ? viewModeChoosed : defaultViewMode">
   <core-bucket *ngFor="let bucket of buckets | reverse" [bucket]="bucket" (bucketEvent)="handleDeleted($event)" class="col s12 m6 l4 xl3"  [ngClass]="viewModeChoosed ? viewModeChoosed : defaultViewMode">

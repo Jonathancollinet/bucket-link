@@ -23,10 +23,28 @@
 .buckets-empty {
   width: 100%;
   height: 100%;
+  min-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background: $disabled;
+  color: $white;
+
+  .text {
+    display: block;
+    width: 100%;
+    min-width: 250px;
+    max-width: 450px;
+    font-size: 28px;
+    text-align: center;
+  }
+}
+
+@media #{$small-and-down} {
+  .buckets-empty .text {
+    font-size: 16px;
+  }
 }
 
 @media #{$extra-large-and-up} {
