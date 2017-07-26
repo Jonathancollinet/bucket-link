@@ -6,7 +6,8 @@ ng-sidebar-container {
 }
 
 .ng-sidebar {
-      z-index: 9999!important;
+  z-index: 9999!important;
+  box-shadow: 0px 0px 5px 0px $black;
 }
 
 .burger-icon {
@@ -114,6 +115,8 @@ ng-sidebar-container {
 .ng-sidebar__content {
     width: 100%;
     margin-left: 0;
+    overflow: scroll !important;
+    overflow-x: hidden !important;
 }
 
 @media #{$large-and-up} {

@@ -135,9 +135,9 @@
     }
   }
 
-    // commponent in edit mode
+  // commponent in edit mode
   &.edit {
-    & .bucket-info, & .bucket-info .bucket-action i {
+    .bucket-info, .bucket-info .bucket-action i {
       color: $primary-text;
     }
     input[type="text"] {

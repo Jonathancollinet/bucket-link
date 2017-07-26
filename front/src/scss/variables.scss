@@ -4,7 +4,6 @@ $white: #F5F5F5;
 $grey: #dcdcdc;
 $light-grey: #D3D3D3;
 
-
 $primary-light:  #4F4B6E;
 $primary:        #34314c;
 $primary-dark:   #2a273d;
@@ -39,7 +38,8 @@ $color-box-brown:   #795548;
 $color-box-grey:      $disabled;
 
 // Layout
-$marge: 2.5vw;
+$marge: 1vw;
+$inner-marge: 1.5vw;
 
 // Grid
 $small-screen-up: 601px !default;
@@ -100,7 +100,7 @@ $topbar-border-style: dashed;
 $topbar-container-lock: 1795px;
 
 // scroll bar
-$scrollbar-default-width: 17px;
+$scrollbar-default-width: 15px;
 
 // Ribon sidebar
 $ribon-sidebar-width: 250px;

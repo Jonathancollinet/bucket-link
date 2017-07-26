@@ -1,5 +1,10 @@
 @import '~scss/variables';
 
+/deep/ .bucket-container .colorbox-container {
+  position: absolute !important;
+  transform: scale(0);
+}
+
 .colorbox {
 
   display: flex;
