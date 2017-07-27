@@ -1,5 +1,5 @@
 <div class="row nomargin">
-  <div class="header" [ngStyle]="{'background': 'linear-gradient(0deg, '+getBaseColor(bucket?.color)+', '+getGradient(bucket?.color)+')'}">
+  <div class="header" >
      <h1>{{bucket?.name}}</h1>
   </div>
   <div class="search-container flex-centered" *ngIf="bucket?.Links?.length">
@@ -21,7 +21,7 @@
       <span class="text">List seems empty...</span>
     </div>
   </div>
-  <ul class="links-container for-bucket-{{bucket.id}}" *ngIf="bucket?.Links?.length" [dragula]='"bag-link"' [dragulaModel]='filteredLinks'>
+  <ul class="links-container for-bucket-{{bucket.id}}" *ngIf="bucket?.Links?.length" [dragula]='"bag-link"' [dragulaModel]='filteredLinks' [ngStyle]="{'background': 'linear-gradient(0deg, '+getBaseColor(bucket?.color)+', '+getGradient(bucket?.color)+')'}">
     <core-link *ngFor="let link of (filteredLinks | orderBy: {property: filterField, direction: filterFieldDir})" [link]="link"></core-link>
   </ul>
 </div>

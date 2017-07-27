@@ -23,6 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public minimalWidth = "993px";  // For Sidebar
   public selectedBucket: Bucket;
   public classAuthState: string = 'AuthOFF'; // FOR general CSS
+  public _ribbonVisibility: boolean;
 
   private _opened: boolean = false;
   private _disconnected: boolean; 
@@ -53,6 +54,11 @@ export class AppComponent implements OnInit, OnDestroy {
      // Subscribers
      this._subRouter = this._router.events.subscribe(event => {
       if  (event instanceof NavigationStart) {
+        if (event.url.indexOf('/bucket/') > -1 || event.url.indexOf('/buckets') > -1) {
+          this.setRibbonVisibility(true);
+        } else {
+          this.setRibbonVisibility(false);
+        }
         if (event.url.indexOf('/bucket/') > -1) {
           console.log(this.buckets[event.url.split('/').pop()])
           this.selectedBucket = this.buckets[event.url.split('/').pop()]
@@ -214,6 +220,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this._closeOnClickOutside = true;
     this._showBackdrop = true;
     this._layout = 1;
+  }
+
+  public setRibbonVisibility(state: boolean): boolean {
+    this._ribbonVisibility = state;
+    return this._ribbonVisibility;
+  }
+
+  public getRibbonVisibility(): boolean {
+    return this._ribbonVisibility;
   }
 
   private geContainerSize(): string {
