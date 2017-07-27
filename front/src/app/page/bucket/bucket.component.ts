@@ -18,7 +18,7 @@ export class BucketComponent implements OnInit, OnDestroy {
 
   public _id: number;
   public bucket: Bucket;
-  public filteredLinks: Array<Link>;
+  public filteredLinks: Array<Link> = [];
   public subBucket;
   public filterField: string = '_createdAt';
   public filterFieldDir: number = -1;
@@ -81,9 +81,11 @@ export class BucketComponent implements OnInit, OnDestroy {
     newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
     if (parseInt(newBucketId, 10)) {
       this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
+         this.filteredLinks = this.bucket.Links;
       }, (err) => {console.error('patch link', err)})
     } else if (newBucketId === 0) {
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
+          this.filteredLinks = this.bucket.Links;
       }, (err) => {console.error('patch link', err)})
     }
   }

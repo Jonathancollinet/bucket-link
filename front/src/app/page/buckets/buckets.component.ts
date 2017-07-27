@@ -32,11 +32,11 @@ export class BucketsComponent implements OnInit, OnDestroy {
     private _auth: AuthService
     ) {
     moment.locale('fr');
-    const bagLink: any = this._dragula.find('bag-link');
+    // const bagLink: any = this._dragula.find('bag-link');
     // if (bagLink !== undefined ) this._dragula.destroy('bag-link');
-    this._dragula.setOptions('bag-link', {
-      revertOnSpill: true
-    });
+    // this._dragula.setOptions('bag-link', {
+    //   revertOnSpill: true
+    // });
     
     this._subDragula = this._dragula.drop.subscribe((value) => {
       this.onDrop(value.slice(1));

@@ -51,7 +51,7 @@
       <div class="ribbon-sidebar-container" *ngIf="isAuth() && getRibbonVisibility()">
         <div class="ribbon-container">
           <div class="links-wrapper links-uncategorized">
-            <ul class="links-container for-bucket-{{uncategorizedBucket?.id}}" [dragula]='"bag-link"' [dragulaModel]='uncategorizedBucket?.Links'>
+            <ul class="links-container for-bucket-{{uncategorizedBucket?.id}}" [dragula]='"bag-link"' [dragulaModel]='uncategorizedBucket?.Links' [dragulaOptions]="{'revertOnSpill': true}">
               <core-link class="link-item link-{{link.id}} link-uncategorized" *ngFor="let link of uncategorizedBucket?.Links" [link]="link"></core-link>
             </ul>
           </div>
