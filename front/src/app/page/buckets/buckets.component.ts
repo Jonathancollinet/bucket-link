@@ -33,7 +33,7 @@ export class BucketsComponent implements OnInit, OnDestroy {
     ) {
     moment.locale('fr');
     const bagLink: any = this._dragula.find('bag-link');
-    if (bagLink !== undefined ) this._dragula.destroy('bag-link');
+    // if (bagLink !== undefined ) this._dragula.destroy('bag-link');
     this._dragula.setOptions('bag-link', {
       revertOnSpill: true
     });

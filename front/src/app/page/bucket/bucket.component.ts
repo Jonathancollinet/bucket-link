@@ -83,7 +83,6 @@ export class BucketComponent implements OnInit, OnDestroy {
       this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
       }, (err) => {console.error('patch link', err)})
     } else if (newBucketId === 0) {
-      linkId = +[linkDOMItem.className.replace(/[^\d.]/g,'')];
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
       }, (err) => {console.error('patch link', err)})
     }

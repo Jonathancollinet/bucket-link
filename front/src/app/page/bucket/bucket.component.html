@@ -22,6 +22,6 @@
     </div>
   </div>
   <ul class="links-container for-bucket-{{bucket.id}}" *ngIf="bucket?.Links?.length" [dragula]='"bag-link"' [dragulaModel]='filteredLinks' [ngStyle]="{'background': 'linear-gradient(0deg, '+getBaseColor(bucket?.color)+', '+getGradient(bucket?.color)+')'}">
-    <core-link *ngFor="let link of (filteredLinks | orderBy: {property: filterField, direction: filterFieldDir})" [link]="link"></core-link>
+    <core-link  class="link-item link-{{link.id}}" *ngFor="let link of (filteredLinks | orderBy: {property: filterField, direction: filterFieldDir})" [link]="link"></core-link>
   </ul>
 </div>
