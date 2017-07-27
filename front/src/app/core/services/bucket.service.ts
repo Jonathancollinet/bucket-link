@@ -73,7 +73,7 @@ export class BucketService {
   }
 
   createLink(linkData: any): Observable<any> {
-    return this._http.post('/links/', linkData).flatMap((data) => {
+    return this._http.post('/links', linkData).flatMap((data) => {
       return Observable.of(data);
     });
   }

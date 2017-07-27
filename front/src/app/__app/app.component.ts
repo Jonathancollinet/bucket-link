@@ -85,17 +85,15 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
     this._shared.get('selectedBucket').subscribe((state: number) => {
-      console.log('in sub', state);
-      // this.selectedBucket = state;
-      if (state) {
-        this._bucket.setBucketIDForPost(state);
-        this._bucket.setBucketName(this.getBucketByID(state).name);
-        this._shared.setData('selectedBucketColor', this.getBucketByID(state).color);
-      } else {
-        this._bucket.setBucketIDForPost(null);
-        this._shared.setData('selectedBucketColor',  BUCKET_COLORS[0].code)
-      }
-    })
+       if (state) {
+          this._bucket.setBucketIDForPost(state);
+          this._bucket.setBucketName(this.getBucketByID(state).name);
+          this._shared.setData('selectedBucketColor', this.getBucketByID(state).color);
+        } else {
+          this._bucket.setBucketIDForPost(null);
+          this._shared.setData('selectedBucketColor',  BUCKET_COLORS[0].code)
+        }
+    });
     this._dragula.setOptions('bag-trash', {
       removeOnSpill: true
     });
@@ -284,7 +282,7 @@ export class AppComponent implements OnInit, OnDestroy {
   @HostListener('click', ['$event']) 
   onClick(e) {
    if (this._auth.isLoggedIn()) {
-    if (e.target.className != 'click-target' && e.target.className != 'bucket-action' && e.target.className.indexOf('form-control ng-pristine ng-invalid') != 0) {
+    if (e.target.className != 'click-target' && e.target.className != 'bucket-action' && e.target.className.indexOf('form-control') != 0) {
       // Need reformat via bucketService
       this._bucket.setBucketName(null);
       this._shared.setData('selectedBucket', null);
