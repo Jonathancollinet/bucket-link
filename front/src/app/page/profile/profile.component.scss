@@ -1,0 +1,38 @@
+@import '~scss/variables';
+
+:host {
+  display: inline-block;
+  padding: 1rem;
+}
+
+.profile {
+
+  h1, h4 {
+    margin-bottom: 1rem;
+  }
+
+  &-info, &-actions {
+    border-bottom: 2px solid $grey;
+    padding: 1.5rem 0;
+  }
+
+  .danger-zone {
+    border-top: 2px solid;
+    border-color: $error;
+
+    &-content {
+      display: flex;
+      align-content: center;
+      justify-content: space-between;
+    }
+
+    label {
+      height: auto !important;
+      line-height: 48px;
+    }
+    button {
+      width: 214px;
+    }
+  }
+
+}

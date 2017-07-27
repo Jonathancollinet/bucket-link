@@ -1,5 +1,10 @@
 @import '~scss/variables';
 
+:host {
+  display: inline-block;
+  padding: 1rem;
+}
+
 .buckets-container {
   height: 100%;
   margin-bottom: $ribon-sidebar-height;

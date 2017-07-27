@@ -1,7 +1,8 @@
 @import '~scss/variables';
 
 :host {
-  display: block;
+  display: inline-block;
+  padding: 1rem;
 
   .links-list {
 
