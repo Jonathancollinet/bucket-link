@@ -43,7 +43,7 @@
   <div class="container" [ngClass]="{'width': getContainerSize() }" ng-sidebar-content>
     <div class="wrapper">
       <!-- RIBBON  -->
-      <div class="ribbon-sidebar-container" *ngIf="isAuth()">
+      <div class="ribbon-sidebar-container" *ngIf="isAuth() && getRibbonVisibility()">
         <div class="ribbon-container">
           <div class="links-wrapper links-uncategorized">
             <ul class="links-container for-bucket-{{uncategorizedBucket?.id}}" [dragula]='"bag-link"' [dragulaModel]='uncategorizedBucket?.Links'>
