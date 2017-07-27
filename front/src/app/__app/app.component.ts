@@ -281,9 +281,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostListener('click', ['$event']) 
   onClick(e) {
-   if (this._auth.isLoggedIn()) {
-    if (e.target.className != 'click-target' && e.target.className != 'bucket-action' && e.target.className.indexOf('form-control') != 0) {
-      // Need reformat via bucketService
+   if (this._auth.isLoggedIn() && e.target.className) {
+    if (e.target.className.indexOf && e.target.className != 'click-target' && e.target.className != 'bucket-action' && e.target.className.indexOf('form-control') != 0) {
+      // TODO: Need reformat via bucketService
       this._bucket.setBucketName(null);
       this._shared.setData('selectedBucket', null);
       this._shared.setData('selectedBucketColor',  BUCKET_COLORS[0].code);

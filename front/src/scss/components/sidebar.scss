@@ -140,7 +140,7 @@ ng-sidebar-container {
 .ng-sidebar__content {
     width: 100%;
     margin-left: 0;
-    overflow: scroll !important;
+    overflow: auto !important;
     overflow-x: hidden !important;
 }
 
