@@ -11,6 +11,10 @@
     margin-bottom: 1rem;
   }
 
+  &-info {
+    padding: 0 !important;
+  }
+
   &-info, &-actions {
     border-bottom: 2px solid $grey;
     padding: 1.5rem 0;
