@@ -25,6 +25,10 @@
     [sidebarClass]="setSidebarHidden()" [showBackdrop]="_showBackdrop">
     <div class="sidebar-link-container">
       <div class="sidebar-link-wrapper">
+        <h4>My Buckets</h4>
+        <div class="sidebar-bucket-empty" *ngIf="!buckets?.length">
+          <div class="text">There is no buckets.<br><br>Click on the [+Add bucket...]</div>
+        </div>
         <div class="sidebar-link" *ngIf="_layout === 1" (click)="navigateToBuckets()">Buckets</div>
         <div class="sidebar-link" *ngIf="_layout === 1" (click)="navigateToLinks()">Links</div>
         <div *ngFor="let bucket of buckets | reverse" class="bucket-row col s12" (click)="navigateToBucket(bucket.id)">
