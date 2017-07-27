@@ -15,6 +15,15 @@
   align-items: center;
   height: 34px;
 
+  .title {
+    font-size: 24px;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $white;
+    margin-bottom: 1rem !important;
+    white-space: pre;
+    word-wrap: break-word;
+  }
+
   .placeholder {
     transition: opacity 0.1s 0.4s ease, width 0.1s 0.14s linear;
     width: 170px;
@@ -36,7 +45,6 @@
   .add-bucket-close {
 
     cursor: pointer;
-
     height: 38px;
     width: 38px;
     display: flex;
@@ -66,7 +74,6 @@
       background: $accent;
     }
   }
-
 
   form {
     padding: 2rem 0;

@@ -17,7 +17,7 @@
 
   &-container {
     height: 48px;
-    width: 166px;
+    width: 148px;
     position: relative;
     background: $grey;
     z-index: 3;
@@ -25,6 +25,7 @@
     transform-origin: 15px 15px;
     transition-timing-function: ease-in-out;
     padding: 6px;
+    margin-right: 18px;
 
     &:hover {
       border-color: $primary;
