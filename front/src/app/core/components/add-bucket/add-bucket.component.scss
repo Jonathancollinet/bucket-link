@@ -82,7 +82,7 @@
     margin-top: 205px;
     width: 0px;
     overflow: hidden;
-    transition: width 0.3s ease;
+    transition: 0.225s ease;
     * { margin: 0; }
 
     .form-group {
@@ -103,7 +103,6 @@
 }
 
 .open-form {
-  transition: width 0.3s ease !important;
   width: 90% !important;
   padding: 2rem !important;
 }

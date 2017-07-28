@@ -23,6 +23,7 @@
   .danger-zone {
     border-top: 2px solid;
     border-color: $error;
+    color: $error;
 
     &-content {
       display: flex;
