@@ -76,17 +76,17 @@
   }
 
   form {
-    padding: 2rem 0;
+    padding: 1rem 0;
     color: $white;
     background: $primary;
-    margin-top: 205px;
+    margin-top: 70px; //205px;
     width: 0px;
     overflow: hidden;
     transition: 0.225s ease;
     * { margin: 0; }
 
     .form-group {
-      margin-bottom: 1rem;
+      margin-bottom: .5rem;
       label {
         white-space: pre;
         word-wrap: break-word;

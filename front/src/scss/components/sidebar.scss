@@ -48,7 +48,7 @@ ng-sidebar-container {
 
   .bucket-row {
     width: 100%;
-    padding: 0.7rem 1.5rem;
+    padding: 0.7rem 0;
     cursor: pointer;
     overflow: hidden;
     line-height: 0;
@@ -57,7 +57,7 @@ ng-sidebar-container {
     user-select: none;
     &:hover {
       .colorbox:after {
-        transform: scaleX(10) scaleY(4);
+        transform: scaleX(5) scaleY(4);
       }
     }
     &:active {
