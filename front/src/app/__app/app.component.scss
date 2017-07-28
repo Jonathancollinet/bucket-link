@@ -2,12 +2,14 @@
 
 .container {
   width: 100%;
-  padding-top: $marge;
-  padding-left: calc(#{$sidebar-width} + #{$marge});
+  height: 100%;
+  // padding-top: $marge;
+  padding-left: calc(#{$sidebar-width}); // + #{$marge}
   padding-right: $marge;
 }
 
 .wrapper {
+  min-height: 100%;
   border: 2px solid #eee;
   box-shadow: 0px 0px 1px 0px $black;
   padding: $inner-marge;
@@ -69,6 +71,16 @@
   width: calc(100% + #{$scrollbar-default-width});
   overflow-y: scroll;
   padding-left: 0px;
+}
+
+.ribbon-title {
+  color: white;
+  font-family: 'Archivo Black', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #F5F5F5;
+  padding-bottom: 1.5rem;
 }
 
 

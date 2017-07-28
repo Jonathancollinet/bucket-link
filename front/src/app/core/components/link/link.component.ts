@@ -73,7 +73,7 @@ export class LinkComponent {
           this.editLinkForm.controls.alt_title.updateValueAndValidity(formData.alt_title);
           this.editLinkForm.controls.alt_description.updateValueAndValidity(formData.alt_description);
         }, (err) => {
-          console.error(err);
+          this._toast.displayErrorToast(err.statusText);
         });
       } else {
         this.toggleMode();
@@ -85,7 +85,7 @@ export class LinkComponent {
     this._bucket.deleteLink(id).subscribe((resp) => {
       this.linkEvent.emit(true);
     }, (err) => {
-      console.error('delete bucket', err);
+      this._toast.displayErrorToast(err.statusText);
     })
   }
 

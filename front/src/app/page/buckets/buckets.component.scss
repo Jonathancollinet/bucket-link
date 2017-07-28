@@ -65,6 +65,10 @@
   }
 }
 
+hr.separator {
+  margin: 12px 0 ;
+}
+
 @media #{$small-and-down} {
   .buckets-empty .text {
     font-size: 16px;
