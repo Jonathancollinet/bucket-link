@@ -82,10 +82,12 @@ export class BucketComponent implements OnInit, OnDestroy {
     if (parseInt(newBucketId, 10)) {
       this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
          this.filteredLinks = this.bucket.Links;
+         this._shared.setData('BucketsShouldBeReloaded', newBucketId);
       }, (err) => {console.error('patch link', err)})
     } else if (newBucketId === 0) {
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
           this.filteredLinks = this.bucket.Links;
+          this._shared.setData('BucketsShouldBeReloaded', null);
       }, (err) => {console.error('patch link', err)})
     }
   }

@@ -33,13 +33,9 @@
           <div class="text">There is no buckets.<br><br>Click on the [+Add bucket...]</div>
         </div>
         <div *ngFor="let bucket of buckets | reverse" class="bucket-row col s12" (click)="navigateToBucket(bucket.id)">
-           <span class="colorbox" [ngStyle]="{'background-color': bucket.color}"></span>
-          <span class="name">{{bucket.name}} ({{bucket?.Links.length}})</span>
+          <div class="name">{{bucket.name}}</div> 
+          <div class="count" [ngStyle]="{'background-color': bucket.color}">{{bucket?.Links.length}}</div>
         </div>
-        <!-- <div *ngIf="isAuth()" class="sidebar-link trash-for-links">
-          <i class=" fa fa-trash-o"></i>
-        </div>
-        <div class="container-for-trash" [dragula]='"bag-link"' [dragulaOptions]="{ removeOnSpill: true }"></div> -->
       </div>
     </div>
   </ng-sidebar>
