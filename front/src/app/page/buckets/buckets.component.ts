@@ -32,11 +32,6 @@ export class BucketsComponent implements OnInit, OnDestroy {
     private _auth: AuthService
     ) {
     moment.locale('fr');
-    // const bagLink: any = this._dragula.find('bag-link');
-    // if (bagLink !== undefined ) this._dragula.destroy('bag-link');
-    // this._dragula.setOptions('bag-link', {
-    //   revertOnSpill: true
-    // });
     
     this._subDragula = this._dragula.drop.subscribe((value) => {
       this.onDrop(value.slice(1));
@@ -108,6 +103,7 @@ export class BucketsComponent implements OnInit, OnDestroy {
         }, (err) => {console.error('patch link', err)});
       }
     } else if (newBucketId === 0) {
+      e.parentElement.removeChild(e);
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
         this._shared.setData('BucketsShouldBeReloaded', null);
       }, (err) => {console.error('patch link', err)})

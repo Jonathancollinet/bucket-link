@@ -137,7 +137,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private getUncategorizedLinks() {
     this._subULinks = this._bucket.getUncategorizedLinks().subscribe((response) => {
-      console.log('uncategorizedBucket', this.uncategorizedBucket);
       if (this.uncategorizedBucket && this.uncategorizedBucket.Links && this.uncategorizedBucket.Links.length !== response.data.length) {
         this.uncategorizedBucket.Links = response.data;
       } else {
