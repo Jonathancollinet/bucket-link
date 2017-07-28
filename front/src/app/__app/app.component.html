@@ -19,6 +19,9 @@
   </div>
 </core-topbar>
 
+<!--Keyboad helper  -->
+<core-keyboard-helper></core-keyboard-helper>
+
 <ng-sidebar-container [ngClass]="{'disconnect': getStateStyle()}">
   <!-- SIDEBAR  -->
   <ng-sidebar [hidden]="!isAuth()" [(opened)]="_opened" [closeOnClickOutside]="_closeOnClickOutside" [closeOnClickBackdrop]="_closeOnClickBackdrop"

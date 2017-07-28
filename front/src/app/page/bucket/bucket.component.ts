@@ -44,8 +44,10 @@ export class BucketComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subBucket = this._bucket.getBucket(this._id).subscribe((resp) => {
       this.bucket = resp.data;
+      console.log('bucket', resp.data);
+      this._shared.setData('selectedBucket', this.bucket.id);
       this._shared.setData('selectedBucketColor', this.bucket.color);
-      this._bucket.setBucketName(this.bucket.name);
+
       this.filteredLinks = this.bucket.Links;
     })
   }
@@ -83,11 +85,15 @@ export class BucketComponent implements OnInit, OnDestroy {
       this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
          this.filteredLinks = this.bucket.Links;
          this._shared.setData('BucketsShouldBeReloaded', newBucketId);
+         this._shared.setData('BucketPageShouldBeReloaded', true);
+         if (e.parentElement) e.parentElement.removeChild(e);
       }, (err) => {console.error('patch link', err)})
     } else if (newBucketId === 0) {
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
           this.filteredLinks = this.bucket.Links;
           this._shared.setData('BucketsShouldBeReloaded', null);
+          this._shared.setData('BucketPageShouldBeReloaded', true);
+          if (e.parentElement) e.parentElement.removeChild(e);
       }, (err) => {console.error('patch link', err)})
     }
   }

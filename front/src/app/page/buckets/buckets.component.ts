@@ -92,7 +92,6 @@ export class BucketsComponent implements OnInit, OnDestroy {
     newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
     if (isNaN(newBucketId)) { newBucketId = -1; }
     if (parseInt(newBucketId, 10)) {
-      console.log('inDrop app -- bucketId', newBucketId, 'linkId', linkId)
       if (newBucketId < 0) {
        this._bucket.deleteLink(linkId).subscribe((resp) => {
           this._shared.setData('BucketsShouldBeReloaded', resp.data.BucketId);
@@ -103,7 +102,7 @@ export class BucketsComponent implements OnInit, OnDestroy {
         }, (err) => {console.error('patch link', err)});
       }
     } else if (newBucketId === 0) {
-      e.parentElement.removeChild(e);
+      if (e.parentElement) e.parentElement.removeChild(e);
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
         this._shared.setData('BucketsShouldBeReloaded', null);
       }, (err) => {console.error('patch link', err)})

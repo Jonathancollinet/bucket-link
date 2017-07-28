@@ -13,7 +13,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit() { }
 
   handleState(data:any) {
-    console.log(data)
     if (data.r) this.router.navigate(['/buckets']);
   }
 
