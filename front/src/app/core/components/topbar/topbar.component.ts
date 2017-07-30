@@ -17,11 +17,19 @@ export class TopBarComponent {
     // forwardRef can help with circular dependency when Nested View Child
     @ViewChild(forwardRef(() => AddLinkComponent)) private addLink: AddLinkComponent;
 
-    constructor(private _router: Router, private _auth: AuthService, private _shared: SharedService) {}
+    constructor(
+        private _router: Router,
+        private _auth: AuthService,
+        private _shared: SharedService
+    ) {}
 
     public navigateToHome(): void {
         if (this._auth.isLoggedIn()) this._router.navigate(['/buckets']);
         else this._router.navigate(['/home']);
+    }
+
+    public isAuth(): boolean {
+        return this._auth.isLoggedIn();
     }
 
     public handleCreation($event: any): void {

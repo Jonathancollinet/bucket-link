@@ -268,6 +268,15 @@ export class AppComponent implements OnInit, OnDestroy {
       this._router.navigate(['/profile']);
   }
 
+  public navigateToRegister() {
+    this._router.navigate(['/register']);
+  }
+
+  public navigateToLogin() {
+    this._router.navigate(['/login']);
+  }
+
+
   public setSidebarHidden(): string {
     return (this._auth.isLoggedIn() && this._layout === 0) ? 'bucketlist-sidebar' : 'bucketlist-sidebar hidden';
   }

@@ -1,1 +1,9 @@
 @import '~scss/variables';
+
+:host {
+  display: block;
+
+  .landing-page-container {
+    color: white;
+  }
+}

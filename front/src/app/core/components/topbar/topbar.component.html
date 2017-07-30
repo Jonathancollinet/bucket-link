@@ -21,7 +21,7 @@
     </svg>
   </div>
   <div class="rest-container">
-    <core-add-link (hasBeenCreated)="handleCreation($event)"></core-add-link>
+    <core-add-link (hasBeenCreated)="handleCreation($event)" *ngIf="isAuth()"></core-add-link>
     <ng-content></ng-content>
   </div>
 </div>

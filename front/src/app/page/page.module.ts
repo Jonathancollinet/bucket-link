@@ -13,6 +13,7 @@ import { RoutingModule } from '../app.routing';
 
 import {
     HomeComponent,
+    LoginComponent,
     RegisterComponent,
     ForgotComponent,
     BucketsComponent,
@@ -24,6 +25,7 @@ import {
 @NgModule({
   declarations: [
     HomeComponent,
+    LoginComponent,
     RegisterComponent,
     ForgotComponent,
     BucketsComponent,
@@ -33,6 +35,7 @@ import {
   ],
   exports: [
     HomeComponent,
+    LoginComponent,
     RegisterComponent,
     ForgotComponent,
     BucketsComponent,
