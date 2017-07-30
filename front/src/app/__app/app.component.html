@@ -24,7 +24,7 @@
 </core-topbar>
 
 <!--Keyboad helper  -->
-<core-keyboard-helper *ngIf="!isAuth()"></core-keyboard-helper>
+<core-keyboard-helper *ngIf="isAuth()"></core-keyboard-helper>
 
 <ng-sidebar-container [ngClass]="{'disconnect': getStateStyle()}">
   <!-- SIDEBAR  -->
