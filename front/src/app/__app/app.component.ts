@@ -52,7 +52,10 @@ export class AppComponent implements OnInit, OnDestroy {
     private _shared: SharedService,
     private _bucket: BucketService
   ) {
-     // Subscribers
+    // Subscribers
+    this._dragula.drop.subscribe((value) => {
+      this.onDrop(value.slice(1));
+    });
      this._subRouter = this._router.events.subscribe(event => {
       if  (event instanceof NavigationStart) {
         if (event.url.indexOf('/bucket/') > -1 || event.url.indexOf('/buckets') > -1) {
@@ -93,9 +96,6 @@ export class AppComponent implements OnInit, OnDestroy {
           this._bucket.setBucketIDForPost(null);
           this._shared.setData('selectedBucketColor',  BUCKET_COLORS[0].code)
         }
-    });
-    this._dragula.setOptions('bag-trash', {
-      removeOnSpill: true
     });
   }
 
@@ -157,14 +157,15 @@ export class AppComponent implements OnInit, OnDestroy {
     let [e, newBucketId] = args;
     let linkId = +[e.className.replace(/[^\d.]/g,'')];
     newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
-    if (newBucketId === NaN) { newBucketId = -1; }
     if (parseInt(newBucketId, 10)) {
       this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
         this._shared.setData('BucketsShouldBeReloaded', newBucketId);
+        this._shared.setData('BucketsPageShouldBeReloaded', newBucketId);
       }, (err) => {console.error('patch link', err)})
     } else if (newBucketId === 0) {
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
          this._shared.setData('BucketsShouldBeReloaded', null);
+         this._shared.setData('BucketsPageShouldBeReloaded', null);
       }, (err) => {console.error('patch link', err)})
     }
   }
