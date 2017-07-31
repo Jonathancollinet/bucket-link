@@ -11,6 +11,7 @@ export { AddBucketComponent } from './components/add-bucket/add-bucket.component
 export { BucketComponent } from './components/bucket/bucket.component';
 export { LinkComponent } from './components/link/link.component';
 export { ColorBoxComponent } from './components/color-box/color-box.component';
+export { KeyboardHelperComponent } from './components/keyboard-helper/keyboard-helper.component';
 export { ViewModeSelectorComponent } from './components/view-mode-selector/view-mode-selector.component';
 
 export { emailValidator } from './validators/email.validator';

@@ -11,23 +11,11 @@ import { AuthService } from '../../core';
 export class HomeComponent implements AfterViewInit {
 
   constructor(private router: Router, private _auth: AuthService) {
-    if (this._auth.isLoggedIn()) this.router.navigate(['/buckets']);
+    if (this._auth.isLoggedIn()) this.router.navigate(['/login']);
   }
 
   ngAfterViewInit() {
-    if (this._auth.isLoggedIn()) this.router.navigate(['/buckets']);
-  }
-
-  handleState(data:any) {
-    if (data) this.router.navigate(['/buckets']);
-  }
-
-  navigateToRegister() {
-    this.router.navigate(['/register']);
-  }
-
-  navigateToForgot() {
-    this.router.navigate(['/forgot']);
+    if (this._auth.isLoggedIn()) this.router.navigate(['/login']);
   }
 
 }

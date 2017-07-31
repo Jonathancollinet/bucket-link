@@ -21,6 +21,11 @@
   transition: opacity 0.1s 0.5s ease, width 0.4s 0.1s linear !important;
 }
 
+.bucket-links-empty {
+  text-align: center;
+  padding: 6px 3px;
+}
+
 .add-bucket-container {
 
   .wip-actions {
@@ -37,7 +42,7 @@
 
 .links-container {
   height: 100%;
-  width: calc(100% + 15px);
+  width: calc(100% + 17px);
   overflow-y: scroll;
   padding-left: 0px;
   core-link {
