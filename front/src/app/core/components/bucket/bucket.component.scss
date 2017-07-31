@@ -4,12 +4,31 @@
   display: block;
 }
 
+/deep/ core-bucket.list {
+  width: 100% !important;
+  .bucket-info {
+
+    .bucket-info-action {
+      width: auto !important;
+    }
+  }
+}
+
+/deep/ core-bucket.full .bucket-container {
+  height: 25vw;
+  min-height: 250px;
+  .for-list {
+    display: none !important;
+  }
+}
+
 /deep/ core-bucket.list .bucket-container {
   height: 50px;
 }
 
 /deep/ core-bucket.list .bucket-container.collapsed {
   height: auto;
+
 }
 
 .click-collapse {
@@ -23,18 +42,6 @@
 .click-collapse.collapsed {
   clip-path: polygon(100% 0, 100% 38%, 50% 100%, 0 38%, 0 0, 50% 63%) !important;
 
-}
-
-/deep/ core-bucket.list {
-  width: 100% !important;
-}
-
-/deep/ core-bucket.full .bucket-container {
-  height: 25vw;
-  min-height: 250px;
-  .for-list {
-    display: none !important;
-  }
 }
 
 /deep/ core-bucket.full .bucket-container,
@@ -112,7 +119,7 @@
           transition: fill 0.125s ease;
         }
         &:hover {
-          div {
+          div:not(.click-target) {
             background: $accent;
           }
           svg {

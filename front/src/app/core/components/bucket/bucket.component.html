@@ -4,7 +4,6 @@
     (mouseout)="changeHoverStyle($event)">
     <div class="bucket-info-container" (click)="goToBucket(bucket.id)">
       <div class="bucket-info-item title">{{ bucket?.name }}</div>
-      <div class="bucket-info-item date" *ngIf="bucket?.id">{{ bucket?.createdAt }}</div>
     </div>
     <div class="bucket-info-action" *ngIf="bucket?.id">
       <div class="bucket-action" (click)="toggleMode()">

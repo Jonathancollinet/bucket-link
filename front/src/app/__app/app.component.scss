@@ -51,6 +51,7 @@
   z-index: 30;
   bottom: 0;
   padding: 1.5rem 0;
+  color: $white;
   height: $ribon-sidebar-height;
   width: calc(100% - #{$sidebar-width} - (#{$marge} * 2) - #{$scrollbar-default-width});
   right: calc($marge + #{$scrollbar-default-width});
@@ -141,7 +142,7 @@
     right: $scrollbar-default-width;
     top: $topbar-height;
     bottom: 0;
-    padding: 1.5rem 1.5rem 1.5rem 0;
+    padding: 1rem 1.5rem 1rem 0;
     left: inherit;
     width: calc(#{$ribon-sidebar-width} - #{$marge} + #{$scrollbar-default-width});
     height: calc(100% - #{$topbar-height});

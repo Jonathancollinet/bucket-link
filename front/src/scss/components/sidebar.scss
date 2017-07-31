@@ -39,6 +39,22 @@ ng-sidebar-container {
   }
 }
 
+.ng-sidebar, .ribbon-sidebar-container {
+  h4 {
+    text-align: center;
+    padding-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid $white;
+    padding-bottom: 1.5rem;
+  }
+
+  .sidebar-bucket-empty, .ribbon-empty {
+    height: 100%;
+    padding: 0.5rem 0;
+    text-align: center;
+  }
+}
+
 .ng-sidebar {
   overflow: hidden !important;
   width: $sidebar-width;
@@ -119,20 +135,6 @@ ng-sidebar-container {
       height: 92%;
       overflow-y: scroll;
       padding: 1rem 13px 0;
-
-      h4 {
-        text-align: center;
-        padding-top: 0.5rem;
-        margin-bottom: 0.5rem;
-        border-bottom: 2px solid $white;
-        padding-bottom: 1.5rem;
-      }
-
-      .sidebar-bucket-empty {
-        height: 100%;
-        padding: 0.5rem 0;
-        text-align: center;
-      }
 
     }
 

@@ -7,11 +7,11 @@
       />
     </svg>
   </div>
-  <div *ngIf="isAuth()" (click)="navigateToProfile()" class="topbar-link user-item">
+  <div title="Profile" *ngIf="isAuth()" (click)="navigateToProfile()" class="topbar-link user-item">
     <i class="fa fa-user" aria-hidden="true"></i>
     <span *ngIf="isAuth()">&nbsp;{{_currentUser?.firstname}}</span>
   </div>
-  <div *ngIf="isAuth()" (click)="logout()" class="topbar-link logout" (click)="logout()">
+  <div  title="Logout" *ngIf="isAuth()" (click)="logout()" class="topbar-link logout" (click)="logout()">
     <svg width="24" height="24" viewBox="0 0 24 24">
       <path d="M10 2v2h12v16h-12v2h14v-20h-14zm0 7.408l2.963 2.592-2.963 2.592v-1.592h-8v-2h8v-1.592zm-2-4.408v4h-8v6h8v4l8-7-8-7z"
       />
@@ -33,7 +33,7 @@
           <div class="text">There is no buckets.<br><br>Click on the [+Add bucket...]</div>
         </div>
         <div *ngFor="let bucket of buckets | reverse" class="bucket-row col s12" (click)="navigateToBucket(bucket.id)">
-          <div class="name">{{bucket.name}}</div> 
+          <div class="name">{{bucket.name}}</div>
           <div class="count" [ngStyle]="{'background-color': bucket.color}">{{bucket?.Links.length}}</div>
         </div>
       </div>
@@ -46,7 +46,10 @@
       <!-- RIBBON  -->
       <div class="ribbon-sidebar-container" *ngIf="isAuth() && getRibbonVisibility()">
         <div class="ribbon-container">
-          <div class="ribbon-title">My Uncategorized links</div>
+          <h4 class="ribbon-title">My Uncategorized links</h4>
+          <div class="ribbon-empty" *ngIf="!uncategorizedBucket?.Links?.length">
+            <div class="text">There isn't uncategorized links.</div>
+          </div>
           <div class="links-wrapper links-uncategorized">
             <ul class="links-container for-bucket-{{uncategorizedBucket?.id}}" [dragula]='"bag-link"' [dragulaModel]='uncategorizedBucket?.Links' [dragulaOptions]="{'revertOnSpill': true}">
               <core-link class="link-item link-{{link.id}} link-uncategorized" *ngFor="let link of uncategorizedBucket?.Links" [link]="link"></core-link>
