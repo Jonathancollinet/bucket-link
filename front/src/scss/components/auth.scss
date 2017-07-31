@@ -1,8 +1,26 @@
 @import '~scss/variables';
 
+
+:host {
+  display: inline-block;
+  position: relative;
+}
+
 .AuthOFF {
   ng-sidebar-container {
-    height: 100% !important;
+    height: calc(100% - #{$topbar-height}) !important;
+  }
+
+  // .ng-sidebar__content {
+  //   overflow-x: hidden !important;
+  //   overflow-y: hidden !important;
+  // }
+
+  .topbar {
+    position: relative !important;
+    top: 0;
+    width: 100%;
+    z-index: 99;
   }
 
   .container {
@@ -10,11 +28,10 @@
     padding-top: 0 !important;
     padding-left: 0 !important;
     padding-bottom: 0 !important;
+    height: 100% !important;
     margin: 0 !important;
-    height: 100%;
     width: 100% !important;
   }
-
   .wrapper {
     background: $primary !important;
     border: none !important;
@@ -25,6 +42,7 @@
 
 .login, .forgot, .register {
 
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -32,11 +50,12 @@
   background: $primary;
 
   &-container {
+    position: absolute;
+    top: 100px;
     width: 572px;
     color: $white;
     padding: 8rem 5rem 5rem 5rem;
     background: rgba(0, 0, 0, 0.1);
-    position: relative;
   }
 
   svg {

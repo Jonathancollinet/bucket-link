@@ -8,6 +8,10 @@
   padding-right: $marge;
 }
 
+.topbar-button:first-child {
+  margin: 0 -4px;
+}
+
 .wrapper {
   min-height: 100%;
   border: 2px solid #eee;

@@ -28,7 +28,6 @@
 
 /deep/ core-bucket.list .bucket-container.collapsed {
   height: auto;
-
 }
 
 .click-collapse {
@@ -51,6 +50,13 @@
   background-color: lightgrey;
   border-radius: 10px;
 
+  .bucket-info.selected {
+    &:after {
+      width: 100%;
+      left: 0;
+    }
+  }
+
   .bucket-info {
     margin: 6px 0 0;
     height: 56px;
@@ -61,6 +67,17 @@
     color: white;
     transition: background 0.125s ease-in-out;
 
+    &:after {
+      position: absolute;
+      transition: .3s;
+      content: '';
+      width: 0;
+      bottom: 0;
+      height: 4px;
+      background: $primary-light;
+      right: 0;
+      left: auto;
+    }
     &-container {
       padding: 0 12px;
       width: calc(100% - 60px);

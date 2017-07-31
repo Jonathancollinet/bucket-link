@@ -1,6 +1,6 @@
 <!-- VIEW mode  -->
 <div class="bucket-container view" [ngClass]="{'uncategorized': !bucket?.id, 'collapsed': _collapsed}" *ngIf="_mode === 0">
-  <div class="bucket-info" *ngIf="bucket" [ngStyle]="{'background-color': _color || bucket.color}" (mouseover)="changeHoverStyle($event)"
+  <div class="bucket-info" [ngClass]="{'selected': _selected}" *ngIf="bucket" [ngStyle]="{'background-color': _color || bucket.color}" (mouseover)="changeHoverStyle($event)"
     (mouseout)="changeHoverStyle($event)">
     <div class="bucket-info-container" (click)="goToBucket(bucket.id)">
       <div class="bucket-info-item title">{{ bucket?.name }}</div>

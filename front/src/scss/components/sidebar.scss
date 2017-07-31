@@ -122,6 +122,8 @@ ng-sidebar-container {
       background-color: white;
       display: inline-block;
       vertical-align: super;
+      transition: transform 75ms;
+      will-change: transform;
     }
   }
 

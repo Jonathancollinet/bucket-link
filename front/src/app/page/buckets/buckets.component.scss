@@ -22,8 +22,16 @@
 }
 
 .bucket-links-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-2vw);
+  height: calc(100% + 2vw);
+  border-radius: 12px;
   text-align: center;
+  color: $black;
   padding: 6px 3px;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .add-bucket-container {
