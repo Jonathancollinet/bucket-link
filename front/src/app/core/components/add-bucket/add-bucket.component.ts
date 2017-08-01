@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter  } from '@angular/core';
+import { Component, Output, ViewChild, EventEmitter  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { BucketService } from '../../services/bucket.service';
@@ -13,6 +13,7 @@ import { BUCKET_COLORS } from '../../const';
 export class AddBucketComponent {
 
   @Output() hasBeenCreated = new EventEmitter();
+  @ViewChild('addBucket') addBucket;
 
   createBucket: FormGroup;
   public color: string;
@@ -34,11 +35,11 @@ export class AddBucketComponent {
     });
   }
 
-  handleColorChosen(data: any) {
+  public handleColorChosen(data: any): void {
     this.color = data.code;
   }
 
-  submitForm(formData: any, valid: boolean) {
+  public submitForm(formData: any, valid: boolean): void {
     if (valid) {
       let tmp = { name: formData.name, color: this.color };
 
@@ -51,6 +52,15 @@ export class AddBucketComponent {
       this.createBucket.reset();
       this._open_create = false;
     } // end valid
+  }
+
+  public reverseOpenCreate() {
+    if (!this._open_create) {
+      this.addBucket.nativeElement.focus();
+    } else {
+      this.addBucket.nativeElement.blur();
+    }
+    this._open_create = !this._open_create;
   }
 
 }

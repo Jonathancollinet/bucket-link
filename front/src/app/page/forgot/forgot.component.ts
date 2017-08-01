@@ -17,7 +17,7 @@ export class ForgotComponent implements OnInit {
   }
 
   navigateToLogin() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 
 }

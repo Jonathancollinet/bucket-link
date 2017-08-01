@@ -22,6 +22,7 @@ export class ColorBoxComponent {
 
   setColor(color): void {
     this.colorClicked.emit(color);
+    this._clicked = false;
   }
 
 }

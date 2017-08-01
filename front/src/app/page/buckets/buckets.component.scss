@@ -1,32 +1,91 @@
 @import '~scss/variables';
 
+:host {
+  display: inline-block;
+  padding: 1rem;
+  width: 100%;
+}
+
 .buckets-container {
   height: 100%;
   margin-bottom: $ribon-sidebar-height;
 }
 
+.buckets-empty + .add-bucket-container {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+}
+
+.buckets-empty + .add-bucket-container /deep/ .placeholder {
+  transition: opacity 0.1s 0.5s ease, width 0.4s 0.1s linear !important;
+}
+
+.bucket-links-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-2vw);
+  height: calc(100% + 2vw);
+  border-radius: 12px;
+  text-align: center;
+  color: $black;
+  padding: 6px 3px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.add-bucket-container {
+
+  .wip-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+}
+
 .links-wrapper {
-  height: calc(100% - (56px));
+  height: calc(100% - 56px);
   overflow: hidden;
 }
 
 .links-container {
   height: 100%;
-  width: calc(100% + 15px);
+  width: calc(100% + 17px);
   overflow-y: scroll;
   padding-left: 0px;
   core-link {
-    margin: 8px;
+    margin: 4px;
   }
 }
 
 .buckets-empty {
   width: 100%;
   height: 100%;
+  padding: 6rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  color: $disabled;
+
+  .text {
+    display: block;
+    width: 100%;
+    min-width: 250px;
+    max-width: 450px;
+    font-size: 28px;
+    text-align: center;
+  }
+}
+
+hr.separator {
+  margin: 12px 0 ;
+}
+
+@media #{$small-and-down} {
+  .buckets-empty .text {
+    font-size: 16px;
+  }
 }
 
 @media #{$extra-large-and-up} {

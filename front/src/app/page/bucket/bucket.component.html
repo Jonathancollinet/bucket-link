@@ -1,8 +1,8 @@
 <div class="row nomargin">
-  <div class="header" [ngStyle]="{'background': 'linear-gradient(0deg, '+getBaseColor(bucket?.color)+', '+getGradient(bucket?.color)+')'}">
+  <div class="header" >
      <h1>{{bucket?.name}}</h1>
   </div>
-  <div class="search-container flex-centered" *ngIf="bucket?.Links?.length">
+  <div class="search-container flex-centered" *ngIf="bucket?.Links.length">
     <div class="search-container-action">
       <span class="sort-by-timestamp" (click)="changeFilterField('_createdAt')">
           <i class="fa fa-clock-o"></i>
@@ -11,17 +11,17 @@
           <i class="fa fa-sort-alpha-asc"></i>
         </span>
     </div>
-    <div class="form-group" *ngIf="bucket?.Links?.length">
+    <div class="form-group" *ngIf="bucket?.Links.length">
       <input placeholder="search" (keyup)="search($event.target.value)" />
     </div>
     <span class="search-container-nbitems">{{filteredLinks?.length}} item(s)</span>
   </div>
-  <div class="empty-links">
-    <div *ngIf="!bucket?.Links.length" class="links-empty">
-      <span class="text">List seems empty...</span>
+  <ul class="links-container for-bucket-{{bucket?.id}}" [dragula]='"bag-link"' [dragulaModel]='filteredLinks' [ngStyle]="{'background': 'linear-gradient(0deg, '+getBaseColor(bucket?.color)+', '+getGradient(bucket?.color)+')'}">
+    <div class="empty-links">
+      <div *ngIf="!filteredLinks.length" class="links-empty">
+        <span class="text">List seems empty...</span>
+      </div>
     </div>
-  </div>
-  <ul class="links-container for-bucket-{{bucket.id}}" *ngIf="bucket?.Links?.length" [dragula]='"bag-link"' [dragulaModel]='filteredLinks'>
-    <core-link *ngFor="let link of (filteredLinks | orderBy: {property: filterField, direction: filterFieldDir})" [link]="link"></core-link>
+    <core-link  class="link-item link-{{link.id}}" *ngFor="let link of (filteredLinks | orderBy: {property: filterField, direction: filterFieldDir})" [link]="link"></core-link>
   </ul>
 </div>

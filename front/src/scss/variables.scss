@@ -4,7 +4,6 @@ $white: #F5F5F5;
 $grey: #dcdcdc;
 $light-grey: #D3D3D3;
 
-
 $primary-light:  #4F4B6E;
 $primary:        #34314c;
 $primary-dark:   #2a273d;
@@ -39,7 +38,8 @@ $color-box-brown:   #795548;
 $color-box-grey:      $disabled;
 
 // Layout
-$marge: 2.5vw;
+$marge: 1.5vw;
+$inner-marge: 2rem 2.2rem;
 
 // Grid
 $small-screen-up: 601px !default;
@@ -89,7 +89,7 @@ $btn-height: $input-height;
 // Links
 
 // Sidebar
-$sidebar-width: 224px;
+$sidebar-width: 234px;
 $sidebar-color: $primary;
 $sidebar-shadow-color: $black;
 

@@ -50,6 +50,13 @@ button {
   }
 }
 
+button.danger {
+  background: $error !important;
+  &:after {
+    background: $white;
+  }
+}
+
 // button {
 //     line-height: 37px;
 //     height: calc(#{$btn-height} - 2px);

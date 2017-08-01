@@ -1,6 +1,22 @@
-<core-login (hasBeenLogged)="handleState($event)">
-  <section class="alt-nav" >
-    <div><a (click)="navigateToRegister()">Create an account</a></div>
-    <div><a (click)="navigateToForgot()">Forgot ?</a></div>
-  </section>
-</core-login>
+<div class="landing-page-container">
+  <div class="large-presentation">
+    <div class="titles-container">
+      <h1>Bla bla bla</h1>
+      <h4>Bla bla!</h4>
+    </div>
+  </div>
+  <div class="stepper">
+    <div class="stepper-container">
+      <div class="stepper-number">{{_stepper}}</div>
+      <div *ngIf="_stepper" class="stepper-back" (click)="decrementStep()"><</div>
+      <div class="stepper-content">
+        <div *ngIf="_stepper === 0" class="stepper-inner-content"></div>
+        <div *ngIf="_stepper === 1" class="stepper-inner-content"></div>
+        <div *ngIf="_stepper === 2" class="stepper-inner-content"></div>
+        <div *ngIf="_stepper === 3" class="stepper-inner-content"></div>
+      </div>
+      <div *ngIf="_stepper < 4" class="stepper-next" (click)="incrementStep()">></div>
+    </div>
+  </div>
+
+</div>

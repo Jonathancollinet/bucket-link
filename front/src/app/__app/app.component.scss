@@ -2,9 +2,22 @@
 
 .container {
   width: 100%;
-  padding-top: $marge;
-  padding-left: calc(#{$sidebar-width} + #{$marge});
+  height: 100%;
+  // padding-top: $marge;
+  padding-left: calc(#{$sidebar-width}); // + #{$marge}
   padding-right: $marge;
+}
+
+.topbar-button:first-child {
+  margin: 0 -4px;
+}
+
+.wrapper {
+  min-height: 100%;
+  border: 2px solid #eee;
+  box-shadow: 0px 0px 1px 0px $black;
+  padding: $inner-marge;
+  background: $white;
 }
 
 .links-wrapper {
@@ -21,10 +34,7 @@
     font-size: 56px;
   }
 }
-.container-for-trash /deep/ core-link {
-   -webkit-animation: fadeinout 4s linear forwards;
-    animation: fadeinout 4s linear forwards;
-}
+
 .container-for-trash {
   position: absolute;
   bottom: 30px;
@@ -32,6 +42,11 @@
   left: 50%;
   min-height: 56px;
   transform: translateX(-50%);
+
+  & /deep/ core-link {
+  background: red;
+  display: none;
+  }
 }
 
 
@@ -39,15 +54,20 @@
   position: fixed;
   z-index: 30;
   bottom: 0;
+  padding: 1.5rem 0;
+  color: $white;
   height: $ribon-sidebar-height;
   width: calc(100% - #{$sidebar-width} - (#{$marge} * 2) - #{$scrollbar-default-width});
   right: calc($marge + #{$scrollbar-default-width});
   left: calc(#{$sidebar-width} + #{$marge});
-  background: $white;
+  background: $primary-light;
   .ribbon-container {
     width: 100%;
     height: 100%;
     border-bottom: none;
+    core-link {
+        border-radius: 0 !important;
+    }
   }
 }
 
@@ -56,11 +76,22 @@
   width: calc(100% + #{$scrollbar-default-width});
   overflow-y: scroll;
   padding-left: 0px;
-  core-link {
-    margin: 8px;
-  }
 }
 
+.ribbon-title {
+  color: white;
+  font-family: 'Archivo Black', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #F5F5F5;
+  padding-bottom: 1.5rem;
+}
+
+.landing-buttons {
+  position: absolute;
+  right: 0;
+}
 
 .topbar-link {
   height: 100%;
@@ -104,6 +135,12 @@
   }
 }
 
+@media #{$small-and-down} {
+  .ribbon-sidebar-container {
+    display: none;
+  }
+}
+
 @media #{$extra-large-and-up} {
   .container {
     width: calc(100% - #{$ribon-sidebar-width});
@@ -113,8 +150,9 @@
     right: $scrollbar-default-width;
     top: $topbar-height;
     bottom: 0;
+    padding: 1rem 1.5rem 1rem 0;
     left: inherit;
-    width: $ribon-sidebar-width;
+    width: calc(#{$ribon-sidebar-width} - #{$marge} + #{$scrollbar-default-width});
     height: calc(100% - #{$topbar-height});
     .ribon-container {
       border-left: 4px solid $disabled;
@@ -123,21 +161,18 @@
 }
 
 @media #{$medium-and-down} {
+  .container {
+    width: 100% !important;
+    padding: 0 !important;
+  }
   .ribbon-sidebar-container {
-    left: $marge;
-    width: calc(100% - (#{$marge} * 2) - #{$scrollbar-default-width});
+    left: $marge * 2;
+    width: calc(100% - (#{$marge} * 3) - #{$scrollbar-default-width}) !important;
   }
 
   .topbar-link {
     display: none !important;
   }
-}
-
-
-
-@-webkit-keyframes fadeinout {
-  0%,100% { opacity: 0; }
-  50% { opacity: 1; }
 }
 
 @keyframes fadeinout {

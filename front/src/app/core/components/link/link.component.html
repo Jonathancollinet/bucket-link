@@ -1,4 +1,5 @@
-<div class="link-container">
+<!-- VIEW mode  -->
+<div class="link-container view" *ngIf="_mode === 0">
   <div class="link-image" *ngIf="_link.image">
     <img src="{{_link.image}}">
   </div>
@@ -12,6 +13,31 @@
   <div class="link-action">
     <div class="link-copy-url" ngxClipboard [cbContent]="_link.url" (click)="displayConfirmCopy()">
       <i class="fa fa-clone"></i>
+    </div>
+    <div class="link-action" (click)="toggleMode()" *ngIf="_link.BucketId">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+        <path d="M18.311 2.828l2.862 2.861-15.033 15.032-3.583.722.723-3.584 15.031-15.031zm0-2.828l-16.873 16.872-1.438 7.127 7.127-1.437 16.874-16.873-5.69-5.689z"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+<!-- EDIT mode  -->
+<div class="link-container edit" *ngIf="_mode === 1">
+  <div class="link-info">
+    <p>Define alt title, alt description</p>
+    <form [formGroup]="editLinkForm" (ngSubmit)="editLink(editLinkForm.value, editLinkForm.valid)" #form="ngForm">
+      <div class="form-group">
+        <input class="form-control" type="text" placeholder="alt title" [value]="_link.title" formControlName="alt_title">
+        <br>
+        <input class="form-control" type="text" placeholder="alt description" [value]="_link.description" formControlName="alt_description">
+      </div>
+    </form>
+  </div>
+  <div class="link-action">
+    <div class="link-info-action" *ngIf="_link?.id">
+      <div class="link-action" (click)="editLink(editLinkForm.value, editLinkForm.valid)"><i class="fa fa-check"></i></div>
+      <div class="link-action" (click)="deleteLink(_link.id)"><i class="fa fa-trash-o"></i></div>
     </div>
   </div>
 </div>

@@ -1,0 +1,20 @@
+.keyboard-helper-container {
+  position: fixed;
+  width: 600px;
+  min-height: 250px;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 999999;
+  transform: translateY(-50%);
+  margin: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  background: white;
+  border: 1px solid black;
+
+  .row {
+    text-align: center;
+  }
+}

@@ -6,7 +6,12 @@ ng-sidebar-container {
 }
 
 .ng-sidebar {
-      z-index: 9999!important;
+  z-index: 99999998 !important;
+  box-shadow: 0px 0px 5px 0px $black;
+
+  aside {
+    z-index: 99999998 !important;
+  }
 }
 
 .burger-icon {
@@ -34,6 +39,22 @@ ng-sidebar-container {
   }
 }
 
+.ng-sidebar, .ribbon-sidebar-container {
+  h4 {
+    text-align: center;
+    padding-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid $white;
+    padding-bottom: 1.5rem;
+  }
+
+  .sidebar-bucket-empty, .ribbon-empty {
+    height: 100%;
+    padding: 0.5rem 0;
+    text-align: center;
+  }
+}
+
 .ng-sidebar {
   overflow: hidden !important;
   width: $sidebar-width;
@@ -43,17 +64,25 @@ ng-sidebar-container {
 
   .bucket-row {
     width: 100%;
-    padding: 0.7rem 1.5rem;
+    padding: 0.7rem 0;
     cursor: pointer;
+    font-size: 0.92rem;
     overflow: hidden;
     line-height: 0;
     white-space: nowrap;
     word-break: break-all;
+    user-select: none;
     &:hover {
-      .colorbox:after {
-        transform: scaleX(14) scaleY(4);
+      .count {
+        transform: scaleX(3) scaleY(3);
       }
     }
+    // &:active {
+    //   .colorbox:after {
+    //     transform: scaleX(28) scaleY(40);
+    //   }
+    // }
+
     .colorbox {
       width: 12px;
       height: 12px;
@@ -65,14 +94,36 @@ ng-sidebar-container {
         position: absolute;
         z-index: -1;
         content: "";
-        transition: transform 0.3s ease,
+        transition: transform 0.4s ease,
                     background 0.5s 0.1s ease;
         background: inherit;
         transform: scaleX(1) scaleY(1);
       }
     }
+
     .name {
+      display: inline-block;
+      float: left;
+      width: 80%;
+      height: 26px;
+      line-height: 26px;
+      text-indent: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       text-transform: uppercase;
+    }
+    .count {
+      width: 26px;
+      height: 26px;
+      line-height: 26px;
+      text-align: center;
+      border-radius: 50em;
+      background-color: white;
+      display: inline-block;
+      vertical-align: super;
+      transition: transform 75ms;
+      will-change: transform;
     }
   }
 
@@ -83,10 +134,10 @@ ng-sidebar-container {
 
     .sidebar-link-wrapper {
       width: 100%;
-      height: 85%;
+      height: 92%;
       overflow-y: scroll;
-      padding-right: 17px;
-      padding-top: 1rem;
+      padding: 1rem 13px 0;
+
     }
 
     .sidebar-link {
@@ -114,7 +165,11 @@ ng-sidebar-container {
 .ng-sidebar__content {
     width: 100%;
     margin-left: 0;
+    overflow: auto !important;
+    overflow-x: hidden !important;
 }
+
+
 
 @media #{$large-and-up} {
 

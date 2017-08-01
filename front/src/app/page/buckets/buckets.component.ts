@@ -16,7 +16,9 @@ import { lightenColor, hexToRGB } from '../../core/const';
 })
 export class BucketsComponent implements OnInit, OnDestroy {
 
-  buckets: Array<Bucket> = [];
+  public buckets: Array<Bucket> = [];
+  public defaultViewMode: string = 'full';
+  public viewModeChoosed: string = '';
   private _subBuckets;
   private _subDragula;
   private _subBucketsPageReload;
@@ -30,6 +32,7 @@ export class BucketsComponent implements OnInit, OnDestroy {
     private _auth: AuthService
     ) {
     moment.locale('fr');
+    
     this._subDragula = this._dragula.drop.subscribe((value) => {
       this.onDrop(value.slice(1));
     });
@@ -64,6 +67,10 @@ export class BucketsComponent implements OnInit, OnDestroy {
     this.ngOnInit();
   }
 
+  public handleBucketsViewMode($event: string) {
+    this.viewModeChoosed = $event;
+  }
+
   public handleDeleted(): void {
     this.ngOnInit();
   }
@@ -85,7 +92,6 @@ export class BucketsComponent implements OnInit, OnDestroy {
     newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
     if (isNaN(newBucketId)) { newBucketId = -1; }
     if (parseInt(newBucketId, 10)) {
-      console.log('inDrop app -- bucketId', newBucketId, 'linkId', linkId)
       if (newBucketId < 0) {
        this._bucket.deleteLink(linkId).subscribe((resp) => {
           this._shared.setData('BucketsShouldBeReloaded', resp.data.BucketId);
@@ -96,6 +102,7 @@ export class BucketsComponent implements OnInit, OnDestroy {
         }, (err) => {console.error('patch link', err)});
       }
     } else if (newBucketId === 0) {
+      if (e.parentElement) e.parentElement.removeChild(e);
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
         this._shared.setData('BucketsShouldBeReloaded', null);
       }, (err) => {console.error('patch link', err)})

@@ -13,12 +13,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit() { }
 
   handleState(data:any) {
-    console.log(data)
     if (data.r) this.router.navigate(['/buckets']);
   }
 
   navigateToLogin() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 
 }

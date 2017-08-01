@@ -1,0 +1,45 @@
+@import '~scss/variables';
+
+:host {
+  display: inline-block;
+  width: 96px;
+
+  .view-mode-selector-container {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+
+    .view-mode {
+      cursor: pointer;
+
+      svg {
+        border: 1px solid black;
+        border-radius: 4px;
+        padding: 0.4rem;
+        width: 42px;
+        height: 42px;
+        transition: fill 0.2s ease;
+        fill: $white;
+        background: $primary-light;
+
+        &:hover {
+          fill: $accent;
+        }
+      }
+
+      &:hover {
+        color: $accent;
+      }
+
+      &.full  {
+
+      }
+
+      &.list {
+
+      }
+
+
+    }
+  }
+}

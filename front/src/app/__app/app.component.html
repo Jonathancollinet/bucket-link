@@ -1,23 +1,30 @@
 <!-- TOP-BAR  -->
-<core-topbar [hidden]="!isAuth()">
+<core-topbar>
   <div class="burger-icon" (click)="_toggleSidebar()"></div>
-  <div title="Links" class="topbar-link" (click)="navigateToLinks()">
+  <div title="Links" class="topbar-link" (click)="navigateToLinks()" *ngIf="isAuth()">
     <svg width="48" height="48" viewBox="0 0 48 48">
       <path d="M7.8 24c0-3.42 2.78-6.2 6.2-6.2h8V14h-8C8.48 14 4 18.48 4 24s4.48 10 10 10h8v-3.8h-8c-3.42 0-6.2-2.78-6.2-6.2zm8.2 2h16v-4H16v4zm18-12h-8v3.8h8c3.42 0 6.2 2.78 6.2 6.2s-2.78 6.2-6.2 6.2h-8V34h8c5.52 0 10-4.48 10-10s-4.48-10-10-10z"
       />
     </svg>
   </div>
-  <div *ngIf="isAuth()" (click)="navigateToProfile()" class="topbar-link user-item">
+  <div title="Profile" *ngIf="isAuth()" (click)="navigateToProfile()" class="topbar-link user-item">
     <i class="fa fa-user" aria-hidden="true"></i>
     <span *ngIf="isAuth()">&nbsp;{{_currentUser?.firstname}}</span>
   </div>
-  <div *ngIf="isAuth()" (click)="logout()" class="topbar-link logout" (click)="logout()">
+  <div  title="Logout" *ngIf="isAuth()" (click)="logout()" class="topbar-link logout" (click)="logout()">
     <svg width="24" height="24" viewBox="0 0 24 24">
       <path d="M10 2v2h12v16h-12v2h14v-20h-14zm0 7.408l2.963 2.592-2.963 2.592v-1.592h-8v-2h8v-1.592zm-2-4.408v4h-8v6h8v4l8-7-8-7z"
       />
     </svg>
   </div>
+  <div class="landing-buttons">
+    <button (click)="navigateToLogin()" class="topbar-button btn-login" *ngIf="!isAuth()">Login</button>
+    <button (click)="navigateToRegister()" class="topbar-button btn-register" *ngIf="!isAuth()">Register</button>
+  </div>
 </core-topbar>
+
+<!--Keyboad helper  -->
+<core-keyboard-helper *ngIf="isAuth()"></core-keyboard-helper>
 
 <ng-sidebar-container [ngClass]="{'disconnect': getStateStyle()}">
   <!-- SIDEBAR  -->
@@ -27,32 +34,39 @@
       <div class="sidebar-link-wrapper">
         <div class="sidebar-link" *ngIf="_layout === 1" (click)="navigateToBuckets()">Buckets</div>
         <div class="sidebar-link" *ngIf="_layout === 1" (click)="navigateToLinks()">Links</div>
+        <div class="sidebar-link logout" *ngIf="_layout === 1" (click)="navigateToLinks()">Logout</div>
+        <h4>My Buckets</h4>
+        <div class="sidebar-bucket-empty" *ngIf="!buckets?.length">
+          <div class="text">There is no buckets.<br><br>Click on the [+Add bucket...]</div>
+        </div>
         <div *ngFor="let bucket of buckets | reverse" class="bucket-row col s12" (click)="navigateToBucket(bucket.id)">
-           <span class="colorbox" [ngStyle]="{'background-color': bucket.color}"></span>
-          <span class="name">{{bucket.name}} ({{bucket?.Links.length}})</span>
+          <div class="name">{{bucket.name}}</div>
+          <div class="count" [ngStyle]="{'background-color': bucket.color}">{{bucket?.Links.length}}</div>
         </div>
-        <div *ngIf="isAuth()" class="sidebar-link trash-for-links">
-          <i class=" fa fa-trash-o"></i>
-        </div>
-        <div class="container-for-trash" [dragula]='"bag-link"' [dragulaOptions]="{ removeOnSpill: true }"></div>
       </div>
     </div>
   </ng-sidebar>
 
   <!-- PAGE -->
   <div class="container" [ngClass]="{'width': getContainerSize() }" ng-sidebar-content>
-    <!-- RIBBON  -->
-    <div class="ribbon-sidebar-container" *ngIf="isAuth()">
-      <div class="ribbon-container">
-        <div class="links-wrapper links-uncategorized">
-          <ul class="links-container for-bucket-{{uncategorizedBucket?.id}}" [dragula]='"bag-link"' [dragulaModel]='uncategorizedBucket?.Links'>
-            <core-link class="link-item link-{{link.id}} link-uncategorized" *ngFor="let link of uncategorizedBucket?.Links" [link]="link"></core-link>
-          </ul>
+    <div class="wrapper">
+      <!-- RIBBON  -->
+      <div class="ribbon-sidebar-container" *ngIf="isAuth() && getRibbonVisibility()">
+        <div class="ribbon-container">
+          <h4 class="ribbon-title">My Uncategorized links</h4>
+          <div class="ribbon-empty" *ngIf="!uncategorizedBucket?.Links?.length">
+            <div class="text">There isn't uncategorized links.</div>
+          </div>
+          <div class="links-wrapper links-uncategorized">
+            <ul class="links-container for-bucket-{{uncategorizedBucket?.id}}" [dragula]='"bag-link"' [dragulaModel]='uncategorizedBucket?.Links' [dragulaOptions]="{'revertOnSpill': true}">
+              <core-link class="link-item link-{{link.id}} link-uncategorized" *ngFor="let link of uncategorizedBucket?.Links" [link]="link"></core-link>
+            </ul>
+          </div>
         </div>
       </div>
+      <router-outlet></router-outlet>
+      <ng2-toasty [position]="'bottom-right'"></ng2-toasty>
     </div>
-    <router-outlet></router-outlet>
-    <ng2-toasty [position]="'bottom-right'"></ng2-toasty>
   </div>
 
 </ng-sidebar-container>

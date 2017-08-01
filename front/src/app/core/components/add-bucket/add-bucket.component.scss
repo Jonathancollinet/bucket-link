@@ -1,19 +1,38 @@
 @import '~scss/variables';
 
+:host {
+  display: inline-block;
+  margin-right: 15px;
+
+  position: relative;
+  z-index: 999999;
+  margin-bottom: 22px;
+}
+
 .add-bucket-action-container {
 
   display: flex;
   align-items: center;
   height: 34px;
-  margin-bottom: 22px;
+
+  .title {
+    font-size: 24px;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $white;
+    margin-bottom: 1rem !important;
+    white-space: pre;
+    word-wrap: break-word;
+  }
 
   .placeholder {
     transition: opacity 0.1s 0.4s ease, width 0.1s 0.14s linear;
-    width: 250px;
+    width: 170px;
     font-size: 28px;
     color: $black;
     position: relative;
     cursor: pointer;
+    white-space: pre;
+    word-wrap: break-word;
   }
 
   .placeholder.hide{
@@ -26,7 +45,6 @@
   .add-bucket-close {
 
     cursor: pointer;
-
     height: 38px;
     width: 38px;
     display: flex;
@@ -57,18 +75,36 @@
     }
   }
 
-
   form {
+    padding: 1rem 0;
+    color: $white;
+    background: $primary;
+    margin-top: 160px; //205px;
     width: 0px;
     overflow: hidden;
-    transition: width 0.3s ease;
+    transition: 0.225s ease;
     * { margin: 0; }
+
+    .form-group {
+      margin-bottom: .5rem;
+      label {
+        white-space: pre;
+        word-wrap: break-word;
+      }
+    }
+
+    .btn {
+      button {
+        width: 214px;
+      }
+      margin-left: 150px;
+    }
   }
 }
 
 .open-form {
-  transition: width 0.3s 0.2s ease !important;
   width: 90% !important;
+  padding: 2rem !important;
 }
 
 @media #{$medium-and-down} {

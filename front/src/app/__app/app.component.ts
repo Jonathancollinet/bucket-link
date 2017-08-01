@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, NgZone, ViewChild, HostListener } from '@
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { Router, NavigationStart  } from '@angular/router';
 
-import { TopBarComponent, SharedService } from '../core';
+import { TopBarComponent, KeyboardHelperComponent, SharedService } from '../core';
 import { Bucket, Link } from '../core/models';
 import { AuthService } from '../core/services/auth.service';
 import { BucketService } from '../core/services/bucket.service';
@@ -23,6 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public minimalWidth = "993px";  // For Sidebar
   public selectedBucket: Bucket;
   public classAuthState: string = 'AuthOFF'; // FOR general CSS
+  public _ribbonVisibility: boolean;
 
   private _opened: boolean = false;
   private _disconnected: boolean; 
@@ -41,6 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
   
 
   @ViewChild(TopBarComponent) topbar: TopBarComponent;
+  @ViewChild(KeyboardHelperComponent) keyboardHelper: KeyboardHelperComponent;
 
   constructor(
     private _zone: NgZone,
@@ -50,11 +52,18 @@ export class AppComponent implements OnInit, OnDestroy {
     private _shared: SharedService,
     private _bucket: BucketService
   ) {
-     // Subscribers
+    // Subscribers
+    this._dragula.drop.subscribe((value) => {
+      this.onDrop(value.slice(1));
+    });
      this._subRouter = this._router.events.subscribe(event => {
       if  (event instanceof NavigationStart) {
+        if (event.url.indexOf('/bucket/') > -1 || event.url.indexOf('/buckets') > -1) {
+          this.setRibbonVisibility(true);
+        } else {
+          this.setRibbonVisibility(false);
+        }
         if (event.url.indexOf('/bucket/') > -1) {
-          console.log(this.buckets[event.url.split('/').pop()])
           this.selectedBucket = this.buckets[event.url.split('/').pop()]
         } else {
           this.selectedBucket = null;
@@ -79,19 +88,14 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
     this._shared.get('selectedBucket').subscribe((state: number) => {
-      console.log('in sub', state);
-      // this.selectedBucket = state;
-      if (state) {
-        this._bucket.setBucketIDForPost(state);
-        this._bucket.setBucketName(this.getBucketByID(state).name);
-        this._shared.setData('selectedBucketColor', this.getBucketByID(state).color);
-      } else {
-        this._bucket.setBucketIDForPost(null);
-        this._shared.setData('selectedBucketColor',  BUCKET_COLORS[0].code)
-      }
-    })
-    this._dragula.setOptions('bag-trash', {
-      removeOnSpill: true
+       if (state) {
+          this._bucket.setBucketIDForPost(state);
+          this._bucket.setBucketName(this.getBucketByID(state).name);
+          this._shared.setData('selectedBucketColor', this.getBucketByID(state).color);
+        } else {
+          this._bucket.setBucketIDForPost(null);
+          this._shared.setData('selectedBucketColor',  BUCKET_COLORS[0].code)
+        }
     });
   }
 
@@ -133,7 +137,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private getUncategorizedLinks() {
     this._subULinks = this._bucket.getUncategorizedLinks().subscribe((response) => {
-      this.uncategorizedBucket = new Bucket(0, "UNCATEGORIZED", "#37105f", new Date().toString(), new Date().toString(), response.data);
+      if (this.uncategorizedBucket && this.uncategorizedBucket.Links && this.uncategorizedBucket.Links.length !== response.data.length) {
+        this.uncategorizedBucket.Links = response.data;
+      } else {
+        this.uncategorizedBucket = new Bucket(0, "UNCATEGORIZED", "#37105f", new Date().toString(), new Date().toString(), response.data);
+      }
     }, (err) => { console.error('getBuckets', err); });
   }
 
@@ -149,15 +157,15 @@ export class AppComponent implements OnInit, OnDestroy {
     let [e, newBucketId] = args;
     let linkId = +[e.className.replace(/[^\d.]/g,'')];
     newBucketId = +[newBucketId.className.replace("links-container for-bucket-", "")];
-    if (newBucketId === NaN) { newBucketId = -1; }
     if (parseInt(newBucketId, 10)) {
-      console.log('inDrop app -- bucketId', newBucketId, 'linkId', linkId)
       this._bucket.patchLink(linkId, { bucketId: newBucketId }).subscribe((resp) => {
         this._shared.setData('BucketsShouldBeReloaded', newBucketId);
+        this._shared.setData('BucketsPageShouldBeReloaded', newBucketId);
       }, (err) => {console.error('patch link', err)})
     } else if (newBucketId === 0) {
       this._bucket.patchLink(linkId, { bucketId: null }).subscribe((resp) => {
          this._shared.setData('BucketsShouldBeReloaded', null);
+         this._shared.setData('BucketsPageShouldBeReloaded', null);
       }, (err) => {console.error('patch link', err)})
     }
   }
@@ -216,6 +224,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this._layout = 1;
   }
 
+  public setRibbonVisibility(state: boolean): boolean {
+    this._ribbonVisibility = state;
+    return this._ribbonVisibility;
+  }
+
+  public getRibbonVisibility(): boolean {
+    return this._ribbonVisibility;
+  }
+
   private geContainerSize(): string {
     return this.isAuth() ? 'calc(100% - 250px)' : "100%";
   }
@@ -252,6 +269,15 @@ export class AppComponent implements OnInit, OnDestroy {
       this._router.navigate(['/profile']);
   }
 
+  public navigateToRegister() {
+    this._router.navigate(['/register']);
+  }
+
+  public navigateToLogin() {
+    this._router.navigate(['/login']);
+  }
+
+
   public setSidebarHidden(): string {
     return (this._auth.isLoggedIn() && this._layout === 0) ? 'bucketlist-sidebar' : 'bucketlist-sidebar hidden';
   }
@@ -260,21 +286,25 @@ export class AppComponent implements OnInit, OnDestroy {
   // Global shortcut
   @HostListener('window:keydown', ['$event'])
   onKeyDown(e: KeyboardEvent) {
-    // TO CHANGE, CTRL + SHIFT + A
-    if (e.ctrlKey && e.shiftKey && e.keyCode === 65) {
+    if (e.ctrlKey && e.shiftKey && e.keyCode === 65) { // CTRL + SHIFT + A
       this.topbar.focusAddInput()
+    } else if (e.ctrlKey && e.shiftKey && e.keyCode === 72) { // CTRL + SHIFT + H
+      !this.keyboardHelper.getOpened() ? this.keyboardHelper.setOpened(true) : this.keyboardHelper.setOpened(false);
     }
   }
 
   @HostListener('click', ['$event']) 
   onClick(e) {
-   if (this._auth.isLoggedIn()) {
-    if (e.target.className != 'click-target' && e.target.className != 'bucket-action' && e.target.className.indexOf('form-control ng-pristine ng-invalid') != 0) {
-      // Need reformat via bucketService
+   if (this._auth.isLoggedIn() && e.target.className) {
+    if (e.target.className.indexOf && e.target.className != 'click-target' && e.target.className != 'bucket-action' && e.target.className.indexOf('form-control') != 0) {
+      // TODO: Need reformat via bucketService
       this._bucket.setBucketName(null);
       this._shared.setData('selectedBucket', null);
       this._shared.setData('selectedBucketColor',  BUCKET_COLORS[0].code);
       this._bucket.setBucketIDForPost(null);
+    } else if (e.target.className == 'click-target' ||  e.target.className == 'bucket-action') {
+      e.preventDefault();
+      e.stopPropagation();
     }
    }
   }

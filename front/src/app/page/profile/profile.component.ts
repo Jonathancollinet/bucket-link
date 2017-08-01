@@ -16,11 +16,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private _shared: SharedService) {
   }
 
-  ngOnInit() {
+  public handlePasswordUpdate($event: any): void {
+    console.log('handlePasswordUpdate', $event);
+  }
+
+  public deleteMyAccount(): void {
+    console.info('TODO confirm system before api call');
+  }
+
+  ngOnInit(): void {
     this._subCurrentUser = this._shared.get('currentUser').subscribe(d => this._currentUser = d);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this._subCurrentUser) this._subCurrentUser.unsubscribe();
   }
 }
