@@ -50,7 +50,7 @@ export class AuthService {
   public logout(): Observable<any> {
     return this._http.delete('/auth').flatMap((data) => {
       localStorage.removeItem('tkn');
-      this._router.navigate(['/home']);
+      this._router.navigate(['/login']);
       this._shared.setData('isLoggedIn', false);
       this._shared.clearData('currentUser');
       this._socket.disconnect();

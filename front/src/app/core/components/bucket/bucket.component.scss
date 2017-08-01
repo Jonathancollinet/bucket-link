@@ -7,7 +7,6 @@
 /deep/ core-bucket.list {
   width: 100% !important;
   .bucket-info {
-
     .bucket-info-action {
       width: auto !important;
     }
@@ -38,9 +37,10 @@
   clip-path: polygon(0 0, 38% 0, 100% 49%, 38% 100%, 0 100%, 63% 50%);
 }
 
-.click-collapse.collapsed {
-  clip-path: polygon(100% 0, 100% 38%, 50% 100%, 0 38%, 0 0, 50% 63%) !important;
-
+.collapsed {
+  .click-collapse {
+    clip-path: polygon(100% 0, 100% 38%, 50% 100%, 0 38%, 0 0, 50% 63%) !important;
+  }
 }
 
 /deep/ core-bucket.full .bucket-container,
