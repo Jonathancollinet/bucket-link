@@ -261,7 +261,11 @@ export class AppComponent implements OnInit, OnDestroy {
     this._router.navigate(['/buckets']);
   }
 
-   public navigateToLinks(): void {
+  public navigateToBoards(): void {
+      this._router.navigate(['/boards']);
+  }
+
+  public navigateToLinks(): void {
       this._router.navigate(['/links']);
   }
 
@@ -296,7 +300,9 @@ export class AppComponent implements OnInit, OnDestroy {
   @HostListener('click', ['$event']) 
   onClick(e) {
    if (this._auth.isLoggedIn() && e.target.className) {
-    if (e.target.className.indexOf && e.target.className != 'click-target' && e.target.className != 'bucket-action' && e.target.className.indexOf('form-control') != 0) {
+    if (e.target.className.indexOf && e.target.className != 'click-target'
+      && e.target.className != 'fa fa-clone'
+      && e.target.className != 'bucket-action' && e.target.className.indexOf('form-control') != 0) {
       // TODO: Need reformat via bucketService
       this._bucket.setBucketName(null);
       this._shared.setData('selectedBucket', null);
