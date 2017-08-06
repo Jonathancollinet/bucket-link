@@ -124,10 +124,9 @@
           }
         }
       }
-
     }
 
-    .stepper {
+    .slider {
       position: absolute;
       top: 100%;
       left: 0;
@@ -138,78 +137,6 @@
       align-items: center;
       justify-content: center;
 
-      &-container {
-        height: 80%;
-        width: 100%;
-        position: relative;
-        display: flex;
-        justify-content: center;
-
-      }
-
-      &-number {
-        position: absolute;
-        left: 6.25%;
-        top: 0.8rem;
-        transform: translateX(-50%);
-        font-size: 36px;
-        font-weight: bold;
-        border-radius: 99px;
-        width: 54px;
-        height: 54px;
-        border: 3px solid $white;
-        line-height: 50px;
-        text-align: center;
-      }
-
-      &-content {
-        width: 75%;
-        background: $primary-dark;
-        padding: 2rem;
-      }
-
-      &-action {
-        transition: 0.125s ease;
-        position: absolute;
-        top: 0;
-        width: 12.5%;
-        height: 100%;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        color: $white;
-        font-size: 48px;
-        &:hover {
-          background: rgba(0, 0, 0, 0.1);
-          .fa {
-            color: $accent !important;
-          }
-        }
-      }
-
-      &-action.next {
-        right: 0;
-      }
-
-      &-action.back {
-        left: 0;
-      }
-
-      &-action.disabled {
-        color: $disabled !important;
-        cursor: default;
-        .fa {
-          cursor: not-allowed !important;
-          color: $disabled !important;
-        }
-        &:hover {
-          background: inherit !important;
-          .fa {
-            color: $disabled !important;
-          }
-        }
-      }
     }
 
   }

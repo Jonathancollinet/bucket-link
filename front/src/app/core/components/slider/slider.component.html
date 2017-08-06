@@ -1,0 +1,16 @@
+<div class="core-slider">
+  <div class="core-slider-container">
+    <div class="core-slider-number">{{_stepper + 1}}</div>
+    <div [ngClass]="{'disabled': !_stepper}" class="back core-slider-action" (click)="decrementStep()">
+      <i class="fa fa-chevron-left"></i>
+    </div>
+    <div class="core-slider-content">
+      <div class="core-slider-inner-content" *ngFor="let step of _data; let idx = index;">
+        <span *ngIf="_stepper === idx">{{step.txt}}</span>
+      </div>
+    </div>
+    <div [ngClass]="{'disabled': _stepper >= _maxStep}" class="next core-slider-action" (click)="incrementStep()">
+      <i class="fa fa-chevron-right"></i>
+    </div>
+  </div>
+</div>

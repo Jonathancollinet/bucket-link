@@ -13,6 +13,7 @@ export { LinkComponent } from './components/link/link.component';
 export { ColorBoxComponent } from './components/color-box/color-box.component';
 export { KeyboardHelperComponent } from './components/keyboard-helper/keyboard-helper.component';
 export { ViewModeSelectorComponent } from './components/view-mode-selector/view-mode-selector.component';
+export { SliderComponent } from './components/slider/slider.component';
 
 export { emailValidator } from './validators/email.validator';
 export { samePasswordValidator } from './validators/samepassword.validator';
