@@ -40,8 +40,21 @@ module.exports = {
 
     return {
       userId: randomId,
+      boardId: null,
       name: faker.lorem.word(),
       color: bucketColors[randint(0, numberOfColors)],
+      updatedAt: faker.date.past(2),
+      createdAt: faker.date.past(2)
+    }
+  },
+
+  randomBoard: ({ users }) => {
+    const
+      randomId = users[randint(0, users.length)].id
+
+    return {
+      userId: randomId,
+      name: faker.lorem.word(),
       updatedAt: faker.date.past(2),
       createdAt: faker.date.past(2)
     }

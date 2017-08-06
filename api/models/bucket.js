@@ -7,6 +7,12 @@ module.exports = function (sequelize, DataTypes) {
 
   Bucket.associate = function (models) {
     Bucket.hasMany(models.Link)
+    Bucket.belongsTo(models.Board, {
+      onDelete: 'CASCADE',
+      foreignKey: {
+        allowNull: true
+      }
+    })
     Bucket.belongsTo(models.User, {
       foreignKey: {
         allowNull: false

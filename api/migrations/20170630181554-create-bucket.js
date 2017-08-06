@@ -24,6 +24,16 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'cascade'
       },
+      boardId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Boards',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -37,6 +37,7 @@ module.exports = function (sequelize, DataTypes) {
   })
 
   User.associate = function (models) {
+    User.hasMany(models.Board)
     User.hasMany(models.Bucket)
     User.hasMany(models.Link)
   }
