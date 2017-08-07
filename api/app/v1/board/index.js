@@ -29,8 +29,9 @@ module.exports = (express) => {
   router.get('/:boardId/buckets', boardCtrl.getBucketsByBoardId)
   router.post('/', boardCtrl.create)
   router.post('/:boardId/buckets', boardCtrl.createBucket)
-  router.delete('/:boardId', boardCtrl.destroy)
   router.patch('/:boardId', boardCtrl.update)
+  router.delete('/:boardId', boardCtrl.destroy)
+
 
   return router
 }

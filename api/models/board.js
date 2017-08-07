@@ -6,10 +6,17 @@ module.exports = function (sequelize, DataTypes) {
 
   Board.associate = function (models) {
     Board.hasMany(models.Bucket)
+    // owner
     Board.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
-      },
+      as: 'Owner',
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    })
+    // contributors
+     Board.belongsToMany(models.User, {
+      through: models.UserBoard,
+      as: 'Contributors',
+      foreignKey: 'boardId',
       onDelete: 'CASCADE'
     })
   };

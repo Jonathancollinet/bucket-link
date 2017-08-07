@@ -10,9 +10,8 @@
 
 const
   { getUserFromToken } = require('../auth/auth'),
-  { User, Board, Bucket } = require('../../../models'),
+  { UserBoard, User, Board, Bucket } = require('../../../models'),
   { isSet, setResponse, isValidColor } = require('../../../commons'),
-  scrapper = require('../../../scrapper'),
   http = require('http')
 
 module.exports = {
@@ -29,9 +28,9 @@ module.exports = {
       } else {
         const boards = await Board.findAll({
           attributes: ['id', 'name','createdAt', 'updatedAt'],
-          // where: {
-          //   userId: connectedUser.get('id')
-          // },
+          where: {
+            userId: connectedUser.get('id')
+          },
           include: [{
             model: Bucket,
             limit: 25,
@@ -52,18 +51,16 @@ module.exports = {
       setResponse(res, 'NOT_FOUND')
     } else {
       const board = await Board.findOne({
-        attributes: ['id', 'name', 'createdAt', 'updatedAt'],
+        attributes: ['id', 'name', 'userId', 'createdAt', 'updatedAt'],
         where: { id: req.params.boardId },
         include: [{
-          model: Bucket,
-          limit: 50,
-          order: [
-            ['createdAt', 'DESC']
-          ],
-          separate: true,
-          attributes: { exclude: ['UserId'] }
+          model: User, as: 'Owner'
+        },{
+          model: User, through: UserBoard, as: 'Contributors'
+        }, {
+          model: Bucket
         }]
-      })
+      }).catch((err) => { console.error(err); })
       if (!board) {
         setResponse(res, 'NOT_FOUND')
       } else {
