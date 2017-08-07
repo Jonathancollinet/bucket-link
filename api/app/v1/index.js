@@ -24,6 +24,7 @@ app.use(function (req, res, next) {
 })
 
 api.use('/users', require('./user')(express))
+api.use('/boards', require('./board')(express))
 api.use('/buckets', require('./bucket')(express))
 api.use('/links', require('./link')(express))
 api.use('/auth', require('./auth')(express))
