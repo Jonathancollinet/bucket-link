@@ -55,7 +55,7 @@ module.exports = {
         attributes: ['id', 'name', 'createdAt', 'updatedAt'],
         where: { id: req.params.boardId },
         include: [{
-          model: Link,
+          model: Bucket,
           limit: 50,
           order: [
             ['createdAt', 'DESC']
@@ -78,8 +78,7 @@ module.exports = {
     } else {
       const board = await Board.findById(req.params.boardId)
       const buckets = await board.getBuckets()
-
-      if (!bucket) {
+      if (!buckets) {
         setResponse(res, 'NOT_FOUND')
       } else {
         setResponse(res, 'OK', buckets)
@@ -92,14 +91,12 @@ module.exports = {
       setResponse(res, 'NO_CONTENT')
     } else {
       const user = getUserFromToken(req.get('authorization')),
-        userModel = await User.findById(user.id)
+            userModel = await User.findById(user.id)
 
-      if (!isValidColor(req.body.color)) {
-        return setResponse(res, 'INVALID_COLOR', {})
-      }
       try {
         const board = await userModel.createBoard({
-          name: req.body.name
+          name: req.body.name,
+          UserId: user.id
         })
         setResponse(res, 'OK', board)
       } catch (err) {
@@ -108,82 +105,74 @@ module.exports = {
     }
   },
 
-  // async createBucket(req, res) {
-  //   if (!parseInt(req.params.boardId)) {
-  //     setResponse(res, 'NOT_FOUND')
-  //   } else {
-  //     const bucket = await Bucket.findById(req.params.bucketId)
+  async createBucket(req, res) {
+    if (!parseInt(req.params.boardId)) {
+      setResponse(res, 'NOT_FOUND')
+    } else {
+      const board = await Board.findById(req.params.boardId)
 
-  //     if (!bucket) {
-  //       setResponse(res, 'NOT_FOUND')
-  //     } else {
-  //       if (!isSet(req.body.url)) {
-  //         setResponse(res, 'NO_CONTENT')
-  //       } else {
-  //         const user = getUserFromToken(req.get('authorization')),
-  //           metas = await scrapper(req.body.url).catch(err => {
-  //             setResponse(res, 'INVALID_URL', {})
-  //           })
-  //         try {
-  //           const newLink = await bucket.createLink({
-  //             url: req.body.url,
-  //             title: req.body.title || metas.title || '',
-  //             description: req.body.description || metas.description || '',
-  //             UserId: user.id,
-  //             image: metas.image || ''
-  //           })
-  //           setResponse(res, 'OK', newLink)
-  //         } catch (err) {
-  //           setResponse(res, 'SERVER_ERROR')
-  //         }
-  //       }
-  //     }
-  //   }
-  // },
+      if (!board) {
+        setResponse(res, 'NOT_FOUND')
+      } else {
+        if (!isSet(req.body.name) && !isSet(req.body.color)) {
+          setResponse(res, 'NO_CONTENT')
+        } else {
+          const user = getUserFromToken(req.get('authorization'))
+            
+          try {
+            const newBucket = await Bucket.create({
+              name: req.body.name,
+              color: req.body.color,
+              UserId: user.id,
+              BoardId: req.params.boardId,
+              t: 42
+            })
+            setResponse(res, 'OK', newBucket)
+          } catch (err) {
+            setResponse(res, 'SERVER_ERROR')
+          }
+        }
+      }
+    }
+  },
 
-  // async destroy(req, res) {
-  //   if (!parseInt(req.params.bucketId)) {
-  //     setResponse(res, 'NOT_FOUND')
-  //   } else {
-  //     Bucket.findById(req.params.bucketId).then(bucket => {
-  //       if (!bucket) {
-  //         setResponse(res, 'NOT_FOUND')
-  //       } else {
-  //         return bucket.destroy()
-  //       }
-  //     }).then(() => {
-  //       setResponse(res, 'OK')
-  //     })
-  //   }
-  // },
+  async destroy(req, res) {
+    if (!parseInt(req.params.boardId)) {
+      setResponse(res, 'NOT_FOUND')
+    } else {
+      Board.findById(req.params.boardId).then(board => {
+        if (!board) {
+          setResponse(res, 'NOT_FOUND')
+        } else {
+          return board.destroy()
+        }
+      }).then(() => {
+        setResponse(res, 'OK')
+      })
+    }
+  },
 
-  // async update(req, res) {
-  //   const user = getUserFromToken(req.get('authorization'))
+  async update(req, res) {
+    const user = getUserFromToken(req.get('authorization'))
 
-  //   if (!parseInt(req.params.bucketId)) {
-  //     setResponse(res, 'NOT_FOUND')
-  //   } else {
-  //     const bucket = await Bucket.findById(req.params.bucketId)
-
-  //     if (!isValidColor(req.body.color)) {
-  //       return setResponse(res, 'INVALID_COLOR', {})
-  //     }
-  //     if (!bucket) {
-  //       setResponse(res, 'NOT_FOUND')
-  //     } else {
-  //       if (isSet(req.body.name)) {
-  //         const color = req.body.color ? req.body.color : bucket.color
-  //         bucket.update({
-  //           'name': req.body.name,
-  //           'color': color
-  //         })
-  //         setResponse(res, 'OK', bucket)
-  //       } else {
-  //         setResponse(res, 'NO_CONTENT')
-  //       }
-  //     }
-  //   }
-  // }
+    if (!parseInt(req.params.boardId)) {
+      setResponse(res, 'NOT_FOUND')
+    } else {
+      const board = await Board.findById(req.params.boardId)
+      if (!board) {
+        setResponse(res, 'NOT_FOUND')
+      } else {
+        if (isSet(req.body.name)) {
+          board.update({
+            'name': req.body.name
+          })
+          setResponse(res, 'OK', board)
+        } else {
+          setResponse(res, 'NO_CONTENT')
+        }
+      }
+    }
+  }
 
 
 }
