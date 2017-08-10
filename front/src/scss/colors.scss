@@ -1,12 +1,60 @@
 @import './variables';
 
-.red      { background: $color-box-red !important; }
-.pink     { background: $color-box-pink !important; }
-.purple   { background: $color-box-purple !important; }
-.blue     { background: $color-box-blue !important; }
-.cyan     { background: $color-box-cyan !important; }
-.green    { background: $color-box-green !important; }
-.yellow   { background: $color-box-yellow !important; }
-.orange   { background: $color-box-orange !important; }
-.brown    { background: $color-box-brown !important; }
-.grey     { background: $color-box-grey !important; }
+// Background
+
+.black              { background: $black; }
+.white              { background: $white; }
+.grey               { background: $grey; }
+.grey-light         { background: $grey-light; }
+.primary-light      { background: $primary-light; }
+.primary            { background: $primary; }
+.primary-dark       { background: $primary-dark; }
+.accent             { background: $accent; }
+
+.red                { background: $color-box-red; }
+.pink               { background: $color-box-pink; }
+.purple             { background: $color-box-purple; }
+.blue               { background: $color-box-blue; }
+.cyan               { background: $color-box-cyan; }
+.green              { background: $color-box-green; }
+.yellow             { background: $color-box-yellow; }
+.orange             { background: $color-box-orange; }
+.brown              { background: $color-box-brown; }
+
+.danger             { background: $danger; }
+.danger-dark        { background: $danger-dark; }
+.warning            { background: $warning; }
+.warning-dark       { background: $warning-dark; }
+.success            { background: $success; }
+.success-dark       { background: $success-dark; }
+.info               { background: $info; }
+.info-dark          { background: $info-dark; }
+
+// Font-color
+
+.black-text              { color: $black; }
+.white-text              { color: $white; }
+.grey-text               { color: $grey; }
+.grey-text-light         { color: $grey-light; }
+.primary-text-light      { color: $primary-light; }
+.primary-text-color      { color: $primary; }
+.primary-text-dark       { color: $primary-dark; }
+.accent-text             { color: $accent; }
+
+.red-text                { color: $color-box-red; }
+.pink-text               { color: $color-box-pink; }
+.purple-text             { color: $color-box-purple; }
+.blue-text               { color: $color-box-blue; }
+.cyan-text               { color: $color-box-cyan; }
+.green-text              { color: $color-box-green; }
+.yellow-text             { color: $color-box-yellow; }
+.orange-text             { color: $color-box-orange; }
+.brown-text              { color: $color-box-brown; }
+
+.danger-text        { color: $danger; }
+.danger-text-dark   { color: $danger-dark; }
+.warning-text       { color: $warning; }
+.success-text       { color: $success; }
+.success-text-dark  { color: $success-dark; }
+.info-text          { color: $info; }
+.info-text-dark     { color: $info-dark; }

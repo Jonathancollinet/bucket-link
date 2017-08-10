@@ -1,0 +1,52 @@
+@import 'variables';
+
+.flex {
+    display: flex;
+
+    &-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &-hcenter {
+        display: flex;
+        justify-content: center;
+    }
+
+    &-vcenter {
+        display: flex;
+        align-items: center;
+    }
+
+    &-between {
+        display: flex;
+        justify-content: space-between;
+
+        &-center {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    &-around {
+        display: flex;
+        justify-content: space-around;
+
+        &-center {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+    }
+
+    &-col {
+        flex-direction: column;
+    }
+
+    &-row {
+        flex-direction: row;
+    }
+
+}

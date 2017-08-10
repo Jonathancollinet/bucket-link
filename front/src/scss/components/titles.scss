@@ -1,0 +1,12 @@
+@import '~scss/variables';
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
+h1 { font-size: $global-h1; line-height: 110%; margin: ($global-h1 / 2) 0 ($global-h1 / 2.5) 0;}
+h2 { font-size: $global-h2; line-height: 110%; margin: ($global-h2 / 2) 0 ($global-h2 / 2.5) 0;}
+h3 { font-size: $global-h3; line-height: 110%; margin: ($global-h3 / 2) 0 ($global-h3 / 2.5) 0;}
+h4 { font-size: $global-h4; line-height: 110%; margin: ($global-h4 / 2) 0 ($global-h4 / 2.5) 0;}
+h5 { font-size: $global-h5; line-height: 110%; margin: ($global-h5 / 2) 0 ($global-h5 / 2.5) 0;}
+h6 { font-size: $global-h6; line-height: 110%; margin: ($global-h6 / 2) 0 ($global-h6 / 2.5) 0;}

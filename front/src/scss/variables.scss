@@ -1,29 +1,44 @@
-// Main Colors
-$black: #424B54;
-$white: #F5F5F5;
-$grey: #dcdcdc;
-$light-grey: #D3D3D3;
+// Main colors
+$black:         #0D1F22;
+$white:         #EEE5E9;
+$grey:          #7C7C7C;
+$grey-light:    #a8a8a8;
 
-$primary-light:  #4F4B6E;
-$primary:        #34314c;
-$primary-dark:   #2a273d;
-$accent:         #47b8e0;
-$primary-text:   #212121;
-$secondary-text: #757575;
-$divider-color:  #BDBDBD;
-$link-color:     #338fff;
+// Application colors
+$primary-light: #4F4B6E;
+$primary:       #34314c;
+$primary-dark:  #2a273d;
+$accent:        #47b8e0;
 
-// $primary:  #0049b0;
-// $primary:  #1A535C;
-// $primary:  #3F3047;
-// $accent:   $white;
-// $accent:   #0094C6;
-// $tercary:  #77FF9B;
-// $tercary:  #77FF9B;
+// Text colors
+$primary-text:      $black;
+$secondary-text:    $grey;
+$divider-color:     $grey-light;
+
+$link-color:        #3a2eff;
+$link-color-light: 	#1e90ff;
 
 // Contextual colors
-$disabled: #9A9A9A;
-$error: red;
+$danger:        #ff4444;
+$danger-dark:   #CC0000;
+$warning:       #ffbb33;
+$warning-dark:  #FF8800;
+$success:       #00C851;// Titles
+$h1-fontsize: 4.2rem !default;
+$h2-fontsize: 3.56rem !default;
+$h3-fontsize: 2.92rem !default;
+$h4-fontsize: 2.28rem !default;
+$h5-fontsize: 1.64rem !default;
+$h6-fontsize: 1rem !default;
+
+$success-dark:  #007E33;
+$info:          #33b5e5;
+$info-dark:     #0099CC;
+
+$error: $danger;
+
+$title-color:   $white;
+$disabled:      $grey-light;
 
 // color input
 $color-box-red:     #f44336;
@@ -32,10 +47,10 @@ $color-box-purple:  #9c27b0;
 $color-box-blue:    #2196f3;
 $color-box-cyan:    #00bcd4;
 $color-box-green:   #4caf50;
-$color-box-yellow:  #f1c40f;
+$color-box-yellow:  #D4AD11;
 $color-box-orange:  #ff9800;
 $color-box-brown:   #795548;
-$color-box-grey:      $disabled;
+$color-box-grey:    $grey;
 
 // Layout
 $marge: 1.5vw;
@@ -61,13 +76,13 @@ $gutter-width: 1.5rem !default;
 $element-top-margin: $gutter-width/3 !default;
 $element-bottom-margin: ($gutter-width*2)/3 !default;
 
-// Title
-$global-h1: 36px;
-$global-h2: 32px;
-$global-h3: 26px;
-$global-h4: 22px;
-$global-h5: 18px;
-$global-h6: 16px;
+// Titles
+$global-h1: 4.2rem !default;
+$global-h2: 3.56rem !default;
+$global-h3: 2.92rem !default;
+$global-h4: 2.28rem !default;
+$global-h5: 1.64rem !default;
+$global-h6: 1rem !default;
 
 // Font properties
 $font-size: inherit;

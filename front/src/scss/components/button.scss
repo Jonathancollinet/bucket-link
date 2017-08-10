@@ -37,7 +37,7 @@ button {
     }
   }
   &:disabled {
-    background: $light-grey;
+    background: $grey-light;
     cursor: not-allowed !important;
     color: $disabled;
     border-color: $disabled;

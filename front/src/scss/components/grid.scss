@@ -1,35 +1,38 @@
 @import '~scss/variables';
 
-@media #{$medium-and-up} {
-  .container {
-    width: 85%;
-  }
+.content {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
 }
-@media #{$large-and-up} {
-  .container {
-    width: 70%;
-  }
-}
-.container .row {
+
+.content .row {
   margin-left: (-1 * $gutter-width / 2);
   margin-right: (-1 * $gutter-width / 2);
+}
+
+.divider {
+  height: 1px;
+  overflow: hidden;
+  background-color: $grey;
 }
 
 .section {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
 
-  &.no-pad {
-    padding: 0;
-  }
-  &.no-pad-bot {
-    padding-bottom: 0;
-  }
-  &.no-pad-top {
-    padding-top: 0;
+@media #{$medium-and-up} {
+  .container {
+    width: 85%;
   }
 }
 
+@media #{$large-and-up} {
+  .container {
+    width: 70%;
+  }
+}
 
 // Mixins to eliminate code repitition
 @mixin reset-offset {
@@ -48,7 +51,6 @@
     left: $perc;
   }
 }
-
 
 .row {
   margin-left: auto;

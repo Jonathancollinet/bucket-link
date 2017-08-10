@@ -13,3 +13,4 @@ export { BucketComponent } from './bucket/bucket.component';
 export { LinksComponent } from './links/links.component';
 
 export { ProfileComponent } from './profile/profile.component';
+export { DesignComponent } from './design/design.component';
