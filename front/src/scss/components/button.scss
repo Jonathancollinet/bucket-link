@@ -1,11 +1,20 @@
 @import '~scss/variables';
 
 .btn {
-    display: inline-block !important;
+    display: inline-block;
     height: $btn-height;
 }
 
+div .btn {
+  margin: 0 -4px;
+
+  &:first-child {
+    margin: 0;
+  }
+}
+
 button {
+  font-weight: bold;
   min-width: 210px;
   padding: 0.95rem 1.5rem;
   border: none;
@@ -18,7 +27,7 @@ button {
   color: $white;
   user-select: none;
   font-size: 16px;
-  outline-width: 0 !important;
+  outline-width: 0 ;
   &:after {
     position: absolute;
     transition: .3s;
@@ -38,22 +47,56 @@ button {
   }
   &:disabled {
     background: $grey-light;
-    cursor: not-allowed !important;
-    color: $disabled;
-    border-color: $disabled;
+    cursor: not-allowed;
+    color: $grey !important;
     &:hover {
-      transform: none !important;
+      transform: none;
       &:after {
-        content: none !important;
+        content: none;
       }
     }
   }
-}
 
-button.danger {
-  background: $error !important;
-  &:after {
-    background: $white;
+  &.danger {
+    &:after {
+      background: $danger-dark;
+    }
+  }
+  &.info {
+    &:after {
+      background: $info-dark;
+    }
+  }
+  &.warning {
+    &:after {
+      background: $warning-dark;
+    }
+  }
+  &.success {
+    &:after {
+      background: $success-dark;
+    }
+  }
+
+  &.danger-dark {
+    &:after {
+      background: $danger;
+    }
+  }
+  &.info-dark {
+    &:after {
+      background: $info;
+    }
+  }
+  &.warning-dark {
+    &:after {
+      background: $warning;
+    }
+  }
+  &.success-dark {
+    &:after {
+      background: $success;
+    }
   }
 }
 
